@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("p").click(function(){
-        //$(this).hide();
-    });
+    $("#sucesso").hide();
+    $("#progress-bar").hide();
+    $("#output").hide();
 });
