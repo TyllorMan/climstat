@@ -24,7 +24,7 @@ var openFileFam = function(event) {
     var flag = 0;
     var count = 0;
 
-    while(ponteiro != -1) {
+    while(ponteiro!=-1) {
       console.log("result.length: " + tamanho);
        var linhaF = reader.result.indexOf('FAMILY', ponteiro);
        var linhaS = reader.result.indexOf('SYS#', ponteiro);
@@ -40,11 +40,11 @@ var openFileFam = function(event) {
           //console.log('inicioDaLinha:'+inicioDalinha);
           fimDalinha = reader.result.indexOf('\n', inicioDalinha + 2);
 
-          if(flag == 0) {
+          if(flag==0) {
               inicioDalinha = 0;
           }
 
-          flag = 1;
+          flag=1;
           //console.log('fimDalinha:'+fimDalinha);
           var vetor = new Array();
           var vfinal = new Array();
@@ -77,7 +77,7 @@ var openFileFam = function(event) {
                 familias[familias.length-1].total_time = vfinal[2];
                 familias[familias.length-1].deltax = vfinal[4];
                 familias[familias.length-1].deltay = vfinal[6];
-                //familias[familias.length-1].last_image=vfinal[9];
+                familias[familias.length-1].last_image=vfinal[9];
                 //familias[familias.length-1].end=vfinal[10].substring(vfinal[10].indexOf('=')+1,vfinal[10].length);
                 //console.log("   -  Terminando ");
               } else {
@@ -136,39 +136,42 @@ var openFileFam = function(event) {
                    familias[familias.length-1].addTempo(tempo);
                  }
               }
-
           }
           //console.log(linha);
           //console.log(vfinal);
           //console.log(familia.numero);
-       }
+       }//fim while
 
        ponteiro = reader.result.indexOf('END', ponteiro + 1);
        //console.log(ponteiro);
        //COLOCAR OS IFs aqui
-       if(familia.hora >= 6 && familia.hora <= 24)
-       console.log(familia.print());
-       $("#tabela")
-         .append($('<tr>')
-             .append($('<td>')
-                 .append(familia.print())
-             )
-         );
-    }
+       //if(familia.hora >= 6 && familia.hora <= 24)
+      //  if(familia.hora >= 6 && familia.hora <= 24)
+        //console.log(familia.print());
+       //
+      //  $("#tabela")
+      //    .append($('<tr>')
+      //        .append($('<td>')
+      //            .append('Família: ' + familia.numero + ' Ano: ' + familia.ano +
+      //            ' Mês: ' + familia.mes + ' Tempo total: ' + familia.total_time +
+      //            ' Hora: ' + familia.hora)
+      //        )
+      //    );
+    }//fim while
 
     //node.innerHTML = "";
     //node.innerHTML = node.innerText + familias.length + " Familias Carregadas!";
-    $("#sucesso").fadeIn( "slow", function() {
-      $("#progress-bar").hide();
-      $("#output").show();
-    });
-
+    // $("#sucesso").fadeIn( "slow", function() {
+    //   $("#progress-bar").hide();
+      //$("#output").show();
+    // });
+    console.log(familia.print());
     $("#sucesso").click(function(){
       $("#sucesso").fadeOut( "slow", function() {
           // Animation complete.
       });
     });
+  };//fim onload
 
-  };
   reader.readAsText(input.files[0]);
 };
