@@ -145,8 +145,8 @@ var openFileFam = function(event) {
        ponteiro = reader.result.indexOf('END', ponteiro + 1);
        //console.log(ponteiro);
        //COLOCAR OS IFs aqui
-       //if(familia.hora >= 6 && familia.hora <= 24)
-      //  if(familia.hora >= 6 && familia.hora <= 24)
+    
+      //if(familia.hora >= 6 && familia.hora <= 24)
         //console.log(familia.print());
        //
       //  $("#tabela")
@@ -159,13 +159,12 @@ var openFileFam = function(event) {
       //    );
     }//fim while
 
-    //node.innerHTML = "";
-    //node.innerHTML = node.innerText + familias.length + " Familias Carregadas!";
     // $("#sucesso").fadeIn( "slow", function() {
     //   $("#progress-bar").hide();
-      //$("#output").show();
+      $("#output").show();
+      $("#output").text(familia.print());
     // });
-    console.log(familia.print());
+    //console.log(familia.print());
     $("#sucesso").click(function(){
       $("#sucesso").fadeOut( "slow", function() {
           // Animation complete.

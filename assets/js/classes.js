@@ -1,13 +1,4 @@
-var familias = {
-	familia: new Number(),
-	ano: new Number(),
-	mes: new Number(),
-	tempo_total: new Number(),
-	hora: new Number(),
-	array: []
-};
-
-	function EPI() {
+function EPI() {
 
 	this.lat;
 	this.lon;
@@ -40,14 +31,13 @@ function Familia() {
   }
 
 	this.print = function () {
-		console.log("Familia: " + this.numero + " Ano: " + this.ano + " Mes: " + this.mes + " t.total: " + this.total_time + " hora: " + this.hora);
+		//console.log("Familia: " + this.numero + " Ano: " + this.ano + " Mes: " + this.mes + " t.total: " + this.total_time + " hora: " + this.hora);
 
 		familias.familia =  this.numero;
-		familias.ano=this.ano
-		familias.mes =this.mes;
-		familias.tempo_total=this.total_time;
-		familias.hora= this.hora;
-
+		familias.ano = this.ano
+		familias.mes = this.mes;
+		familias.tempo_total = this.total_time;
+		familias.hora = this.hora;
 
 		var i;
  		for(i = 0; i < this.tempos.length; i++) {
@@ -89,17 +79,11 @@ function Tempo() {
 		// 			)
 		// 	);
 
-			// var objeto = {
-      //       familia: new Number(0),
-			// 			ano: 0,
-			// 			mes: 0,
-			// 			tempo_total: 0,
-			// 			hora: 0,
-             familias.array = [{'tempo': new Number(this.sys), 'latitude': new Number(this.xlat), 'longitude':new Number(this.xlon), 'size':new Number(this.xlat)}]
-      //   };
-
-		//var json = JSON.stringify({'tempo': new Number(this.sys), 'latitude': new Number(this.xlat), 'longitude':new Number(this.xlon), 'size':new Number(this.xlat)});
-		//console.log(json);
   	console.log(JSON.stringify(familias));
+		$("#output").text(JSON.stringify(familias));
+
+		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+
+		saveAs(blob, "familias.js");
 	}
 }
