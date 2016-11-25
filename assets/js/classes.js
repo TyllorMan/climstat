@@ -31,7 +31,7 @@ function Familia() {
   }
 
 	this.print = function () {
-		//console.log("Familia: " + this.numero + " Ano: " + this.ano + " Mes: " + this.mes + " t.total: " + this.total_time + " hora: " + this.hora);
+		console.log("Familia: " + this.numero + " Ano: " + this.ano + " Mes: " + this.mes + " t.total: " + this.total_time + " hora: " + this.hora);
 
 		familias.familia =  this.numero;
 		familias.ano = this.ano
@@ -39,8 +39,8 @@ function Familia() {
 		familias.tempo_total = this.total_time;
 		familias.hora = this.hora;
 
-		var i;
- 		for(i = 0; i < this.tempos.length; i++) {
+		//var i;
+ 		for(var i = 0; i < this.tempos.length; i++) {
  			this.tempos[i].print();
  		}
 	}
@@ -78,12 +78,7 @@ function Tempo() {
 		// 					.append(" - Tempo: " + this.sys + " Lat: " + this.xlat + " Long: " + this.xlon + " Size: " + this.size)
 		// 			)
 		// 	);
-
   	console.log(JSON.stringify(familias));
-		$("#output").text(JSON.stringify(familias));
-
-		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-
-		saveAs(blob, "familias.js");
+		//console.log(familias);
 	}
 }

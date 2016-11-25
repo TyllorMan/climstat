@@ -1,4 +1,5 @@
 var familias = new Array();
+var EPs = new Array();
 
 function imprimirFamilias() {
     var i;
@@ -7,6 +8,41 @@ function imprimirFamilias() {
     }
 }
 
+//funcao para carregar os arquivos EP
+var openFileEP = function(event) {
+  var input = event.target;
+  var fileReader = new FileReader();
+  var linhas = new Array();
+
+  fileReader.onload = function() {
+
+    var linha = new Array();
+    var resultado = fileReader.result;
+    linhas = resultado.split('\n');
+
+    for (var i = 0; i < linhas.length; i++) {
+      linha.push(linhas[i].split('\t'));
+    }
+
+     for (var i = 0; i < linha.length; i++){
+      var temp = new Array();
+      var eps = new EPI();
+
+      temp = linha[i];
+
+      eps.lat = temp[0];
+      eps.lon = temp[1];
+      eps.ano = temp[2];
+      eps.mes = temp[3];
+      eps.dia = temp[4];
+      EPs.push(eps);
+    }//fim for linha
+       console.log(JSON.stringify(EPs));
+  }//fim onload
+  fileReader.readAsText(input.files[0]);
+}//fimopenFileEP
+
+//funcao para carregar as familias
 var openFileFam = function(event) {
 
   var input = event.target;
@@ -140,14 +176,14 @@ var openFileFam = function(event) {
           //console.log(linha);
           //console.log(vfinal);
           //console.log(familia.numero);
-       }//fim while
+       } //fim while
 
        ponteiro = reader.result.indexOf('END', ponteiro + 1);
        //console.log(ponteiro);
        //COLOCAR OS IFs aqui
-    
-      //if(familia.hora >= 6 && familia.hora <= 24)
-        //console.log(familia.print());
+
+      // if(familia.hora >= 6 && familia.hora <= 24)
+      //   console.log(familia.print());
        //
       //  $("#tabela")
       //    .append($('<tr>')
@@ -157,20 +193,12 @@ var openFileFam = function(event) {
       //            ' Hora: ' + familia.hora)
       //        )
       //    );
-    }//fim while
+    } //fim while
 
-    // $("#sucesso").fadeIn( "slow", function() {
-    //   $("#progress-bar").hide();
-      $("#output").show();
-      $("#output").text(familia.print());
-    // });
-    //console.log(familia.print());
-    $("#sucesso").click(function(){
-      $("#sucesso").fadeOut( "slow", function() {
-          // Animation complete.
-      });
-    });
-  };//fim onload
+    if(familia.hora >= 6 && familia.hora <= 24) {
+      console.log(familia.print());
+    }
+  }; //fim onload
 
   reader.readAsText(input.files[0]);
 };
