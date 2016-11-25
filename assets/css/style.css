@@ -3,16 +3,16 @@
     src: url(../fonts/techno_hideo.ttf);
 }
 
-#cabecalho{
-  font-family: teste;
-  text-align: center;
-  color: white;
-  /*top right bottom left*/
-  padding: 40px 0px 30px 0px;
-  border-radius: 0px 0px 100% 100%;
-  background: #00BFFF;
+#cabecalho {
+    font-family: teste;
+    text-align: center;
+    color: white;
+    /*top right bottom left*/
+    padding: 40px 0px 30px 0px;
+    border-radius: 0px 0px 100% 100%;
+    background: #00BFFF;
 }
 
-#dados{
-  font-family: serif;
+#dados {
+    font-family: serif;
 }
