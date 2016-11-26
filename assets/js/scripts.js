@@ -1,6 +1,8 @@
+// $(document).ready(function() {
 var familias = new Array();
 var EPs = new Array();
 
+//funcao para imprimir as familias
 function imprimirFamilias() {
     for (var i = 0; i < familias.length; i++) {
         familias[i].print();
@@ -36,11 +38,10 @@ var openFileEP = function(event) {
             eps.dia = temp[4];
             EPs.push(eps);
         } //fim for linha
-        //console.log(JSON.stringify(EPs));
         console.log(EPs);
     } //fim onload
     fileReader.readAsText(input.files[0]);
-} //fimopenFileEP
+} //fim openFileEP
 
 //funcao para carregar as familias
 var openFileFam = function(event) {
@@ -185,11 +186,12 @@ var openFileFam = function(event) {
             //            ' Hora: ' + familia.hora)
             //        )
             //    );
-        }//fim while
+        } //fim while
 
         if (familia.hora >= 6 && familia.hora <= 24) {
             console.log(familia.print());
         }
-    };//fim onload
+    }; //fim onload
     reader.readAsText(input.files[0]);
 };
+// });
