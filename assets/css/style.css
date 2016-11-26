@@ -1,5 +1,5 @@
 @font-face {
-    font-family: teste;
+    font-family: techno_hideo;
     src: url(../fonts/techno_hideo.ttf);
 }
 
@@ -8,7 +8,7 @@ body {
 }
 
 #cabecalho {
-    font-family: teste;
+    font-family: techno_hideo;
     text-align: center;
     color: white;
     /*top right bottom left*/
@@ -49,21 +49,21 @@ body {
     background-color: #00AFEF;
     margin-bottom: 30px;
     font-size: 20px;
-    background-image: url("assets/img/climstat.png");
+    /*background-image: url("assets/img/climstat.png");*/
 }
 
 .page-heading h1 {
     margin: auto;
     color: white;
     font-size: 7.5vmin;
-    font-family: teste;
+    font-family: techno_hideo;
 }
 
 .page-heading p {
     margin: inherit;
     line-height: 1.4;
-    font-family: roboto;
-    font-size: 3.0vmin;
+    font-family: inherit;
+    font-size: 2.5vmin;
 }
 
 .page-heading .container {
@@ -72,7 +72,6 @@ body {
 
 .teste {
     position: absolute;
-    ;
     background-color: red;
     width: 10px;
     left: auto;

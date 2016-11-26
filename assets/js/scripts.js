@@ -58,7 +58,7 @@ var openFileFam = function(event) {
         var count = 0;
 
         while (ponteiro != -1) {
-            console.log("result.length: " + tamanho);
+            //console.log("result.length: " + tamanho);
             var linhaF = reader.result.indexOf('FAMILY', ponteiro);
             var linhaS = reader.result.indexOf('SYS#', ponteiro);
             var str_familia = reader.result.substring(linhaF, linhaS);
@@ -188,9 +188,17 @@ var openFileFam = function(event) {
             //    );
         } //fim while
 
-        if (familia.hora >= 6 && familia.hora <= 24) {
-            console.log(familia.print());
+        for (var i = 0; i < familias.length; i++) {
+            var json = JSON.parse(JSON.stringify(familias[i]));
+            //console.log("teste: " + i);
+            if (json.hora >= 6 && json.hora <= 24) {
+              console.log("familia: " + json.numero);
+            }
+
         }
+        //  if (familia.hora >= 6 && familia.hora <= 24) {
+        //    console.log(familia.print());
+        //  }
     }; //fim onload
     reader.readAsText(input.files[0]);
 };
