@@ -170,36 +170,46 @@ var openFileFam = function(event) {
                     }
                 }
             } //fim while
-
             ponteiro = reader.result.indexOf('END', ponteiro + 1);
-            //console.log(ponteiro);
-            //COLOCAR OS IFs aqui
-
-            // if(familia.hora >= 6 && familia.hora <= 24)
-            //   console.log(familia.print());
-            //
-            //  $("#tabela")
-            //    .append($('<tr>')
-            //        .append($('<td>')
-            //            .append('Família: ' + familia.numero + ' Ano: ' + familia.ano +
-            //            ' Mês: ' + familia.mes + ' Tempo total: ' + familia.total_time +
-            //            ' Hora: ' + familia.hora)
-            //        )
-            //    );
         } //fim while
-
-        for (var i = 0; i < familias.length; i++) {
-            var json = JSON.parse(JSON.stringify(familias[i]));
-            //console.log("teste: " + i);
-            if (json.hora >= 6 && json.hora <= 24) {
-              console.log("familia: " + json.numero);
-            }
-
-        }
-        //  if (familia.hora >= 6 && familia.hora <= 24) {
-        //    console.log(familia.print());
-        //  }
+        totalSistemas(familias.length, 6, 24)
     }; //fim onload
     reader.readAsText(input.files[0]);
-};
-// });
+}; //fim openFileFam
+
+//tabela 2
+function totalSistemas(tamanhoFamilia) {
+  var mes = new Array();
+  var total = 0 ;
+
+    for (var i = 0; i < tamanhoFamilia; i++) {
+        var json = JSON.parse(JSON.stringify(familias[i]));
+
+        if ((json.hora >= 6 && json.hora < 8) && json.mes == 4) {
+
+            console.log("entrou if: " + i);
+            total = total + 1;
+        }//fim if
+        console.log('json.hora: ' + json.hora);
+        console.log("json.mes: " + json.mes);
+        console.log("total: " + total);
+        console.log("===========================================");
+    } //fim for
+    console.log("total: " + total);
+
+    $("#tabela")
+    .append($('<tr>').append($('<td>').append('6 à 8'))
+    .append($('<td>').append('1'))
+    .append($('<td>').append('2'))
+    .append($('<td>').append('3'))
+    .append($('<td>').append('4'))
+    .append($('<td>').append('5'))
+    .append($('<td>').append('6'))
+    .append($('<td>').append('7'))
+    .append($('<td>').append('8'))
+    .append($('<td>').append('9'))
+    .append($('<td>').append('12'))
+    .append($('<td>').append('11'))
+    .append($('<td>').append('12')));
+    $("#tabela").addClass("table table-striped");
+}
