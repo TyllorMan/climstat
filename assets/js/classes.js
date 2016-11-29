@@ -1,5 +1,4 @@
 function EPI() {
-
     this.lat;
     this.lon;
     this.ano;
@@ -39,7 +38,6 @@ function Familia() {
         familias.tempo_total = this.total_time;
         familias.hora = this.hora;
 
-        //var i;
         for (var i = 0; i < this.tempos.length; i++) {
             this.tempos[i].print();
         }
@@ -81,4 +79,20 @@ function Tempo() {
         console.log(JSON.stringify(familias));
         //console.log(familias);
     }
+}
+
+function Linha(){
+  this.numero_linha = 0;
+  this.janeiro = 0;
+  this.fevereiro = 0;
+  this.marco = 0;
+  this.abril = 0;
+  this.maio = 0;
+  this.junho = 0;
+  this.julho = 0;
+  this.agosto = 0;
+  this.setembro = 0;
+  this.outubro = 0;
+  this.novembro = 0;
+  this.dezembro = 0;
 }
