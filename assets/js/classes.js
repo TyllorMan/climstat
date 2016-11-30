@@ -81,8 +81,8 @@ function Tempo() {
     }
 }
 
-function Linha(){
-  this.numero_linha = 0;
+function Meses(){
+  this.numero_mes = 0;
   this.janeiro = 0;
   this.fevereiro = 0;
   this.marco = 0;

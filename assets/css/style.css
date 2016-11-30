@@ -76,3 +76,7 @@ body {
     width: 10px;
     left: auto;
 }
+
+#tabela5 table>th{
+  font-style: italic;
+}

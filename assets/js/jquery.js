@@ -3,5 +3,7 @@ $(document).ready(function() {
     $("#sucesso").hide();
     $("#progress-bar").hide();
     $("#canvass ").hide();
+    //$("#tabela ").DataTable();
     $(":file").filestyle({buttonName: "btn-primary"});
+
 });
