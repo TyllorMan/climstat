@@ -14,8 +14,8 @@
             containerClass: '',
             previousButtonClass: '',
             nextButtonClass: '',
-            previousButtonText: 'Previous',
-            nextButtonText: 'Next',
+            previousButtonText: 'Anterior',
+            nextButtonText: 'Próximo',
             currentPage: 1
         };
 
@@ -81,7 +81,7 @@
                 $rows.hide();
                 $rows.slice((from - 1), to).show();
 
-                of.innerHTML = from + ' to ' + to + ' of ' + $rows.length + ' entries';
+                of.innerHTML = from + ' a ' + to + ' de ' + $rows.length + ' resultados';
 
                 if ($rows.length <= settings.perPage) {
                     $(container).hide();

@@ -1,11 +1,10 @@
+//inicializacao de componentes
 $(document).ready(function() {
     new WOW().init();
     $("#sucesso").hide();
     $("#EPs").hide();
     $("#progress-bar").hide();
     $("#canvass ").hide();
-
-    //$("#tabela ").DataTable();
     $(":file").filestyle({buttonName: "btn-primary"});
 
     // detect a change in a file input with an id of “the-file-input”
@@ -46,15 +45,18 @@ $(document).ready(function() {
                 eps.ano = temp[2];
                 eps.mes = temp[3];
                 eps.dia = temp[4];
+
+                //cria nova linha
                 $("#EPs > tbody").append($('<tr>').append($('<td>').append(eps.dia)).append($('<td>').append(eps.mes)).append($('<td>').append(eps.ano)).append($('<td>').append(eps.lat)).append($('<td>').append(eps.lon)));
                 //adiciona novo eps em EPs
                 EPs.push(eps);
             } //fim for linha
-            $("#EPs").simplePagination({perPage: 10, containerClass: '', previousButtonClass: '', nextButtonClass: '', currentPage: 1});
-            debugger;
+            //monta a paginacao da tabela
+            $("#EPs").simplePagination({perPage: 7, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+            //debugger;
         } //fim onload
         fileReader.readAsText(input.files[0]);
         $("#EPs").show();
 
-    });//fim inputEPs change
-});//fim document ready
+    }); //fim inputEPs change
+}); //fim document ready
