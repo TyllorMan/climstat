@@ -9,40 +9,6 @@ function imprimirFamilias() {
     }
 }
 
-//funcao para carregar os arquivos EP
-var openFileEP = function(event) {
-    var input = event.target;
-    var fileReader = new FileReader();
-    var linhas = new Array();
-
-    fileReader.onload = function() {
-
-        var linha = new Array();
-        var resultado = fileReader.result;
-        linhas = resultado.split('\n');
-
-        for (var i = 0; i < linhas.length; i++) {
-            linha.push(linhas[i].split('\t'));
-        }
-
-        for (var i = 0; i < linha.length; i++) {
-            var temp = new Array();
-            var eps = new EPI();
-
-            temp = linha[i];
-
-            eps.lat = temp[0];
-            eps.lon = temp[1];
-            eps.ano = temp[2];
-            eps.mes = temp[3];
-            eps.dia = temp[4];
-            EPs.push(eps);
-        } //fim for linha
-        console.log(EPs);
-    } //fim onload
-    fileReader.readAsText(input.files[0]);
-} //fim openFileEP
-
 //funcao para carregar as familias
 var openFileFam = function(event) {
 

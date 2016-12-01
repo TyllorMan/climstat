@@ -41,26 +41,38 @@
 </head>
 
 <body>
-
     <header class="page-heading">
         <div class="container wow fadeIn">
             <h1>Climstat</h1>
             <p>PROCESSAMENTO CLIMÁTICO</p>
         </div>
     </header>
-
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="teste.html">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
     <section id="conteudo">
         <div id='dados' class="container-fluid">
             <p>
                 <label class="control-label">EPs:</label>
-                <input type="file" class="file" accept='text/plain' onchange='openFileEP(event)'>
+                <input type="file" class="file" accept='text/plain' id="inputEPs" multiple>
             </p>
+            <table id="EPs" class="table table-striped table-hover paginated">
+                <thead class="">
+                    <tr>
+                        <th>Dia</th>
+                        <th>Mês</th>
+                        <th>Ano</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable"></tbody>
+            </table>
             <p>
                 <label class="control-label">Famílias:</label>
-                <input type="file" class="file" value="Submit" accept='text/plain' onchange='openFileFam(event)'>
-            </p>
-            <p>
-                <button class="" onClick="imprimirFamilias()">Imprimir</button>
+                <input type="file" class="file" id="inputFamilias" value="Submit" accept='text/plain' multiple onchange="openFileFam(event)">
             </p>
         </div>
 
