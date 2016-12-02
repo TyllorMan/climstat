@@ -1,4 +1,5 @@
 //inicializacao de componentes
+var DMA = new Array();
 $(document).ready(function() {
     new WOW().init();
     $("#sucesso").hide();
@@ -8,7 +9,7 @@ $(document).ready(function() {
     $(":file").filestyle({buttonName: "btn-primary"});
 
     $("#inputFamilias").change(function() {
-        console.log(this.files);
+        //console.log(this.files);
     });
 });
 
@@ -18,7 +19,7 @@ $(document).ready(function() {
     var EPS = new Array();
     //acesssa input inputEPs
     $("#inputEPs").change(function() {
-        console.log(this.files);
+        //console.log(this.files);
 
         var input = event.target;
         var fileReader = new FileReader();
@@ -62,20 +63,17 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     //decalaracao de variaveis
-    var DMA = new Array();
     $("#arquivo").change(function() {
         //saida de dados no console Crtl+Shift+i
-        console.log(this.files);
-
+        //console.log(this.files);
         //declaracao de variaveis
         var input = event.target;
         var fileReader = new FileReader();
         var linhas = new Array();
-        var linha = new Array();
 
         //leitura do arquivo
         fileReader.onload = function() {
-
+            var linha = new Array();
             var resultado = fileReader.result;
             //cria cada linha ao final do caractere \n
             linhas = resultado.split('\n');
@@ -96,10 +94,9 @@ $(document).ready(function() {
 
                 DMA.push(dma);
             } //fim for linha
+            console.log(DMA.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
-        $("#EPs").show();
-        console.log(DMA);
     }); //fim inputEPs change
 });
 
@@ -108,24 +105,23 @@ $(document).ready(function() {
     var EPS = new Array();
     $("#comparaDias").change(function() {
         //saida de dados no console (Crtl+Shift+i)
-        console.log(this.files);
+        //console.log(this.files);
         //declaracao de variaveis
         var input = event.target;
         var fileReader = new FileReader();
         var linhas = new Array();
-        var linha = new Array();
 
         //leitura do arquivo
         fileReader.onload = function() {
+            var linha = new Array();
 
             var resultado = fileReader.result;
             //cria cada linha ao final do caractere \n
             linhas = resultado.trim().split('\n');
             //percorretodas as linhas e separa pelo caractere \t
             for (var i = 0; i < linhas.length; i++) {
-              linha.push(linhas[i].split(';'));
+                linha.push(linhas[i].split(';'));
             }
-
             //percorre linha por linha e controi o objeto DMA
             for (var i = 0; i < linha.length; i++) {
                 var temp = new Array();
@@ -133,19 +129,43 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                eps.dia = temp[1];
-                eps.mes = temp[2];
-                eps.ano = temp[3];
+                eps.estacao = temp[1];
+                eps.lat = temp[2];
+                eps.lon = temp[3];
                 eps.ano = temp[4];
-                eps.ano = temp[5];
-                eps.ano = temp[6];
-                eps.ano = temp[7];
+                eps.mes = temp[5];
+                eps.dia = temp[6];
+                eps.chuva = temp[7];
 
                 EPS.push(eps);
             } //fim for linha
+
+            for (var i = 0; i < EPS.length; i++) {
+                for (var j = 0; j < DMA.length; j++) {
+                    if (parseInt(EPS[i].ano) == parseInt(DMA[j].ano)) {
+                        if (parseInt(EPS[i].mes) == parseInt(DMA[j].mes)) {
+                            if (parseInt(EPS[i].dia) == parseInt(DMA[j].dia)) {
+                                console.log("EPS - dia: " + EPS[i].dia + " Mes: " + EPS[i].mes + " Ano: " + EPS[i].ano);
+                                console.log("DMA - dia: " + DMA[j].dia + " Mes: " + DMA[j].mes + " Ano: " + DMA[j].ano);
+                                DMA.splice(j, 1);
+                                // debugger;
+                            } //fim if
+                        } //fim if
+                    } //fim if
+                } //fim for
+            } //fim for
+            console.log(DMA.length);
+            for (var i = 0; i < DMA.length; i++) {
+              //cria nova linha
+              $("#comparaTable > tbody").append($('<tr>')
+                .append($('<td>').append(DMA[i].dia))
+                  .append($('<td>').append(DMA[i].mes))
+                    .append($('<td>').append(DMA[i].ano)));
+              console.log("a" + i);
+            }
+            $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+
         } //fim onload
         fileReader.readAsText(input.files[0]);
-        $("#EPs").show();
-        console.log(DMA);
     }); //fim inputEPs change
-});
+}); //
