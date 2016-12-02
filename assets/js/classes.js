@@ -1,9 +1,11 @@
-function EPI() {
+function EPs() {
+    this.estacao
     this.lat;
     this.lon;
     this.ano;
     this.mes;
     this.dia;
+    this.chuva;
 
     this.print = function() {
         console.log("lat: " + this.lat + " lon: " + this.lon + " dia: " + this.dia + "/" + this.mes + "/" + this.ano);
@@ -81,18 +83,24 @@ function Tempo() {
     }
 }
 
-function Meses(){
-  this.numero_mes = 0;
-  this.janeiro = 0;
-  this.fevereiro = 0;
-  this.marco = 0;
-  this.abril = 0;
-  this.maio = 0;
-  this.junho = 0;
-  this.julho = 0;
-  this.agosto = 0;
-  this.setembro = 0;
-  this.outubro = 0;
-  this.novembro = 0;
-  this.dezembro = 0;
+function Meses() {
+    this.numero_mes = 0;
+    this.janeiro = 0;
+    this.fevereiro = 0;
+    this.marco = 0;
+    this.abril = 0;
+    this.maio = 0;
+    this.junho = 0;
+    this.julho = 0;
+    this.agosto = 0;
+    this.setembro = 0;
+    this.outubro = 0;
+    this.novembro = 0;
+    this.dezembro = 0;
+}
+
+function diaMesAno() {
+    this.mes;
+    this.dia;
+    this.ano;
 }

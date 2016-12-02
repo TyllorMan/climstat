@@ -1,5 +1,4 @@
 var familias = new Array();
-var EPs = new Array();
 var celulasPreenchidas = new Array();
 
 //funcao para imprimir as familias
@@ -584,7 +583,7 @@ function totalSistemas(quantidadeFamilias) {
             }
         }
     } //fim for
-    escreveTabela2(temp, -1, 24);
+    escreveTabela2(temp, -1 , 24);
 }
 
 function escreveTabela2(array, n1, n2) {
