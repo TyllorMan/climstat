@@ -157,18 +157,49 @@ $(document).ready(function() {
             console.log("EPS.length: " + EPS.length);
             for (var i = 0; i < EPS.length; i++) {
                 //cria nova linha
-                $("#comparaTable > tbody").append($('<tr>')
-                  .append($('<td>').append(EPS[i].estacao))
-                    .append($('<td>').append(EPS[i].lat))
-                      .append($('<td>').append(EPS[i].lon))
-                  .append($('<td>').append(EPS[i].dia))
-                    .append($('<td>').append(EPS[i].mes))
-                      .append($('<td>').append(EPS[i].ano))
-                      .append($('<td>').append(EPS[i].chuva)));
+                $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(EPS[i].estacao)).append($('<td>').append(EPS[i].lat)).append($('<td>').append(EPS[i].lon)).append($('<td>').append(EPS[i].dia)).append($('<td>').append(EPS[i].mes)).append($('<td>').append(EPS[i].ano)).append($('<td>').append(EPS[i].chuva)));
             }
             $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
             console.log(JSON.stringify(EPS));
+        } //fim onload
+        fileReader.readAsText(input.files[0]);
+    }); //fim inputEPs change
+}); //fim document ready
+
+$(document).ready(function() {
+    //decalaracao de variaveis
+    var texto = "'define u=(ave(uwnd,t=";
+    $("#AVEs").change(function() {
+        //saida de dados no console (Crtl+Shift+i)
+        //console.log(this.files);
+        //declaracao de variaveis
+        var input = event.target;
+        var fileReader = new FileReader();
+        var linhas = new Array();
+
+        //leitura do arquivo
+        fileReader.onload = function() {
+            var resultado = fileReader.result;
+            //cria cada linha ao final do caractere \n
+            linhas = resultado.trim().split('\n');
+            //percorretodas as linhas e separa pelo caractere \t
+            for (var i = 0; i < linhas.length / 2; i++) {
+                if (i == (linhas.length / 2) - 1) {
+                    texto += (linhas[i] + ",t=" + linhas[i + 1]);
+                } else {
+                    texto += (linhas[i] + ",t=" + linhas[i + 1] + ")+ave(uwnd,t=");
+                }
+            }
+            texto += ("))/" + linhas.length / 2 + "'")
+
+            var res = texto.replace("\n", "");
+            console.log(texto);
+
+            $("#saidaAVE").text(texto);
+            $("#copiar").click(function() {
+              $("#saidaAVE").execCommand("copy");
+            });
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
