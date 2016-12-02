@@ -94,7 +94,7 @@ $(document).ready(function() {
 
                 DMA.push(dma);
             } //fim for linha
-            console.log(DMA.length);
+            //console.log(DMA.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
                 EPS.push(eps);
             } //fim for linha
-
+            console.log("EPS.length: " + EPS.length);
             for (var i = 0; i < EPS.length; i++) {
                 for (var j = 0; j < DMA.length; j++) {
                     if (parseInt(EPS[i].ano) == parseInt(DMA[j].ano)) {
@@ -147,24 +147,28 @@ $(document).ready(function() {
                             if (parseInt(EPS[i].dia) == parseInt(DMA[j].dia)) {
                                 console.log("EPS - dia: " + EPS[i].dia + " Mes: " + EPS[i].mes + " Ano: " + EPS[i].ano);
                                 console.log("DMA - dia: " + DMA[j].dia + " Mes: " + DMA[j].mes + " Ano: " + DMA[j].ano);
-                                DMA.splice(j, 1);
+                                EPS.splice(i, 1);
                                 // debugger;
                             } //fim if
                         } //fim if
                     } //fim if
                 } //fim for
             } //fim for
-            console.log(DMA.length);
-            for (var i = 0; i < DMA.length; i++) {
-              //cria nova linha
-              $("#comparaTable > tbody").append($('<tr>')
-                .append($('<td>').append(DMA[i].dia))
-                  .append($('<td>').append(DMA[i].mes))
-                    .append($('<td>').append(DMA[i].ano)));
-              console.log("a" + i);
+            console.log("EPS.length: " + EPS.length);
+            for (var i = 0; i < EPS.length; i++) {
+                //cria nova linha
+                $("#comparaTable > tbody").append($('<tr>')
+                  .append($('<td>').append(EPS[i].estacao))
+                    .append($('<td>').append(EPS[i].lat))
+                      .append($('<td>').append(EPS[i].lon))
+                  .append($('<td>').append(EPS[i].dia))
+                    .append($('<td>').append(EPS[i].mes))
+                      .append($('<td>').append(EPS[i].ano))
+                      .append($('<td>').append(EPS[i].chuva)));
             }
             $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
+            console.log(JSON.stringify(EPS));
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
