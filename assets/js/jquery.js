@@ -184,23 +184,24 @@ $(document).ready(function() {
             //cria cada linha ao final do caractere \n
             linhas = resultado.trim().split('\n');
             //percorretodas as linhas e separa pelo caractere \t
-            for (var i = 0; i < linhas.length / 2; i++) {
-                if (i == (linhas.length / 2) - 1) {
-                    texto += (linhas[i] + ",t=" + linhas[i + 1]);
-                } else {
-                    texto += (linhas[i] + ",t=" + linhas[i + 1] + ")+ave(uwnd,t=");
-                }
-            }
-            texto += ("))/" + linhas.length / 2 + "'")
-
-            var res = texto.replace("\n", "");
+            for (var i = 0; i < (linhas.length / 2); i++) {
+                if (i % 2 != 0) {
+                    if (i == ((linhas.length / 2) - 1)) {
+                        texto += (linhas[i] + ",t=" + linhas[(i + 1)]);
+                    } else {
+                        texto += (linhas[i] + ",t=" + linhas[(i + 1)] + ")+ave(uwnd,t=");
+                    } //fim else
+                } //fim if
+            } //fim for
+            texto += ("))/" + ((linhas.length) / 2) + "'");
             console.log(texto);
-
-            $("#saidaAVE").text(texto);
-            $("#copiar").click(function() {
-              $("#saidaAVE").execCommand("copy");
-            });
         } //fim onload
+
+        $("#saidaAVE").text(texto);
+        $("#copiar").click(function() {
+            $("#ave").val($.trim(texto));
+            //console.log(texto);
+        });
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
 }); //
