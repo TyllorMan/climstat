@@ -184,12 +184,13 @@ $(document).ready(function() {
             //cria cada linha ao final do caractere \n
             linhas = resultado.trim().split('\n');
             //percorretodas as linhas e separa pelo caractere \t
-            for (var i = 0; i < (linhas.length / 2); i++) {
+            for (var i = 1; i <= linhas.length; i++) {
+              console.log(linhas[i]);
                 if (i % 2 != 0) {
-                    if (i == ((linhas.length / 2) - 1)) {
-                        texto += (linhas[i] + ",t=" + linhas[(i + 1)]);
+                    if (i == (linhas.length-1)) {
+                        texto += (linhas[i-1] + ",t=" + linhas[(i)]);
                     } else {
-                        texto += (linhas[i] + ",t=" + linhas[(i + 1)] + ")+ave(uwnd,t=");
+                        texto += (linhas[i-1] + ",t=" + linhas[(i)] + ")+ave(uwnd,t=");
                     } //fim else
                 } //fim if
             } //fim for
