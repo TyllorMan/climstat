@@ -5,21 +5,19 @@ var testeArray = new Array();
 
 $(document).ready(function() {
     //inicializacao de componentes
-
     new WOW().init();
     $("#sucesso").hide();
     $("#EPs").hide();
     $("#progress-bar").hide();
     $("#canvass ").hide();
     $(":file").filestyle({buttonName: "btn-primary"});
-
     $("#comparaTextarea").hide();
     $("#ave").hide();
     $("#comparaTable").hide();
     $("#salvar").hide();
-
+    $("#salvarAVE").hide();
+    $("#ave").hide();
     $("#comparaTextarea").hide();
-
     $("#inputFamilias").change(function() {
         //console.log(this.files);
     });
@@ -165,42 +163,17 @@ $(document).ready(function() {
 
             for (var i = 0; i < EPS.length; i++) {
                 //cria nova linha
-                $("#comparaTable > tbody").append($('<tr>')
-                  .append($('<td>').append(EPS[i].estacao))
-                  .append($('<td>').append(EPS[i].lat))
-                  .append($('<td>').append(EPS[i].lon))
-                  .append($('<td>').append(EPS[i].dia))
-                  .append($('<td>').append(EPS[i].mes))
-                  .append($('<td>').append(EPS[i].ano))
-                  .append($('<td>').append(EPS[i].chuva)));
-
-                  teste
-                  += (";"
-                  + EPS[i].estacao + ";"
-                  + EPS[i].lat + ";"
-                  + EPS[i].lon + ";"
-                  + EPS[i].ano + ";"
-                  + EPS[i].mes + ";"
-                  + EPS[i].dia + ";"
-                  + EPS[i].chuva + ";");
-
-                  teste += '<br/>'
-                  testeArray.push(teste);
+                $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(EPS[i].estacao)).append($('<td>').append(EPS[i].lat)).append($('<td>').append(EPS[i].lon)).append($('<td>').append(EPS[i].dia)).append($('<td>').append(EPS[i].mes)).append($('<td>').append(EPS[i].ano)).append($('<td>').append(EPS[i].chuva)));
+                teste += (";" + EPS[i].estacao + ";" + EPS[i].lat + ";" + EPS[i].lon + ";" + EPS[i].ano + ";" + EPS[i].mes + ";" + EPS[i].dia + ";" + EPS[i].chuva + ";");
+                teste += '<br/>'
             }
-            console.log(teste);
-
-          // /  console.log(testeArray);
-
             $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
-
             $("#comparaTextarea").val(JSON.stringify(EPS));
             $("#comparaTable").fadeIn("fast");
             $("#salvar").fadeIn("slow");
-
             $("#salvar").click(function() {
-              downloadInnerHtml('resultado', 'comparaTextarea','text/html');
+                downloadInnerHtml('resultado', teste, 'text/html');
             });
-
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
@@ -234,17 +207,22 @@ $(document).ready(function() {
                 } //fim if
             } //fim for
             texto += ('))/' + ((linhas.length) / 2) + "'");
-            console.log(texto);
+            $("#comparaTable").fadeIn("fast");
+            $("#salvarAVE").fadeIn("slow");
+
+            $("#salvarAVE").click(function() {
+                downloadInnerHtml('resultado', texto, 'text/html');
+            });
+            console.log("linhas.length" + linhas.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim AVEs change
 }); //fim document ready
 
 function downloadInnerHtml(filename, elId, mimeType) {
-    var elHtml = document.getElementById(elId).innerHTML;
     var link = document.createElement('a');
     mimeType = mimeType || 'text/plain';
     link.setAttribute('download', filename);
-    link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(teste));
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
 }
