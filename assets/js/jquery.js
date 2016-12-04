@@ -12,6 +12,12 @@ $(document).ready(function() {
     $("#progress-bar").hide();
     $("#canvass ").hide();
     $(":file").filestyle({buttonName: "btn-primary"});
+
+    $("#comparaTextarea").hide();
+    $("#ave").hide();
+    $("#comparaTable").hide();
+    $("#salvar").hide();
+
     $("#comparaTextarea").hide();
 
     $("#inputFamilias").change(function() {
@@ -188,9 +194,11 @@ $(document).ready(function() {
             $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
             $("#comparaTextarea").val(JSON.stringify(EPS));
+            $("#comparaTable").fadeIn("fast");
+            $("#salvar").fadeIn("slow");
 
-            $( "#rerere" ).click(function() {
-              downloadInnerHtml('jajA', 'comparaTextarea','text/html');
+            $("#salvar").click(function() {
+              downloadInnerHtml('resultado', 'comparaTextarea','text/html');
             });
 
         } //fim onload
@@ -236,7 +244,6 @@ function downloadInnerHtml(filename, elId, mimeType) {
     var elHtml = document.getElementById(elId).innerHTML;
     var link = document.createElement('a');
     mimeType = mimeType || 'text/plain';
-
     link.setAttribute('download', filename);
     link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(teste));
     link.click();
