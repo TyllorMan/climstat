@@ -97,10 +97,11 @@ function Meses() {
     this.outubro = 0;
     this.novembro = 0;
     this.dezembro = 0;
+    this.hora = 0;
 }
 
 function diaMesAno() {
-    this.mes;
-    this.dia;
-    this.ano;
+    this.mes = 0;
+    this.dia = 0;
+    this.ano = 0;
 }

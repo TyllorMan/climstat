@@ -594,36 +594,3 @@ function escreveTabela2(array, n1, n2) {
         $("#tabela > tbody").append($('<tr>').append($('<td>').append(n1 + ' a ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
     }
 }
-
-function tabela3(quantidadeFamilias) {
-    //nova instancia Meses
-    var temp = new Meses();
-    //percorre todas as familias
-    for (var i = 0; i < (quantidadeFamilias); i++) {
-        //pega familia por familia
-        var json = JSON.parse(JSON.stringify(familias[i]));
-        //pega todos os tmepos de cada familia
-        var array = JSON.parse(JSON.stringify(json.tempos));
-        //percorre cada tmepo
-        for (var h = 0; h < array.length; h++) {
-            var pote = JSON.parse(JSON.stringify(array[h]))
-            console.log(pote.size);
-        }
-
-        //  debugger;
-        //percorre todos os meses e acha o maior
-        // for (var j = 0; j < temp.length - 1; j++) {
-        //     var maior = 0;
-        //     if (mario < SIZE)
-        //         marior = size;
-        //     temp.mes = maior;
-        // }
-        //console.log(array);
-
-    }
-}
-
-function escreveTabela3(array, n1) {
-    var json = JSON.parse(JSON.stringify(array));
-    $("#tabela3 > tbody").append($('<tr>').append($('<td>').append(n1)).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
-}
