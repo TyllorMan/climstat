@@ -72,14 +72,7 @@ function Tempo() {
     var sys_ant;
 
     this.print = function() {
-        // $("#tabela")
-        // 	.append($('<tr>')
-        // 			.append($('<td>')
-        // 					.append(" - Tempo: " + this.sys + " Lat: " + this.xlat + " Long: " + this.xlon + " Size: " + this.size)
-        // 			)
-        // 	);
         console.log(JSON.stringify(familias));
-        //console.log(familias);
     }
 }
 

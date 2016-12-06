@@ -1,7 +1,8 @@
 //declaracao de variaveis
 var DMA = new Array();
-var teste = "";
-var testeArray = new Array();
+var EPS = new Array();
+var EPS2 = new Array();
+var comparacao = "";
 
 $(document).ready(function() {
     //inicializacao de componentes
@@ -26,7 +27,6 @@ $(document).ready(function() {
 //carrega arquivos EPI.txt EPF.txt
 $(document).ready(function() {
     //declaracao de variaveis
-    var EPS = new Array();
     //acesssa input inputEPs
     $("#inputEPs").change(function() {
         //console.log(this.files);
@@ -98,13 +98,13 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                dma.dia = temp[2];
-                dma.mes = temp[1];
-                dma.ano = temp[0];
+                dma.dia = parseInt(temp[2]);
+                dma.mes = parseInt(temp[1]);
+                dma.ano = parseInt(temp[0]);
 
                 DMA.push(dma);
             } //fim for linha
-            //console.log(DMA.length);
+            console.log("DMA.length: " + DMA.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
@@ -112,8 +112,6 @@ $(document).ready(function() {
 
 //carrega arquivos DOL_FRA1.txt
 $(document).ready(function() {
-    //decalaracao de variaveis
-    var EPS = new Array();
     $("#comparaDias").change(function() {
         //saida de dados no console (Crtl+Shift+i)
         //console.log(this.files);
@@ -138,35 +136,44 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                eps.estacao = temp[1];
-                eps.lat = temp[2];
-                eps.lon = temp[3];
-                eps.ano = temp[4];
-                eps.mes = temp[5];
-                eps.dia = temp[6];
-                eps.chuva = temp[7];
-
-                EPS.push(eps);
+                eps.estacao = parseInt(temp[1]);
+                eps.lat = parseInt(temp[2]);
+                eps.lon = parseInt(temp[3]);
+                eps.ano = parseInt(temp[4]);
+                eps.mes = parseInt(temp[5]);
+                eps.dia = parseInt(temp[6]);
+                eps.chuva = parseInt(temp[7]);
+                //debugger;
+                EPS2.push(eps);
             } //fim for linha
-            //exclui linhas conhecidentes por dia mes ano
-            for (var i = 0; i < EPS.length; i++) {
-                for (var j = 0; j < DMA.length; j++) {
-                    if (parseInt(EPS[i].ano) == parseInt(DMA[j].ano)) {
-                        if (parseInt(EPS[i].mes) == parseInt(DMA[j].mes)) {
-                            if (parseInt(EPS[i].dia) == parseInt(DMA[j].dia)) {
-                                EPS.splice(i, 1);
-                            } //fim if
-                        } //fim if
-                    } //fim if
-                } //fim for
-            } //fim for
+            //exclui linhas conhecidentes por ano mes dia
+
+            try {
+              for (var i = 0; i < EPS2.length; i++) {
+                  for (var j = 0; j < DMA.length; j++) {
+                      if (EPS2[i].ano == DMA[j].ano) {
+                          if (EPS2[i].mes == DMA[j].mes) {
+                              if (EPS2[i].dia == DMA[j].dia) {
+                                  EPS2.splice(i, 1);
+                              } //fim if
+                          } //fim if
+                      } //fim if
+                  } //fim for
+              } //fim for
+            }
+            catch(err) {
+                console.log(err);
+            }
+
+
 
             for (var i = 0; i < EPS.length; i++) {
                 //cria nova linha
                 $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(EPS[i].estacao)).append($('<td>').append(EPS[i].lat)).append($('<td>').append(EPS[i].lon)).append($('<td>').append(EPS[i].dia)).append($('<td>').append(EPS[i].mes)).append($('<td>').append(EPS[i].ano)).append($('<td>').append(EPS[i].chuva)));
-                teste += (";" + EPS[i].estacao + ";" + EPS[i].lat + ";" + EPS[i].lon + ";" + EPS[i].ano + ";" + EPS[i].mes + ";" + EPS[i].dia + ";" + EPS[i].chuva + ";");
-                teste += '<br/>'
-            }
+                comparacao += (";" + EPS[i].estacao + ";" + EPS[i].lat + ";" + EPS[i].lon + ";" + EPS[i].ano + ";" + EPS[i].mes + ";" + EPS[i].dia + ";" + EPS[i].chuva + ";");
+                comparacao += '<br/>'
+            } //fim for
+
             $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
             $("#comparaTextarea").val(JSON.stringify(EPS));
             $("#comparaTable").fadeIn("fast");
@@ -207,9 +214,7 @@ $(document).ready(function() {
                 } //fim if
             } //fim for
             texto += ('))/' + ((linhas.length) / 2) + "'");
-            $("#comparaTable").fadeIn("fast");
             $("#salvarAVE").fadeIn("slow");
-
             $("#salvarAVE").click(function() {
                 downloadInnerHtml('resultado', texto, 'text/html');
             });
@@ -221,7 +226,7 @@ $(document).ready(function() {
 
 function downloadInnerHtml(filename, elId, mimeType) {
     var link = document.createElement('a');
-    mimeType = mimeType || 'text/plain';
+    mimeType = mimeType || 'text/html';
     link.setAttribute('download', filename);
     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
