@@ -93,7 +93,7 @@ function Meses() {
     this.hora = 0;
 }
 
-function diaMesAno() {
+function DiaMesAno() {
     this.mes = 0;
     this.dia = 0;
     this.ano = 0;

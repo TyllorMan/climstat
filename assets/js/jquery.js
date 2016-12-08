@@ -1,7 +1,8 @@
 //declaracao de variaveis
-var DMA = new Array();
-var EPS = new Array();
-var EPS2 = new Array();
+var dma = new Array();
+var ep = new Array();
+var epCompara = new Array();
+var EPSTeste = new Array();
 var comparacao = "";
 
 $(document).ready(function() {
@@ -60,7 +61,7 @@ $(document).ready(function() {
                 //cria nova linha
                 $("#EPs > tbody").append($('<tr>').append($('<td>').append(eps.dia)).append($('<td>').append(eps.mes)).append($('<td>').append(eps.ano)).append($('<td>').append(eps.lat)).append($('<td>').append(eps.lon)));
                 //adiciona novo eps em EPs
-                EPS.push(eps);
+                ep.push(eps);
             } //fim for linha
             //monta a paginacao da tabela
             $("#EPs").simplePagination({perPage: 7, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
@@ -94,17 +95,16 @@ $(document).ready(function() {
             //percorre linha por linha e controi o objeto DMA
             for (var i = 0; i < linha.length; i++) {
                 var temp = new Array();
-                var dma = new diaMesAno();
+                var diaMesAno = new DiaMesAno();
 
                 temp = linha[i];
 
-                dma.dia = parseInt(temp[2]);
-                dma.mes = parseInt(temp[1]);
-                dma.ano = parseInt(temp[0]);
+                diaMesAno.dia = parseInt(temp[2]);
+                diaMesAno.mes = parseInt(temp[1]);
+                diaMesAno.ano = parseInt(temp[0]);
 
-                DMA.push(dma);
+                dma.push(diaMesAno);
             } //fim for linha
-            console.log("DMA.length: " + DMA.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
@@ -144,43 +144,49 @@ $(document).ready(function() {
                 eps.dia = parseInt(temp[6]);
                 eps.chuva = parseInt(temp[7]);
                 //debugger;
-                EPS2.push(eps);
+                epCompara.push(eps);
             } //fim for linha
+
             //exclui linhas conhecidentes por ano mes dia
+            var j = 0;
+            var achou = false;
 
             try {
-              for (var i = 0; i < EPS2.length; i++) {
-                  for (var j = 0; j < DMA.length; j++) {
-                      if (EPS2[i].ano == DMA[j].ano) {
-                          if (EPS2[i].mes == DMA[j].mes) {
-                              if (EPS2[i].dia == DMA[j].dia) {
-                                  EPS2.splice(i, 1);
-                              } //fim if
-                          } //fim if
-                      } //fim if
-                  } //fim for
-              } //fim for
-            }
-            catch(err) {
-                console.log(err);
-            }
+                for (var i = 0; i < epCompara.length; i++) {
+                    while (achou == false && j < dma.length) {
+                        if (epCompara[i].ano == dma[j].ano) {
+                            if (epCompara[i].mes == dma[j].mes) {
+                                if (epCompara[i].dia == dma[j].dia) {
+                                    achou = true;
+                                    epCompara.splice(i, 1);
+                                } //fim if
+                            } //fim if
+                        } //fim if
+                        j++;
+                    } //fim while
+                    j = 0;
+                    achou = false;
+                } //fim for
 
+                for (var i = 0; i < epCompara.length; i++) {
+                    //cria nova linha
+                    $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].estacao)).append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
 
+                    comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
+                    comparacao += '<br/>'
+                    //debugger;
+                } //fim for
 
-            for (var i = 0; i < EPS.length; i++) {
-                //cria nova linha
-                $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(EPS[i].estacao)).append($('<td>').append(EPS[i].lat)).append($('<td>').append(EPS[i].lon)).append($('<td>').append(EPS[i].dia)).append($('<td>').append(EPS[i].mes)).append($('<td>').append(EPS[i].ano)).append($('<td>').append(EPS[i].chuva)));
-                comparacao += (";" + EPS[i].estacao + ";" + EPS[i].lat + ";" + EPS[i].lon + ";" + EPS[i].ano + ";" + EPS[i].mes + ";" + EPS[i].dia + ";" + EPS[i].chuva + ";");
-                comparacao += '<br/>'
-            } //fim for
-
-            $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
-            $("#comparaTextarea").val(JSON.stringify(EPS));
-            $("#comparaTable").fadeIn("fast");
-            $("#salvar").fadeIn("slow");
-            $("#salvar").click(function() {
-                downloadInnerHtml('resultado', teste, 'text/html');
-            });
+                $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+                $("#comparaTextarea").val(JSON.stringify(epCompara));
+                $("#comparaTable").fadeIn("fast");
+                $("#salvar").fadeIn("slow");
+                $("#salvar").click(function() {
+                    downloadInnerHtml('resultado', comparacao, 'text/html');
+                });
+            } catch (err) {
+                console.log(err.message);
+            } //fim catch
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
@@ -213,12 +219,12 @@ $(document).ready(function() {
                     } //fim else
                 } //fim if
             } //fim for
+
             texto += ('))/' + ((linhas.length) / 2) + "'");
             $("#salvarAVE").fadeIn("slow");
             $("#salvarAVE").click(function() {
                 downloadInnerHtml('resultado', texto, 'text/html');
             });
-            console.log("linhas.length" + linhas.length);
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim AVEs change
