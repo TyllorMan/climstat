@@ -147,34 +147,31 @@ $(document).ready(function() {
                 epCompara.push(eps);
             } //fim for linha
 
-            //exclui linhas conhecidentes por ano mes dia
             var j = 0;
             var achou = false;
-
+            //exclui linhas conhecidentes por ano mes dia
             try {
                 for (var i = 0; i < epCompara.length; i++) {
                     while (achou == false && j < dma.length) {
-                        if (epCompara[i].ano == dma[j].ano) {
-                            if (epCompara[i].mes == dma[j].mes) {
-                                if (epCompara[i].dia == dma[j].dia) {
-                                    achou = true;
-                                    epCompara.splice(i, 1);
+                        if (epCompara[i].ano == dma[j].ano) { //verifica se os anos sao iguais
+                            if (epCompara[i].mes == dma[j].mes) {//verifica se os meses sao iguais
+                                if (epCompara[i].dia == dma[j].dia) {//verifica se os dias sao iguais
+                                    achou = true; //informa que achou linhas coincidentes
+                                    epCompara.splice(i, 1); //remove o indice duplicado entre os arquivos
                                 } //fim if
                             } //fim if
                         } //fim if
-                        j++;
+                        j++; //incremente o j (j = j + 1)
                     } //fim while
-                    j = 0;
-                    achou = false;
+                    j = 0; //zera o j
+                    achou = false; //reseta a variavel para o estado inicial
                 } //fim for
 
                 for (var i = 0; i < epCompara.length; i++) {
                     //cria nova linha
                     $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].estacao)).append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
-
                     comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
                     comparacao += '<br/>'
-                    //debugger;
                 } //fim for
 
                 $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
