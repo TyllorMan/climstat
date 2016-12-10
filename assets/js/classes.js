@@ -98,3 +98,8 @@ function DiaMesAno() {
     this.dia = 0;
     this.ano = 0;
 }
+
+function Tabela(linhas, colunas) {
+  this. linhas  = [];
+  this. colunas = []
+}

@@ -136,10 +136,10 @@ var openFileFam = function(event) {
             } //fim while
             ponteiro = reader.result.indexOf('END', ponteiro + 1);
         } //fim while
+
         //tabela 2
-        totalSistemas(familias.length);
-        tabela3(familias.length);
-        //console.log(JSON.stringify(familias));
+        //totalSistemas(familias.length);
+        tab3(familias.length);
     }; //fim onload
     reader.readAsText(input.files[0]);
 }; //fim openFileFam
@@ -585,7 +585,6 @@ function totalSistemas(quantidadeFamilias) {
     } //fim for
     escreveTabela2(temp, -1 , 24);
 }
-
 function escreveTabela2(array, n1, n2) {
     var json = JSON.parse(JSON.stringify(array));
     if (n1 == -1) {
@@ -594,3 +593,17 @@ function escreveTabela2(array, n1, n2) {
         $("#tabela > tbody").append($('<tr>').append($('<td>').append(n1 + ' a ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
     }
 }
+
+function tab3(quantidadeFamilias) {
+  var maior = 0;
+  for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
+    for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+      if(maior < familias[i]['tempos'][j].size) {
+        maior = familias[i]['tempos'][j].size;
+      } //fim if
+    }
+    console.log(maior);
+
+    maior = 0; //zera variavel maior
+  } //fim for
+} //fim function
