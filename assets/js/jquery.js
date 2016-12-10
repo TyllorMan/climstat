@@ -94,8 +94,8 @@ $(document).ready(function() {
             }
             //percorre linha por linha e controi o objeto DMA
             for (var i = 0; i < linha.length; i++) {
-                var temp = new Array();
-                var diaMesAno = new DiaMesAno();
+                var temp = new Array(); //a cada iteracao cria novo objeto temp
+                var diaMesAno = new DiaMesAno(); //a cada iteracao cria novo objeto diaMesAno
 
                 temp = linha[i];
 
@@ -103,12 +103,12 @@ $(document).ready(function() {
                 diaMesAno.mes = parseInt(temp[1]);
                 diaMesAno.ano = parseInt(temp[0]);
 
-                dma.push(diaMesAno);
+                dma.push(diaMesAno); //a cada iteracao do laco adiciona novo objeto
             } //fim for linha
         } //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim inputEPs change
-});
+}); //document ready
 
 //carrega arquivos DOL_FRA1.txt
 $(document).ready(function() {
@@ -147,7 +147,7 @@ $(document).ready(function() {
                 epCompara.push(eps);
             } //fim for linha
 
-            var j = 0;
+            var j = 0; //necessario para percorrer todos os dias, meses e anos
             var achou = false;
             //exclui linhas conhecidentes por ano mes dia
             try {
@@ -233,4 +233,4 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.setAttribute('download', filename);
     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
-}
+} //fim downloadInnerHtml
