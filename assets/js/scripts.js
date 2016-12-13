@@ -607,87 +607,71 @@ function tab3(quantidadeFamilias) {
         }
     }
 
-    var h;
-
-    for (h = 0; h < 25; h++) {
+    var indice = 0;
+    console.log();
+    for (var h = 0; h < 25; h++) {
         if (h == 0) {
-          //  console.log((h) + " " + (h + 2));
+            //  console.log((h) + " " + (h + 2));
         } else if ((h % 2 == 0)) {
             //  console.log((h + 0) + " " + (h + 2));
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
+            for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
                         if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                          maior = parseInt(familias[i]['tempos'][j].size);
-                          if (familias[i].mes == 1) {
-                              linha[0][1] = maior;
-                          } else if (familias[i].mes == 2) {
-                              linha[0][2] = maior;
-                          } else if (familias[i].mes == 3) {
-                              linha[0][3] = maior;
-                          } else if (familias[i].mes == 4) {
-                              linha[0][4] = maior;
-                          } else if (familias[i].mes == 5) {
-                              linha[0][5] = maior;
-                          } else if (familias[i].mes == 6) {
-                              linha[0][6] = maior;
-                          } else if (familias[i].mes == 7) {
-                              linha[0][7] = maior;
-                          } else if (familias[i].mes == 8) {
-                              linha[0][8] = maior;
-                          } else if (familias[i].mes == 9) {
-                              linha[0][9] = maior;
-                          } else if (familias[i].mes == 10) {
-                              linha[0][10] = maior;
-                          } else if (familias[i].mes == 11) {
-                              linha[0][11] = maior;
-                          } else if (familias[i].mes == 12) {
-                              linha[0][12] = maior;
-                          } //fim else if
+                            maior = parseInt(familias[i]['tempos'][j].size);
+                            if (familias[i].mes == 1) {
+                                linha[indice][0] = maior;
+                            } else if (familias[i].mes == 2) {
+                                linha[indice][1] = maior;
+                            } else if (familias[i].mes == 3) {
+                                linha[indice][2] = maior;
+                            } else if (familias[i].mes == 4) {
+                                linha[indice][3] = maior;
+                            } else if (familias[i].mes == 5) {
+                                linha[indice][4] = maior;
+                            } else if (familias[i].mes == 6) {
+                                linha[indice][5] = maior;
+                            } else if (familias[i].mes == 7) {
+                                linha[indice][6] = maior;
+                            } else if (familias[i].mes == 8) {
+                                linha[indice][7] = maior;
+                            } else if (familias[i].mes == 9) {
+                                linha[indice][8] = maior;
+                            } else if (familias[i].mes == 10) {
+                                linha[indice][9] = maior;
+                            } else if (familias[i].mes == 11) {
+                                linha[indice][10] = maior;
+                            } else if (familias[i].mes == 12) {
+                                linha[indice][11] = maior;
+                            } //fim else if
                         } //fim if
                     } //fim for
                 } //fim if
             } //fim for
+            indice++; //incrementa variavel indice
+            maior = 0; //zera variavel maior
         } //fim else if
-    }//fim for
+    } //fim for
 
-    console.log(h);
+    var temp1 = 0;
+    var temp2 = 2;
 
-    // for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-    //     if (familias[i].hora >= 6 && familias[i].hora < 8) {
-    //         for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-    //             if (maior < parseInt(familias[i]['tempos'][j].size)) {
-    //                 maior = parseInt(familias[i]['tempos'][j].size);
-    //                 if (familias[i].mes == 1) {
-    //                     linha[0][1] = maior;
-    //                 } else if (familias[i].mes == 2) {
-    //                     linha[0][2] = maior;
-    //                 } else if (familias[i].mes == 3) {
-    //                     linha[0][3] = maior;
-    //                 } else if (familias[i].mes == 4) {
-    //                     linha[0][4] = maior;
-    //                 } else if (familias[i].mes == 5) {
-    //                     linha[0][5] = maior;
-    //                 } else if (familias[i].mes == 6) {
-    //                     linha[0][6] = maior;
-    //                 } else if (familias[i].mes == 7) {
-    //                     linha[0][7] = maior;
-    //                 } else if (familias[i].mes == 8) {
-    //                     linha[0][8] = maior;
-    //                 } else if (familias[i].mes == 9) {
-    //                     linha[0][9] = maior;
-    //                 } else if (familias[i].mes == 10) {
-    //                     linha[0][10] = maior;
-    //                 } else if (familias[i].mes == 11) {
-    //                     linha[0][11] = maior;
-    //                 } else if (familias[i].mes == 12) {
-    //                     linha[0][12] = maior;
-    //                 } //fim else if
-    //             } //fim if
-    //         } //fim for
-    //     } //fim if
-    // } //fim for
-
-    maior = 0; //zera variavel maior
-    console.log(linha);
+    for (var i = 0; i < linhas; i++) {
+        $("#tabela3 > tbody").append($('<tr>')
+          .append($('<td>').append((temp1 + 0) + " <> " + (temp2)))//.css("font-weight", "bold")
+          .append($('<td>').append(linha[i][0]))
+          .append($('<td>').append(linha[i][1]))
+          .append($('<td>').append(linha[i][2]))
+          .append($('<td>').append(linha[i][3]))
+          .append($('<td>').append(linha[i][4]))
+          .append($('<td>').append(linha[i][5]))
+          .append($('<td>').append(linha[i][6]))
+          .append($('<td>').append(linha[i][7]))
+          .append($('<td>').append(linha[i][8]))
+          .append($('<td>').append(linha[i][9]))
+          .append($('<td>').append(linha[i][10]))
+          .append($('<td>').append(linha[i][11])));
+            temp1+=2;
+            temp2+=2
+  }//fim for
 } //fim function
