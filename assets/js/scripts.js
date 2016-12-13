@@ -22,7 +22,7 @@ var openFileFam = function(event) {
         var flag = 0;
         var count = 0;
 
-        while (ponteiro != -1) {
+        while (ponteiro != -1) { //implementacao Aquiles
             //console.log("result.length: " + tamanho);
             var linhaF = reader.result.indexOf('FAMILY', ponteiro);
             var linhaS = reader.result.indexOf('SYS#', ponteiro);
@@ -583,7 +583,7 @@ function totalSistemas(quantidadeFamilias) {
             }
         }
     } //fim for
-    escreveTabela2(temp, -1 , 24);
+    escreveTabela2(temp, -1, 24);
 }
 function escreveTabela2(array, n1, n2) {
     var json = JSON.parse(JSON.stringify(array));
@@ -595,15 +595,99 @@ function escreveTabela2(array, n1, n2) {
 }
 
 function tab3(quantidadeFamilias) {
-  var maior = 0;
-  for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-    for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-      if(maior < familias[i]['tempos'][j].size) {
-        maior = familias[i]['tempos'][j].size;
-      } //fim if
+    var maior = 0;
+    var linhas = 12;
+    var colunas = 13;
+    var linha = new Tabela();
+
+    for (i = 0; i < linhas; i++) {
+        linha[i] = new Linha();
+        for (j = 0; j < colunas; j++) {
+            linha[i][j] = 0;
+        }
     }
-    console.log(maior);
+
+    var h;
+
+    for (h = 0; h < 25; h++) {
+        if (h == 0) {
+          //  console.log((h) + " " + (h + 2));
+        } else if ((h % 2 == 0)) {
+            //  console.log((h + 0) + " " + (h + 2));
+            for (var i = 0; i < quantidadeFamilias; i++) {
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
+                    for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+                        if (maior < parseInt(familias[i]['tempos'][j].size)) {
+                          maior = parseInt(familias[i]['tempos'][j].size);
+                          if (familias[i].mes == 1) {
+                              linha[0][1] = maior;
+                          } else if (familias[i].mes == 2) {
+                              linha[0][2] = maior;
+                          } else if (familias[i].mes == 3) {
+                              linha[0][3] = maior;
+                          } else if (familias[i].mes == 4) {
+                              linha[0][4] = maior;
+                          } else if (familias[i].mes == 5) {
+                              linha[0][5] = maior;
+                          } else if (familias[i].mes == 6) {
+                              linha[0][6] = maior;
+                          } else if (familias[i].mes == 7) {
+                              linha[0][7] = maior;
+                          } else if (familias[i].mes == 8) {
+                              linha[0][8] = maior;
+                          } else if (familias[i].mes == 9) {
+                              linha[0][9] = maior;
+                          } else if (familias[i].mes == 10) {
+                              linha[0][10] = maior;
+                          } else if (familias[i].mes == 11) {
+                              linha[0][11] = maior;
+                          } else if (familias[i].mes == 12) {
+                              linha[0][12] = maior;
+                          } //fim else if
+                        } //fim if
+                    } //fim for
+                } //fim if
+            } //fim for
+        } //fim else if
+    }//fim for
+
+    console.log(h);
+
+    // for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
+    //     if (familias[i].hora >= 6 && familias[i].hora < 8) {
+    //         for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+    //             if (maior < parseInt(familias[i]['tempos'][j].size)) {
+    //                 maior = parseInt(familias[i]['tempos'][j].size);
+    //                 if (familias[i].mes == 1) {
+    //                     linha[0][1] = maior;
+    //                 } else if (familias[i].mes == 2) {
+    //                     linha[0][2] = maior;
+    //                 } else if (familias[i].mes == 3) {
+    //                     linha[0][3] = maior;
+    //                 } else if (familias[i].mes == 4) {
+    //                     linha[0][4] = maior;
+    //                 } else if (familias[i].mes == 5) {
+    //                     linha[0][5] = maior;
+    //                 } else if (familias[i].mes == 6) {
+    //                     linha[0][6] = maior;
+    //                 } else if (familias[i].mes == 7) {
+    //                     linha[0][7] = maior;
+    //                 } else if (familias[i].mes == 8) {
+    //                     linha[0][8] = maior;
+    //                 } else if (familias[i].mes == 9) {
+    //                     linha[0][9] = maior;
+    //                 } else if (familias[i].mes == 10) {
+    //                     linha[0][10] = maior;
+    //                 } else if (familias[i].mes == 11) {
+    //                     linha[0][11] = maior;
+    //                 } else if (familias[i].mes == 12) {
+    //                     linha[0][12] = maior;
+    //                 } //fim else if
+    //             } //fim if
+    //         } //fim for
+    //     } //fim if
+    // } //fim for
 
     maior = 0; //zera variavel maior
-  } //fim for
+    console.log(linha);
 } //fim function
