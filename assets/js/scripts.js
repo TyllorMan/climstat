@@ -139,7 +139,8 @@ var openFileFam = function(event) {
 
         //tabela 2
         //totalSistemas(familias.length);
-        tab3(familias.length);
+        //tab3(familias.length);
+        tab4(familias.length);
     }; //fim onload
     reader.readAsText(input.files[0]);
 }; //fim openFileFam
@@ -585,6 +586,7 @@ function totalSistemas(quantidadeFamilias) {
     } //fim for
     escreveTabela2(temp, -1, 24);
 }
+
 function escreveTabela2(array, n1, n2) {
     var json = JSON.parse(JSON.stringify(array));
     if (n1 == -1) {
@@ -595,11 +597,13 @@ function escreveTabela2(array, n1, n2) {
 }
 
 function tab3(quantidadeFamilias) {
+    //definicao de variaveis
     var maior = 0;
     var linhas = 12;
     var colunas = 13;
     var linha = new Tabela();
 
+    //inicia matriz para guardar as informacoes
     for (i = 0; i < linhas; i++) {
         linha[i] = new Linha();
         for (j = 0; j < colunas; j++) {
@@ -608,12 +612,9 @@ function tab3(quantidadeFamilias) {
     }
 
     var indice = 0;
-    console.log();
+
     for (var h = 0; h < 25; h++) {
-        if (h == 0) {
-            //  console.log((h) + " " + (h + 2));
-        } else if ((h % 2 == 0)) {
-            //  console.log((h + 0) + " " + (h + 2));
+        if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
                 if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
@@ -656,22 +657,93 @@ function tab3(quantidadeFamilias) {
     var temp1 = 0;
     var temp2 = 2;
 
+    //imprime a tabela
     for (var i = 0; i < linhas; i++) {
-        $("#tabela3 > tbody").append($('<tr>')
-          .append($('<td>').append((temp1 + 0) + " <> " + (temp2)))//.css("font-weight", "bold")
-          .append($('<td>').append(linha[i][0]))
-          .append($('<td>').append(linha[i][1]))
-          .append($('<td>').append(linha[i][2]))
-          .append($('<td>').append(linha[i][3]))
-          .append($('<td>').append(linha[i][4]))
-          .append($('<td>').append(linha[i][5]))
-          .append($('<td>').append(linha[i][6]))
-          .append($('<td>').append(linha[i][7]))
-          .append($('<td>').append(linha[i][8]))
-          .append($('<td>').append(linha[i][9]))
-          .append($('<td>').append(linha[i][10]))
-          .append($('<td>').append(linha[i][11])));
-            temp1+=2;
-            temp2+=2
-  }//fim for
+        $("#tabela3 > tbody").append($('<tr>').append($('<td>').append((temp1 + 0) + " ~ " + (temp2))). //.addClass("info")
+                append($('<td>').append(linha[i][0])).append($('<td>').append(linha[i][1])).append($('<td>').append(linha[i][2])).append($('<td>').append(linha[i][3])).append($('<td>').append(linha[i][4])).append($('<td>').append(linha[i][5])).append($('<td>').append(linha[i][6])).append($('<td>').append(linha[i][7])).append($('<td>').append(linha[i][8])).append($('<td>').append(linha[i][9])).append($('<td>').append(linha[i][10])).append($('<td>').append(linha[i][11])));
+
+        temp1 += 2; //temp1 = temp1 + 2
+        temp2 += 2 //temp2 = temp2 + 2
+    } //fim for
 } //fim function
+
+function tab4(quantidadeFamilias) {
+    var linhas = 13;
+    var colunas = 8;
+    var linha = new Tabela();
+
+    var monthNames = [
+        "JAN",
+        "FEV",
+        "MAR",
+        "ABR",
+        "MAI",
+        "JUN",
+        "JUL",
+        "AGO",
+        "SET",
+        "OUT",
+        "NOV",
+        "DEZ",
+        "MEDIA"
+    ];
+
+    //inicia matriz para guardar as informacoes
+    for (i = 0; i < linhas; i++) {
+        linha[i] = new Linha();
+        for (j = 0; j < colunas; j++) {
+            linha[i][j] = 0;
+        }
+    }
+
+    var indice = 0;
+
+    for (var h = 0; h < 25; h++) {
+        if ((h % 2 == 0)) {
+            for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
+                    for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+                        if (maior < parseInt(familias[i]['tempos'][j].size)) {
+                            maior = parseInt(familias[i]['tempos'][j].size);
+                            if (familias[i].mes == 1) {
+                                linha[indice][0] = maior;
+                            } else if (familias[i].mes == 2) {
+                                linha[indice][1] = maior;
+                            } else if (familias[i].mes == 3) {
+                                linha[indice][2] = maior;
+                            } else if (familias[i].mes == 4) {
+                                linha[indice][3] = maior;
+                            } else if (familias[i].mes == 5) {
+                                linha[indice][4] = maior;
+                            } else if (familias[i].mes == 6) {
+                                linha[indice][5] = maior;
+                            } else if (familias[i].mes == 7) {
+                                linha[indice][6] = maior;
+                            } else if (familias[i].mes == 8) {
+                                linha[indice][7] = maior;
+                            } //fim else if
+                        } //fim if
+                    } //fim for
+                } //fim if
+            } //fim for
+            indice++; //incrementa variavel indice
+            maior = 0; //zera variavel maior
+        } //fim else if
+    } //fim for
+
+    var temp1 = 0;
+    var temp2 = 2;
+
+    //imprime a tabela
+    for (var i = 0; i < linhas; i++) {
+        $("#tabela4 > tbody").append($('<tr>').append($('<td>').append(monthNames[i])). //.addClass("info")
+                append($('<td>').append(linha[i][0]))
+                  .append($('<td>').append(linha[i][1]))
+                    .append($('<td>').append(linha[i][2]))
+                    .append($('<td>').append(linha[i][3]))
+                      .append($('<td>').append(linha[i][4]))
+                        .append($('<td>').append(linha[i][5]))
+                        .append($('<td>').append(linha[i][6]))
+                          .append($('<td>').append(linha[i][7])));
+    } //fim for
+}
