@@ -4,9 +4,11 @@ var ep = new Array();
 var epCompara = new Array();
 var EPSTeste = new Array();
 var comparacao = "";
+var familias = new Array();
+var celulasPreenchidas = new Array();
 
+//inicializacao de componentes
 $(document).ready(function() {
-    //inicializacao de componentes
     new WOW().init();
     $("#sucesso").hide();
     $("#EPs").hide();
@@ -76,7 +78,7 @@ $(document).ready(function() {
     //decalaracao de variaveis
     $("#arquivo").change(function() {
         //saida de dados no console Crtl+Shift+i
-        //console.log(this.files);
+        console.log(this.files);
         //declaracao de variaveis
         var input = event.target;
         var fileReader = new FileReader();
@@ -154,8 +156,8 @@ $(document).ready(function() {
                 for (var i = 0; i < epCompara.length; i++) {
                     while (achou == false && j < dma.length) {
                         if (epCompara[i].ano == dma[j].ano) { //verifica se os anos sao iguais
-                            if (epCompara[i].mes == dma[j].mes) {//verifica se os meses sao iguais
-                                if (epCompara[i].dia == dma[j].dia) {//verifica se os dias sao iguais
+                            if (epCompara[i].mes == dma[j].mes) { //verifica se os meses sao iguais
+                                if (epCompara[i].dia == dma[j].dia) { //verifica se os dias sao iguais
                                     achou = true; //informa que achou linhas coincidentes
                                     epCompara.splice(i, 1); //remove o indice duplicado entre os arquivos
                                 } //fim if
@@ -227,6 +229,217 @@ $(document).ready(function() {
     }); //fim AVEs change
 }); //fim document ready
 
+//carrega arquivos fam1005_s2.txt
+$(document).ready(function() {
+    $("#inputFamilias").change(function() {
+
+        console.log(this.files);
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            var text = reader.result;
+            var tamanho = reader.result.length;
+            //console.log("result.length: " + tamanho);
+            var ponteiro = 0;
+            var flag = 0;
+            var count = 0;
+
+            while (ponteiro != -1) { //implementacao Aquiles
+                //console.log("result.length: " + tamanho);
+                var linhaF = reader.result.indexOf('FAMILY', ponteiro);
+                var linhaS = reader.result.indexOf('SYS#', ponteiro);
+                var str_familia = reader.result.substring(linhaF, linhaS);
+                //console.log(str_familia.trim());
+                var inicioDalinha = 0;
+                // fimDalinha=linhaS;
+                fimDalinha = ponteiro;
+                var fimFamilia = reader.result.indexOf('TOTAL TIME', ponteiro);
+                //console.log('fimFamilia:'+fimFamilia);
+                while (fimDalinha < fimFamilia) {
+                    inicioDalinha = reader.result.indexOf('\n', fimDalinha) + 1;
+                    //console.log('inicioDaLinha:'+inicioDalinha);
+                    fimDalinha = reader.result.indexOf('\n', inicioDalinha + 2);
+
+                    if (flag == 0) {
+                        inicioDalinha = 0;
+                    }
+
+                    flag = 1;
+                    //console.log('fimDalinha:'+fimDalinha);
+                    var vetor = new Array();
+                    var vfinal = new Array();
+                    var linha = reader.result.substring(inicioDalinha, fimDalinha);
+
+                    vetor = linha.trim().split(' ');
+
+                    for (var i = 0; i < vetor.length; i++) {
+                        if (vetor[i] != "")
+                            vfinal.push(vetor[i]);
+                        }
+
+                    if (count == 0) {
+                        var familia = new Familia();
+                        //console.log("Criando familia " + familias.length);
+                        familia.numero = vfinal[1];
+                        //console.log(familia.numero+" = " + vfinal[1]);
+                        familia.ano = vfinal[3].substring(vfinal[3].indexOf('=') + 1, vfinal[3].length);
+                        familia.mes = vfinal[5];
+                        familia.dia = vfinal[7];
+                        familia.hora = vfinal[8].substring(vfinal[8].indexOf('=') + 1, vfinal[8].length);
+                        familias.push(familia);
+                        count++;
+                    } else {
+                        if (vfinal[0] == "TOTAL") {
+                            count = 0;
+
+                            familias[familias.length - 1].total_time = vfinal[2];
+                            familias[familias.length - 1].deltax = vfinal[4];
+                            familias[familias.length - 1].deltay = vfinal[6];
+                            familias[familias.length - 1].last_image = vfinal[9];
+                            //familias[familias.length-1].end=vfinal[10].substring(vfinal[10].indexOf('=')+1,vfinal[10].length);
+                            //console.log("   -  Terminando ");
+                        } else {
+                            if (vfinal[0] != "SYS#") {
+                                //console.log("   -  Criando tempo "+vfinal[1]);
+                                var tempo = new Tempo();
+                                if (vfinal[0] == '*') {
+                                    tempo.asterisco = vfinal[0];
+                                    tempo.sys = vfinal[1];
+                                    tempo.xlat = vfinal[2];
+                                    tempo.xlon = vfinal[3];
+                                    tempo.time = vfinal[4];
+                                    tempo.size = vfinal[5];
+                                    tempo.dsize = vfinal[6];
+                                    tempo.tmed = vfinal[7];
+                                    tempo.dtmed = vfinal[8];
+                                    tempo.tmin = vfinal[9];
+                                    tempo.dtmin = vfinal[10];
+                                    tempo.tmin9 = vfinal[11];
+                                    tempo.dtmin9 = vfinal[12];
+                                    tempo.cbnum = vfinal[13];
+                                    tempo.cbmed = vfinal[14];
+                                    tempo.vel = vfinal[15];
+                                    tempo.dir = vfinal[16];
+                                    tempo.incli = vfinal[17];
+                                    tempo.ecce = vfinal[18];
+                                    tempo.t_ini = vfinal[19];
+                                    tempo.t_fin = vfinal[20];
+                                    tempo.clas = vfinal[21];
+                                    tempo.sys_ant = vfinal[22];
+                                } else {
+                                    tempo.asterisco = '';
+                                    tempo.sys = vfinal[0];
+                                    tempo.xlat = vfinal[1];
+                                    tempo.xlon = vfinal[2];
+                                    tempo.time = vfinal[3];
+                                    tempo.size = vfinal[4];
+                                    tempo.dsize = vfinal[5];
+                                    tempo.tmed = vfinal[6];
+                                    tempo.dtmed = vfinal[7];
+                                    tempo.tmin = vfinal[8];
+                                    tempo.dtmin = vfinal[9];
+                                    tempo.tmin9 = vfinal[10];
+                                    tempo.dtmin9 = vfinal[11];
+                                    tempo.cbnum = vfinal[12];
+                                    tempo.cbmed = vfinal[13];
+                                    tempo.vel = vfinal[14];
+                                    tempo.dir = vfinal[15];
+                                    tempo.incli = vfinal[16];
+                                    tempo.ecce = vfinal[17];
+                                    tempo.t_ini = vfinal[18];
+                                    tempo.t_fin = vfinal[19];
+                                    tempo.clas = vfinal[20];
+                                    tempo.sys_ant = vfinal[21];
+                                } //fim else
+                                familias[familias.length - 1].addTempo(tempo);
+                            } //fim if SYS
+                        } //fim else
+                    } //fim else
+                } //fim while
+                ponteiro = reader.result.indexOf('END', ponteiro + 1);
+            } //fim while
+
+            tabela2(familias.length);
+            //tab3(familias.length);
+            //tab4(familias.length);
+        } //fim onload
+        reader.readAsText(input.files[0]);
+    }); //fim onchange
+}); //fim document ready
+
+function tabela2(quantidadeFamilias) {
+    var linha = new Tabela();
+    var linhas = 12;
+    var colunas = 13;
+
+    //inicia matriz para guardar as informacoes
+    for (i = 0; i < linhas; i++) {
+        linha[i] = new Linha();
+        for (j = 0; j < colunas; j++) {
+            linha[i][j] = 0;
+        } //fim for
+    } //fim for
+
+    var indice = 0;
+
+    for (var h = 0; h < 25; h++) {
+        if ((h % 2 == 0)) {
+            for (var i = 0; i < quantidadeFamilias; i++) {
+              if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
+                  if (familias[i].mes == 1) {
+                    linha[indice][0] += 1;
+                  } else if (familias[i].mes == 2) {
+                    linha[indice][1] += 1;
+                  }
+                  else if (familias[i].mes == 3) {
+                    linha[indice][2] += 1;
+                  }
+                  else if (familias[i].mes == 4) {
+                    linha[indice][3] += 1;
+                  }
+                  else if (familias[i].mes == 5) {
+                    linha[indice][4] += 1;
+                  }
+                  else if (familias[i].mes == 6) {
+                    linha[indice][5] += 1;
+                  }
+                  else if (familias[i].mes == 7) {
+                    linha[indice][6] += 1;
+                  }
+                  else if (familias[i].mes == 8) {
+                    linha[indice][7] += 1;
+                  }
+                  else if (familias[i].mes == 9) {
+                    linha[indice][8] += 1;
+                  }
+                  else if (familias[i].mes == 10) {
+                    linha[indice][9] += 1;
+                  }
+                  else if (familias[i].mes == 11) {
+                    linha[indice][10] += 1;
+                  }
+                  else if (familias[i].mes == 12) {
+                    linha[indice][11] += 1;
+                  }
+              } //fim for
+            } //fim for quantidadeFamilias
+            indice++;
+        } //fim if
+    } //fim for linhas
+
+    var temp1 = 0;
+    var temp2 = 2;
+
+    //imprime a tabela
+    for (var i = 0; i < linhas; i++) {
+        $("#tabela > tbody").append($('<tr>').append($('<td>').append((temp1 + 0) + " ~ " + (temp2))). //.addClass("info")
+                append($('<td>').append(linha[i][0])).append($('<td>').append(linha[i][1])).append($('<td>').append(linha[i][2])).append($('<td>').append(linha[i][3])).append($('<td>').append(linha[i][4])).append($('<td>').append(linha[i][5])).append($('<td>').append(linha[i][6])).append($('<td>').append(linha[i][7])).append($('<td>').append(linha[i][8])).append($('<td>').append(linha[i][9])).append($('<td>').append(linha[i][10])).append($('<td>').append(linha[i][11])));
+        temp1 += 2; //temp1 = temp1 + 2
+        temp2 += 2 //temp2 = temp2 + 2
+    } //fim for
+}
+
 function downloadInnerHtml(filename, elId, mimeType) {
     var link = document.createElement('a');
     mimeType = mimeType || 'text/html';
@@ -234,3 +447,9 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
 } //fim downloadInnerHtml
+
+function imprimirFamilias() {
+    for (var i = 0; i < familias.length; i++) {
+        familias[i].print();
+    }
+} //fim imprimirFamilias

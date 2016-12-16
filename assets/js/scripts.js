@@ -1,16 +1,16 @@
-var familias = new Array();
-var celulasPreenchidas = new Array();
+// var familias = new Array();
+// var celulasPreenchidas = new Array();
 
 //funcao para imprimir as familias
-function imprimirFamilias() {
-    for (var i = 0; i < familias.length; i++) {
-        familias[i].print();
-    }
-}
+// function imprimirFamilias() {
+//     for (var i = 0; i < familias.length; i++) {
+//         familias[i].print();
+//     }
+// }
 
 //funcao para carregar as familias
 var openFileFam = function(event) {
-
+    console.log(this.files);
     var input = event.target;
     var reader = new FileReader();
 
@@ -138,463 +138,464 @@ var openFileFam = function(event) {
         } //fim while
 
         //tabela 2
-        //totalSistemas(familias.length);
+        totalSistemas(familias.length);
         //tab3(familias.length);
-        tab4(familias.length);
+        //tab4(familias.length);
     }; //fim onload
     reader.readAsText(input.files[0]);
 }; //fim openFileFam
 
 //imprime a tabela 2
-function totalSistemas(quantidadeFamilias) {
-    var temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 0 && json.hora <= 2) {
-            temp.numero_mes = 1;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 0, 2);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 2 && json.hora <= 4) {
-            temp.numero_mes = 1;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 2, 4);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 4 && json.hora <= 6) {
-            temp.numero_mes = 1;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 4, 6);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 6 && json.hora <= 8) {
-            temp.numero_mes = 1;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 6, 8);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 8 && json.hora <= 10) {
-            temp.numero_mes = 2;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 8, 10);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 10 && json.hora <= 12) {
-            temp.numero_mes = 3;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 10, 12);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 12 && json.hora <= 14) {
-            temp.numero_mes = 4;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 12, 14);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 14 && json.hora <= 16) {
-            temp.numero_mes = 5;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 14, 16);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 16 && json.hora <= 18) {
-            temp.numero_mes = 6;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 16, 18);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 18 && json.hora <= 20) {
-            temp.numero_mes = 7;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 18, 20);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 20 && json.hora <= 22) {
-            temp.numero_mes = 8;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 20, 22);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 22 && json.hora <= 24) {
-            temp.numero_mes = 9;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, 22, 24);
-    temp = new Meses();
-    for (var j = 0; j < (quantidadeFamilias); j++) {
-        //verificar o tempo de vida dos SCM
-        var json = JSON.parse(JSON.stringify(familias[j]));
-        if (json.hora > 24) {
-            temp.numero_mes = 10;
-            if (json.mes == 1) {
-                temp.janeiro += 1;
-            } else if (json.mes == 2) {
-                temp.fevereiro += 1;
-            } else if (json.mes == 3) {
-                temp.marco += 1;
-            } else if (json.mes == 4) {
-                temp.abril += 1;
-            } else if (json.mes == 5) {
-                temp.maio += 1;
-            } else if (json.mes == 6) {
-                temp.junho += 1;
-            } else if (json.mes == 7) {
-                temp.julho += 1;
-            } else if (json.mes == 8) {
-                temp.agosto += 1;
-            } else if (json.mes == 9) {
-                temp.setembro += 1;
-            } else if (json.mes == 10) {
-                temp.outubro += 1;
-            } else if (json.mes == 11) {
-                temp.novembro += 1;
-            } else if (json.mes == 12) {
-                temp.dezembro += 1;
-            }
-        }
-    } //fim for
-    escreveTabela2(temp, -1, 24);
-}
+// function totalSistemas(quantidadeFamilias) {
+//     var temp = new Meses();
+//
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 0 && json.hora <= 2) {
+//             temp.numero_mes = 1;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 0, 2);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 2 && json.hora <= 4) {
+//             temp.numero_mes = 1;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 2, 4);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 4 && json.hora <= 6) {
+//             temp.numero_mes = 1;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 4, 6);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 6 && json.hora <= 8) {
+//             temp.numero_mes = 1;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 6, 8);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 8 && json.hora <= 10) {
+//             temp.numero_mes = 2;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 8, 10);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 10 && json.hora <= 12) {
+//             temp.numero_mes = 3;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 10, 12);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 12 && json.hora <= 14) {
+//             temp.numero_mes = 4;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 12, 14);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 14 && json.hora <= 16) {
+//             temp.numero_mes = 5;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 14, 16);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 16 && json.hora <= 18) {
+//             temp.numero_mes = 6;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 16, 18);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 18 && json.hora <= 20) {
+//             temp.numero_mes = 7;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 18, 20);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 20 && json.hora <= 22) {
+//             temp.numero_mes = 8;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 20, 22);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 22 && json.hora <= 24) {
+//             temp.numero_mes = 9;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, 22, 24);
+//     temp = new Meses();
+//     for (var j = 0; j < (quantidadeFamilias); j++) {
+//         //verificar o tempo de vida dos SCM
+//         var json = JSON.parse(JSON.stringify(familias[j]));
+//         if (json.hora > 24) {
+//             temp.numero_mes = 10;
+//             if (json.mes == 1) {
+//                 temp.janeiro += 1;
+//             } else if (json.mes == 2) {
+//                 temp.fevereiro += 1;
+//             } else if (json.mes == 3) {
+//                 temp.marco += 1;
+//             } else if (json.mes == 4) {
+//                 temp.abril += 1;
+//             } else if (json.mes == 5) {
+//                 temp.maio += 1;
+//             } else if (json.mes == 6) {
+//                 temp.junho += 1;
+//             } else if (json.mes == 7) {
+//                 temp.julho += 1;
+//             } else if (json.mes == 8) {
+//                 temp.agosto += 1;
+//             } else if (json.mes == 9) {
+//                 temp.setembro += 1;
+//             } else if (json.mes == 10) {
+//                 temp.outubro += 1;
+//             } else if (json.mes == 11) {
+//                 temp.novembro += 1;
+//             } else if (json.mes == 12) {
+//                 temp.dezembro += 1;
+//             }
+//         }
+//     } //fim for
+//     escreveTabela2(temp, -1, 24);
+// }
 
-function escreveTabela2(array, n1, n2) {
-    var json = JSON.parse(JSON.stringify(array));
-    if (n1 == -1) {
-        $("#tabela > tbody").append($('<tr>').append($('<td>').append('> ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
-    } else {
-        $("#tabela > tbody").append($('<tr>').append($('<td>').append(n1 + ' a ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
-    }
-}
+// function escreveTabela2(array, n1, n2) {
+//     var json = JSON.parse(JSON.stringify(array));
+//     if (n1 == -1) {
+//         $("#tabela > tbody").append($('<tr>').append($('<td>').append('> ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
+//     } else {
+//         $("#tabela > tbody").append($('<tr>').append($('<td>').append(n1 + ' a ' + n2).css("font-weight", "bold")).append($('<td>').append(json.janeiro)).append($('<td>').append(json.fevereiro)).append($('<td>').append(json.marco)).append($('<td>').append(json.abril)).append($('<td>').append(json.maio)).append($('<td>').append(json.junho)).append($('<td>').append(json.julho)).append($('<td>').append(json.agosto)).append($('<td>').append(json.setembro)).append($('<td>').append(json.outubro)).append($('<td>').append(json.novembro)).append($('<td>').append(json.dezembro)));
+//     }
+// }
 
 function tab3(quantidadeFamilias) {
     //definicao de variaveis
@@ -651,7 +652,7 @@ function tab3(quantidadeFamilias) {
             } //fim for
             indice++; //incrementa variavel indice
             maior = 0; //zera variavel maior
-        } //fim else if
+        } //fim if
     } //fim for
 
     var temp1 = 0;
@@ -668,6 +669,7 @@ function tab3(quantidadeFamilias) {
 } //fim function
 
 function tab4(quantidadeFamilias) {
+    var maior = 0;
     var linhas = 13;
     var colunas = 8;
     var linha = new Tabela();
@@ -696,7 +698,7 @@ function tab4(quantidadeFamilias) {
         }
     }
 
-    var indice = 0;
+    var indice = 0; //variavel pra percorrer os indices das linhas
 
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
@@ -737,13 +739,6 @@ function tab4(quantidadeFamilias) {
     //imprime a tabela
     for (var i = 0; i < linhas; i++) {
         $("#tabela4 > tbody").append($('<tr>').append($('<td>').append(monthNames[i])). //.addClass("info")
-                append($('<td>').append(linha[i][0]))
-                  .append($('<td>').append(linha[i][1]))
-                    .append($('<td>').append(linha[i][2]))
-                    .append($('<td>').append(linha[i][3]))
-                      .append($('<td>').append(linha[i][4]))
-                        .append($('<td>').append(linha[i][5]))
-                        .append($('<td>').append(linha[i][6]))
-                          .append($('<td>').append(linha[i][7])));
+                append($('<td>').append(linha[i][0])).append($('<td>').append(linha[i][1])).append($('<td>').append(linha[i][2])).append($('<td>').append(linha[i][3])).append($('<td>').append(linha[i][4])).append($('<td>').append(linha[i][5])).append($('<td>').append(linha[i][6])).append($('<td>').append(linha[i][7])));
     } //fim for
 }

@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/classes.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <!-- <script src="assets/js/scripts.js"></script> -->
     <script type="text/javascript" src="assets/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="assets/js/charts.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -64,7 +64,7 @@
             </table>
             <p>
                 <label class="control-label">Famílias:</label>
-                <input type="file" class="file" id="inputFamilias" value="Submit" accept='text/plain' multiple onchange="openFileFam(event)">
+                <input type="file" class="file" id="inputFamilias" accept='text/plain' multiple>
             </p>
 
             <p>
@@ -90,11 +90,7 @@
                 <tbody id="compara"></tbody>
             </table>
             <textarea id="comparaTextarea"></textarea>
-            <button id="salvar" class="btn btn-default" style="
-              margin-left:auto;
-              margin-right:auto;
-              display:block;
-              margin-bottom:0%">Salvar arquivo</button>
+            <button id="salvar" class="btn btn-default" style="margin-left:auto; margin-right:auto; display:block; margin-bottom:0%">Salvar arquivo</button>
             <p>
                 <label class="control-label">AVEs</label>
                 <input type="file" class="file" id="AVEs" accept="text/plain" />
@@ -153,25 +149,25 @@
             </table>
 
             <!--tabela 3-->
-            <table id="tabela4" class="table table-condensed" >
-                <thead class="" >
+            <table id="tabela4" class="table table-condensed" border="1">
+                <thead class="">
                     <tr>
-                      <th colspan="0"></th>
-                      <th colspan="2" class="text-center">teste</th>
-                      <th colspan="2" class="text-center">teste</th>
-                      <th colspan="2" class="text-center">teste</th>
-                      <th colspan="2" class="text-center">teste</th>
+                        <th colspan="0"></th>
+                        <th colspan="2" class="text-center">&ge; 6h</th>
+                        <th colspan="2" class="text-center">6 ~ 12h</th>
+                        <th colspan="2" class="text-center">12 ~ 24h</th>
+                        <th colspan="2" class="text-center">&ge; 24h</th>
                     </tr>
                     <tr>
                         <th>MENSAL</th>
-                        <th>EXC</th>
-                        <th>TEMP</th>
-                        <th>EXC</th>
-                        <th>TEMP</th>
-                        <th>EXC</th>
-                        <th>TEMP</th>
-                        <th>EXC</th>
-                        <th>TEMP</th>
+                        <th class="text-center">EXC</th>
+                        <th class="text-center">TEMP</th>
+                        <th class="text-center">EXC</th>
+                        <th class="text-center">TEMP</th>
+                        <th class="text-center">EXC</th>
+                        <th class="text-center">TEMP</th>
+                        <th class="text-center">EXC</th>
+                        <th class="text-center">TEMP</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
