@@ -386,7 +386,7 @@ function tabela2(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].hora >= h && familias[i].hora < (h + 2)) {
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2) && familias[i].hora < 25) {
                     if (familias[i].mes == 1) {
                         linha[indice][0] += 1;
                     } else if (familias[i].mes == 2) {
@@ -452,7 +452,7 @@ function tabela3(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-                if (familias[i].hora >= h && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
                         if (maior < parseInt(familias[i]['tempos'][j].size)) {
                             maior = parseInt(familias[i]['tempos'][j].size);
@@ -536,50 +536,49 @@ function tabela4(quantidadeFamilias) {
 
     var indice = 0; //variavel pra percorrer os indices das linhas
 
-    for (var h = 0; h < 25; h++) {
+    for (var h = 0; h < 27; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-                if (familias[i].hora >= h && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
+                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
                         if (maior < parseInt(familias[i]['tempos'][j].size)) {
                             maior = parseInt(familias[i]['tempos'][j].size);
-
                             if (familias[i].mes == 1) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[0][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[0][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 2) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[1][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[1][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 3) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[2][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[2][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 4) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[3][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[3][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 5) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[4][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[4][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 6) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[5][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[5][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 7) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[6][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[6][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 8) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[7][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[7][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 9) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[8][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[8][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 10) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[9][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[9][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 11) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[10][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[10][h+2] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 12) {
-                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
-                                linha[indice][h] = familias[i]['tempos'][j].time;
+                              linha[11][h+1] = familias[i]['tempos'][j].ecce;
+                              linha[11][h+2] = familias[i]['tempos'][j].time;
                             } //fim else if
                         } //fim if
                     } //fim for
@@ -593,6 +592,7 @@ function tabela4(quantidadeFamilias) {
     var temp1 = 0;
     var temp2 = 2;
 
+console.log(linha);
     //imprime a tabela
     for (var i = 0; i < linhas; i++) {
         $('#tabela-4 > tbody:last-child').append('<tr>');
