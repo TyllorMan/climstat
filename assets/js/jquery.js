@@ -386,7 +386,7 @@ function tabela2(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
+                if (familias[i].hora >= h && familias[i].hora < (h + 2)) {
                     if (familias[i].mes == 1) {
                         linha[indice][0] += 1;
                     } else if (familias[i].mes == 2) {
@@ -452,7 +452,7 @@ function tabela3(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
+                if (familias[i].hora >= h && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
                         if (maior < parseInt(familias[i]['tempos'][j].size)) {
                             maior = parseInt(familias[i]['tempos'][j].size);
@@ -507,7 +507,7 @@ function tabela3(quantidadeFamilias) {
 function tabela4(quantidadeFamilias) {
     var maior = 0;
     var linhas = 13;
-    var colunas = 8;
+    var colunas = 27;
     var linha = new Tabela();
 
     var monthNames = [
@@ -539,26 +539,47 @@ function tabela4(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
+                if (familias[i].hora >= h && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
                     for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
                         if (maior < parseInt(familias[i]['tempos'][j].size)) {
                             maior = parseInt(familias[i]['tempos'][j].size);
+
                             if (familias[i].mes == 1) {
-                                linha[indice][0] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 2) {
-                                linha[indice][1] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 3) {
-                                linha[indice][2] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 4) {
-                                linha[indice][3] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 5) {
-                                linha[indice][4] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 6) {
-                                linha[indice][5] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 7) {
-                                linha[indice][6] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } else if (familias[i].mes == 8) {
-                                linha[indice][7] = maior;
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
+                            } else if (familias[i].mes == 9) {
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
+                            } else if (familias[i].mes == 10) {
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
+                            } else if (familias[i].mes == 11) {
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
+                            } else if (familias[i].mes == 12) {
+                                linha[indice][h - 1] = familias[i]['tempos'][j].ecce;
+                                linha[indice][h] = familias[i]['tempos'][j].time;
                             } //fim else if
                         } //fim if
                     } //fim for
@@ -574,9 +595,12 @@ function tabela4(quantidadeFamilias) {
 
     //imprime a tabela
     for (var i = 0; i < linhas; i++) {
-        $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(monthNames[i])). //.addClass("info")
-                append($('<td>').append(linha[i][0])).append($('<td>').append(linha[i][1])).append($('<td>').append(linha[i][2])).append($('<td>').append(linha[i][3])).append($('<td>').append(linha[i][4])).append($('<td>').append(linha[i][5])).append($('<td>').append(linha[i][6])).append($('<td>').append(linha[i][7])));
-    } //fim for
+        $('#tabela-4 > tbody:last-child').append('<tr>');
+        for (var j = 0; j < colunas; j++) {
+            $('#tabela-4 > tbody:last-child').append('<td>' + linha[i][j] + '</td>');
+        } //fim for
+    }
+
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
 
