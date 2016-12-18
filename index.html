@@ -67,6 +67,81 @@
                 <input type="file" class="file" id="inputFamilias" accept='text/plain' multiple>
             </p>
 
+            <div id="div-tabela-2">
+                <h2>Tabela 2</h2>
+                <table id="tabela-2" class="table table-striped table-hover table-condensed">
+                    <thead class="">
+                        <tr>
+                            <th>H</th>
+                            <th>JAN</th>
+                            <th>FEV</th>
+                            <th>MAR</th>
+                            <th>ABR</th>
+                            <th>MAI</th>
+                            <th>JUN</th>
+                            <th>JUL</th>
+                            <th>AGO</th>
+                            <th>SET</th>
+                            <th>OUT</th>
+                            <th>NOV</th>
+                            <th>DEZ</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="div-tabela-3">
+                <h2>Tabela 3</h2>
+                <table id="tabela-3" class="table table-striped table-hover table-condensed">
+                    <thead class="">
+                        <tr>
+                            <th>H</th>
+                            <th>JAN</th>
+                            <th>FEV</th>
+                            <th>MAR</th>
+                            <th>ABR</th>
+                            <th>MAI</th>
+                            <th>JUN</th>
+                            <th>JUL</th>
+                            <th>AGO</th>
+                            <th>SET</th>
+                            <th>OUT</th>
+                            <th>NOV</th>
+                            <th>DEZ</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="div-tabela-4">
+                <h2>Tabela 4</h2>
+                <table id="tabela-4" class="table table-striped table-hover table-condensed">
+                    <thead class="">
+                        <tr>
+                            <th colspan="0"></th>
+                            <th colspan="2" class="text-center">&ge; 6h</th>
+                            <th colspan="2" class="text-center">6 ~ 12h</th>
+                            <th colspan="2" class="text-center">12 ~ 24h</th>
+                            <th colspan="2" class="text-center">&ge; 24h</th>
+                        </tr>
+                        <tr>
+                            <th>MENSAL</th>
+                            <th class="text-center">EXC</th>
+                            <th class="text-center">TEMP</th>
+                            <th class="text-center">EXC</th>
+                            <th class="text-center">TEMP</th>
+                            <th class="text-center">EXC</th>
+                            <th class="text-center">TEMP</th>
+                            <th class="text-center">EXC</th>
+                            <th class="text-center">TEMP</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
             <p>
                 <label class="control-label">Ano, mês e dias:</label>
                 <input type="file" class="file" id="arquivo" accept="text/plain" />
@@ -89,7 +164,9 @@
                 </thead>
                 <tbody id="compara"></tbody>
             </table>
+
             <textarea id="comparaTextarea"></textarea>
+            
             <button id="salvar" class="btn btn-default" style="margin-left:auto; margin-right:auto; display:block; margin-bottom:0%">Salvar arquivo</button>
             <p>
                 <label class="control-label">AVEs</label>
@@ -105,75 +182,7 @@
             </p>
         </div>
 
-        <div id='output' class="container-fluid">
-            <table id="tabela" class="table table-striped table-hover">
-                <thead class="">
-                    <tr>
-                        <th>H</th>
-                        <th>JAN</th>
-                        <th>FEV</th>
-                        <th>MAR</th>
-                        <th>ABR</th>
-                        <th>MAI</th>
-                        <th>JUN</th>
-                        <th>JUL</th>
-                        <th>AGO</th>
-                        <th>SET</th>
-                        <th>OUT</th>
-                        <th>NOV</th>
-                        <th>DEZ</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <!--tabela 3-->
-            <table id="tabela3" class="table table-striped table-hover table-condensed">
-                <thead class="">
-                    <tr>
-                        <th>H</th>
-                        <th>JAN</th>
-                        <th>FEV</th>
-                        <th>MAR</th>
-                        <th>ABR</th>
-                        <th>MAI</th>
-                        <th>JUN</th>
-                        <th>JUL</th>
-                        <th>AGO</th>
-                        <th>SET</th>
-                        <th>OUT</th>
-                        <th>NOV</th>
-                        <th>DEZ</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
 
-            <!--tabela 3-->
-            <table id="tabela4" class="table table-condensed" border="1">
-                <thead class="">
-                    <tr>
-                        <th colspan="0"></th>
-                        <th colspan="2" class="text-center">&ge; 6h</th>
-                        <th colspan="2" class="text-center">6 ~ 12h</th>
-                        <th colspan="2" class="text-center">12 ~ 24h</th>
-                        <th colspan="2" class="text-center">&ge; 24h</th>
-                    </tr>
-                    <tr>
-                        <th>MENSAL</th>
-                        <th class="text-center">EXC</th>
-                        <th class="text-center">TEMP</th>
-                        <th class="text-center">EXC</th>
-                        <th class="text-center">TEMP</th>
-                        <th class="text-center">EXC</th>
-                        <th class="text-center">TEMP</th>
-                        <th class="text-center">EXC</th>
-                        <th class="text-center">TEMP</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-
-        </div>
 
         <div id="canvass" class="wow fadeInDown">
             <canvas id="myChart"></canvas>
