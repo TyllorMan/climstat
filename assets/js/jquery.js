@@ -363,11 +363,10 @@ $(document).ready(function() {
                 } //fim while
                 ponteiro = reader.result.indexOf('END', ponteiro + 1);
             } //fim while
-            //console.log(familias);
-            //tabela1(familias.length);
-            //tabela2(familias.length);
-            //tabela3(familias.length);
-            //tabela4(familias.length);
+            tabela1(familias.length);
+            tabela2(familias.length);
+            tabela3(familias.length);
+            tabela4(familias.length);
         }; //fim onload
         reader.readAsText(input.files[0]);
     }); //fim onchange
