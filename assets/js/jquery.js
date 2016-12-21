@@ -289,7 +289,8 @@ $(document).ready(function() {
                         familia.mes = vfinal[5];
                         familia.dia = vfinal[7];
                         familia.hora = vfinal[8].substring(vfinal[8].indexOf('=') + 1, vfinal[8].length);
-                        familia.classificacao = vfinal[13].trim();
+                        // familia.classificacao = vfinal[10];
+                        console.log(vfinal[13]);
                         familias.push(familia);
                         count++;
                     } else {
@@ -362,7 +363,7 @@ $(document).ready(function() {
                 } //fim while
                 ponteiro = reader.result.indexOf('END', ponteiro + 1);
             } //fim while
-            console.log(familias);
+            //console.log(familias);
             //tabela1(familias.length);
             //tabela2(familias.length);
             //tabela3(familias.length);
@@ -390,21 +391,85 @@ function tabela1(quantidadeFamilias) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
                 if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
-                    for (var j = 0; j < familias[i]['tempos'].length; j++) {
                         if (familias[i].mes == 1) {
                             if (familias[i].classificacao == "C") {
                                 linha[0][h + 1] += 1;
                             } else {
                                 linha[0][h + 2] += 1;
                             }
-                        } else if (familias[i].mes == 2) {} else if (familias[i].mes == 3) {} else if (familias[i].mes == 4) {} else if (familias[i].mes == 5) {} else if (familias[i].mes == 6) {} else if (familias[i].mes == 7) {} else if (familias[i].mes == 8) {} else if (familias[i].mes == 9) {} else if (familias[i].mes == 10) {} else if (familias[i].mes == 11) {} else if (familias[i].mes == 12) {} //fim else if
-                    } //fim if
+                        } else if (familias[i].mes == 2) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 3) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 4) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 5) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 6) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 7) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 8) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 9) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 10) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 11) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } else if (familias[i].mes == 12) {
+                          if (familias[i].classificacao == "C") {
+                              linha[0][h + 1] += 1;
+                          } else {
+                              linha[0][h + 2] += 1;
+                          }
+                        } //fim else if
                 } //fim for
             } //fim for
             indice++; //incrementa variavel indice
         } //fim if
     } //fim for
-
+//console.log(familias.classificacao);
     //imprime a tabela
     for (var i = 0; i < linhas; i++) {
         $('#tabela-1 > tbody:last-child').append('<tr>');
