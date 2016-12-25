@@ -24,14 +24,11 @@ $(document).ready(function() {
     $("#div-tabela-2").hide();
     $("#div-tabela-3").hide();
     $("#div-tabela-4").hide();
-    $("#inputFamilias").change(function() {
-        //console.log(this.files);
-    });
+    $("#div-tabela-6").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
 $(document).ready(function() {
-    //declaracao de variaveis
     //acesssa input inputEPs
     $("#inputEPs").change(function() {
         //console.log(this.files);
@@ -197,7 +194,6 @@ $(document).ready(function() {
     //decalaracao de variaveis
     var texto = "'define u=(ave(uwnd,t=";
     $("#AVEs").change(function() {
-        console.log(this.files);
         //declaracao de variaveis
         var input = event.target;
         var fileReader = new FileReader();
@@ -232,145 +228,188 @@ $(document).ready(function() {
 //carrega arquivos fam1005_s2.txt
 $(document).ready(function() {
     $("#inputFamilias").change(function() {
-        var reader = new FileReader();
+        var fileReader = new FileReader();
         var input = event.target;
-        var concat = "";
+        var linhas = new Array();
 
-        console.log(concat);
+        fileReader.onload = function() {
+            var resultado = fileReader.result;
+            //cria cada linha ao final do caractere \n
+            linhas = resultado.trim().split('\n');
 
-        reader.onload = function() {
-            var text = reader.result;
-            //var tamanho = reader.result.length;
-            //console.log("result.length: " + tamanho);
-            var ponteiro = 0;
-            var flag = 0;
-            var count = 0;
-
-            while (ponteiro != -1) { //implementacao Aquiles
-                //console.log("result.length: " + tamanho);
-                var linhaF = reader.result.indexOf('FAMILY', ponteiro);
-                var linhaS = reader.result.indexOf('SYS#', ponteiro);
-                var str_familia = reader.result.substring(linhaF, linhaS);
-                //console.log(str_familia.trim());
-                var inicioDalinha = 0;
-                // fimDalinha=linhaS;
-                fimDalinha = ponteiro;
-                var fimFamilia = reader.result.indexOf('TOTAL TIME', ponteiro);
-                //console.log('fimFamilia:'+fimFamilia);
-                while (fimDalinha < fimFamilia) {
-                    inicioDalinha = reader.result.indexOf('\n', fimDalinha) + 1;
-                    //console.log('inicioDaLinha:'+inicioDalinha);
-                    fimDalinha = reader.result.indexOf('\n', inicioDalinha + 2);
-
-                    if (flag == 0) {
-                        inicioDalinha = 0;
-                    }
-
-                    flag = 1;
-                    //console.log('fimDalinha:'+fimDalinha);
-                    var vetor = new Array();
-                    var vfinal = new Array();
-                    var linha = reader.result.substring(inicioDalinha, fimDalinha);
-
-                    vetor = linha.trim().split(' ');
-
-                    for (var i = 0; i < vetor.length; i++) {
-                        if (vetor[i] != "") {
-                            vfinal.push(vetor[i]);
-                        }
-                    }
-
-                    if (count == 0) {
-                        var familia = new Familia();
-                        //console.log("Criando familia " + familias.length);
-                        familia.numero = vfinal[1];
-                        //console.log(familia.numero+" = " + vfinal[1]);
-                        familia.ano = vfinal[3].substring(vfinal[3].indexOf('=') + 1, vfinal[3].length);
-                        familia.mes = vfinal[5];
-                        familia.dia = vfinal[7];
-                        familia.hora = vfinal[8].substring(vfinal[8].indexOf('=') + 1, vfinal[8].length);
-                        // familia.classificacao = vfinal[10];
-                        console.log(vfinal[13]);
-                        familias.push(familia);
-                        count++;
-                    } else {
-                        if (vfinal[0] == "TOTAL") {
-                            count = 0;
-
-                            familias[familias.length - 1].total_time = vfinal[2];
-                            familias[familias.length - 1].deltax = vfinal[4];
-                            familias[familias.length - 1].deltay = vfinal[6];
-                            familias[familias.length - 1].last_image = vfinal[9];
-                            //familias[familias.length-1].end=vfinal[10].substring(vfinal[10].indexOf('=')+1,vfinal[10].length);
-                            //console.log("   -  Terminando ");
-                        } else {
-                            if (vfinal[0] != "SYS#") {
-                                //console.log("   -  Criando tempo "+vfinal[1]);
-                                var tempo = new Tempo();
-                                if (vfinal[0] == '*') {
-                                    tempo.asterisco = vfinal[0];
-                                    tempo.sys = vfinal[1];
-                                    tempo.xlat = vfinal[2];
-                                    tempo.xlon = vfinal[3];
-                                    tempo.time = vfinal[4];
-                                    tempo.size = vfinal[5];
-                                    tempo.dsize = vfinal[6];
-                                    tempo.tmed = vfinal[7];
-                                    tempo.dtmed = vfinal[8];
-                                    tempo.tmin = vfinal[9];
-                                    tempo.dtmin = vfinal[10];
-                                    tempo.tmin9 = vfinal[11];
-                                    tempo.dtmin9 = vfinal[12];
-                                    tempo.cbnum = vfinal[13];
-                                    tempo.cbmed = vfinal[14];
-                                    tempo.vel = vfinal[15];
-                                    tempo.dir = vfinal[16];
-                                    tempo.incli = vfinal[17];
-                                    tempo.ecce = vfinal[18];
-                                    tempo.t_ini = vfinal[19];
-                                    tempo.t_fin = vfinal[20];
-                                    tempo.clas = vfinal[21];
-                                    tempo.sys_ant = vfinal[22];
-                                } else {
-                                    tempo.asterisco = '';
-                                    tempo.sys = vfinal[0];
-                                    tempo.xlat = vfinal[1];
-                                    tempo.xlon = vfinal[2];
-                                    tempo.time = vfinal[3];
-                                    tempo.size = vfinal[4];
-                                    tempo.dsize = vfinal[5];
-                                    tempo.tmed = vfinal[6];
-                                    tempo.dtmed = vfinal[7];
-                                    tempo.tmin = vfinal[8];
-                                    tempo.dtmin = vfinal[9];
-                                    tempo.tmin9 = vfinal[10];
-                                    tempo.dtmin9 = vfinal[11];
-                                    tempo.cbnum = vfinal[12];
-                                    tempo.cbmed = vfinal[13];
-                                    tempo.vel = vfinal[14];
-                                    tempo.dir = vfinal[15];
-                                    tempo.incli = vfinal[16];
-                                    tempo.ecce = vfinal[17];
-                                    tempo.t_ini = vfinal[18];
-                                    tempo.t_fin = vfinal[19];
-                                    tempo.clas = vfinal[20];
-                                    tempo.sys_ant = vfinal[21];
-                                } //fim else
-                                familias[familias.length - 1].addTempo(tempo);
-                            } //fim if SYS
-                        } //fim else
-                    } //fim else
-                } //fim while
-                ponteiro = reader.result.indexOf('END', ponteiro + 1);
-            } //fim while
-            tabela1(familias.length);
-            tabela2(familias.length);
-            tabela3(familias.length);
-            tabela4(familias.length);
+            for (var i = 0; i < linhas.length; i++) {
+                linhas[i] = linhas[i]
+                .trim()
+                .replace('FAMILY=    ', 'FAMILY=')
+                .replace(' -  ', ' ')
+                .replace('MONTH=  ', 'MONTH=')
+                .replace('DAY= ', 'DAY=')
+                .replace('MEMBER=  ', 'MEMBER=')
+                .replace('MEMBER= ', 'MEMBER=')
+                .replace('CLASSIF= ', 'CLASSIF=')
+                .replace('TOTAL TIME= ', 'TOTAL TIME=')
+                .replace('   LAST IMAGE= ', ' LAST IMAGE=')
+                .replace('  DELTAX  ', ' DELTAX=')
+                .replace('   DELTAY  ', ' DELTAY=')
+                .replace('*  ', '')
+                .replace('* ', '')
+                .replace('   END=', ' END=')
+                .replace(' - NSYS:   ', ' NSYS=')
+                .replace(/  +/g, ' ');
+                //verifica se ha linhas em branco
+                if (linhas[i] == "") {
+                    //deleta linha em branco
+                    delete linhas[i];
+                } //fim if
+            } //fim for
+            console.log(linhas);
+            tabela6(5);
         }; //fim onload
-        reader.readAsText(input.files[0]);
-    }); //fim onchange
+
+        fileReader.readAsText(input.files[0]);
+    }); //fim change
 }); //fim document ready
+
+//carrega arquivos fam1005_s2.txt
+// $(document).ready(function() {
+//     $("#inputFamilias").change(function() {
+//         var reader = new FileReader();
+//         var input = event.target;
+//
+//         reader.onload = function() {
+//             var text = reader.result;
+//             //var tamanho = reader.result.length;
+//             //console.log("result.length: " + tamanho);
+//             var ponteiro = 0;
+//             var flag = 0;
+//             var count = 0;
+//
+//             while (ponteiro != -1) { //implementacao Aquiles
+//                 //console.log("result.length: " + tamanho);
+//                 var linhaF = reader.result.indexOf('FAMILY', ponteiro);
+//                 var linhaS = reader.result.indexOf('SYS#', ponteiro);
+//                 var str_familia = reader.result.substring(linhaF, linhaS);
+//                 //console.log(str_familia.trim());
+//                 var inicioDalinha = 0;
+//                 // fimDalinha=linhaS;
+//                 fimDalinha = ponteiro;
+//                 var fimFamilia = reader.result.indexOf('TOTAL TIME', ponteiro);
+//                 //console.log('fimFamilia:'+fimFamilia);
+//                 while (fimDalinha < fimFamilia) {
+//                     inicioDalinha = reader.result.indexOf('\n', fimDalinha) + 1;
+//                     //console.log('inicioDaLinha: ' + inicioDalinha);
+//                     fimDalinha = reader.result.indexOf('\n', inicioDalinha + 2);
+//
+//                     if (flag == 0) {
+//                         inicioDalinha = 0;
+//                     }
+//
+//                     flag = 1;
+//                     //console.log('fimDalinha:'+fimDalinha);
+//                     var vetor = new Array();
+//                     var vfinal = new Array();
+//                     var linha = reader.result.substring(inicioDalinha, fimDalinha);
+//
+//                     vetor = linha.trim().split(' ');
+//
+//                     for (var i = 0; i < vetor.length; i++) {
+//                         if (vetor[i] != "") {
+//                             vfinal.push(vetor[i]);
+//                         }
+//                     }
+//
+//                     if (count == 0) {
+//                         var familia = new Familia();
+//                         //console.log("Criando familia " + familias.length);
+//                         familia.numero = vfinal[1];
+//                         familia.ano = vfinal[3].substring(vfinal[3].indexOf('=') + 1, vfinal[3].length);
+//                         familia.mes = vfinal[5];
+//                         familia.dia = vfinal[7];
+//                         familia.hora = vfinal[8].substring(vfinal[8].indexOf('=') + 1, vfinal[8].length);
+//                         //  console.log(vfinal[13]);
+//                         familias.push(familia);
+//                         count++;
+//                     } else {
+//                         if (vfinal[0] == "TOTAL") {
+//                             count = 0;
+//
+//                             familias[familias.length - 1].total_time = vfinal[2];
+//                             familias[familias.length - 1].deltax = vfinal[4];
+//                             familias[familias.length - 1].deltay = vfinal[6];
+//                             familias[familias.length - 1].last_image = vfinal[9];
+//                             //familias[familias.length-1].end=vfinal[10].substring(vfinal[10].indexOf('=')+1,vfinal[10].length);
+//                             //console.log("   -  Terminando ");
+//                         } else {
+//                             if (vfinal[0] != "SYS#") {
+//                                 //console.log("   -  Criando tempo "+vfinal[1]);
+//                                 var tempo = new Tempo();
+//                                 if (vfinal[0] == '*') {
+//                                     tempo.asterisco = vfinal[0];
+//                                     tempo.sys = vfinal[1];
+//                                     tempo.xlat = vfinal[2];
+//                                     tempo.xlon = vfinal[3];
+//                                     tempo.time = vfinal[4];
+//                                     tempo.size = vfinal[5];
+//                                     tempo.dsize = vfinal[6];
+//                                     tempo.tmed = vfinal[7];
+//                                     tempo.dtmed = vfinal[8];
+//                                     tempo.tmin = vfinal[9];
+//                                     tempo.dtmin = vfinal[10];
+//                                     tempo.tmin9 = vfinal[11];
+//                                     tempo.dtmin9 = vfinal[12];
+//                                     tempo.cbnum = vfinal[13];
+//                                     tempo.cbmed = vfinal[14];
+//                                     tempo.vel = vfinal[15];
+//                                     tempo.dir = vfinal[16];
+//                                     tempo.incli = vfinal[17];
+//                                     tempo.ecce = vfinal[18];
+//                                     tempo.t_ini = vfinal[19];
+//                                     tempo.t_fin = vfinal[20];
+//                                     tempo.clas = vfinal[21];
+//                                     tempo.sys_ant = vfinal[22];
+//                                 } else {
+//                                     tempo.asterisco = '';
+//                                     tempo.sys = vfinal[0];
+//                                     tempo.xlat = vfinal[1];
+//                                     tempo.xlon = vfinal[2];
+//                                     tempo.time = vfinal[3];
+//                                     tempo.size = vfinal[4];
+//                                     tempo.dsize = vfinal[5];
+//                                     tempo.tmed = vfinal[6];
+//                                     tempo.dtmed = vfinal[7];
+//                                     tempo.tmin = vfinal[8];
+//                                     tempo.dtmin = vfinal[9];
+//                                     tempo.tmin9 = vfinal[10];
+//                                     tempo.dtmin9 = vfinal[11];
+//                                     tempo.cbnum = vfinal[12];
+//                                     tempo.cbmed = vfinal[13];
+//                                     tempo.vel = vfinal[14];
+//                                     tempo.dir = vfinal[15];
+//                                     tempo.incli = vfinal[16];
+//                                     tempo.ecce = vfinal[17];
+//                                     tempo.t_ini = vfinal[18];
+//                                     tempo.t_fin = vfinal[19];
+//                                     tempo.clas = vfinal[20];
+//                                     tempo.sys_ant = vfinal[21];
+//                                 } //fim else
+//                                 familias[familias.length - 1].addTempo(tempo);
+//                             } //fim if SYS
+//                         } //fim else
+//                     } //fim else
+//                 } //fim while
+//                 ponteiro = reader.result.indexOf('END', ponteiro + 1);
+//             } //fim while
+//             //tabela1(familias.length);
+//             //tabela2(familias.length);
+//             //tabela3(familias.length);
+//             // tabela4(familias.length);
+//             tabela6(familias.length);
+//
+//         }; //fim onload
+//
+//         reader.readAsText(input.files[0]);
+//     }); //fim onchange
+// }); //fim document ready
 
 function tabela1(quantidadeFamilias) {
     var linha = new Tabela();
@@ -390,85 +429,85 @@ function tabela1(quantidadeFamilias) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
                 if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
-                        if (familias[i].mes == 1) {
-                            if (familias[i].classificacao == "C") {
-                                linha[0][h + 1] += 1;
-                            } else {
-                                linha[0][h + 2] += 1;
-                            }
-                        } else if (familias[i].mes == 2) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 3) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 4) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 5) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 6) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 7) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 8) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 9) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 10) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 11) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } else if (familias[i].mes == 12) {
-                          if (familias[i].classificacao == "C") {
-                              linha[0][h + 1] += 1;
-                          } else {
-                              linha[0][h + 2] += 1;
-                          }
-                        } //fim else if
+                    if (familias[i].mes == 1) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 2) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 3) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 4) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 5) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 6) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 7) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 8) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 9) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 10) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 11) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } else if (familias[i].mes == 12) {
+                        if (familias[i].classificacao == "C") {
+                            linha[0][h + 1] += 1;
+                        } else {
+                            linha[0][h + 2] += 1;
+                        }
+                    } //fim else if
                 } //fim for
             } //fim for
             indice++; //incrementa variavel indice
         } //fim if
     } //fim for
-//console.log(familias.classificacao);
+
     //imprime a tabela
     for (var i = 0; i < linhas; i++) {
         $('#tabela-1 > tbody:last-child').append('<tr>');
@@ -480,6 +519,7 @@ function tabela1(quantidadeFamilias) {
     $("#div-tabela-1").fadeIn(300);
 }
 
+/*CLASSIFICAR APENAS COM CLASSI N*/
 function tabela2(quantidadeFamilias) {
     var linha = new Tabela();
     var linhas = 12;
@@ -648,6 +688,7 @@ function tabela4(quantidadeFamilias) {
 
     var indice = 0; //variavel pra percorrer os indices das linhas
 
+    /*LEVAR EM CONSNIDERACAO A CLASSIFICACAO N*/
     for (var h = 0; h < 27; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
@@ -657,40 +698,40 @@ function tabela4(quantidadeFamilias) {
                             maior = parseInt(familias[i]['tempos'][j].size);
                             if (familias[i].mes == 1) {
                                 linha[0][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[0][h + 2] = familias[i]['tempos'][j].time;
+                                linha[0][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 2) {
                                 linha[1][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[1][h + 2] = familias[i]['tempos'][j].time;
+                                linha[1][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 3) {
                                 linha[2][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[2][h + 2] = familias[i]['tempos'][j].time;
+                                linha[2][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 4) {
                                 linha[3][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[3][h + 2] = familias[i]['tempos'][j].time;
+                                linha[3][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 5) {
                                 linha[4][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[4][h + 2] = familias[i]['tempos'][j].time;
+                                linha[4][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 6) {
                                 linha[5][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[5][h + 2] = familias[i]['tempos'][j].time;
+                                linha[5][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 7) {
                                 linha[6][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[6][h + 2] = familias[i]['tempos'][j].time;
+                                linha[6][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 8) {
                                 linha[7][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[7][h + 2] = familias[i]['tempos'][j].time;
+                                linha[7][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 9) {
                                 linha[8][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[8][h + 2] = familias[i]['tempos'][j].time;
+                                linha[8][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 10) {
                                 linha[9][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[9][h + 2] = familias[i]['tempos'][j].time;
+                                linha[9][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 11) {
                                 linha[10][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[10][h + 2] = familias[i]['tempos'][j].time;
+                                linha[10][h + 2] = familias[i]['tempos'][j].tmin;
                             } else if (familias[i].mes == 12) {
                                 linha[11][h + 1] = familias[i]['tempos'][j].ecce;
-                                linha[11][h + 2] = familias[i]['tempos'][j].time;
+                                linha[11][h + 2] = familias[i]['tempos'][j].tmin;
                             } //fim else if
                         } //fim if
                     } //fim for
@@ -714,6 +755,26 @@ function tabela4(quantidadeFamilias) {
 
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
+
+function tabela6(quantidadeFamilias) {
+
+    /*LEVAR EM CONSNIDERACAO A CLASSIFICACAO N*/
+    for (var i = 0; i < quantidadeFamilias; i++) {
+        //cria nova linha
+        // $("#tabela-6 > tbody").append($('<tr>')
+        //   .append($('<td>').append(familias[i].numero))
+        //     .append($('<td>').append(familias[i]['tempos'][0].xlat))
+        //       .append($('<td>').append(familias[i]['tempos'][0].xlon)));
+                $("#tabela-6 > tbody").append($('<tr>')
+                  .append($('<td>').append(i))
+                    .append($('<td>').append(i))
+                      .append($('<td>').append(i)));
+    } //fim for
+
+    $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+
+    $("#div-tabela-6").fadeIn(300);
+} //fim function tabela 6
 
 function downloadInnerHtml(filename, elId, mimeType) {
     var link = document.createElement('a');
