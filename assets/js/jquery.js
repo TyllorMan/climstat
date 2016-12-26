@@ -234,7 +234,6 @@ $(document).ready(function() {
 
         fileReader.onload = function() {
             var resultado = fileReader.result;
-
             //cria cada linha ao final do caractere \n
             linhas = resultado.trim().split('\n');
 
@@ -266,7 +265,6 @@ $(document).ready(function() {
                 } //fim if
             } //fim for
 
-console.log(linhas);
             var fam = 0;
             var familia;
 
@@ -324,8 +322,6 @@ console.log(linhas);
                     fam++;
                 } //fim else if
             } //fim for
-            //console.log(teste);
-           console.log(JSON.stringify(familias));
             // tabela1(familias.length);
             // tabela2(familias.length);
             // tabela3(familias.length);
