@@ -234,182 +234,107 @@ $(document).ready(function() {
 
         fileReader.onload = function() {
             var resultado = fileReader.result;
+
             //cria cada linha ao final do caractere \n
             linhas = resultado.trim().split('\n');
 
             for (var i = 0; i < linhas.length; i++) {
                 linhas[i] = linhas[i]
                 .trim()
-                .replace('FAMILY=    ', 'FAMILY=')
-                .replace(' -  ', ' ')
-                .replace('MONTH=  ', 'MONTH=')
+                .replace(/  +/g, ' ')
+                .replace('FAMILY= ', 'FAMILY=').replace(' -  ', ' ')
+                .replace('MONTH= ', 'MONTH=')
                 .replace('DAY= ', 'DAY=')
-                .replace('MEMBER=  ', 'MEMBER=')
                 .replace('MEMBER= ', 'MEMBER=')
                 .replace('CLASSIF= ', 'CLASSIF=')
                 .replace('TOTAL TIME= ', 'TOTAL TIME=')
-                .replace('   LAST IMAGE= ', ' LAST IMAGE=')
-                .replace('  DELTAX  ', ' DELTAX=')
-                .replace('   DELTAY  ', ' DELTAY=')
+                .replace('LAST IMAGE= ', 'LAST IMAGE=')
+                .replace('DELTAX', 'DELTAX=')
+                .replace('DELTAY', 'DELTAY=')
                 .replace('*  ', '')
                 .replace('* ', '')
-                .replace('   END=', ' END=')
-                .replace(' - NSYS:   ', ' NSYS=')
-                .replace(/  +/g, ' ');
+                .replace('END= ', ' END=')
+                .replace('- NSYS: ', 'NSYS=');
+            } //fim for
+
+            for (var i = 0; i < linhas.length; i++) {
                 //verifica se ha linhas em branco
-                if (linhas[i] == "") {
+                if (linhas[i] == "" || linhas[i] == '') {
                     //deleta linha em branco
-                    delete linhas[i];
+                    //delete linhas[i];
+                    linhas.splice(i, 2);
                 } //fim if
             } //fim for
-            console.log(linhas);
-            tabela6(5);
-        }; //fim onload
 
+console.log(linhas);
+            var fam = 0;
+            var familia;
+
+            for (var i = 0; i < linhas.length; i++) {
+                if (linhas[i].search("FAMILY=") != -1) {
+                    familia = new Familia();
+                    familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 1));
+                    familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
+                    familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
+                    familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
+                    familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
+                    familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
+                    familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
+                    familias.push(familia);
+                } else if (linhas[i].search("SYS#") != -1) {
+                    var contador = i + 1;
+
+                    while (linhas[contador].search("TOTAL TIME=") == -1) {
+                        var tempo = new Tempo();
+                        var temp = new Array();
+                        temp = linhas[contador].trim().split(' ');
+
+                        tempo.sys = parseFloat(temp[0]);
+                        tempo.xlat = parseFloat(temp[1]);
+                        tempo.xlon = parseFloat(temp[2]);
+                        tempo.time = parseFloat(temp[3]);
+                        tempo.size = parseFloat(temp[4]);
+                        tempo.dsize = parseFloat(temp[5]);
+                        tempo.tmed = parseFloat(temp[6]);
+                        tempo.dtmed = parseFloat(temp[7]);
+                        tempo.tmin = parseFloat(temp[8]);
+                        tempo.dtmin = parseFloat(temp[9]);
+                        tempo.tmin9 = parseFloat(temp[10]);
+                        tempo.dtmin9 = parseFloat(temp[11]);
+                        tempo.cbnum = parseFloat(temp[12]);
+                        tempo.cbmed = parseFloat(temp[13]);
+                        tempo.vel = parseFloat(temp[14]);
+                        tempo.dir = parseFloat(temp[15]);
+                        tempo.incli = parseFloat(temp[16]);
+                        tempo.ecce = parseFloat(temp[17]);
+                        tempo.t_ini = parseFloat(temp[18]);
+                        tempo.t_fin = parseFloat(temp[19]);
+                        tempo.clas = temp[20];
+                        tempo.sys_ant = parseFloat(temp[21]);
+
+                        familias[fam].addTempo(tempo);
+                        contador++;
+                    } //fim while
+                } else if (linhas[i].search("TOTAL TIME=") != -1) {
+                    familias[fam].total_time = parseFloat(linhas[i].substr((linhas[i].search("TOTAL TIME=") + ("TOTAL TIME=".length)), 4));
+                    familias[fam].deltax = parseFloat(linhas[i].substr((linhas[i].search("DELTAX=") + ("DELTAX=".length+1)), 5));
+                    familias[fam].deltay = parseFloat(linhas[i].substr((linhas[i].search("DELTAY=") + ("DELTAY=".length+1)), 5));
+                    familias[fam].last_image = linhas[i].substr((linhas[i].search("LAST IMAGE=") + ("LAST IMAGE=".length)), 1);
+                    familias[fam].end = linhas[i].substr((linhas[i].search("END=") + ("END=".length)), 3);
+                    fam++;
+                } //fim else if
+            } //fim for
+            //console.log(teste);
+           console.log(JSON.stringify(familias));
+            // tabela1(familias.length);
+            // tabela2(familias.length);
+            // tabela3(familias.length);
+            // tabela4(familias.length);
+            // tabela6(familias.length);
+        }; //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim change
 }); //fim document ready
-
-//carrega arquivos fam1005_s2.txt
-// $(document).ready(function() {
-//     $("#inputFamilias").change(function() {
-//         var reader = new FileReader();
-//         var input = event.target;
-//
-//         reader.onload = function() {
-//             var text = reader.result;
-//             //var tamanho = reader.result.length;
-//             //console.log("result.length: " + tamanho);
-//             var ponteiro = 0;
-//             var flag = 0;
-//             var count = 0;
-//
-//             while (ponteiro != -1) { //implementacao Aquiles
-//                 //console.log("result.length: " + tamanho);
-//                 var linhaF = reader.result.indexOf('FAMILY', ponteiro);
-//                 var linhaS = reader.result.indexOf('SYS#', ponteiro);
-//                 var str_familia = reader.result.substring(linhaF, linhaS);
-//                 //console.log(str_familia.trim());
-//                 var inicioDalinha = 0;
-//                 // fimDalinha=linhaS;
-//                 fimDalinha = ponteiro;
-//                 var fimFamilia = reader.result.indexOf('TOTAL TIME', ponteiro);
-//                 //console.log('fimFamilia:'+fimFamilia);
-//                 while (fimDalinha < fimFamilia) {
-//                     inicioDalinha = reader.result.indexOf('\n', fimDalinha) + 1;
-//                     //console.log('inicioDaLinha: ' + inicioDalinha);
-//                     fimDalinha = reader.result.indexOf('\n', inicioDalinha + 2);
-//
-//                     if (flag == 0) {
-//                         inicioDalinha = 0;
-//                     }
-//
-//                     flag = 1;
-//                     //console.log('fimDalinha:'+fimDalinha);
-//                     var vetor = new Array();
-//                     var vfinal = new Array();
-//                     var linha = reader.result.substring(inicioDalinha, fimDalinha);
-//
-//                     vetor = linha.trim().split(' ');
-//
-//                     for (var i = 0; i < vetor.length; i++) {
-//                         if (vetor[i] != "") {
-//                             vfinal.push(vetor[i]);
-//                         }
-//                     }
-//
-//                     if (count == 0) {
-//                         var familia = new Familia();
-//                         //console.log("Criando familia " + familias.length);
-//                         familia.numero = vfinal[1];
-//                         familia.ano = vfinal[3].substring(vfinal[3].indexOf('=') + 1, vfinal[3].length);
-//                         familia.mes = vfinal[5];
-//                         familia.dia = vfinal[7];
-//                         familia.hora = vfinal[8].substring(vfinal[8].indexOf('=') + 1, vfinal[8].length);
-//                         //  console.log(vfinal[13]);
-//                         familias.push(familia);
-//                         count++;
-//                     } else {
-//                         if (vfinal[0] == "TOTAL") {
-//                             count = 0;
-//
-//                             familias[familias.length - 1].total_time = vfinal[2];
-//                             familias[familias.length - 1].deltax = vfinal[4];
-//                             familias[familias.length - 1].deltay = vfinal[6];
-//                             familias[familias.length - 1].last_image = vfinal[9];
-//                             //familias[familias.length-1].end=vfinal[10].substring(vfinal[10].indexOf('=')+1,vfinal[10].length);
-//                             //console.log("   -  Terminando ");
-//                         } else {
-//                             if (vfinal[0] != "SYS#") {
-//                                 //console.log("   -  Criando tempo "+vfinal[1]);
-//                                 var tempo = new Tempo();
-//                                 if (vfinal[0] == '*') {
-//                                     tempo.asterisco = vfinal[0];
-//                                     tempo.sys = vfinal[1];
-//                                     tempo.xlat = vfinal[2];
-//                                     tempo.xlon = vfinal[3];
-//                                     tempo.time = vfinal[4];
-//                                     tempo.size = vfinal[5];
-//                                     tempo.dsize = vfinal[6];
-//                                     tempo.tmed = vfinal[7];
-//                                     tempo.dtmed = vfinal[8];
-//                                     tempo.tmin = vfinal[9];
-//                                     tempo.dtmin = vfinal[10];
-//                                     tempo.tmin9 = vfinal[11];
-//                                     tempo.dtmin9 = vfinal[12];
-//                                     tempo.cbnum = vfinal[13];
-//                                     tempo.cbmed = vfinal[14];
-//                                     tempo.vel = vfinal[15];
-//                                     tempo.dir = vfinal[16];
-//                                     tempo.incli = vfinal[17];
-//                                     tempo.ecce = vfinal[18];
-//                                     tempo.t_ini = vfinal[19];
-//                                     tempo.t_fin = vfinal[20];
-//                                     tempo.clas = vfinal[21];
-//                                     tempo.sys_ant = vfinal[22];
-//                                 } else {
-//                                     tempo.asterisco = '';
-//                                     tempo.sys = vfinal[0];
-//                                     tempo.xlat = vfinal[1];
-//                                     tempo.xlon = vfinal[2];
-//                                     tempo.time = vfinal[3];
-//                                     tempo.size = vfinal[4];
-//                                     tempo.dsize = vfinal[5];
-//                                     tempo.tmed = vfinal[6];
-//                                     tempo.dtmed = vfinal[7];
-//                                     tempo.tmin = vfinal[8];
-//                                     tempo.dtmin = vfinal[9];
-//                                     tempo.tmin9 = vfinal[10];
-//                                     tempo.dtmin9 = vfinal[11];
-//                                     tempo.cbnum = vfinal[12];
-//                                     tempo.cbmed = vfinal[13];
-//                                     tempo.vel = vfinal[14];
-//                                     tempo.dir = vfinal[15];
-//                                     tempo.incli = vfinal[16];
-//                                     tempo.ecce = vfinal[17];
-//                                     tempo.t_ini = vfinal[18];
-//                                     tempo.t_fin = vfinal[19];
-//                                     tempo.clas = vfinal[20];
-//                                     tempo.sys_ant = vfinal[21];
-//                                 } //fim else
-//                                 familias[familias.length - 1].addTempo(tempo);
-//                             } //fim if SYS
-//                         } //fim else
-//                     } //fim else
-//                 } //fim while
-//                 ponteiro = reader.result.indexOf('END', ponteiro + 1);
-//             } //fim while
-//             //tabela1(familias.length);
-//             //tabela2(familias.length);
-//             //tabela3(familias.length);
-//             // tabela4(familias.length);
-//             tabela6(familias.length);
-//
-//         }; //fim onload
-//
-//         reader.readAsText(input.files[0]);
-//     }); //fim onchange
-// }); //fim document ready
 
 function tabela1(quantidadeFamilias) {
     var linha = new Tabela();
@@ -765,10 +690,7 @@ function tabela6(quantidadeFamilias) {
         //   .append($('<td>').append(familias[i].numero))
         //     .append($('<td>').append(familias[i]['tempos'][0].xlat))
         //       .append($('<td>').append(familias[i]['tempos'][0].xlon)));
-                $("#tabela-6 > tbody").append($('<tr>')
-                  .append($('<td>').append(i))
-                    .append($('<td>').append(i))
-                      .append($('<td>').append(i)));
+        $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(i)).append($('<td>').append(i)).append($('<td>').append(i)));
     } //fim for
 
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
