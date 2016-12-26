@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/classes.js"></script>
+    <script src="assets/js/jquery.table2excel.js"></script>
+    <script src="assets/js/jquery.table2excel.min.js"></script>
     <!-- <script src="assets/js/scripts.js"></script> -->
     <script type="text/javascript" src="assets/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="assets/js/charts.js"></script>
@@ -224,7 +226,7 @@
             <div id="div-tabela-6">
                 <h2>Tabela 6</h2>
                 <table id="tabela-6" class="table table-striped table-hover table-condensed">
-                    <thead class="">
+                    <thead class="noExl">
                         <tr>
                             <th>Número da Família</th>
                             <th class="text-center">Latitude</th>
@@ -233,6 +235,8 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+
+                <button id="bts" class="btn btn-success">Salvar</button>
             </div>
 
             <p>
@@ -315,6 +319,7 @@
             </div>
         </div>
     </section>
+
     <footer class="rodape mbr-small-footer mbr-section mbr-section-nopadding" id="rodape" style="background-color: rgb(50, 50, 50); padding-top: 3.5rem; padding-bottom: 3.5rem;">
         <div class="container">
             <p class="text-xs-center">Copyright <sup>&copy;</sup> 2016 Climstat. Todos os direitos reservados.</p>

@@ -271,7 +271,7 @@ $(document).ready(function() {
             for (var i = 0; i < linhas.length; i++) {
                 if (linhas[i].search("FAMILY=") != -1) {
                     familia = new Familia();
-                    familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 1));
+                    familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 999999));
                     familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
                     familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
                     familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
@@ -326,7 +326,7 @@ $(document).ready(function() {
             // tabela2(familias.length);
             // tabela3(familias.length);
             // tabela4(familias.length);
-            // tabela6(familias.length);
+            tabela6(familias.length);
         }; //fim onload
         fileReader.readAsText(input.files[0]);
     }); //fim change
@@ -678,18 +678,28 @@ function tabela4(quantidadeFamilias) {
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
-
-    /*LEVAR EM CONSNIDERACAO A CLASSIFICACAO N*/
     for (var i = 0; i < quantidadeFamilias; i++) {
+      if (familias[i].classificacao == "N") {
         //cria nova linha
-        // $("#tabela-6 > tbody").append($('<tr>')
-        //   .append($('<td>').append(familias[i].numero))
-        //     .append($('<td>').append(familias[i]['tempos'][0].xlat))
-        //       .append($('<td>').append(familias[i]['tempos'][0].xlon)));
-        $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(i)).append($('<td>').append(i)).append($('<td>').append(i)));
+        $("#tabela-6 > tbody").append($('<tr>')
+          .append($('<td>').append(familias[i].numero))
+            .append($('<td>').append(familias[i]['tempos'][0].xlat))
+              .append($('<td>').append(familias[i]['tempos'][0].xlon)));
+      }
     } //fim for
 
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+
+    $("#bts").click(function(){
+          $("#tabela-6").table2excel({
+  					name: "Excel Document Name",
+  					filename: "CLIMSTAT (tabela 6)",
+  					fileext: ".xls",
+  					exclude_img: true,
+  					exclude_links: true,
+  					exclude_inputs: true
+          });
+        });
 
     $("#div-tabela-6").fadeIn(300);
 } //fim function tabela 6
