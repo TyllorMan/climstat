@@ -343,7 +343,9 @@ function tabela1(quantidadeFamilias) {
     var indice = 0;
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
-            for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
+            for (var i = 0; i < quantidadeFamilias; i++) {
+              if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
+                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                 if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
                     if (familias[i].mes == 1) {
                         if (familias[i].classificacao == "N") {
@@ -419,6 +421,8 @@ function tabela1(quantidadeFamilias) {
                         }
                     } //fim else if
                 } //fim for
+              }
+            }
             } //fim for
             indice++; //incrementa variavel indice
         } //fim if
@@ -709,7 +713,7 @@ function tabela5(quantidadeFamilias) {}
 
 function tabela6(quantidadeFamilias) {
     for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "N") {
+        if (familias[i].classificacao == "M") {
             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                     //cria nova linha
