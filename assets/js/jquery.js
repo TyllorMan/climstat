@@ -320,6 +320,13 @@ $(document).ready(function() {
     }); //fim change
 }); //fim document ready
 
+/*
+  todas as tebelas devem ser verificadas por:
+    classificação
+    latitude
+    longitude
+*/
+
 function tabela1(quantidadeFamilias) {
     var linha = new Tabela();
     var linhas = 13;
@@ -442,10 +449,9 @@ function tabela2(quantidadeFamilias) {
         if (iTeste % 2 == 0) {
             for (var i = 0; i < quantidadeFamilias; i++) {
                 if (familias[i].classificacao == "N") {
-                  var hora = familias[i].hora;
+                    var hora = familias[i].hora;
 
-                    if (hora >= iTeste && hora < (iTeste + 2) && hora < 24)
-                    {
+                    if (hora >= iTeste && hora < (iTeste + 2) && hora < 24) {
                         if (familias[i].mes == 1) {
                             linha[0] += 1;
                         } else if (familias[i].mes == 2) {
@@ -471,8 +477,7 @@ function tabela2(quantidadeFamilias) {
                         } else if (familias[i].mes == 12) {
                             linha[11] += 1;
                         } //fim else if
-                    }
-                    else if (hora >= 24) {
+                    } else if (hora >= 24) {
                         if (familias[i].mes == 1) {
                             linha[0] += 1;
                         } else if (familias[i].mes == 2) {
@@ -700,34 +705,18 @@ function tabela4(quantidadeFamilias) {
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
 
-function tabela5(quantidadeFamilias)
-{
-
-}
-
-/*
-  todas as tebelas devem ser verificadas por:
-    classificação
-    latitude
-    longitude
-*/
+function tabela5(quantidadeFamilias) {}
 
 function tabela6(quantidadeFamilias) {
-      for (var i = 0; i < quantidadeFamilias; i++) {
+    for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
-          if(familias[i]['tempos'][0].xlat >= -2 && familias[i]['tempos'][0].xlat <= -19) {
-            if (familias[i]['tempos'][0].xlon >= -34.9 && familias[i]['tempos'][0].xlon <= -47) {
-
-            //cria nova linha
-            $("#tabela-6 > tbody").append($('<tr>')
-              .append($('<td>').append(familias[i].numero))
-              .append($('<td>').append(familias[i].classificacao))
-              .append($('<td>').append(familias[i].total_time))
-              .append($('<td>').append(familias[i]['tempos'][0].xlat))
-              .append($('<td>').append(familias[i]['tempos'][0].xlon)));
-              }
+            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
+                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                    //cria nova linha
+                    $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
+                }
             }
-          }
+        }
     } //fim for
 
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
