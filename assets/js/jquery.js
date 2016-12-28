@@ -705,13 +705,29 @@ function tabela5(quantidadeFamilias)
 
 }
 
-//separar a cada duas horas
+/*
+  toadas as tebelas devem ser verificadas por:
+    classificação
+    latitude
+    longitude
+*/
+
 function tabela6(quantidadeFamilias) {
-    for (var i = 0; i < quantidadeFamilias; i++) {
+      for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
+          if(familias[i]['tempos'][0].xlat >= -2 && familias[i]['tempos'][0].xlat <= -19) {
+            if (familias[i]['tempos'][0].xlon >= -34.9 && familias[i]['tempos'][0].xlon <= -47) {
+
             //cria nova linha
-            $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
-        }
+            $("#tabela-6 > tbody").append($('<tr>')
+              .append($('<td>').append(familias[i].numero))
+              .append($('<td>').append(familias[i].classificacao))
+              .append($('<td>').append(familias[i].total_time))
+              .append($('<td>').append(familias[i]['tempos'][0].xlat))
+              .append($('<td>').append(familias[i]['tempos'][0].xlon)));
+              }
+            }
+          }
     } //fim for
 
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
