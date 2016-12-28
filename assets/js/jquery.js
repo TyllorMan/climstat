@@ -11,22 +11,24 @@ $(document).ready(function() {
 
     $("#sucesso").hide();
     $("#EPs").hide();
-    $("#progress-bar").hide();
-    $("#canvass ").hide();
     $(":file").filestyle({buttonName: "btn-primary"});
     $("#comparaTextarea").hide();
     $("#ave").hide();
     $("#comparaTable").hide();
     $("#salvar").hide();
     $("#salvarAVE").hide();
-    $("#ave").hide();
     $("#comparaTextarea").hide();
 
     $("#div-tabela-1").hide();
     $("#div-tabela-2").hide();
     $("#div-tabela-3").hide();
     $("#div-tabela-4").hide();
-    $("#div-tabela-6").hide();
+    //  $("#div-tabela-6").hide();
+
+    $(".dropdown li a").click(function(){
+      tabela6(familias.length);
+
+    });
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -314,7 +316,6 @@ $(document).ready(function() {
                     quantidadeFamilias++;
                 } //fim else if
             } //fim for
-            tabela6(familias.length);
         };
         fileReader.readAsText(input.files[0]);
     }); //fim change
@@ -322,9 +323,19 @@ $(document).ready(function() {
 
 /*
   todas as tebelas devem ser verificadas por:
-    classificação
-    latitude
-    longitude
+  classificação
+  latitude
+  longitude
+*/
+
+/*
+  Tipos de classificação
+
+  N (geracao expontanea)
+  NOR (dissipacao natural)
+  C (continuidade)
+  S (split)
+  M (merger)
 */
 
 function tabela1(quantidadeFamilias) {
@@ -344,8 +355,8 @@ function tabela1(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
-                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+              if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                  if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                         if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
                             if (familias[i].mes == 1) {
                                 if (familias[i].classificacao == "N") {
@@ -712,17 +723,28 @@ function tabela4(quantidadeFamilias) {
 function tabela5(quantidadeFamilias) {}
 
 function tabela6(quantidadeFamilias) {
-    for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "N") {
-            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                    //cria nova linha
-                    $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
-                }
-            }
-        }
-    } //fim for
-
+    var teste = 0;
+    for (var j = 0; j < 24; j++) {
+        if (j % 2 == 0) {
+            for (var i = 0; i < quantidadeFamilias; i++) {
+                if (familias[i].classificacao == "N") {
+                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                            if (familias[i].total_time >= j && familias[i].total_time < (j + 2)) {
+                                //cria nova linha
+                                $("#tabela-6 > tbody").append($('<tr>')
+                                  .append($('<td>').append(j + ' ~ ' + (j + 2)))
+                                    .append($('<td>').append(familias[i].classificacao))
+                                      .append($('<td>').append(familias[i].numero))
+                                        .append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
+                            } //fim if total_time
+                        } //fim if xlon
+                    } //fim if xlat
+                } //fim if classificacao
+            } //fim for quantidadeFamilias
+            teste += 2;
+        } //fim if mod 2
+    }
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts6").click(function() {
