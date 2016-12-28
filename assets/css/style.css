@@ -26,15 +26,6 @@ body {
     background: #00BFFF;
 }
 
-#dados {
-    font-family: serif;
-}
-
-#canvass {
-    max-width: 400px;
-    margin: auto;
-}
-
 .rodape {
     color: white;
 }
@@ -84,8 +75,4 @@ body {
     background-color: red;
     width: 10px;
     left: auto;
-}
-
-#tabela5 table>th{
-  font-style: italic;
 }

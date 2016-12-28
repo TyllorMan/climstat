@@ -19,16 +19,17 @@ $(document).ready(function() {
     $("#salvarAVE").hide();
     $("#comparaTextarea").hide();
 
+    $("#combobox").hide();
+
+    $(".dropdown-menu a").click(function(){
+      tabela6(familias.length, $(this).text());
+    });
+
     $("#div-tabela-1").hide();
     $("#div-tabela-2").hide();
     $("#div-tabela-3").hide();
     $("#div-tabela-4").hide();
-    //  $("#div-tabela-6").hide();
-
-    $(".dropdown li a").click(function(){
-      tabela6(familias.length);
-
-    });
+    $("#div-tabela-6").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -232,7 +233,6 @@ $(document).ready(function() {
 //carrega arquivos fam1005_s2.txt
 $(document).ready(function() {
     $("#inputFamilias").change(function() {
-
         var input = event.target;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
         var quantidadeFamilias = 0;
@@ -316,6 +316,8 @@ $(document).ready(function() {
                     quantidadeFamilias++;
                 } //fim else if
             } //fim for
+            $("#combobox").fadeIn(300);
+
         };
         fileReader.readAsText(input.files[0]);
     }); //fim change
@@ -722,12 +724,13 @@ function tabela4(quantidadeFamilias) {
 
 function tabela5(quantidadeFamilias) {}
 
-function tabela6(quantidadeFamilias) {
+function tabela6(quantidadeFamilias, classf) {
     var teste = 0;
     for (var j = 0; j < 24; j++) {
         if (j % 2 == 0) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") {
+              //if (familias[i].classificacao == "N") {
+                if (familias[i].classificacao == classf) {
                     if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                         if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                             if (familias[i].total_time >= j && familias[i].total_time < (j + 2)) {
@@ -736,7 +739,9 @@ function tabela6(quantidadeFamilias) {
                                   .append($('<td>').append(j + ' ~ ' + (j + 2)))
                                     .append($('<td>').append(familias[i].classificacao))
                                       .append($('<td>').append(familias[i].numero))
-                                        .append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
+                                        .append($('<td>').append(familias[i].total_time))
+                                          .append($('<td>').append(familias[i]['tempos'][0].xlat))
+                                            .append($('<td>').append(familias[i]['tempos'][0].xlon)));
                             } //fim if total_time
                         } //fim if xlon
                     } //fim if xlat
@@ -768,9 +773,3 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
 } //fim downloadInnerHtml
-
-function imprimirFamilias() {
-    for (var i = 0; i < familias.length; i++) {
-        familias[i].print();
-    }
-} //fim imprimirFamilias
