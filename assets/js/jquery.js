@@ -344,87 +344,87 @@ function tabela1(quantidadeFamilias) {
     for (var h = 0; h < 25; h++) {
         if ((h % 2 == 0)) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-              if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
-                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
-                    if (familias[i].mes == 1) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 2) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 3) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 4) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 5) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 6) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 7) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 8) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 9) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 10) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 11) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } else if (familias[i].mes == 12) {
-                        if (familias[i].classificacao == "N") {
-                            linha[0][h + 1] += 1;
-                        } else {
-                            linha[0][h + 2] += 1;
-                        }
-                    } //fim else if
-                } //fim for
-              }
-            }
+                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
+                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                        if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) {
+                            if (familias[i].mes == 1) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 2) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 3) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 4) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 5) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 6) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 7) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 8) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 9) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 10) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 11) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } else if (familias[i].mes == 12) {
+                                if (familias[i].classificacao == "N") {
+                                    linha[0][h + 1] += 1;
+                                } else {
+                                    linha[0][h + 2] += 1;
+                                }
+                            } //fim else if
+                        } //fim for
+                    } //fim if
+                } //fim if
             } //fim for
-            indice++; //incrementa variavel indice
+            indice++;
         } //fim if
     } //fim for
 
@@ -526,7 +526,7 @@ function tabela2(quantidadeFamilias) {
     $("#bts2").click(function() {
         $("#tabela-2").table2excel({
             name: "Excel Document Name",
-            filename: "CLIMSTAT (tabela 6)",
+            filename: "CLIMSTAT (tabela 2)",
             fileext: ".xls",
             exclude_img: true,
             exclude_links: true,
@@ -713,8 +713,8 @@ function tabela5(quantidadeFamilias) {}
 
 function tabela6(quantidadeFamilias) {
     for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "M") {
-            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -2) {
+        if (familias[i].classificacao == "N") {
+            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                     //cria nova linha
                     $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
