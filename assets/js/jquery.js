@@ -706,7 +706,7 @@ function tabela5(quantidadeFamilias)
 }
 
 /*
-  toadas as tebelas devem ser verificadas por:
+  todas as tebelas devem ser verificadas por:
     classificação
     latitude
     longitude
