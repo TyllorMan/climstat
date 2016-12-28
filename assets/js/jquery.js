@@ -230,6 +230,7 @@ $(document).ready(function() {
 //carrega arquivos fam1005_s2.txt
 $(document).ready(function() {
     $("#inputFamilias").change(function() {
+
         var input = event.target;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
         var quantidadeFamilias = 0;
@@ -313,8 +314,7 @@ $(document).ready(function() {
                     quantidadeFamilias++;
                 } //fim else if
             } //fim for
-
-            tabela2(familias.length);
+            tabela6(familias.length);
         };
         fileReader.readAsText(input.files[0]);
     }); //fim change
@@ -442,7 +442,10 @@ function tabela2(quantidadeFamilias) {
         if (iTeste % 2 == 0) {
             for (var i = 0; i < quantidadeFamilias; i++) {
                 if (familias[i].classificacao == "N") {
-                    if (familias[i].hora >= 24) {
+                  var hora = familias[i].hora;
+
+                    if (hora >= iTeste && hora < (iTeste + 2) && hora < 24)
+                    {
                         if (familias[i].mes == 1) {
                             linha[0] += 1;
                         } else if (familias[i].mes == 2) {
@@ -468,7 +471,8 @@ function tabela2(quantidadeFamilias) {
                         } else if (familias[i].mes == 12) {
                             linha[11] += 1;
                         } //fim else if
-                    } else if (familias[i].hora >= iTeste && familias[i].hora < (iTeste + 2) && familias[i].hora < 24) {
+                    }
+                    else if (hora >= 24) {
                         if (familias[i].mes == 1) {
                             linha[0] += 1;
                         } else if (familias[i].mes == 2) {
@@ -696,6 +700,12 @@ function tabela4(quantidadeFamilias) {
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
 
+function tabela5(quantidadeFamilias)
+{
+
+}
+
+//separar a cada duas horas
 function tabela6(quantidadeFamilias) {
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
