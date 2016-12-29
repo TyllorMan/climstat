@@ -3,6 +3,15 @@
     src: url(../fonts/techno_hideo.ttf);
 }
 
+body > .inner {
+  display: none;
+}
+
+body.pg-loaded > .inner {
+  display: block;
+}
+
+
 [data-notify="progressbar"] {
 	margin-bottom: 0px;
 	position: absolute;
