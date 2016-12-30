@@ -181,7 +181,7 @@ $(document).ready(function() {
                                 } //fim if
                             } //fim if
                         } //fim if
-                        j++; //incremente o j (j = j + 1)
+                        j++; //incrementa o j (j = j + 1)
                     } //fim while
                     j = 0; //zera o j
                     achou = false; //reseta a variavel para o estado inicial
@@ -358,138 +358,73 @@ $(document).ready(function() {
 */
 
 function tabela1(quantidadeFamilias) {
-    var linha = new Array();
-    var linhas = 12;
-    var colunas = 25;
+    var vetor = [
+        "Janeiro",
+        "Fevereiro",
+        "Marco",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro",
+        "Total"
+    ];
+    var quantidadeEPS = ep.length;
 
-    //inicia matriz para guardar as informacoes
-    for (i = 0; i < linhas; i++) {
-        linha[i] = new Array();
-        for (j = 0; j < colunas; j++) {
-            linha[i][j] = 0;
-        } //fim for
-    } //fim for
+    console.log(ep.length);
 
-    var indice = 0;
-    for (var h = 0; h < 24; h++) {
-        if ((h % 2 == 0)) {
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                        if (familias[i].total_time >= h && familias[i].total_time < (h + 2)) {
-                            if (familias[i].mes == 1) {
-                                if (familias[i].classificacao == "N") {
-                                     linha[indice][h] += 1;
-                                } else {
-                                    linha[indice][h + 1] += 1;
-                                }
-                            } else if (familias[i].mes == 2) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 3) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 4) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 5) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 6) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 7) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 8) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 9) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 10) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 11) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } else if (familias[i].mes == 12) {
-                                if (familias[i].classificacao == "N") {
-                                    linha[indice][h + 1] += 1;
-                                } else {
-                                    linha[indice][h + 2] += 1;
-                                }
-                            } //fim else if
-                        } //fim for total_time
-                    } //fim if xlon
-                } //fim if xlat
-            } //fim for quantidadeFamilias
-            // $("#tabela-1 > tbody")
-            //   .append($('<td>').append('mes'))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice))
-            //   .append($('<td>').append(indice));
-            indice++;
-        } //fim if
-    } //fim for h
-    //imprime a tabela
-    for (var i = 0; i < linhas; i++) {
-        $('#tabela-1 > tbody:last-child').append('<tr>');
-        for (var j = 0; j < colunas; j++) {
-            $('#tabela-1 > tbody:last-child').append('<td>' + linha[i][j] + '</td>');
-        } //fim for
+    try {
+        for (var i = 0; i < quantidadeFamilias; i++) {
+            for (var j = 0; j < quantidadeEPS; j++) {
+                if (familias[i].ano == ep[j].ano) {
+                    if (familias[i].mes == ep[j].mes) {
+                        if (familias[i].dia == ep[j].dia) {
+                            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                                    if (familias[i].total_time >= 0 && familias[i].total_time < 2) {
+                                        if (familias[i].mes == 1) {
+                                            if (familias[i].classificacao == "N") {
+                                              alert("funfou");
+                                            } else {}
+                                        } else if (familias[i].mes == 2) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 3) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 4) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 5) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 6) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 7) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 8) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 9) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 10) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 11) {
+                                            if (familias[i].classificacao == "N") {} else {}
+                                        } else if (familias[i].mes == 12) {
+                                            if (familias[i].classificacao == "N") {} else {} //fim if total_time
+                                        } //fim else if
+                                    } else {}
+                                } //fim if xlon
+                            } //fim if xlat
+                        }
+                    }
+                }
+            }
+        } //fim for quantidadeFamilias
+    } catch (err) {
+        console.log(err.message);
     }
+
     $("#div-tabela-1").fadeIn(300);
 }
 
