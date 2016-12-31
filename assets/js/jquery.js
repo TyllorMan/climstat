@@ -358,6 +358,10 @@ $(document).ready(function() {
 */
 
 function tabela1(quantidadeFamilias) {
+    var quantidadeEPS = ep.length;
+
+    var array = new Array(24);
+
     var vetor = [
         "Janeiro",
         "Fevereiro",
@@ -373,54 +377,59 @@ function tabela1(quantidadeFamilias) {
         "Dezembro",
         "Total"
     ];
-    var quantidadeEPS = ep.length;
-
-    console.log(ep.length);
 
     try {
-        for (var i = 0; i < quantidadeFamilias; i++) {
-            for (var j = 0; j < quantidadeEPS; j++) {
-                if (familias[i].ano == ep[j].ano) {
-                    if (familias[i].mes == ep[j].mes) {
-                        if (familias[i].dia == ep[j].dia) {
-                            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                                    if (familias[i].total_time >= 0 && familias[i].total_time < 2) {
-                                        if (familias[i].mes == 1) {
-                                            if (familias[i].classificacao == "N") {
-                                              alert("funfou");
+        for (var time = 0; i <= 24; time++) {
+            if ((time % 2) == 0) {
+              alert(time);
+                for (var i = 0; i < quantidadeFamilias; i++) {
+                    for (var j = 0; j < quantidadeEPS; j++) {
+                        if (familias[i].ano == ep[j].ano) {
+                            if (familias[i].mes == ep[j].mes) {
+                                if (familias[i].dia == ep[j].dia) {
+                                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                                            if (familias[i].total_time >= 2 && familias[i].total_time < 2) {
+                                                if (familias[i].mes == 1) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        alert(familias[i].mes);
+                                                    } else {}
+                                                } else if (familias[i].mes == 2) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 3) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 4) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 5) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 6) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        alert(familias[i].mes);
+
+                                                    } else {}
+                                                } else if (familias[i].mes == 7) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 8) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 9) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 10) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 11) {
+                                                    if (familias[i].classificacao == "N") {} else {}
+                                                } else if (familias[i].mes == 12) {
+                                                    if (familias[i].classificacao == "N") {} else {} //fim if total_time
+                                                } //fim else if
                                             } else {}
-                                        } else if (familias[i].mes == 2) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 3) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 4) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 5) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 6) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 7) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 8) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 9) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 10) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 11) {
-                                            if (familias[i].classificacao == "N") {} else {}
-                                        } else if (familias[i].mes == 12) {
-                                            if (familias[i].classificacao == "N") {} else {} //fim if total_time
-                                        } //fim else if
-                                    } else {}
-                                } //fim if xlon
-                            } //fim if xlat
+                                        } //fim if xlon
+                                    } //fim if xlat
+                                }
+                            }
                         }
                     }
-                }
+                } //fim for quantidadeFamilias
             }
-        } //fim for quantidadeFamilias
+        }
     } catch (err) {
         console.log(err.message);
     }
