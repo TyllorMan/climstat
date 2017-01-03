@@ -394,10 +394,7 @@ function tabela1(quantidadeFamilias) {
 
     //inicializa a matriz
     for (var i = 0; i < 13; i++) {
-        //for (var j = 0; j < 25; j++) {
-        //percorre 26 colunas
         matriz[i][0] = meses[i];
-        //}
     }
 
     try {
@@ -411,8 +408,83 @@ function tabela1(quantidadeFamilias) {
                             if (familias[i].ano == ep[j].ano) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
-                                        if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+                                        if (index >= 24 && familias[i].total_time >= 24) {
+                                            if (familias[i].mes == 1) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[0][25] += 1;
+                                                } else {
+                                                    matriz[0][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 2) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[1][25] += 1;
+                                                } else {
+                                                    matriz[1][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 3) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[2][25] += 1;
+                                                } else {
+                                                    matriz[2][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 4) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[3][25] += 1;
+                                                } else {
+                                                    matriz[3][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 5) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[4][25] += 1;
+                                                } else {
+                                                    matriz[4][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 6) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[5][25] += 1;
+                                                } else {
+                                                    matriz[5][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 7) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[6][25] += 1;
+                                                } else {
+                                                    matriz[6][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 8) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[7][25] += 1;
+                                                } else {
+                                                    matriz[7][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 9) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[8][25] += 1;
+                                                } else {
+                                                    matriz[8][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 10) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[9][25] += 1;
+                                                } else {
+                                                    matriz[9][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 11) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[10][25] += 1;
+                                                } else {
+                                                    matriz[10][26] += 1;
+                                                }
+                                            } else if (familias[i].mes == 12) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[11][25] += 1;
+                                                } else {
+                                                    matriz[11][26] += 1;
+                                                } //fim if total_time
+                                            } //fim else if
+                                        } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
                                             $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[j].dia)).append($('<td>').append(ep[j].mes)).append($('<td>').append(ep[j].ano)).append($('<td>').append(ep[j].lat)).append($('<td>').append(ep[j].lon)));
+
                                             if (familias[i].mes == 1) {
                                                 if (familias[i].classificacao == "N") {
                                                     matriz[0][index + 1] += 1;
@@ -486,7 +558,6 @@ function tabela1(quantidadeFamilias) {
                                                     matriz[11][index + 2] += 1;
                                                 } //fim if total_time
                                             } //fim else if
-                                            //  achou = true;
                                         }
                                     } //fim if xlon
                                 } //fim if xlat
@@ -501,7 +572,6 @@ function tabela1(quantidadeFamilias) {
         console.log(err.message);
     } //fim catch
 
-    console.log(epListado);
     for (var i = 0; i < 12; i++) {
         for (var j = 1; j < 27; j++) {
             matriz[12][j] += matriz[i][j];
@@ -516,6 +586,28 @@ function tabela1(quantidadeFamilias) {
     }
 
     $("#div-tabela-1").fadeIn(300);
+
+    $("#bt-salvar-tabela-1").click(function() {
+        $("#tabela-1").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 1",
+            fileext: ".xls",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+        });
+    });
+
+    $("#bt-salvar-tabela-1-dias-liastados").click(function() {
+        $("#tabela-1-dias-liastados").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 1",
+            fileext: ".xls",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+        });
+    });
 }
 
 function tabela2(quantidadeFamilias) {
