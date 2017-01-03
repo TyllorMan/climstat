@@ -1,6 +1,7 @@
 //declaracao de variaveis
 var dma = new Array();
 var ep = new Array();
+var epListado = new Array();
 var epCompara = new Array();
 var comparacao = "";
 var familias = new Array();
@@ -386,7 +387,7 @@ function tabela1(quantidadeFamilias) {
     //inicializa a matriz
     for (var i = 0; i < 13; i++) {
         for (var j = 0; j < 27; j++) {
-          //percorre 26 colunas
+            //percorre 26 colunas
             matriz[i][j] = 0;
         }
     }
@@ -394,207 +395,125 @@ function tabela1(quantidadeFamilias) {
     //inicializa a matriz
     for (var i = 0; i < 13; i++) {
         //for (var j = 0; j < 25; j++) {
-          //percorre 26 colunas
-            matriz[i][0] = meses[i];
+        //percorre 26 colunas
+        matriz[i][0] = meses[i];
         //}
     }
 
-
     try {
         var index = 0;
-        var achou = false;
-        var j = 0; //necessario para percorrer todos os dias, meses e anos
 
         for (var temp = 0; temp < 13; temp++) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                while (achou == false && j < quantidadeEPS) {
-                    if (familias[i].ano == ep[j].ano) {
-                        if (familias[i].mes == ep[j].mes) {
-                            if (familias[i].dia == ep[j].dia) {
-                                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                                      // if (familias[i].total_time >= 24) {
-                                      //   if (familias[i].mes == 1) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[0][25] += 1;
-                                      //       } else {
-                                      //           matriz[0][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 2) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[1][25] += 1;
-                                      //       } else {
-                                      //           matriz[1][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 3) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[2][25] += 1;
-                                      //       } else {
-                                      //           matriz[2][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 4) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[3][25] += 1;
-                                      //       } else {
-                                      //           matriz[3][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 5) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[4][25] += 1;
-                                      //       } else {
-                                      //           matriz[4][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 6) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[5][25] += 1;
-                                      //       } else {
-                                      //           matriz[5][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 7) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[6][25] += 1;
-                                      //       } else {
-                                      //           matriz[6][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 8) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[7][25] += 1;
-                                      //       } else {
-                                      //           matriz[7][index + 2] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 9) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[8][25] += 1;
-                                      //       } else {
-                                      //           matriz[8][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 10) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[9][25] += 1;
-                                      //       } else {
-                                      //           matriz[9][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 11) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[10][25] += 1;
-                                      //       } else {
-                                      //           matriz[10][26] += 1;
-                                      //       }
-                                      //   } else if (familias[i].mes == 12) {
-                                      //       if (familias[i].classificacao == "N") {
-                                      //           matriz[11][25] += 1;
-                                      //       } else {
-                                      //           matriz[11][26] += 1;
-                                      //       } //fim if total_time
-                                      //   } //fim else if
-                                      //   //delete familias[i];
-                                      //   familias.splice(i, 1);
-                                      //   achou = true;
-                                      // }
-                                      if (familias[i].total_time >= index && familias[i].total_time < (index+2)) {
-                                          if (familias[i].mes == 1) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[0][index + 1] += 1;
-                                              } else {
-                                                  matriz[0][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 2) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[1][index + 1] += 1;
-                                              } else {
-                                                  matriz[1][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 3) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[2][index + 1] += 1;
-                                              } else {
-                                                  matriz[2][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 4) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[3][index + 1] += 1;
-                                              } else {
-                                                  matriz[3][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 5) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[4][index + 1] += 1;
-                                              } else {
-                                                  matriz[4][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 6) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[5][index + 1] += 1;
-                                              } else {
-                                                  matriz[5][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 7) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[6][index + 1] += 1;
-                                              } else {
-                                                  matriz[6][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 8) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[7][index + 1] += 1;
-                                              } else {
-                                                  matriz[7][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 9) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[8][index + 1] += 1;
-                                              } else {
-                                                  matriz[8][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 10) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[9][index + 1] += 1;
-                                              } else {
-                                                  matriz[9][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 11) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[10][index + 1] += 1;
-                                              } else {
-                                                  matriz[10][index + 2] += 1;
-                                              }
-                                          } else if (familias[i].mes == 12) {
-                                              if (familias[i].classificacao == "N") {
-                                                  matriz[11][index + 1] += 1;
-                                              } else {
-                                                  matriz[11][index + 2] += 1;
-                                              } //fim if total_time
-                                          } //fim else if
-                                        //  achou = true;
+                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                        for (var j = 0; j < quantidadeEPS; j++) {
+                            if (familias[i].ano == ep[j].ano) {
+                                if (familias[i].mes == ep[j].mes) {
+                                    if (familias[i].dia == ep[j].dia) {
+                                        if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+                                            $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[j].dia)).append($('<td>').append(ep[j].mes)).append($('<td>').append(ep[j].ano)).append($('<td>').append(ep[j].lat)).append($('<td>').append(ep[j].lon)));
+                                            if (familias[i].mes == 1) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[0][index + 1] += 1;
+                                                } else {
+                                                    matriz[0][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 2) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[1][index + 1] += 1;
+                                                } else {
+                                                    matriz[1][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 3) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[2][index + 1] += 1;
+                                                } else {
+                                                    matriz[2][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 4) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[3][index + 1] += 1;
+                                                } else {
+                                                    matriz[3][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 5) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[4][index + 1] += 1;
+                                                } else {
+                                                    matriz[4][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 6) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[5][index + 1] += 1;
+                                                } else {
+                                                    matriz[5][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 7) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[6][index + 1] += 1;
+                                                } else {
+                                                    matriz[6][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 8) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[7][index + 1] += 1;
+                                                } else {
+                                                    matriz[7][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 9) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[8][index + 1] += 1;
+                                                } else {
+                                                    matriz[8][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 10) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[9][index + 1] += 1;
+                                                } else {
+                                                    matriz[9][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 11) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[10][index + 1] += 1;
+                                                } else {
+                                                    matriz[10][index + 2] += 1;
+                                                }
+                                            } else if (familias[i].mes == 12) {
+                                                if (familias[i].classificacao == "N") {
+                                                    matriz[11][index + 1] += 1;
+                                                } else {
+                                                    matriz[11][index + 2] += 1;
+                                                } //fim if total_time
+                                            } //fim else if
+                                            //  achou = true;
                                         }
                                     } //fim if xlon
                                 } //fim if xlat
                             } //fim dia
                         } //fim mes
                     } //fim ano
-                    j++;
                 } //fim for quantidadeEPS WHILE
             } //fim for quantidadeFamilias
-            j = 0;
             index += 2;
-            achou = false;
         } //fim for temp
     } catch (err) {
         console.log(err.message);
     } //fim catch
 
-      for (var i = 0; i < 12; i++) {
-        for (var j = 1; j < 27; j ++) {
+    console.log(epListado);
+    for (var i = 0; i < 12; i++) {
+        for (var j = 1; j < 27; j++) {
             matriz[12][j] += matriz[i][j];
         }
-      }
+    }
 
-    	for (var i = 0; i < 13; i++) {
-    		var row = $('<tr></tr>').appendTo("#tabela-1");
-    		for (var j = 0; j < 27; j++) {
-    			$('<td></td>').text(matriz[i][j]).appendTo(row);
-    		}
-    	}
+    for (var i = 0; i < 13; i++) {
+        var row = $('<tr></tr>').appendTo("#tabela-1");
+        for (var j = 0; j < 27; j++) {
+            $('<td></td>').text(matriz[i][j]).appendTo(row);
+        }
+    }
 
     $("#div-tabela-1").fadeIn(300);
 }
