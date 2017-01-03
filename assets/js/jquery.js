@@ -335,7 +335,8 @@ $(document).ready(function() {
 
             //mostra selecao da classificacao da familia
             $("#combobox").fadeIn(300);
-            tabela1(familias.length);
+            //tabela1(familias.length);
+            tabela2(familias.length);
         };
         fileReader.readAsText(input.files[0]);
     }); //fim change
@@ -409,6 +410,7 @@ function tabela1(quantidadeFamilias) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
                                         if (index >= 24 && familias[i].total_time >= 24) {
+                                            epListado.push(ep[j]);
                                             if (familias[i].mes == 1) {
                                                 if (familias[i].classificacao == "N") {
                                                     matriz[0][25] += 1;
@@ -483,8 +485,7 @@ function tabela1(quantidadeFamilias) {
                                                 } //fim if total_time
                                             } //fim else if
                                         } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-                                            $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[j].dia)).append($('<td>').append(ep[j].mes)).append($('<td>').append(ep[j].ano)).append($('<td>').append(ep[j].lat)).append($('<td>').append(ep[j].lon)));
-
+                                            epListado.push(ep[j]);
                                             if (familias[i].mes == 1) {
                                                 if (familias[i].classificacao == "N") {
                                                     matriz[0][index + 1] += 1;
@@ -585,8 +586,22 @@ function tabela1(quantidadeFamilias) {
         }
     }
 
+    //mostra tabela 1
     $("#div-tabela-1").fadeIn(300);
 
+    //verifica se ha algum EP igual e remove
+    // for (var i = 0; i < epListado.length; i++) {
+    //   for (var j = (i+1); j < epListado.length; i++) {
+    //     if (epListado[i] == epListado[j]) {
+    //         epListado.splice(j);
+    //         break;
+    //     };
+    //   }
+    // }
+
+    for (var i = 0; i < epListado.length; i++) {
+        $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[i].dia)).append($('<td>').append(ep[i].mes)).append($('<td>').append(ep[i].ano)).append($('<td>').append(ep[i].lat)).append($('<td>').append(ep[i].lon)));
+    }
     $("#bt-salvar-tabela-1").click(function() {
         $("#tabela-1").table2excel({
             name: "Excel Document Name",
@@ -611,6 +626,7 @@ function tabela1(quantidadeFamilias) {
 }
 
 function tabela2(quantidadeFamilias) {
+    var quantidadeEPS = ep.length;
     var linha = new Array(12);
     var indice = 0;
     var hora1 = 0;
@@ -623,63 +639,66 @@ function tabela2(quantidadeFamilias) {
     for (var iTeste = 0; iTeste < 25; iTeste++) {
         if (iTeste % 2 == 0) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") {
-                    var hora = familias[i].hora;
-
-                    if (hora >= iTeste && hora < (iTeste + 2) && hora < 24) {
-                        if (familias[i].mes == 1) {
-                            linha[0] += 1;
-                        } else if (familias[i].mes == 2) {
-                            linha[1] += 1;
-                        } else if (familias[i].mes == 3) {
-                            linha[2] += 1;
-                        } else if (familias[i].mes == 4) {
-                            linha[3] += 1;
-                        } else if (familias[i].mes == 5) {
-                            linha[4] += 1;
-                        } else if (familias[i].mes == 6) {
-                            linha[5] += 1;
-                        } else if (familias[i].mes == 7) {
-                            linha[6] += 1;
-                        } else if (familias[i].mes == 8) {
-                            linha[7] += 1;
-                        } else if (familias[i].mes == 9) {
-                            linha[8] += 1;
-                        } else if (familias[i].mes == 10) {
-                            linha[9] += 1;
-                        } else if (familias[i].mes == 11) {
-                            linha[10] += 1;
-                        } else if (familias[i].mes == 12) {
-                            linha[11] += 1;
-                        } //fim else if
-                    } else if (hora >= 24) {
-                        if (familias[i].mes == 1) {
-                            linha[0] += 1;
-                        } else if (familias[i].mes == 2) {
-                            linha[1] += 1;
-                        } else if (familias[i].mes == 3) {
-                            linha[2] += 1;
-                        } else if (familias[i].mes == 4) {
-                            linha[3] += 1;
-                        } else if (familias[i].mes == 5) {
-                            linha[4] += 1;
-                        } else if (familias[i].mes == 6) {
-                            linha[5] += 1;
-                        } else if (familias[i].mes == 7) {
-                            linha[6] += 1;
-                        } else if (familias[i].mes == 8) {
-                            linha[7] += 1;
-                        } else if (familias[i].mes == 9) {
-                            linha[8] += 1;
-                        } else if (familias[i].mes == 10) {
-                            linha[9] += 1;
-                        } else if (familias[i].mes == 11) {
-                            linha[10] += 1;
-                        } else if (familias[i].mes == 12) {
-                            linha[11] += 1;
-                        } //fim else if
+                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                        if (familias[i].classificacao == "N") {
+                            var hora = familias[i].hora;
+                            if (hora >= iTeste && hora < (iTeste + 2) && hora < 24) {
+                                if (familias[i].mes == 1) {
+                                    linha[0] += 1;
+                                } else if (familias[i].mes == 2) {
+                                    linha[1] += 1;
+                                } else if (familias[i].mes == 3) {
+                                    linha[2] += 1;
+                                } else if (familias[i].mes == 4) {
+                                    linha[3] += 1;
+                                } else if (familias[i].mes == 5) {
+                                    linha[4] += 1;
+                                } else if (familias[i].mes == 6) {
+                                    linha[5] += 1;
+                                } else if (familias[i].mes == 7) {
+                                    linha[6] += 1;
+                                } else if (familias[i].mes == 8) {
+                                    linha[7] += 1;
+                                } else if (familias[i].mes == 9) {
+                                    linha[8] += 1;
+                                } else if (familias[i].mes == 10) {
+                                    linha[9] += 1;
+                                } else if (familias[i].mes == 11) {
+                                    linha[10] += 1;
+                                } else if (familias[i].mes == 12) {
+                                    linha[11] += 1;
+                                } //fim else if
+                            } else if (hora >= 24) {
+                                if (familias[i].mes == 1) {
+                                    linha[0] += 1;
+                                } else if (familias[i].mes == 2) {
+                                    linha[1] += 1;
+                                } else if (familias[i].mes == 3) {
+                                    linha[2] += 1;
+                                } else if (familias[i].mes == 4) {
+                                    linha[3] += 1;
+                                } else if (familias[i].mes == 5) {
+                                    linha[4] += 1;
+                                } else if (familias[i].mes == 6) {
+                                    linha[5] += 1;
+                                } else if (familias[i].mes == 7) {
+                                    linha[6] += 1;
+                                } else if (familias[i].mes == 8) {
+                                    linha[7] += 1;
+                                } else if (familias[i].mes == 9) {
+                                    linha[8] += 1;
+                                } else if (familias[i].mes == 10) {
+                                    linha[9] += 1;
+                                } else if (familias[i].mes == 11) {
+                                    linha[10] += 1;
+                                } else if (familias[i].mes == 12) {
+                                    linha[11] += 1;
+                                } //fim else if
+                            }
+                        } //fim if classificacao
                     }
-                } //fim if classificacao
+                }
             } //fim for quantidadeFamilias
 
             if (iTeste == 24) {
@@ -697,7 +716,7 @@ function tabela2(quantidadeFamilias) {
     $("#bts2").click(function() {
         $("#tabela-2").table2excel({
             name: "Excel Document Name",
-            filename: "CLIMSTAT (tabela 2)",
+            filename: "Tabela 2",
             fileext: ".xls",
             exclude_img: true,
             exclude_links: true,
