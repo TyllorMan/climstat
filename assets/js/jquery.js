@@ -602,14 +602,15 @@ function tabela1(quantidadeFamilias) {
     for (var i = 0; i < epListado.length; i++) {
         $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[i].dia)).append($('<td>').append(ep[i].mes)).append($('<td>').append(ep[i].ano)).append($('<td>').append(ep[i].lat)).append($('<td>').append(ep[i].lon)));
     }
+
     $("#bt-salvar-tabela-1").click(function() {
         $("#tabela-1").table2excel({
             name: "Excel Document Name",
-            filename: "Tabela 1",
+            filename: "Tabela 1" + current.getSeconds(),
             fileext: ".xls",
-            exclude_img: true,
-            exclude_links: true,
-            exclude_inputs: true
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
         });
     });
 
