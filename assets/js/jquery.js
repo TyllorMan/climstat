@@ -586,27 +586,24 @@ function tabela1(quantidadeFamilias) {
         }
     }
 
-    //mostra tabela 1
-    $("#div-tabela-1").fadeIn(300);
-
-    //verifica se ha algum EP igual e remove
-    // for (var i = 0; i < epListado.length; i++) {
-    //   for (var j = (i+1); j < epListado.length; i++) {
-    //     if (epListado[i] == epListado[j]) {
-    //         epListado.splice(j);
-    //         break;
-    //     };
-    //   }
-    // }
+    alert("passo 2");
 
     for (var i = 0; i < epListado.length; i++) {
-        $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(ep[i].dia)).append($('<td>').append(ep[i].mes)).append($('<td>').append(ep[i].ano)).append($('<td>').append(ep[i].lat)).append($('<td>').append(ep[i].lon)));
+        $("#tabela-1-dias-liastados > tbody")
+        .append($('<tr>')
+          .append($('<td>').append(epListado[i].dia))
+            .append($('<td>').append(epListado[i].mes))
+              .append($('<td>').append(epListado[i].ano))
+                .append($('<td>').append(epListado[i].lat))
+                  .append($('<td>').append(epListado[i].lon)));
     }
+
+    alert("passo 3");
 
     $("#bt-salvar-tabela-1").click(function() {
         $("#tabela-1").table2excel({
             name: "Excel Document Name",
-            filename: "Tabela 1" + current.getSeconds(),
+            filename: "Tabela 1 " + new Date($.now()),
             fileext: ".xls",
             exclude_img: false,
             exclude_links: false,
@@ -614,16 +611,19 @@ function tabela1(quantidadeFamilias) {
         });
     });
 
-    $("#bt-salvar-tabela-1-dias-liastados").click(function() {
-        $("#tabela-1-dias-liastados").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 1",
-            fileext: ".xls",
-            exclude_img: true,
-            exclude_links: true,
-            exclude_inputs: true
-        });
-    });
+    // $("#bt-salvar-tabela-1-dias-liastados").click(function() {
+    //     $("#tabela-1-dias-liastados").table2excel({
+    //         name: "Worksheet Name",
+    //         //filename: current.getSeconds(),
+    //         fileext: ".xls",
+    //         exclude_img: false,
+    //         exclude_links: false,
+    //         exclude_inputs: false
+    //     });
+    // });
+
+    //mostra tabela 1
+    $("#div-tabela-1").fadeIn(300);
 }
 
 function tabela2(quantidadeFamilias) {
@@ -840,9 +840,9 @@ function tabela2(quantidadeFamilias) {
             name: "Excel Document Name",
             filename: "Tabela 2",
             fileext: ".xls",
-            exclude_img: true,
-            exclude_links: true,
-            exclude_inputs: true
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
         });
     });
 
