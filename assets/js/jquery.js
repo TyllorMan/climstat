@@ -586,8 +586,6 @@ function tabela1(quantidadeFamilias) {
         }
     }
 
-    alert("passo 2");
-
     for (var i = 0; i < epListado.length; i++) {
         $("#tabela-1-dias-liastados > tbody")
         .append($('<tr>')
@@ -597,8 +595,6 @@ function tabela1(quantidadeFamilias) {
                 .append($('<td>').append(epListado[i].lat))
                   .append($('<td>').append(epListado[i].lon)));
     }
-
-    alert("passo 3");
 
     $("#bt-salvar-tabela-1").click(function() {
         $("#tabela-1").table2excel({
