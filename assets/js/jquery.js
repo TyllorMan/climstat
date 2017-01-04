@@ -1,11 +1,12 @@
 //declaracao de variaveis
+var comparacao = "";
 var dma = new Array();
 var ep = new Array();
-var epListado = new Array();
 var epCompara = new Array();
-var comparacao = "";
+var epListado = new Array();
 var familias = new Array();
 var tabelas = new Array();
+var teste = new Array();
 
 //inicializacao de componentes
 $(document).ready(function() {
@@ -21,6 +22,7 @@ $(document).ready(function() {
     $("#comparaTextarea").hide();
 
     $("#combobox").hide();
+
     $("#bt-salvar-eps").hide();
 
     $(".dropdown-menu a").click(function() {
@@ -250,95 +252,187 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#inputFamilias").change(function() {
         var input = event.target;
+        var files = $("#inputFamilias")[0].files;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
         var quantidadeFamilias = 0;
-        var linhas = new Array();
-        var fileReader = new FileReader();
+        // var counter = -1;
+        var file;
+        var familia;
+        // var linhas = new Array();
+        // var fileReader = new FileReader();
 
-        fileReader.onload = function() {
+        for (var counter = 0; counter < quantidadeArquivos; counter++) {
+            // while (file = files[++counter]) {
+            const fileReader = new FileReader();
 
-            var resultado = fileReader.result;
-            var familia;
-            var fam = 0;
+            fileReader.onloadend = function() {
+                var resultado = fileReader.result;
+                var fam = 0;
+                var linhas = new Array();
 
-            //cria cada linha ao final do caractere \n
-            linhas = resultado.trim().split('\n');
+                //cria cada linha ao final do caractere \n
+                linhas = resultado.trim().split('\n');
 
-            for (var i = 0; i < linhas.length; i++) {
-                linhas[i] = linhas[i].trim().replace(/  +/g, ' ').replace('FAMILY= ', 'FAMILY=').replace(' -  ', ' ').replace('MONTH= ', 'MONTH=').replace('DAY= ', 'DAY=').replace('MEMBER= ', 'MEMBER=').replace('CLASSIF= ', 'CLASSIF=').replace('TOTAL TIME= ', 'TOTAL TIME=').replace('LAST IMAGE= ', 'LAST IMAGE=').replace('DELTAX', 'DELTAX=').replace('DELTAY', 'DELTAY=').replace('*  ', '').replace('* ', '').replace('END= ', ' END=').replace('- NSYS: ', 'NSYS=');
-            } //fim for
+                for (var i = 0; i < linhas.length; i++) {
+                    linhas[i] = linhas[i].trim().replace(/  +/g, ' ').replace('FAMILY= ', 'FAMILY=').replace(' -  ', ' ').replace('MONTH= ', 'MONTH=').replace('DAY= ', 'DAY=').replace('MEMBER= ', 'MEMBER=').replace('CLASSIF= ', 'CLASSIF=').replace('TOTAL TIME= ', 'TOTAL TIME=').replace('LAST IMAGE= ', 'LAST IMAGE=').replace('DELTAX', 'DELTAX=').replace('DELTAY', 'DELTAY=').replace('*  ', '').replace('* ', '').replace('END= ', ' END=').replace('- NSYS: ', 'NSYS=');
+                } //fim for linhas.length
 
-            for (var i = 0; i < linhas.length; i++) {
-                //verifica se ha linhas em branco
-                if (linhas[i] == "" || linhas[i] == '') {
-                    //deleta linha em branco
-                    //delete linhas[i];
-                    linhas.splice(i, 2);
-                } //fim if
-            } //fim for
+                for (var i = 0; i < linhas.length; i++) {
+                    //verifica se ha linhas em branco
+                    if (linhas[i] == "" || linhas[i] == '') {
+                        //deleta linha em branco
+                        //delete linhas[i];
+                        linhas.splice(i, 2);
+                    } //fim if linhas
+                } //fim for linhas.length
 
-            for (var i = 0; i < linhas.length; i++) {
-                if (linhas[i].search("FAMILY=") != -1) {
-                    familia = new Familia();
-                    familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 999999));
-                    familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
-                    familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
-                    familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
-                    familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
-                    familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
-                    familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
-                    familias.push(familia);
-                } else if (linhas[i].search("SYS#") != -1) {
-                    var contador = i + 1;
+                for (var i = 0; i < linhas.length; i++) {
+                    if (linhas[i].search("FAMILY=") != -1) {
+                        familia = new Familia();
+                        familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 999999));
+                        familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
+                        familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
+                        familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
+                        familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
+                        familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
+                        familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
+                        familias.push(familia);
+                    } else if (linhas[i].search("SYS#") != -1) {
+                        var contador = i + 1;
 
-                    while (linhas[contador].search("TOTAL TIME=") == -1) {
-                        var tempo = new Tempo();
-                        var temp = new Array();
-                        temp = linhas[contador].trim().split(' ');
+                        while (linhas[contador].search("TOTAL TIME=") == -1) {
+                            var tempo = new Tempo();
+                            var temp = new Array();
+                            temp = linhas[contador].trim().split(' ');
 
-                        tempo.sys = parseFloat(temp[0]);
-                        tempo.xlat = parseFloat(temp[1]);
-                        tempo.xlon = parseFloat(temp[2]);
-                        tempo.time = parseFloat(temp[3]);
-                        tempo.size = parseFloat(temp[4]);
-                        tempo.dsize = parseFloat(temp[5]);
-                        tempo.tmed = parseFloat(temp[6]);
-                        tempo.dtmed = parseFloat(temp[7]);
-                        tempo.tmin = parseFloat(temp[8]);
-                        tempo.dtmin = parseFloat(temp[9]);
-                        tempo.tmin9 = parseFloat(temp[10]);
-                        tempo.dtmin9 = parseFloat(temp[11]);
-                        tempo.cbnum = parseFloat(temp[12]);
-                        tempo.cbmed = parseFloat(temp[13]);
-                        tempo.vel = parseFloat(temp[14]);
-                        tempo.dir = parseFloat(temp[15]);
-                        tempo.incli = parseFloat(temp[16]);
-                        tempo.ecce = parseFloat(temp[17]);
-                        tempo.t_ini = parseFloat(temp[18]);
-                        tempo.t_fin = parseFloat(temp[19]);
-                        tempo.clas = temp[20];
-                        tempo.sys_ant = parseFloat(temp[21]);
+                            tempo.sys = parseFloat(temp[0]);
+                            tempo.xlat = parseFloat(temp[1]);
+                            tempo.xlon = parseFloat(temp[2]);
+                            tempo.time = parseFloat(temp[3]);
+                            tempo.size = parseFloat(temp[4]);
+                            tempo.dsize = parseFloat(temp[5]);
+                            tempo.tmed = parseFloat(temp[6]);
+                            tempo.dtmed = parseFloat(temp[7]);
+                            tempo.tmin = parseFloat(temp[8]);
+                            tempo.dtmin = parseFloat(temp[9]);
+                            tempo.tmin9 = parseFloat(temp[10]);
+                            tempo.dtmin9 = parseFloat(temp[11]);
+                            tempo.cbnum = parseFloat(temp[12]);
+                            tempo.cbmed = parseFloat(temp[13]);
+                            tempo.vel = parseFloat(temp[14]);
+                            tempo.dir = parseFloat(temp[15]);
+                            tempo.incli = parseFloat(temp[16]);
+                            tempo.ecce = parseFloat(temp[17]);
+                            tempo.t_ini = parseFloat(temp[18]);
+                            tempo.t_fin = parseFloat(temp[19]);
+                            tempo.clas = temp[20];
+                            tempo.sys_ant = parseFloat(temp[21]);
 
-                        familias[fam].addTempo(tempo);
-                        contador++;
-                    } //fim while
-                } else if (linhas[i].search("TOTAL TIME=") != -1) {
-                    familias[fam].total_time = parseFloat(linhas[i].substr((linhas[i].search("TOTAL TIME=") + ("TOTAL TIME=".length)), 4));
-                    familias[fam].deltax = parseFloat(linhas[i].substr((linhas[i].search("DELTAX=") + ("DELTAX=".length + 1)), 5));
-                    familias[fam].deltay = parseFloat(linhas[i].substr((linhas[i].search("DELTAY=") + ("DELTAY=".length + 1)), 5));
-                    familias[fam].last_image = linhas[i].substr((linhas[i].search("LAST IMAGE=") + ("LAST IMAGE=".length)), 1);
-                    familias[fam].end = linhas[i].substr((linhas[i].search("END=") + ("END=".length)), 3);
-                    fam++;
-                    quantidadeFamilias++;
-                } //fim else if
-            } //fim for
+                            familias[fam].addTempo(tempo);
+                            contador++;
+                        } //fim while
+                    } else if (linhas[i].search("TOTAL TIME=") != -1) {
+                        familias[fam].total_time = parseFloat(linhas[i].substr((linhas[i].search("TOTAL TIME=") + ("TOTAL TIME=".length)), 4));
+                        familias[fam].deltax = parseFloat(linhas[i].substr((linhas[i].search("DELTAX=") + ("DELTAX=".length + 1)), 5));
+                        familias[fam].deltay = parseFloat(linhas[i].substr((linhas[i].search("DELTAY=") + ("DELTAY=".length + 1)), 5));
+                        familias[fam].last_image = linhas[i].substr((linhas[i].search("LAST IMAGE=") + ("LAST IMAGE=".length)), 1);
+                        familias[fam].end = linhas[i].substr((linhas[i].search("END=") + ("END=".length)), 3);
+                        fam++;
+                        quantidadeFamilias++;
+                    } //fim else if
+                } //fim for new familia
+            }; //fim fileReader.onload
 
-            //mostra selecao da classificacao da familia
-            $("#combobox").fadeIn(300);
-            //tabela1(familias.length);
-            tabela1(familias.length);
-        };
-        fileReader.readAsText(input.files[0]);
+            fileReader.readAsText(input.files[counter]);
+        } //fim for/while quantidadeArquivos
+        //tabela1(familias.length);
+
+        console.log(familias);
+        // fileReader.onload = function() {
+        //
+        //     var resultado = fileReader.result;
+        //     var familia;
+        //     var fam = 0;
+        //
+        //     //cria cada linha ao final do caractere \n
+        //     linhas = resultado.trim().split('\n');
+        //
+        //     for (var i = 0; i < linhas.length; i++) {
+        //         linhas[i] = linhas[i].trim().replace(/  +/g, ' ').replace('FAMILY= ', 'FAMILY=').replace(' -  ', ' ').replace('MONTH= ', 'MONTH=').replace('DAY= ', 'DAY=').replace('MEMBER= ', 'MEMBER=').replace('CLASSIF= ', 'CLASSIF=').replace('TOTAL TIME= ', 'TOTAL TIME=').replace('LAST IMAGE= ', 'LAST IMAGE=').replace('DELTAX', 'DELTAX=').replace('DELTAY', 'DELTAY=').replace('*  ', '').replace('* ', '').replace('END= ', ' END=').replace('- NSYS: ', 'NSYS=');
+        //     } //fim for
+        //
+        //     for (var i = 0; i < linhas.length; i++) {
+        //         //verifica se ha linhas em branco
+        //         if (linhas[i] == "" || linhas[i] == '') {
+        //             //deleta linha em branco
+        //             //delete linhas[i];
+        //             linhas.splice(i, 2);
+        //         } //fim if
+        //     } //fim for
+        //
+        //     for (var i = 0; i < linhas.length; i++) {
+        //         if (linhas[i].search("FAMILY=") != -1) {
+        //             familia = new Familia();
+        //             familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 999999));
+        //             familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
+        //             familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
+        //             familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
+        //             familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
+        //             familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
+        //             familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
+        //             familias.push(familia);
+        //         } else if (linhas[i].search("SYS#") != -1) {
+        //             var contador = i + 1;
+        //
+        //             while (linhas[contador].search("TOTAL TIME=") == -1) {
+        //                 var tempo = new Tempo();
+        //                 var temp = new Array();
+        //                 temp = linhas[contador].trim().split(' ');
+        //
+        //                 tempo.sys = parseFloat(temp[0]);
+        //                 tempo.xlat = parseFloat(temp[1]);
+        //                 tempo.xlon = parseFloat(temp[2]);
+        //                 tempo.time = parseFloat(temp[3]);
+        //                 tempo.size = parseFloat(temp[4]);
+        //                 tempo.dsize = parseFloat(temp[5]);
+        //                 tempo.tmed = parseFloat(temp[6]);
+        //                 tempo.dtmed = parseFloat(temp[7]);
+        //                 tempo.tmin = parseFloat(temp[8]);
+        //                 tempo.dtmin = parseFloat(temp[9]);
+        //                 tempo.tmin9 = parseFloat(temp[10]);
+        //                 tempo.dtmin9 = parseFloat(temp[11]);
+        //                 tempo.cbnum = parseFloat(temp[12]);
+        //                 tempo.cbmed = parseFloat(temp[13]);
+        //                 tempo.vel = parseFloat(temp[14]);
+        //                 tempo.dir = parseFloat(temp[15]);
+        //                 tempo.incli = parseFloat(temp[16]);
+        //                 tempo.ecce = parseFloat(temp[17]);
+        //                 tempo.t_ini = parseFloat(temp[18]);
+        //                 tempo.t_fin = parseFloat(temp[19]);
+        //                 tempo.clas = temp[20];
+        //                 tempo.sys_ant = parseFloat(temp[21]);
+        //
+        //                 familias[fam].addTempo(tempo);
+        //                 contador++;
+        //             } //fim while
+        //         } else if (linhas[i].search("TOTAL TIME=") != -1) {
+        //             familias[fam].total_time = parseFloat(linhas[i].substr((linhas[i].search("TOTAL TIME=") + ("TOTAL TIME=".length)), 4));
+        //             familias[fam].deltax = parseFloat(linhas[i].substr((linhas[i].search("DELTAX=") + ("DELTAX=".length + 1)), 5));
+        //             familias[fam].deltay = parseFloat(linhas[i].substr((linhas[i].search("DELTAY=") + ("DELTAY=".length + 1)), 5));
+        //             familias[fam].last_image = linhas[i].substr((linhas[i].search("LAST IMAGE=") + ("LAST IMAGE=".length)), 1);
+        //             familias[fam].end = linhas[i].substr((linhas[i].search("END=") + ("END=".length)), 3);
+        //             fam++;
+        //             quantidadeFamilias++;
+        //         } //fim else if
+        //     } //fim for
+        //
+        //     //mostra selecao da classificacao da familia
+        //     $("#combobox").fadeIn(300);
+        //     //tabela1(familias.length);
+        //     tabela1(familias.length);
+        // };
+        //  fileReader.readAsText(input.files[0]);
+        //console.log(familias);
     }); //fim change
 }); //fim document ready
 
@@ -587,13 +681,7 @@ function tabela1(quantidadeFamilias) {
     }
 
     for (var i = 0; i < epListado.length; i++) {
-        $("#tabela-1-dias-liastados > tbody")
-        .append($('<tr>')
-          .append($('<td>').append(epListado[i].dia))
-            .append($('<td>').append(epListado[i].mes))
-              .append($('<td>').append(epListado[i].ano))
-                .append($('<td>').append(epListado[i].lat))
-                  .append($('<td>').append(epListado[i].lon)));
+        $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(epListado[i].dia)).append($('<td>').append(epListado[i].mes)).append($('<td>').append(epListado[i].ano)).append($('<td>').append(epListado[i].lat)).append($('<td>').append(epListado[i].lon)));
     }
 
     $("#bt-salvar-tabela-1").click(function() {
@@ -607,16 +695,16 @@ function tabela1(quantidadeFamilias) {
         });
     });
 
-    // $("#bt-salvar-tabela-1-dias-liastados").click(function() {
-    //     $("#tabela-1-dias-liastados").table2excel({
-    //         name: "Worksheet Name",
-    //         //filename: current.getSeconds(),
-    //         fileext: ".xls",
-    //         exclude_img: false,
-    //         exclude_links: false,
-    //         exclude_inputs: false
-    //     });
-    // });
+    $("#bt-salvar-tabela-1-dias-liastados").click(function() {
+        $("#tabela-1-dias-liastados").table2excel({
+            name: "Worksheet Name",
+            filename: "Tabela 1 - dias liastados" + new Date($.now()),
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
+    });
 
     //mostra tabela 1
     $("#div-tabela-1").fadeIn(300);
@@ -637,7 +725,7 @@ function tabela2(quantidadeFamilias) {
         "18 ~ 20",
         "20 ~ 22",
         "22 ~ 24",
-        "> 24",
+        "> 24"
     ];
     var matriz = new Array(13);
 
@@ -664,73 +752,73 @@ function tabela2(quantidadeFamilias) {
 
         for (var temp = 0; temp < 13; temp++) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-              if (familias[i].classificacao == "N") {
-                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                        for (var j = 0; j < quantidadeEPS; j++) {
-                            if (familias[i].ano == ep[j].ano) {
-                                if (familias[i].mes == ep[j].mes) {
-                                    if (familias[i].dia == ep[j].dia) {
-                                        if (index >= 24 && familias[i].total_time >= 24) {
-                                            if (familias[i].mes == 1) {
-                                              matriz[temp][1] += 1;
-                                            } else if (familias[i].mes == 2) {
-                                              matriz[temp][2] += 1;
-                                            } else if (familias[i].mes == 3) {
-                                              matriz[temp][3] += 1;
-                                            } else if (familias[i].mes == 4) {
-                                              matriz[temp][4] += 1;
-                                            } else if (familias[i].mes == 5) {
-                                              matriz[temp][5] += 1;
-                                            } else if (familias[i].mes == 6) {
-                                              matriz[temp][6] += 1;
-                                            } else if (familias[i].mes == 7) {
-                                              matriz[temp][7] += 1;
-                                            } else if (familias[i].mes == 8) {
-                                              matriz[temp][8] += 1;
-                                            } else if (familias[i].mes == 9) {
-                                              matriz[temp][9] += 1;
-                                            } else if (familias[i].mes == 10) {
-                                              matriz[temp][10] += 1;
-                                            } else if (familias[i].mes == 11) {
-                                              matriz[temp][11] += 1;
-                                            } else if (familias[i].mes == 12) {
-                                              matriz[temp][12] += 1;
-                                            } //fim else if
-                                        } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-                                          if (familias[i].mes == 1) {
-                                            matriz[temp][1] += 1;
-                                          } else if (familias[i].mes == 2) {
-                                            matriz[temp][2] += 1;
-                                          } else if (familias[i].mes == 3) {
-                                            matriz[temp][3] += 1;
-                                          } else if (familias[i].mes == 4) {
-                                            matriz[temp][4] += 1;
-                                          } else if (familias[i].mes == 5) {
-                                            matriz[temp][5] += 1;
-                                          } else if (familias[i].mes == 6) {
-                                            matriz[temp][6] += 1;
-                                          } else if (familias[i].mes == 7) {
-                                            matriz[temp][7] += 1;
-                                          } else if (familias[i].mes == 8) {
-                                            matriz[temp][8] += 1;
-                                          } else if (familias[i].mes == 9) {
-                                            matriz[temp][9] += 1;
-                                          } else if (familias[i].mes == 10) {
-                                            matriz[temp][10] += 1;
-                                          } else if (familias[i].mes == 11) {
-                                            matriz[temp][11] += 1;
-                                          } else if (familias[i].mes == 12) {
-                                            matriz[temp][12] += 1;
-                                          } //fim else if
-                                        }
-                                    } //fim if xlon
-                                } //fim if xlat
-                            } //fim dia
-                        } //fim mes
-                    } //fim ano
-                } //fim for quantidadeEPS WHILE
-              }
+                if (familias[i].classificacao == "N") {
+                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                            for (var j = 0; j < quantidadeEPS; j++) {
+                                if (familias[i].ano == ep[j].ano) {
+                                    if (familias[i].mes == ep[j].mes) {
+                                        if (familias[i].dia == ep[j].dia) {
+                                            if (index >= 24 && familias[i].total_time >= 24) {
+                                                if (familias[i].mes == 1) {
+                                                    matriz[temp][1] += 1;
+                                                } else if (familias[i].mes == 2) {
+                                                    matriz[temp][2] += 1;
+                                                } else if (familias[i].mes == 3) {
+                                                    matriz[temp][3] += 1;
+                                                } else if (familias[i].mes == 4) {
+                                                    matriz[temp][4] += 1;
+                                                } else if (familias[i].mes == 5) {
+                                                    matriz[temp][5] += 1;
+                                                } else if (familias[i].mes == 6) {
+                                                    matriz[temp][6] += 1;
+                                                } else if (familias[i].mes == 7) {
+                                                    matriz[temp][7] += 1;
+                                                } else if (familias[i].mes == 8) {
+                                                    matriz[temp][8] += 1;
+                                                } else if (familias[i].mes == 9) {
+                                                    matriz[temp][9] += 1;
+                                                } else if (familias[i].mes == 10) {
+                                                    matriz[temp][10] += 1;
+                                                } else if (familias[i].mes == 11) {
+                                                    matriz[temp][11] += 1;
+                                                } else if (familias[i].mes == 12) {
+                                                    matriz[temp][12] += 1;
+                                                } //fim else if
+                                            } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+                                                if (familias[i].mes == 1) {
+                                                    matriz[temp][1] += 1;
+                                                } else if (familias[i].mes == 2) {
+                                                    matriz[temp][2] += 1;
+                                                } else if (familias[i].mes == 3) {
+                                                    matriz[temp][3] += 1;
+                                                } else if (familias[i].mes == 4) {
+                                                    matriz[temp][4] += 1;
+                                                } else if (familias[i].mes == 5) {
+                                                    matriz[temp][5] += 1;
+                                                } else if (familias[i].mes == 6) {
+                                                    matriz[temp][6] += 1;
+                                                } else if (familias[i].mes == 7) {
+                                                    matriz[temp][7] += 1;
+                                                } else if (familias[i].mes == 8) {
+                                                    matriz[temp][8] += 1;
+                                                } else if (familias[i].mes == 9) {
+                                                    matriz[temp][9] += 1;
+                                                } else if (familias[i].mes == 10) {
+                                                    matriz[temp][10] += 1;
+                                                } else if (familias[i].mes == 11) {
+                                                    matriz[temp][11] += 1;
+                                                } else if (familias[i].mes == 12) {
+                                                    matriz[temp][12] += 1;
+                                                } //fim else if
+                                            }
+                                        } //fim if xlon
+                                    } //fim if xlat
+                                } //fim dia
+                            } //fim mes
+                        } //fim ano
+                    } //fim for quantidadeEPS WHILE
+                }
             } //fim for quantidadeFamilias
             index += 2;
         } //fim for temp
