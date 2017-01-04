@@ -262,7 +262,6 @@ $(document).ready(function() {
         // var fileReader = new FileReader();
 
         for (var counter = 0; counter < quantidadeArquivos; counter++) {
-            // while (file = files[++counter]) {
             const fileReader = new FileReader();
 
             fileReader.onloadend = function() {
@@ -344,10 +343,10 @@ $(document).ready(function() {
             }; //fim fileReader.onload
 
             fileReader.readAsText(input.files[counter]);
-        } //fim for/while quantidadeArquivos
-        //tabela1(familias.length);
+        } //fim for quantidadeArquivos
+        tabela1(familias.length);
 
-        console.log(familias);
+        //console.log(familias);
         // fileReader.onload = function() {
         //
         //     var resultado = fileReader.result;
