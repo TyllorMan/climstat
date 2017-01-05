@@ -260,11 +260,12 @@ $(document).ready(function() {
         var soma = 0;
         var file;
         var familia;
+        var cont = 0;
 
-        for (var counter = 0; counter < quantidadeArquivos; counter++) {
+        for (cont = 0; cont < quantidadeArquivos; cont++) {
             const fileReader = new FileReader();
 
-            fileReader.onloadend = function(e) {
+            fileReader.onloadend = function(evento) {
                 var resultado = fileReader.result;
                 var fam = 0;
                 var linhas = new Array();
@@ -340,99 +341,14 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
+
+                console.log(familias.length);
+
                 tabela1(familias.length);
+
             }; //fim fileReader.onload
-            fileReader.readAsText(input.files[counter]);
-
-        } //fim for quantidadeArquivos
-
-        // fileReader.onload = function() {
-        //
-        //     var resultado = fileReader.result;
-        //     var familia;
-        //     var fam = 0;
-        //
-        //     //cria cada linha ao final do caractere \n
-        //     linhas = resultado.trim().split('\n');
-        //
-        //     for (var i = 0; i < linhas.length; i++) {
-        //         linhas[i] = linhas[i].trim().replace(/  +/g, ' ').replace('FAMILY= ', 'FAMILY=').replace(' -  ', ' ').replace('MONTH= ', 'MONTH=').replace('DAY= ', 'DAY=').replace('MEMBER= ', 'MEMBER=').replace('CLASSIF= ', 'CLASSIF=').replace('TOTAL TIME= ', 'TOTAL TIME=').replace('LAST IMAGE= ', 'LAST IMAGE=').replace('DELTAX', 'DELTAX=').replace('DELTAY', 'DELTAY=').replace('*  ', '').replace('* ', '').replace('END= ', ' END=').replace('- NSYS: ', 'NSYS=');
-        //     } //fim for
-        //
-        //     for (var i = 0; i < linhas.length; i++) {
-        //         //verifica se ha linhas em branco
-        //         if (linhas[i] == "" || linhas[i] == '') {
-        //             //deleta linha em branco
-        //             //delete linhas[i];
-        //             linhas.splice(i, 2);
-        //         } //fim if
-        //     } //fim for
-        //
-        //     for (var i = 0; i < linhas.length; i++) {
-        //         if (linhas[i].search("FAMILY=") != -1) {
-        //             familia = new Familia();
-        //             familia.numero = parseInt(linhas[i].substr((linhas[i].search("FAMILY=") + ("FAMILY=".length)), 999999));
-        //             familia.ano = parseInt(linhas[i].substr((linhas[i].search("YEAR=") + ("YEAR=".length)), 4));
-        //             familia.mes = parseInt(linhas[i].substr((linhas[i].search("MONTH=") + ("MONTH=".length)), 2));
-        //             familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
-        //             familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
-        //             familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
-        //             familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
-        //             familias.push(familia);
-        //         } else if (linhas[i].search("SYS#") != -1) {
-        //             var contador = i + 1;
-        //
-        //             while (linhas[contador].search("TOTAL TIME=") == -1) {
-        //                 var tempo = new Tempo();
-        //                 var temp = new Array();
-        //                 temp = linhas[contador].trim().split(' ');
-        //
-        //                 tempo.sys = parseFloat(temp[0]);
-        //                 tempo.xlat = parseFloat(temp[1]);
-        //                 tempo.xlon = parseFloat(temp[2]);
-        //                 tempo.time = parseFloat(temp[3]);
-        //                 tempo.size = parseFloat(temp[4]);
-        //                 tempo.dsize = parseFloat(temp[5]);
-        //                 tempo.tmed = parseFloat(temp[6]);
-        //                 tempo.dtmed = parseFloat(temp[7]);
-        //                 tempo.tmin = parseFloat(temp[8]);
-        //                 tempo.dtmin = parseFloat(temp[9]);
-        //                 tempo.tmin9 = parseFloat(temp[10]);
-        //                 tempo.dtmin9 = parseFloat(temp[11]);
-        //                 tempo.cbnum = parseFloat(temp[12]);
-        //                 tempo.cbmed = parseFloat(temp[13]);
-        //                 tempo.vel = parseFloat(temp[14]);
-        //                 tempo.dir = parseFloat(temp[15]);
-        //                 tempo.incli = parseFloat(temp[16]);
-        //                 tempo.ecce = parseFloat(temp[17]);
-        //                 tempo.t_ini = parseFloat(temp[18]);
-        //                 tempo.t_fin = parseFloat(temp[19]);
-        //                 tempo.clas = temp[20];
-        //                 tempo.sys_ant = parseFloat(temp[21]);
-        //
-        //                 familias[fam].addTempo(tempo);
-        //                 contador++;
-        //             } //fim while
-        //         } else if (linhas[i].search("TOTAL TIME=") != -1) {
-        //             familias[fam].total_time = parseFloat(linhas[i].substr((linhas[i].search("TOTAL TIME=") + ("TOTAL TIME=".length)), 4));
-        //             familias[fam].deltax = parseFloat(linhas[i].substr((linhas[i].search("DELTAX=") + ("DELTAX=".length + 1)), 5));
-        //             familias[fam].deltay = parseFloat(linhas[i].substr((linhas[i].search("DELTAY=") + ("DELTAY=".length + 1)), 5));
-        //             familias[fam].last_image = linhas[i].substr((linhas[i].search("LAST IMAGE=") + ("LAST IMAGE=".length)), 1);
-        //             familias[fam].end = linhas[i].substr((linhas[i].search("END=") + ("END=".length)), 3);
-        //             fam++;
-        //             quantidadeFamilias++;
-        //         } //fim else if
-        //     } //fim for
-        //
-        //     //mostra selecao da classificacao da familia
-        //     $("#combobox").fadeIn(300);
-        //     //tabela1(familias.length);
-        //     tabela1(familias.length);
-        // };
-        //  fileReader.readAsText(input.files[0]);
-        //console.log(familias);
-        console.log(familias);
-
+            fileReader.readAsText(input.files[cont]);
+        }
     }); //fim change
 }); //fim document ready
 
@@ -453,7 +369,9 @@ $(document).ready(function() {
   M (merger)
 */
 
-function tabela1(quantidadeFamilias) {
+function tabela1() {
+  console.log(familias.length);
+  quantidadeFamilias = familias.length;
     var quantidadeEPS = ep.length;
 
     var meses = [
