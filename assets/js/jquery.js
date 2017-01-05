@@ -342,10 +342,7 @@ $(document).ready(function() {
                     } //fim else if
                 } //fim for new familia
 
-                console.log(familias.length);
-
-                tabela1(familias.length);
-
+                tabela2(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -630,6 +627,7 @@ function tabela1() {
 
 function tabela2(quantidadeFamilias) {
     var quantidadeEPS = ep.length;
+
     var horarios = [
         "0 ~ 2",
         "2 ~ 4",
@@ -841,6 +839,17 @@ function tabela2(quantidadeFamilias) {
         $("#tabela-2").table2excel({
             name: "Excel Document Name",
             filename: "Tabela 2",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
+    });
+
+    $("#bts3").click(function() {
+        $("#tabela-2-1").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 2.1",
             fileext: ".xls",
             exclude_img: false,
             exclude_links: false,
