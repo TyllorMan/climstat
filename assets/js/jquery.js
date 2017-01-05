@@ -21,6 +21,8 @@ $(document).ready(function() {
     $("#salvarAVE").hide();
     $("#comparaTextarea").hide();
 
+    $("#loader").hide();
+
     $("#combobox").hide();
 
     $("#bt-salvar-eps").hide();
@@ -255,16 +257,14 @@ $(document).ready(function() {
         var files = $("#inputFamilias")[0].files;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
         var quantidadeFamilias = 0;
-        // var counter = -1;
+        var soma = 0;
         var file;
         var familia;
-        // var linhas = new Array();
-        // var fileReader = new FileReader();
 
         for (var counter = 0; counter < quantidadeArquivos; counter++) {
             const fileReader = new FileReader();
 
-            fileReader.onloadend = function() {
+            fileReader.onloadend = function(e) {
                 var resultado = fileReader.result;
                 var fam = 0;
                 var linhas = new Array();
@@ -340,13 +340,12 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
+                tabela1(familias.length);
             }; //fim fileReader.onload
-
             fileReader.readAsText(input.files[counter]);
-        } //fim for quantidadeArquivos
-        tabela1(familias.length);
 
-        //console.log(familias);
+        } //fim for quantidadeArquivos
+
         // fileReader.onload = function() {
         //
         //     var resultado = fileReader.result;
@@ -432,6 +431,8 @@ $(document).ready(function() {
         // };
         //  fileReader.readAsText(input.files[0]);
         //console.log(familias);
+        console.log(familias);
+
     }); //fim change
 }); //fim document ready
 
