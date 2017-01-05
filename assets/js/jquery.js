@@ -986,80 +986,21 @@ console.log(matriz);
         }
     }
 
-    // for (var h = 0; h < 25; h++) {
-    //     if ((h % 2 == 0)) {
-    //         for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-    //           if (familias[i].classificacao == "N") {
-    //               if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-    //                   if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-    //             if (familias[i].hora >= (h + 0) && familias[i].hora < (h + 2)) { //verifica condicoes ncessarias para tabela
-    //                 for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-    //                     if (maior < parseInt(familias[i]['tempos'][j].size)) {
-    //                         maior = parseInt(familias[i]['tempos'][j].size);
-    //                         if (familias[i].mes == 1) {
-    //                             matriz[indice][0] = maior;
-    //                         } else if (familias[i].mes == 2) {
-    //                             matriz[indice][1] = maior;
-    //                         } else if (familias[i].mes == 3) {
-    //                             matriz[indice][2] = maior;
-    //                         } else if (familias[i].mes == 4) {
-    //                             matriz[indice][3] = maior;
-    //                         } else if (familias[i].mes == 5) {
-    //                             matriz[indice][4] = maior;
-    //                         } else if (familias[i].mes == 6) {
-    //                             matriz[indice][5] = maior;
-    //                         } else if (familias[i].mes == 7) {
-    //                             matriz[indice][6] = maior;
-    //                         } else if (familias[i].mes == 8) {
-    //                             matriz[indice][7] = maior;
-    //                         } else if (familias[i].mes == 9) {
-    //                             matriz[indice][8] = maior;
-    //                         } else if (familias[i].mes == 10) {
-    //                             matriz[indice][9] = maior;
-    //                         } else if (familias[i].mes == 11) {
-    //                             matriz[indice][10] = maior;
-    //                         } else if (familias[i].mes == 12) {
-    //                             matriz[indice][11] = maior;
-    //                         } //fim else if
-    //                     } //fim if
-    //                 } //fim for
-    //             } //fim if
-    //         }
-    //       }
-    //     }
-    //   } //fim for
-    //         indice++; //incrementa variavel indice
-    //         maior = 0; //zera variavel maior
-    //     } //fim if
-    // } //fim for
-
-    // var temp1 = 0;
-    // var temp2 = 2;
-    //
-    // //imprime a tabela
-    // for (var i = 0; i < 13; i++) {
-    //     $("#tabela-3 > tbody").append($('<tr>')
-    //       .append($('<td>').append((temp1 + 0) + " ~ " + (temp2)))
-    //         .append($('<td>').append(matriz[i][0]))
-    //           .append($('<td>').append(matriz[i][1]))
-    //             .append($('<td>').append(matriz[i][2]))
-    //               .append($('<td>').append(matriz[i][3]))
-    //                 .append($('<td>').append(matriz[i][4]))
-    //                   .append($('<td>').append(matriz[i][5]))
-    //                     .append($('<td>').append(matriz[i][6]))
-    //                       .append($('<td>').append(matriz[i][7]))
-    //                         .append($('<td>').append(matriz[i][8]))
-    //                           .append($('<td>').append(matriz[i][9]))
-    //                             .append($('<td>').append(matriz[i][10]))
-    //                               .append($('<td>').append(matriz[i][11])));
-    //     temp1 += 2; //temp1 = temp1 + 2
-    //     temp2 += 2 //temp2 = temp2 + 2
-    // } //fim for
-
     $("#div-tabela-3").fadeIn(300);
+
+    $("#bts4").click(function() {
+        $("#tabela-3").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 2.1",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
+    });
 } //fim function
 
-function tabela4(quantidadeFamilias) {
+function tabela5(quantidadeFamilias) {
     var maior = 0;
     var linhas = 13;
     var colunas = 27;
@@ -1159,7 +1100,9 @@ function tabela4(quantidadeFamilias) {
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
 
-function tabela5(quantidadeFamilias) {}
+function tabela4(quantidadeFamilias) {
+
+}
 
 function tabela6(quantidadeFamilias, classf) {
     var teste = 0;
