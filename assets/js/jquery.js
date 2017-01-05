@@ -36,7 +36,7 @@ $(document).ready(function() {
     $("#div-tabela-1").hide();
     $("#div-tabela-2").hide();
     $("#div-tabela-3").hide();
-    $("#div-tabela-4").hide();
+    $("#div-tabela-5").hide();
     $("#div-tabela-6").hide();
 });
 
@@ -978,7 +978,6 @@ function tabela3(quantidadeFamilias) {
         console.log(err.message);
     } //fim catch
 
-console.log(matriz);
     for (var i = 0; i < 12; i++) {
         var row = $('<tr></tr>').appendTo("#tabela-3");
         for (var j = 0; j < 13; j++) {
@@ -999,6 +998,10 @@ console.log(matriz);
         });
     });
 } //fim function
+
+function tabela4(quantidadeFamilias) {
+
+}
 
 function tabela5(quantidadeFamilias) {
     var maior = 0;
@@ -1099,10 +1102,6 @@ function tabela5(quantidadeFamilias) {
 
     $("#div-tabela-4").fadeIn(300);
 } //fim function tabela4
-
-function tabela4(quantidadeFamilias) {
-
-}
 
 function tabela6(quantidadeFamilias, classf) {
     var teste = 0;
