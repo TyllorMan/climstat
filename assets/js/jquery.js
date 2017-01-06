@@ -1078,58 +1078,8 @@ function tabela5(quantidadeFamilias) {
     }
 
     var indice = 0;
+
     try {
-        // for (var temp = 0; temp < 13; temp++) {
-        //   for (var i = 0; i < quantidadeFamilias; i++) { //percorre todas as familias
-        //      if (familias[i].hora >= indice && familias[i].hora < (indice + 2)) { //verifica condicoes ncessarias para tabela
-        //          for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-        //              if (maior < parseInt(familias[i]['tempos'][j].size)) {
-        //                  maior = parseInt(familias[i]['tempos'][j].size);
-        //                  if (familias[i].mes == 1) {
-        //                      matriz[0][indice + 1 + temp] = familias[i]['tempos'][j].ecce;
-        //                      matriz[0][indice + 2 + temp] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 2) {
-        //                      matriz[1][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[1][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 3) {
-        //                      matriz[2][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[2][indiceindice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 4) {
-        //                      matriz[3][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[3][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 5) {
-        //                      matriz[4][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[4][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 6) {
-        //                      matriz[5][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[5][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 7) {
-        //                      matriz[6][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[6][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 8) {
-        //                      matriz[7][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[7][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 9) {
-        //                      matriz[8][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[8][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 10) {
-        //                      matriz[9][indiceindice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[9][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 11) {
-        //                      matriz[10][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[10][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } else if (familias[i].mes == 12) {
-        //                      matriz[11][indice + 1] = familias[i]['tempos'][j].ecce;
-        //                      matriz[11][indice + 2] = familias[i]['tempos'][j].tmin;
-        //                  } //fim else if
-        //              } //fim if
-        //          } //fim for
-        //          maior = 0; //zera variavel maior
-        //          indice++; //incrementa variavel indice
-        //
-        //      } //fim if
-        //  } //fim for
-        // } //fim for temp
         for (var temp = 0; temp < 13; temp++) {
             for (var i = 0; i < quantidadeFamilias; i++) {
               if (familias[i].classificacao == "N") { //verifica condicoes ncessarias para tabela
@@ -1221,7 +1171,7 @@ function tabela5(quantidadeFamilias) {
                         } //fim if
                     } //fim for
                 } //fim if
-              }
+              } //fim
             } //fim for
             indice+=2; //incrementa variavel indice
             maior = 0; //zera variavel maior
@@ -1229,6 +1179,12 @@ function tabela5(quantidadeFamilias) {
     } catch (err) {
         console.log(err.message);
     } //fim catch
+
+    for (var i = 1; i < 13; i++) {
+        for (var j = 1; j < 27; j++) {
+            matriz[12][j] += matriz[i][j];
+        }
+    }
 
     for (var i = 0; i < 13; i++) {
         var row = $('<tr></tr>').appendTo("#tabela-5");
