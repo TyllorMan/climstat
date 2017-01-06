@@ -6,7 +6,7 @@ var epCompara = new Array();
 var epListado = new Array();
 var familias = new Array();
 var tabelas = new Array();
-var teste = new Array();
+var testeArray = new Array();
 
 //inicializacao de componentes
 $(document).ready(function() {
@@ -102,8 +102,6 @@ $(document).ready(function() {
 $(document).ready(function() {
     //decalaracao de variaveis
     $("#arquivo").change(function() {
-        //saida de dados no console Crtl+Shift+i
-        console.log(this.files);
         //declaracao de variaveis
         var input = event.target;
         var fileReader = new FileReader();
@@ -343,7 +341,6 @@ $(document).ready(function() {
                 } //fim for new familia
 
                 tabela4(familias.length);
-                console.log(quantidadeFamilias);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -914,13 +911,15 @@ function tabela3(quantidadeFamilias) {
 } //fim function
 
 function tabela4(quantidadeFamilias) {
+  var famTemp;
+
     try {
         var maior = 0;
-
-
+        var quantidadeEPS = ep.length;
         //for (var temp = 0; temp < 13; temp++) {
         for (var i = 0; i < quantidadeFamilias; i++) {
-          var famTemp = new Familia();
+          famTemp = new Familia();
+
             if (familias[i].classificacao == "N") {
                 if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                     if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
@@ -929,62 +928,92 @@ function tabela4(quantidadeFamilias) {
                               if (familias[i].mes == ep[j].mes) {
                                   if (familias[i].dia == ep[j].dia) {
                                     for (var j = 0; j < familias[i]['tempos'].length; j++) {
-                            if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                maior = parseInt(familias[i]['tempos'][j].size);
-                                famTemp.push(familias[i]);
-                            } //fim if
-                        } //fim for
+                                      if (maior < parseInt(familias[i]['tempos'][j].size)) {
+                                          maior = parseInt(familias[i]['tempos'][j].size);
+                                          famTemp['tempos'] = familias[i]['tempos'][j];
+                                      } //fim if
+                                    } //fim for
                                   }
                               }
                           }
                       } //fim for quantidadeEPS
                   } //fim if xlon
                 } //fim if xlat
+                famTemp.numero = familias[i].numero;
+                famTemp.ano = familias[i].ano;
+                famTemp.mes = familias[i].mes;
+                famTemp.dia = familias[i].dia;
+                famTemp.hora = familias[i].hora;
+                famTemp.primeiro_membro = familias[i].primeiro_membro;
+                famTemp.classificacao = familias[i].classificacao;
+                famTemp.total_time = familias[i].total_time;
+                famTemp.deltax = familias[i].deltax;
+                famTemp.deltay = familias[i].deltay;
+                famTemp.last_image = familias[i].last_image;
+                famTemp.end = familias[i].end;
+                testeArray.push(famTemp);
             } //fim for quantidadeEPS WHILE
+              maior = 0;
+
         } //fim for quantidadeFamilias
-
-        for (var i = 0; i < famTemp.length; i++) {
-            $("#tabela-4 > tbody").append($('<tr>')
-              .append($('<td>').append(famTemp[i].numero))
-              .append($('<td>').append(famTemp[i].ano))
-              .append($('<td>').append(famTemp[i].mes))
-              .append($('<td>').append(famTemp[i].dia))
-              .append($('<td>').append(famTemp[i].hora))
-              .append($('<td>').append(famTemp[i].primeiro_membro))
-              .append($('<td>').append(famTemp[i].classificacao))
-              .append($('<td>').append(famTemp[i].total_time))
-              .append($('<td>').append(famTemp[i].deltax))
-              .append($('<td>').append(famTemp[i].deltay))
-              .append($('<td>').append(famTemp[i].last_image))
-              .append($('<td>').append(famTemp[i].end))
-
-              .append($('<td>').append(famTemp[i]['tempos'][0].sys))
-              .append($('<td>').append(famTemp[i]['tempos'][0].xlat))
-              .append($('<td>').append(famTemp[i]['tempos'][0].xlon))
-              .append($('<td>').append(famTemp[i]['tempos'][0].time))
-              .append($('<td>').append(famTemp[i]['tempos'][0].size))
-              .append($('<td>').append(famTemp[i]['tempos'][0].dsize))
-              .append($('<td>').append(famTemp[i]['tempos'][0].dtmed))
-              .append($('<td>').append(famTemp[i]['tempos'][0].tmin))
-              .append($('<td>').append(famTemp[i]['tempos'][0].dtmin))
-              .append($('<td>').append(famTemp[i]['tempos'][0].tmin9))
-
-              .append($('<td>').append(famTemp[i]['tempos'][0].dtmin9))
-              .append($('<td>').append(famTemp[i]['tempos'][0].cbnum))
-              .append($('<td>').append(famTemp[i]['tempos'][0].cbmed))
-              .append($('<td>').append(famTemp[i]['tempos'][0].vel))
-              .append($('<td>').append(famTemp[i]['tempos'][0].dir))
-              .append($('<td>').append(famTemp[i]['tempos'][0].incli))
-
-              .append($('<td>').append(famTemp[i]['tempos'][0].ecce))
-              .append($('<td>').append(famTemp[i]['tempos'][0].t_ini))
-              .append($('<td>').append(famTemp[i]['tempos'][0].t_fin))
-              .append($('<td>').append(famTemp[i]['tempos'][0].clas))
-              .append($('<td>').append(famTemp[i]['tempos'][0].sys_ant)));
-        }
     } catch (err) {
         console.log(err.message);
     } //fim catch
+
+  //  console.log(testeArray);
+
+    for (var i = 0; i < testeArray.length; i++) {
+      console.log(testeArray[i]);
+
+      $("#tabela-4 > tbody").append($('<tr>')
+        .append($('<td>').append(testeArray[i].numero))
+
+        .append($('<td>').append(testeArray[i].ano))
+        .append($('<td>').append(testeArray[i].mes))
+        .append($('<td>').append(testeArray[i].dia))
+
+        .append($('<td>').append(testeArray[i].hora))
+        .append($('<td>').append(testeArray[i].primeiro_membro))
+        .append($('<td>').append(testeArray[i].classificacao))
+
+        .append($('<td>').append(testeArray[i].total_time))
+        .append($('<td>').append(testeArray[i].deltax))
+        .append($('<td>').append(testeArray[i].deltay))
+
+        .append($('<td>').append(testeArray[i].last_image))
+        .append($('<td>').append(testeArray[i].end))
+        .append($('<td>').append(testeArray[i]['tempos'].sys))
+
+        .append($('<td>').append(testeArray[i]['tempos'].xlat))
+        .append($('<td>').append(testeArray[i]['tempos'].xlon))
+        .append($('<td>').append(testeArray[i]['tempos'].time))
+
+        .append($('<td>').append(testeArray[i]['tempos'].size))
+        .append($('<td>').append(testeArray[i]['tempos'].dsize))
+        .append($('<td>').append(testeArray[i]['tempos'].tmed))
+
+        .append($('<td>').append(testeArray[i]['tempos'].dtmed))
+        .append($('<td>').append(testeArray[i]['tempos'].tmin))
+        .append($('<td>').append(testeArray[i]['tempos'].dtmin))
+
+        .append($('<td>').append(testeArray[i]['tempos'].tmin9))
+        .append($('<td>').append(testeArray[i]['tempos'].dtmin9))
+        .append($('<td>').append(testeArray[i]['tempos'].cbnum))
+
+        .append($('<td>').append(testeArray[i]['tempos'].cbmed))
+        .append($('<td>').append(testeArray[i]['tempos'].vel))
+        .append($('<td>').append(testeArray[i]['tempos'].dir))
+
+        .append($('<td>').append(testeArray[i]['tempos'].incli))
+        .append($('<td>').append(testeArray[i]['tempos'].ecce))
+        .append($('<td>').append(testeArray[i]['tempos'].t_ini))
+
+        .append($('<td>').append(testeArray[i]['tempos'].t_fin))
+        .append($('<td>').append(testeArray[i]['tempos'].clas))
+        .append($('<td>').append(testeArray[i]['tempos'].sys_ant)));
+    }
+
+    $("#div-tabela-4").fadeIn(300);
 
     $("#btsteste").click(function() {
         $("#tabela-4").table2excel({
