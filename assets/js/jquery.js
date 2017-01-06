@@ -342,7 +342,7 @@ $(document).ready(function() {
                     } //fim else if
                 } //fim for new familia
 
-                tabela5(familias.length);
+                tabela4(familias.length);
                 console.log(quantidadeFamilias);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
@@ -917,35 +917,70 @@ function tabela4(quantidadeFamilias) {
     try {
         var maior = 0;
 
-        var famTemp = new Array();
 
         //for (var temp = 0; temp < 13; temp++) {
         for (var i = 0; i < quantidadeFamilias; i++) {
+          var famTemp = new Familia();
             if (familias[i].classificacao == "N") {
                 if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                     if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                        for (var j = 0; j < familias[i]['tempos'].length; j++) {
+                      for (var j = 0; j < quantidadeEPS; j++) {
+                          if (familias[i].ano == ep[j].ano) {
+                              if (familias[i].mes == ep[j].mes) {
+                                  if (familias[i].dia == ep[j].dia) {
+                                    for (var j = 0; j < familias[i]['tempos'].length; j++) {
                             if (maior < parseInt(familias[i]['tempos'][j].size)) {
                                 maior = parseInt(familias[i]['tempos'][j].size);
                                 famTemp.push(familias[i]);
-                            }
-                        }
-                    } //fim if xlon
+                            } //fim if
+                        } //fim for
+                                  }
+                              }
+                          }
+                      } //fim for quantidadeEPS
+                  } //fim if xlon
                 } //fim if xlat
             } //fim for quantidadeEPS WHILE
         } //fim for quantidadeFamilias
 
-        console.log(famTemp);
-
         for (var i = 0; i < famTemp.length; i++) {
             $("#tabela-4 > tbody").append($('<tr>')
               .append($('<td>').append(famTemp[i].numero))
-                .append($('<td>').append(famTemp[i]['temposnus'].size))
-                  .append($('<td>').append(famTemp[i]['tempos'][0].tmed))
-                    .append($('<td>').append(famTemp[i]['tempos'][0].tmin))
-                      .append($('<td>').append(famTemp[i]['tempos'][0].xlat))
-                        .append($('<td>').append(famTemp[i]['tempos'][0].xlon))
-                          .append($('<td>').append(famTemp[i]['tempos'][0].ecce)));
+              .append($('<td>').append(famTemp[i].ano))
+              .append($('<td>').append(famTemp[i].mes))
+              .append($('<td>').append(famTemp[i].dia))
+              .append($('<td>').append(famTemp[i].hora))
+              .append($('<td>').append(famTemp[i].primeiro_membro))
+              .append($('<td>').append(famTemp[i].classificacao))
+              .append($('<td>').append(famTemp[i].total_time))
+              .append($('<td>').append(famTemp[i].deltax))
+              .append($('<td>').append(famTemp[i].deltay))
+              .append($('<td>').append(famTemp[i].last_image))
+              .append($('<td>').append(famTemp[i].end))
+
+              .append($('<td>').append(famTemp[i]['tempos'][0].sys))
+              .append($('<td>').append(famTemp[i]['tempos'][0].xlat))
+              .append($('<td>').append(famTemp[i]['tempos'][0].xlon))
+              .append($('<td>').append(famTemp[i]['tempos'][0].time))
+              .append($('<td>').append(famTemp[i]['tempos'][0].size))
+              .append($('<td>').append(famTemp[i]['tempos'][0].dsize))
+              .append($('<td>').append(famTemp[i]['tempos'][0].dtmed))
+              .append($('<td>').append(famTemp[i]['tempos'][0].tmin))
+              .append($('<td>').append(famTemp[i]['tempos'][0].dtmin))
+              .append($('<td>').append(famTemp[i]['tempos'][0].tmin9))
+
+              .append($('<td>').append(famTemp[i]['tempos'][0].dtmin9))
+              .append($('<td>').append(famTemp[i]['tempos'][0].cbnum))
+              .append($('<td>').append(famTemp[i]['tempos'][0].cbmed))
+              .append($('<td>').append(famTemp[i]['tempos'][0].vel))
+              .append($('<td>').append(famTemp[i]['tempos'][0].dir))
+              .append($('<td>').append(famTemp[i]['tempos'][0].incli))
+
+              .append($('<td>').append(famTemp[i]['tempos'][0].ecce))
+              .append($('<td>').append(famTemp[i]['tempos'][0].t_ini))
+              .append($('<td>').append(famTemp[i]['tempos'][0].t_fin))
+              .append($('<td>').append(famTemp[i]['tempos'][0].clas))
+              .append($('<td>').append(famTemp[i]['tempos'][0].sys_ant)));
         }
     } catch (err) {
         console.log(err.message);
