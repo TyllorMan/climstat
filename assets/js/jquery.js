@@ -43,6 +43,7 @@ $(document).ready(function() {
     $("#div-tabela-4").hide();
     $("#div-tabela-5").hide();
     $("#div-tabela-6").hide();
+    $("#div-tabela-7").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -1190,8 +1191,8 @@ function tabela7(quantidadeFamilias) {
                                     } //fim for familias['tempos']
 
                                     tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), temp, 2, hora(Math.round(maturacao + familias[i].hora)));
-                                    tab7(familias[i].numero, familias[i].hora, maturacao, familias[i].hora+maturacao, 3, hora(Math.round(maturacao + familias[i].hora)));
-                                  //  var totalTime = familias[i].hora + Math.round(familias[i]['tempos'][(familias[i]['tempos'].length - 1)].time);
+                                    tab7(familias[i].numero, familias[i].hora, maturacao, familias[i].hora + maturacao, 3, hora(Math.round(maturacao + familias[i].hora)));
+                                    $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                 } //fim if dia
                             } //fim if mes
                         } //fim if ano
@@ -1199,13 +1200,12 @@ function tabela7(quantidadeFamilias) {
                 } //fim if xlon
             } //fim if xlat
         } //fim if classificacao
-        $("#tabela-7 > tbody")
-          .append($('<tr>')
-          .append($('<td colspan="3">').append('Latitude: '+familias[i]['tempos'][0].xlat))
-          .append($('<td colspan="3">').append('Longitude: '+familias[i]['tempos'][0].xlon)));
 
         maior = 0;
     } //fim quantidadeFamilias
+
+    $("#div-tabela-7").fadeIn("slow");
+    $("#tabela-7").simplePagination({perPage: 8, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts7").click(function() {
         $("#tabela-7").table2excel({
@@ -1220,24 +1220,16 @@ function tabela7(quantidadeFamilias) {
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
-  var tipo = "";
+    var tipo = "";
 
-  if (vez == 1) {
-      tipo = "Iniciação";
-  }
-  else if (vez ==2) {
-    tipo = "Maturação";
-  }
-  else if(vez==3){
-    tipo = "Dissipação";
-  }
-  $("#tabela-7 > tbody").append($('<tr>')
-    .append($('<td>').append(numero))
-    .append($('<td>').append(hora))
-    .append($('<td>').append(time))
-    .append($('<td>').append(soma))
-    .append($('<td>').append(tipo))
-    .append($('<td>').append(horario)));
+    if (vez == 1) {
+        tipo = "Iniciação";
+    } else if (vez == 2) {
+        tipo = "Maturação";
+    } else if (vez == 3) {
+        tipo = "Dissipação";
+    }
+    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(horario)));
 }
 
 function hora(hora) {
