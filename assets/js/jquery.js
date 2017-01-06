@@ -938,7 +938,14 @@ function tabela4(quantidadeFamilias) {
         console.log(famTemp);
 
         for (var i = 0; i < famTemp.length; i++) {
-            $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append("> 24")).append($('<td>').append(famTemp[i].numero)).append($('<td>').append(famTemp[i]['temposnus'].size)).append($('<td>').append(famTemp[i]['tempos'][0].tmed)).append($('<td>').append(famTemp[i]['tempos'][0].tmin)).append($('<td>').append(famTemp[i]['tempos'][0].xlat)).append($('<td>').append(famTemp[i]['tempos'][0].xlon)).append($('<td>').append(famTemp[i]['tempos'][0].ecce)));
+            $("#tabela-4 > tbody").append($('<tr>')
+              .append($('<td>').append(famTemp[i].numero))
+                .append($('<td>').append(famTemp[i]['temposnus'].size))
+                  .append($('<td>').append(famTemp[i]['tempos'][0].tmed))
+                    .append($('<td>').append(famTemp[i]['tempos'][0].tmin))
+                      .append($('<td>').append(famTemp[i]['tempos'][0].xlat))
+                        .append($('<td>').append(famTemp[i]['tempos'][0].xlon))
+                          .append($('<td>').append(famTemp[i]['tempos'][0].ecce)));
         }
     } catch (err) {
         console.log(err.message);
