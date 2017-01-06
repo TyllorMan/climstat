@@ -7,6 +7,10 @@ var epListado = new Array();
 var familias = new Array();
 var tabelas = new Array();
 var testeArray = new Array();
+var madrugada = 0;
+var manha = 0;
+var tarde = 0;
+var noite = 0;
 
 //inicializacao de componentes
 $(document).ready(function() {
@@ -1175,43 +1179,85 @@ function tabela7(quantidadeFamilias) {
                         if (familias[i].ano == ep[j].ano) {
                             if (familias[i].mes == ep[j].mes) {
                                 if (familias[i].dia == ep[j].dia) {
-                                    alert("iniciacao: " + familias[i].hora);
+                                    var temp = familias[i].hora + familias[i]['tempos'][0].time;
+                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), temp, 1, hora(familias[i].hora));
 
                                     for (var k = 0; k < familias[i]['tempos'].length; k++) {
                                         if (maior < familias[i]['tempos'][k].size) {
                                             maior = familias[i]['tempos'][k].size;
-                                            maturacao = familias[i]['tempos'][k].time;
+                                            maturacao = Math.round(familias[i]['tempos'][k].time);
                                         } //fim if familias['tempos']
                                     } //fim for familias['tempos']
 
-                                    alert("maturacao: " + (Math.round(maturacao + familias[i].hora)));
-                                    alert("dissipacao: " + (Math.round(familias[i]['tempos'][(familias[i]['tempos'].length - 1)].time) + familias[i].hora));
-
+                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), temp, 2, hora(Math.round(maturacao + familias[i].hora)));
+                                    tab7(familias[i].numero, familias[i].hora, maturacao, familias[i].hora+maturacao, 3, hora(Math.round(maturacao + familias[i].hora)));
+                                  //  var totalTime = familias[i].hora + Math.round(familias[i]['tempos'][(familias[i]['tempos'].length - 1)].time);
                                 } //fim if dia
                             } //fim if mes
                         } //fim if ano
-                    } //quantidadeEPS
+                    } //fim for quantidadeEPS
                 } //fim if xlon
             } //fim if xlat
         } //fim if classificacao
+        $("#tabela-7 > tbody")
+          .append($('<tr>')
+          .append($('<td colspan="3">').append('Latitude: '+familias[i]['tempos'][0].xlat))
+          .append($('<td colspan="3">').append('Longitude: '+familias[i]['tempos'][0].xlon)));
+
         maior = 0;
     } //fim quantidadeFamilias
+
+    $("#bts7").click(function() {
+        $("#tabela-7").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 7",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
+    });
+}
+
+function tab7(numero, hora, time, soma, vez, horario) {
+  var tipo = "";
+
+  if (vez == 1) {
+      tipo = "Iniciação";
+  }
+  else if (vez ==2) {
+    tipo = "Maturação";
+  }
+  else if(vez==3){
+    tipo = "Dissipação";
+  }
+  $("#tabela-7 > tbody").append($('<tr>')
+    .append($('<td>').append(numero))
+    .append($('<td>').append(hora))
+    .append($('<td>').append(time))
+    .append($('<td>').append(soma))
+    .append($('<td>').append(tipo))
+    .append($('<td>').append(horario)));
 }
 
 function hora(hora) {
+
     if (hora > 24) {
         hora = hora - 24
     }
 
     if (hora > 3 && hora <= 9) {
-
+        madrugada++;
+        return "madrugada";
     } else if (hora > 9 && hora <= 15) {
-
+        manha++;
+        return "manha";
     } else if (hora > 15 && hora <= 21) {
-
-    }
-    else if (hora > 21 && hora <= 3) {
-
+        tarde++;
+        return "tarde";
+    } else {
+        noite++;
+        return "noite";
     }
 }
 
