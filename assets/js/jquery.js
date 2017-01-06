@@ -748,92 +748,6 @@ function tabela2(quantidadeFamilias) {
         }
     }
 
-    // // var linha = new Array(12);
-    // // var indice = 0;
-    // // var hora1 = 0;
-    // // var hora2 = 2;
-    //
-    // for (var i = 0; i < linha.length; i++) {
-    //     linha[i] = 0;
-    // }
-
-    // for (var iTeste = 0; iTeste < 25; iTeste++) {
-    //     if (iTeste % 2 == 0) {
-    //         for (var i = 0; i < quantidadeFamilias; i++) {
-    //             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-    //                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-    //                     if (familias[i].classificacao == "N") {
-    //                         var hora = familias[i].hora;
-    //                         if (hora >= iTeste && hora < (iTeste + 2) && hora < 24) {
-    //                             if (familias[i].mes == 1) {
-    //                                 linha[0] += 1;
-    //                             } else if (familias[i].mes == 2) {
-    //                                 linha[1] += 1;
-    //                             } else if (familias[i].mes == 3) {
-    //                                 linha[2] += 1;
-    //                             } else if (familias[i].mes == 4) {
-    //                                 linha[3] += 1;
-    //                             } else if (familias[i].mes == 5) {
-    //                                 linha[4] += 1;
-    //                             } else if (familias[i].mes == 6) {
-    //                                 linha[5] += 1;
-    //                             } else if (familias[i].mes == 7) {
-    //                                 linha[6] += 1;
-    //                             } else if (familias[i].mes == 8) {
-    //                                 linha[7] += 1;
-    //                             } else if (familias[i].mes == 9) {
-    //                                 linha[8] += 1;
-    //                             } else if (familias[i].mes == 10) {
-    //                                 linha[9] += 1;
-    //                             } else if (familias[i].mes == 11) {
-    //                                 linha[10] += 1;
-    //                             } else if (familias[i].mes == 12) {
-    //                                 linha[11] += 1;
-    //                             } //fim else if
-    //                         } else if (hora >= 24) {
-    //                             if (familias[i].mes == 1) {
-    //                                 linha[0] += 1;
-    //                             } else if (familias[i].mes == 2) {
-    //                                 linha[1] += 1;
-    //                             } else if (familias[i].mes == 3) {
-    //                                 linha[2] += 1;
-    //                             } else if (familias[i].mes == 4) {
-    //                                 linha[3] += 1;
-    //                             } else if (familias[i].mes == 5) {
-    //                                 linha[4] += 1;
-    //                             } else if (familias[i].mes == 6) {
-    //                                 linha[5] += 1;
-    //                             } else if (familias[i].mes == 7) {
-    //                                 linha[6] += 1;
-    //                             } else if (familias[i].mes == 8) {
-    //                                 linha[7] += 1;
-    //                             } else if (familias[i].mes == 9) {
-    //                                 linha[8] += 1;
-    //                             } else if (familias[i].mes == 10) {
-    //                                 linha[9] += 1;
-    //                             } else if (familias[i].mes == 11) {
-    //                                 linha[10] += 1;
-    //                             } else if (familias[i].mes == 12) {
-    //                                 linha[11] += 1;
-    //                             } //fim else if
-    //                         }
-    //                     } //fim if classificacao
-    //                 }
-    //             }
-    //         } //fim for quantidadeFamilias
-    //
-    //         if (iTeste == 24) {
-    //             $("#tabela-2 > tbody").append($('<tr>').append($('<td>').append(' > ' + 24)).append($('<td>').append(linha[0])).append($('<td>').append(linha[1])).append($('<td>').append(linha[2])).append($('<td>').append(linha[3])).append($('<td>').append(linha[4])).append($('<td>').append(linha[5])).append($('<td>').append(linha[6])).append($('<td>').append(linha[7])).append($('<td>').append(linha[8])).append($('<td>').append(linha[9])).append($('<td>').append(linha[10])).append($('<td>').append(linha[11])));
-    //         } else {
-    //             $("#tabela-2 > tbody").append($('<tr>').append($('<td>').append(iTeste + ' ~ ' + (iTeste + 2))).append($('<td>').append(linha[0])).append($('<td>').append(linha[1])).append($('<td>').append(linha[2])).append($('<td>').append(linha[3])).append($('<td>').append(linha[4])).append($('<td>').append(linha[5])).append($('<td>').append(linha[6])).append($('<td>').append(linha[7])).append($('<td>').append(linha[8])).append($('<td>').append(linha[9])).append($('<td>').append(linha[10])).append($('<td>').append(linha[11])));
-    //         }
-    //
-    //         for (var e = 0; e < linha.length; e++) {
-    //             linha[e] = 0;
-    //         }
-    //     }
-    // }
-
     $("#bts2").click(function() {
         $("#tabela-2").table2excel({
             name: "Excel Document Name",
@@ -1173,16 +1087,16 @@ function tabela5(quantidadeFamilias) {
                 } //fim if
               } //fim
             } //fim for
-            indice+=2; //incrementa variavel indice
+            indice += 2; //incrementa variavel indice
             maior = 0; //zera variavel maior
         } //fim for
     } catch (err) {
         console.log(err.message);
     } //fim catch
 
-    for (var i = 1; i < 13; i++) {
+    for (var i = 0; i < 12; i++) {
         for (var j = 1; j < 27; j++) {
-            matriz[12][j] += matriz[i][j];
+            matriz[12][j] += matriz[i][j]/12;
         }
     }
 
