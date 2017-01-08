@@ -323,7 +323,7 @@ $(document).ready(function() {
                         familia.dia = parseInt(linhas[i].substr((linhas[i].search("DAY=") + ("DAY=".length)), 2));
                         familia.hora = parseFloat(linhas[i].substr((linhas[i].search("HOUR=") + ("HOUR=".length)), 5));
                         familia.primeiro_membro = parseInt(linhas[i].substr((linhas[i].search("FIRST MEMBER=") + ("FIRST MEMBER=".length)), 3));
-                        familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 1);
+                        familia.classificacao = linhas[i].substr((linhas[i].search("CLASSIF=") + ("CLASSIF=".length)), 3);
                         familias.push(familia);
                     } else if (linhas[i].search("SYS#") != -1) {
                         var contador = i + 1;
@@ -369,30 +369,14 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-
-                tabela7(familias.length);
+                //tabela7(familias.length);
+                console.log(familias);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
+
     }); //fim change
 }); //fim document ready
-
-/*
-  todas as tebelas devem ser verificadas por:
-  classificação
-  latitude
-  longitude
-*/
-
-/*
-  Tipos de classificação
-
-  N (geracao expontanea)
-  NOR (dissipacao natural)
-  S (split)
-  C (continuidade)
-  M (merger)
-*/
 
 function tabela1(quantidadeFamilias) {
     var quantidadeEPS = ep.length;
@@ -1259,8 +1243,6 @@ function tabela7(quantidadeFamilias) {
             exclude_inputs: false
         });
     });
-
-    console.log(tabTemp);
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
@@ -1274,7 +1256,6 @@ function tab7(numero, hora, time, soma, vez, horario) {
     if (horario > 3 && horario <= 9) {
         madrugada++;
         temp = "madrugada";
-
         if (vez == 1) {
             tabTemp[0][1] +=1;
         } else if (vez == 2) {
@@ -1282,9 +1263,6 @@ function tab7(numero, hora, time, soma, vez, horario) {
         } else if (vez == 3) {
             tabTemp[0][3] +=1;
         }
-
-
-
     } else if (horario > 9 && horario <= 15) {
         manha++;
         temp = "manha";
@@ -1305,11 +1283,9 @@ function tab7(numero, hora, time, soma, vez, horario) {
         } else if (vez == 3) {
             tabTemp[2][3]+=1;
         }
-
     } else {
         noite++;
         temp = "noite";
-
         if (vez == 1) {
             tabTemp[3][1]+=1;
         } else if (vez == 2) {
@@ -1344,3 +1320,20 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
     link.click();
 } //fim downloadInnerHtml
+
+/*
+  todas as tebelas devem ser verificadas por:
+  classificação
+  latitude
+  longitude
+*/
+
+/*
+  Tipos de classificação
+
+  N (geracao expontanea)
+  NOR (dissipacao natural)
+  S (split)
+  C (continuidade)
+  M (merger)
+*/
