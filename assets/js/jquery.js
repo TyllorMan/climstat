@@ -268,7 +268,7 @@ $(document).ready(function() {
         for (cont = 0; cont < quantidadeArquivos; cont++) {
             const fileReader = new FileReader();
 
-            fileReader.onloadend = function(evento) {
+            fileReader.onload = function(evento) {
                 var resultado = fileReader.result;
                 var fam = 0;
                 var linhas = new Array();
@@ -1217,6 +1217,10 @@ function tabela7(quantidadeFamilias) {
             exclude_inputs: false
         });
     });
+}
+
+function tabela8() {
+  
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
