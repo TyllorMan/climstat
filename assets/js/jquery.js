@@ -7,10 +7,34 @@ var epListado = new Array();
 var familias = new Array();
 var tabelas = new Array();
 var testeArray = new Array();
+
 var madrugada = 0;
 var manha = 0;
 var tarde = 0;
 var noite = 0;
+
+var hor = [
+      "Madrugada",
+      "Manhã",
+      "Tarde",
+      "Noite"
+  ];
+
+  var tabTemp = new Array(4);
+
+  for (var i = 0; i < tabTemp.length; i++) {
+    tabTemp[i] = new Array(4);
+  }
+
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
+      tabTemp[i][j] = 0;
+    }
+  }
+
+  for (var i = 0; i < tabTemp.length; i++) {
+    tabTemp[i][0] = hor[i];
+  }
 
 //inicializacao de componentes
 $(document).ready(function() {
@@ -35,7 +59,7 @@ $(document).ready(function() {
         tabela6(familias.length, $(this).text());
     });
 
-    //tabelas
+    //div tabelas
     $("#tabela-EPs").hide();
     $("#div-tabela-1").hide();
     $("#div-tabela-2").hide();
@@ -44,6 +68,7 @@ $(document).ready(function() {
     $("#div-tabela-5").hide();
     $("#div-tabela-6").hide();
     $("#div-tabela-7").hide();
+    //$("#div-tabela-8").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -1181,7 +1206,13 @@ function tabela7(quantidadeFamilias) {
                             if (familias[i].mes == ep[j].mes) {
                                 if (familias[i].dia == ep[j].dia) {
                                     var temp = familias[i].hora + familias[i]['tempos'][0].time;
-                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), temp, 1, hora(familias[i].hora));
+
+                                    tab7(familias[i].numero,
+                                      familias[i].hora,
+                                      Math.round(familias[i]['tempos'][0].time),
+                                      temp,
+                                      1,
+                                      familias[i].hora);
 
                                     for (var k = 0; k < familias[i]['tempos'].length; k++) {
                                         if (maior < familias[i]['tempos'][k].size) {
@@ -1190,8 +1221,20 @@ function tabela7(quantidadeFamilias) {
                                         } //fim if familias['tempos']
                                     } //fim for familias['tempos']
 
-                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), temp, 2, hora(Math.round(maturacao + familias[i].hora)));
-                                    tab7(familias[i].numero, familias[i].hora, maturacao, familias[i].hora + maturacao, 3, hora(Math.round(maturacao + familias[i].hora)));
+                                    tab7(familias[i].numero,
+                                      familias[i].hora,
+                                      Math.round(familias[i]['tempos'][0].time),
+                                      temp,
+                                      2,
+                                      Math.round(maturacao + familias[i].hora));
+
+                                    tab7(familias[i].numero,
+                                      familias[i].hora,
+                                      maturacao,
+                                      familias[i].hora + maturacao,
+                                      3,
+                                      Math.round(maturacao + familias[i].hora));
+
                                     $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                 } //fim if dia
                             } //fim if mes
@@ -1200,7 +1243,6 @@ function tabela7(quantidadeFamilias) {
                 } //fim if xlon
             } //fim if xlat
         } //fim if classificacao
-
         maior = 0;
     } //fim quantidadeFamilias
 
@@ -1217,14 +1259,66 @@ function tabela7(quantidadeFamilias) {
             exclude_inputs: false
         });
     });
-}
 
-function tabela8() {
-  
+    console.log(tabTemp);
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
     var tipo = "";
+    var temp;
+
+    if (horario > 24) {
+        horario = horario - 24
+    }
+
+    if (horario > 3 && horario <= 9) {
+        madrugada++;
+        temp = "madrugada";
+
+        if (vez == 1) {
+            tabTemp[0][1] +=1;
+        } else if (vez == 2) {
+            tabTemp[0][2] +=1;
+        } else if (vez == 3) {
+            tabTemp[0][3] +=1;
+        }
+
+
+
+    } else if (horario > 9 && horario <= 15) {
+        manha++;
+        temp = "manha";
+        if (vez == 1) {
+            tabTemp[1][1]+=1;
+        } else if (vez == 2) {
+            tabTemp[1][2]+=1;
+        } else if (vez == 3) {
+            tabTemp[1][3]+=1;
+        }
+    } else if (horario > 15 && horario <= 21) {
+        tarde++;
+        temp = "tarde";
+        if (vez == 1) {
+            tabTemp[2][1]+=1;
+        } else if (vez == 2) {
+            tabTemp[2][2]+=1;
+        } else if (vez == 3) {
+            tabTemp[2][3]+=1;
+        }
+
+    } else {
+        noite++;
+        temp = "noite";
+
+        if (vez == 1) {
+            tabTemp[3][1]+=1;
+        } else if (vez == 2) {
+            tabTemp[3][2]+=1;
+        } else if (vez == 3) {
+            tabTemp[3][3]+=1;
+        }
+
+    }
 
     if (vez == 1) {
         tipo = "Iniciação";
@@ -1233,28 +1327,14 @@ function tab7(numero, hora, time, soma, vez, horario) {
     } else if (vez == 3) {
         tipo = "Dissipação";
     }
-    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(horario)));
-}
 
-function hora(hora) {
-
-    if (hora > 24) {
-        hora = hora - 24
-    }
-
-    if (hora > 3 && hora <= 9) {
-        madrugada++;
-        return "madrugada";
-    } else if (hora > 9 && hora <= 15) {
-        manha++;
-        return "manha";
-    } else if (hora > 15 && hora <= 21) {
-        tarde++;
-        return "tarde";
-    } else {
-        noite++;
-        return "noite";
-    }
+    $("#tabela-7 > tbody").append($('<tr>')
+      .append($('<td>').append(numero))
+        .append($('<td>').append(hora))
+          .append($('<td>').append(time))
+            .append($('<td>').append(soma))
+              .append($('<td>').append(tipo))
+                .append($('<td>').append(temp)));
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
