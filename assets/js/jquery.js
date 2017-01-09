@@ -68,7 +68,7 @@ $(document).ready(function() {
     $("#div-tabela-5").hide();
     $("#div-tabela-6").hide();
     $("#div-tabela-7").hide();
-    //$("#div-tabela-8").hide();
+    $("#div-tabela-8").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -369,8 +369,8 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                //tabela7(familias.length);
-                console.log(familias);
+                tabela7(familias.length);
+                console.log(tabTemp);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -1256,52 +1256,55 @@ function tab7(numero, hora, time, soma, vez, horario) {
     if (horario > 3 && horario <= 9) {
         madrugada++;
         temp = "madrugada";
-        if (vez == 1) {
-            tabTemp[0][1] +=1;
-        } else if (vez == 2) {
-            tabTemp[0][2] +=1;
-        } else if (vez == 3) {
-            tabTemp[0][3] +=1;
-        }
     } else if (horario > 9 && horario <= 15) {
         manha++;
         temp = "manha";
-        if (vez == 1) {
-            tabTemp[1][1]+=1;
-        } else if (vez == 2) {
-            tabTemp[1][2]+=1;
-        } else if (vez == 3) {
-            tabTemp[1][3]+=1;
-        }
     } else if (horario > 15 && horario <= 21) {
         tarde++;
         temp = "tarde";
-        if (vez == 1) {
-            tabTemp[2][1]+=1;
-        } else if (vez == 2) {
-            tabTemp[2][2]+=1;
-        } else if (vez == 3) {
-            tabTemp[2][3]+=1;
-        }
     } else {
         noite++;
         temp = "noite";
-        if (vez == 1) {
-            tabTemp[3][1]+=1;
-        } else if (vez == 2) {
-            tabTemp[3][2]+=1;
-        } else if (vez == 3) {
-            tabTemp[3][3]+=1;
-        }
-
     }
 
     if (vez == 1) {
         tipo = "Iniciação";
+
+        if (temp == "madrugada") {
+            tabTemp[0][1] +=1;
+        } else if (temp == "manha") {
+            tabTemp[1][1] +=1;
+        } else if (temp == "tarde") {
+            tabTemp[2][1] +=1;
+        }else if (temp == "noite") {
+            tabTemp[3][1] +=1;
+        }
+
     } else if (vez == 2) {
         tipo = "Maturação";
+
+        if (temp == "madrugada") {
+            tabTemp[0][2] +=1;
+        } else if (temp == "manha") {
+            tabTemp[1][2] +=1;
+        } else if (temp == "tarde") {
+            tabTemp[2][2] +=1;
+        }else if (temp == "noite") {
+            tabTemp[3][2] +=1;
+        }
+
     } else if (vez == 3) {
         tipo = "Dissipação";
+
+        if (temp == "madrugada") {
+            tabTemp[0][3] +=1;
+        } else if (temp == "manha") {
+            tabTemp[1][3] +=1;
+        } else if (temp == "tarde") {
+            tabTemp[2][3] +=1;
+        }else if (temp == "noite") {
+            tabTemp[3][3] +=1;
+        }
     }
 
     $("#tabela-7 > tbody").append($('<tr>')
