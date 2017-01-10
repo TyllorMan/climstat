@@ -13,28 +13,23 @@ var manha = 0;
 var tarde = 0;
 var noite = 0;
 
-var hor = [
-      "Madrugada",
-      "Manhã",
-      "Tarde",
-      "Noite"
-  ];
+var hor = ["Madrugada", "Manhã", "Tarde", "Noite"];
 
-  var tabTemp = new Array(4);
+var tabTemp = new Array(4);
 
-  for (var i = 0; i < tabTemp.length; i++) {
+for (var i = 0; i < tabTemp.length; i++) {
     tabTemp[i] = new Array(4);
-  }
+}
 
-  for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 4; i++) {
     for (var j = 0; j < 4; j++) {
-      tabTemp[i][j] = 0;
+        tabTemp[i][j] = 0;
     }
-  }
+}
 
-  for (var i = 0; i < tabTemp.length; i++) {
+for (var i = 0; i < tabTemp.length; i++) {
     tabTemp[i][0] = hor[i];
-  }
+}
 
 //inicializacao de componentes
 $(document).ready(function() {
@@ -1181,6 +1176,7 @@ function tabela7(quantidadeFamilias) {
     var quantidadeEPS = ep.length;
     var maior = 0;
     var maturacao = 0;
+
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
@@ -1189,14 +1185,10 @@ function tabela7(quantidadeFamilias) {
                         if (familias[i].ano == ep[j].ano) {
                             if (familias[i].mes == ep[j].mes) {
                                 if (familias[i].dia == ep[j].dia) {
-                                    var temp = familias[i].hora + familias[i]['tempos'][0].time;
 
-                                    tab7(familias[i].numero,
-                                      familias[i].hora,
-                                      Math.round(familias[i]['tempos'][0].time),
-                                      temp,
-                                      1,
-                                      familias[i].hora);
+                                    var soma = (familias[i].hora + familias[i]['tempos'][0].time);
+
+                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), soma, 1, familias[i].hora);
 
                                     for (var k = 0; k < familias[i]['tempos'].length; k++) {
                                         if (maior < familias[i]['tempos'][k].size) {
@@ -1205,19 +1197,11 @@ function tabela7(quantidadeFamilias) {
                                         } //fim if familias['tempos']
                                     } //fim for familias['tempos']
 
-                                    tab7(familias[i].numero,
-                                      familias[i].hora,
-                                      Math.round(familias[i]['tempos'][0].time),
-                                      temp,
-                                      2,
-                                      Math.round(maturacao + familias[i].hora));
+                                    var ultimaHora = Math.round(familias[i]['tempos'][familias[i]['tempos'].length-1].time);
 
-                                    tab7(familias[i].numero,
-                                      familias[i].hora,
-                                      maturacao,
-                                      familias[i].hora + maturacao,
-                                      3,
-                                      Math.round(maturacao + familias[i].hora));
+                                    tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), soma, 2, maturacao);
+
+                                    tab7(familias[i].numero, familias[i].hora, ultimaHora, (familias[i].hora + ultimaHora), 3, ultimaHora);
 
                                     $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                 } //fim if dia
@@ -1247,10 +1231,10 @@ function tabela7(quantidadeFamilias) {
 
 function tab7(numero, hora, time, soma, vez, horario) {
     var tipo = "";
-    var temp;
+    var temp = "";
 
     if (horario > 24) {
-        horario = horario - 24
+        horario = (horario - 24);
     }
 
     if (horario > 3 && horario <= 9) {
@@ -1269,51 +1253,41 @@ function tab7(numero, hora, time, soma, vez, horario) {
 
     if (vez == 1) {
         tipo = "Iniciação";
-
         if (temp == "madrugada") {
-            tabTemp[0][1] +=1;
+            tabTemp[0][1] += 1;
         } else if (temp == "manha") {
-            tabTemp[1][1] +=1;
+            tabTemp[1][1] += 1;
         } else if (temp == "tarde") {
-            tabTemp[2][1] +=1;
-        }else if (temp == "noite") {
-            tabTemp[3][1] +=1;
+            tabTemp[2][1] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][1] += 1;
         }
 
     } else if (vez == 2) {
         tipo = "Maturação";
-
         if (temp == "madrugada") {
-            tabTemp[0][2] +=1;
+            tabTemp[0][2] += 1;
         } else if (temp == "manha") {
-            tabTemp[1][2] +=1;
+            tabTemp[1][2] += 1;
         } else if (temp == "tarde") {
-            tabTemp[2][2] +=1;
-        }else if (temp == "noite") {
-            tabTemp[3][2] +=1;
+            tabTemp[2][2] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][2] += 1;
         }
-
     } else if (vez == 3) {
         tipo = "Dissipação";
-
         if (temp == "madrugada") {
-            tabTemp[0][3] +=1;
+            tabTemp[0][3] += 1;
         } else if (temp == "manha") {
-            tabTemp[1][3] +=1;
+            tabTemp[1][3] += 1;
         } else if (temp == "tarde") {
-            tabTemp[2][3] +=1;
-        }else if (temp == "noite") {
-            tabTemp[3][3] +=1;
+            tabTemp[2][3] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][3] += 1;
         }
     }
 
-    $("#tabela-7 > tbody").append($('<tr>')
-      .append($('<td>').append(numero))
-        .append($('<td>').append(hora))
-          .append($('<td>').append(time))
-            .append($('<td>').append(soma))
-              .append($('<td>').append(tipo))
-                .append($('<td>').append(temp)));
+    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
