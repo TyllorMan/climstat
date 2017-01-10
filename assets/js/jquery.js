@@ -7,7 +7,6 @@ var epListado = new Array();
 var familias = new Array();
 var tabelas = new Array();
 var testeArray = new Array();
-
 var madrugada = 0;
 var manha = 0;
 var tarde = 0;
@@ -1187,20 +1186,15 @@ function tabela7(quantidadeFamilias) {
                                 if (familias[i].dia == ep[j].dia) {
 
                                     var soma = (familias[i].hora + familias[i]['tempos'][0].time);
-
                                     tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), soma, 1, familias[i].hora);
-
                                     for (var k = 0; k < familias[i]['tempos'].length; k++) {
                                         if (maior < familias[i]['tempos'][k].size) {
                                             maior = familias[i]['tempos'][k].size;
                                             maturacao = Math.round(familias[i]['tempos'][k].time);
                                         } //fim if familias['tempos']
                                     } //fim for familias['tempos']
-
-                                    var ultimaHora = Math.round(familias[i]['tempos'][familias[i]['tempos'].length-1].time);
-
+                                    var ultimaHora = Math.round(familias[i]['tempos'][familias[i]['tempos'].length - 1].time);
                                     tab7(familias[i].numero, familias[i].hora, Math.round(familias[i]['tempos'][0].time), soma, 2, maturacao);
-
                                     tab7(familias[i].numero, familias[i].hora, ultimaHora, (familias[i].hora + ultimaHora), 3, ultimaHora);
 
                                     $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
@@ -1299,15 +1293,16 @@ function downloadInnerHtml(filename, elId, mimeType) {
 } //fim downloadInnerHtml
 
 /*
+  -------------------------------------------
   todas as tebelas devem ser verificadas por:
-  classificação
-  latitude
-  longitude
-*/
+  -------------------------------------------
+  classificação N
+  latitude -19 a -3
+  longitude -47 q -34.9
 
-/*
+  -------------------------------------------
   Tipos de classificação
-
+  -------------------------------------------
   N (geracao expontanea)
   NOR (dissipacao natural)
   S (split)
