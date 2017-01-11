@@ -1193,16 +1193,18 @@ function tabela7(quantidadeFamilias) {
 
                                     for (var k = 1; k < familias[i]['tempos'].length; k++) {
                                         //nao permitir permitir primeiro size nem o ultimo
-                                        if (familias[i]['tempos'][k].time != 0 && familias[i]['tempos'][k].time =! ultimaHora) {
+                                        if (familias[i]['tempos'][k].time != 0) {
+                                          if (familias[i]['tempos'][k].time =! ultimaHora){
                                           if (maior < familias[i]['tempos'][k].size) {
                                               maior = familias[i]['tempos'][k].size;
                                               maturacao = familias[i]['tempos'][k].time;
                                           } //fim if familias['tempos']
                                         }
+                                      }
                                     } //fim for familias['tempos']
 
                                     var soma = (familias[i].hora + maturacao);
-                                    tab7(familias[i].numero, familias[i].hora, familias[i]['tempos'][0].time, soma, 2, maturacao);
+                                    tab7(familias[i].numero, familias[i].hora, familias[i]['tempos'][0].time,  Math.round(soma), 2, maturacao);
 
                                     var soma = (familias[i].hora + ultimaHora);
                                     tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, ultimaHora);
