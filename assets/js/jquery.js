@@ -1177,7 +1177,8 @@ function tabela7(quantidadeFamilias) {
     var maturacao = 0;
 
     for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "N") {
+      if (familias[i].classificacao == "N") {
+        if (familias[i].total_time >= 6) {
             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                     for (var j = 0; j < quantidadeEPS; j++) {
@@ -1204,6 +1205,7 @@ function tabela7(quantidadeFamilias) {
                     } //fim for quantidadeEPS
                 } //fim if xlon
             } //fim if xlat
+          } //fim if total_time
         } //fim if classificacao
         maior = 0;
     } //fim quantidadeFamilias
