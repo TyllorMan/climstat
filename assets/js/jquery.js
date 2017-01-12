@@ -1185,15 +1185,14 @@ function tabela7(quantidadeFamilias) {
                             if (familias[i].ano == ep[j].ano) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
+
                                         var soma = familias[i].hora + familias[i]['tempos'][0].time;
                                         var time = familias[i]['tempos'][0].time;
+
                                         tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
                                         var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
-                                        for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
 
-                                        var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
-
-                                        for (var k = 1; k < familias[i]['tempos'].length; k++) {
+                                        for (var k = 3; k < (familias[i]['tempos'].length-3); k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
@@ -1231,99 +1230,99 @@ function tabela7(quantidadeFamilias) {
             exclude_inputs: false
         });
     });
-
     tabela8();
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
-    var tipo = "";
-    var temp = "";
+var tipo = "";
+var temp = "";
 
-    if (horario > 24) {
-        horario = (horario - 24);
-    }
-    if (horario > 3 && horario <= 9) {
-        madrugada++;
-        temp = "madrugada";
-    } else if (horario > 9 && horario <= 15) {
-        manha++;
-        temp = "manha";
-    } else if (horario > 15 && horario <= 21) {
-        tarde++;
-        temp = "tarde";
-    } else {
-        noite++;
-        temp = "noite";
-    }
+if (horario > 24) {
+    horario = (horario - 24);
+}
+if (horario > 3 && horario <= 9) {
+    madrugada++;
+    temp = "madrugada";
+} else if (horario > 9 && horario <= 15) {
+    manha++;
+    temp = "manha";
+} else if (horario > 15 && horario <= 21) {
+    tarde++;
+    temp = "tarde";
+} else {
+    noite++;
+    temp = "noite";
+}
 
-    if (vez == 1) {
-        tipo = "Iniciação";
-        if (temp == "madrugada") {
-            tabTemp[0][1] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][1] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][1] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][1] += 1;
-        }
-
-    } else if (vez == 2) {
-        tipo = "Maturação";
-        if (temp == "madrugada") {
-            tabTemp[0][2] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][2] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][2] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][2] += 1;
-        }
-    } else if (vez == 3) {
-        tipo = "Dissipação";
-        if (temp == "madrugada") {
-            tabTemp[0][3] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][3] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][3] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][3] += 1;
-        }
+if (vez == 1) {
+    tipo = "Iniciação";
+    if (temp == "madrugada") {
+        tabTemp[0][1] += 1;
+    } else if (temp == "manha") {
+        tabTemp[1][1] += 1;
+    } else if (temp == "tarde") {
+        tabTemp[2][1] += 1;
+    } else if (temp == "noite") {
+        tabTemp[3][1] += 1;
     }
 
-    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
+} else if (vez == 2) {
+    tipo = "Maturação";
+    if (temp == "madrugada") {
+        tabTemp[0][2] += 1;
+    } else if (temp == "manha") {
+        tabTemp[1][2] += 1;
+    } else if (temp == "tarde") {
+        tabTemp[2][2] += 1;
+    } else if (temp == "noite") {
+        tabTemp[3][2] += 1;
+    }
+} else if (vez == 3) {
+    tipo = "Dissipação";
+    if (temp == "madrugada") {
+        tabTemp[0][3] += 1;
+    } else if (temp == "manha") {
+        tabTemp[1][3] += 1;
+    } else if (temp == "tarde") {
+        tabTemp[2][3] += 1;
+    } else if (temp == "noite") {
+        tabTemp[3][3] += 1;
+    }
+}
+
+$("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
 }
 
 function tabela8() {
 
-  for (var i = 0; i < 4; i++) {
-      var row = $('<tr></tr>').appendTo("#tabela-8");
-      for (var j = 0; j < 4; j++) {
-          $('<td></td>').text(tabTemp[i][j]).appendTo(row);
-      }
-  }
+for (var i = 0; i < 4; i++) {
+    //add nova linha
+    var row = $('<tr></tr>').appendTo("#tabela-8");
+    for (var j = 0; j < 4; j++) {
+        $('<td></td>').text(tabTemp[i][j]).appendTo(row);
+    } //fim for j
+} //fim for i
 
-  $("#div-tabela-8").fadeIn("slow");
+$("#div-tabela-8").fadeIn("slow");
 
-  $("#bts8").click(function() {
-      $("#tabela-8").table2excel({
-          name: "Excel Document Name",
-          filename: "Tabela 7",
-          fileext: ".xls",
-          exclude_img: false,
-          exclude_links: false,
-          exclude_inputs: false
-      });
-  });
-}
+$("#bts8").click(function() {
+    $("#tabela-8").table2excel({
+        name: "Excel Document Name",
+        filename: "Tabela 7",
+        fileext: ".xls",
+        exclude_img: false,
+        exclude_links: false,
+        exclude_inputs: false
+    });
+});
+} //fim function 8
 
 function downloadInnerHtml(filename, elId, mimeType) {
-    var link = document.createElement('a');
-    mimeType = mimeType || 'text/html';
-    link.setAttribute('download', filename);
-    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
-    link.click();
+var link = document.createElement('a');
+mimeType = mimeType || 'text/html';
+link.setAttribute('download', filename);
+link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
+link.click();
 } //fim downloadInnerHtml
 
 /*
