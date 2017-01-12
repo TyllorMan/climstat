@@ -1189,20 +1189,22 @@ function tabela7(quantidadeFamilias) {
                                         var time = familias[i]['tempos'][0].time;
                                         tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
 
+                                        var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
+
                                         for (var k = 1; k < familias[i]['tempos'].length; k++) {
-                                            //nao permitir permitir primeiro size nem o ultimo
-                                                    if (maior < familias[i]['tempos'][k].size) {
-                                                        maior = familias[i]['tempos'][k].size;
-                                                        maturacao = familias[i]['tempos'][k].time;
-                                                    } //fim if familias['tempos']
+                                            if (familias[i]['tempos'][k].time != ultimaHora) {
+                                                if (maior < familias[i]['tempos'][k].size) {
+                                                    maior = familias[i]['tempos'][k].size;
+                                                    maturacao = familias[i]['tempos'][k].time;
+                                                } //fim if familias['tempos']
+                                            }
                                         } //fim for familias['tempos']
 
                                         soma = familias[i].hora + maturacao;
                                         tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma));
 
-                                        var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
                                         soma = familias[i].hora + ultimaHora;
-                                        console.log("maturacao : "+ maturacao);
+                                        console.log("maturacao : " + maturacao);
                                         tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma));
 
                                         $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
