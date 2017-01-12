@@ -1227,6 +1227,8 @@ function tabela7(quantidadeFamilias) {
             exclude_inputs: false
         });
     });
+
+    tabela8();
 }
 
 function tab7(numero, hora, time, soma, vez, horario) {
@@ -1287,7 +1289,6 @@ function tab7(numero, hora, time, soma, vez, horario) {
     }
 
     $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
-    tabela8();
 }
 
 function tabela8() {
