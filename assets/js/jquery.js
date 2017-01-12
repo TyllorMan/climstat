@@ -1190,6 +1190,10 @@ function tabela7(quantidadeFamilias) {
                                         tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
                                         var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
                                         for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
+
+                                        var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
+
+                                        for (var k = 1; k < familias[i]['tempos'].length; k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
