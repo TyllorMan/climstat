@@ -1188,10 +1188,8 @@ function tabela7(quantidadeFamilias) {
                                         var soma = familias[i].hora + familias[i]['tempos'][0].time;
                                         var time = familias[i]['tempos'][0].time;
                                         tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
-
                                         var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
-
-                                        for (var k = 1; k < familias[i]['tempos'].length; k++) {
+                                        for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
@@ -1199,14 +1197,10 @@ function tabela7(quantidadeFamilias) {
                                                 } //fim if familias['tempos']
                                             }
                                         } //fim for familias['tempos']
-
                                         soma = familias[i].hora + maturacao;
                                         tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma));
-
                                         soma = familias[i].hora + ultimaHora;
-                                        console.log("maturacao : " + maturacao);
                                         tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma));
-
                                         $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                     } //fim if dia
                                 } //fim if mes
@@ -1293,6 +1287,30 @@ function tab7(numero, hora, time, soma, vez, horario) {
     }
 
     $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
+    tabela8();
+}
+
+function tabela8() {
+
+  for (var i = 0; i < 4; i++) {
+      var row = $('<tr></tr>').appendTo("#tabela-8");
+      for (var j = 0; j < 4; j++) {
+          $('<td></td>').text(tabTemp[i][j]).appendTo(row);
+      }
+  }
+
+  $("#div-tabela-8").fadeIn("slow");
+
+  $("#bts8").click(function() {
+      $("#tabela-8").table2excel({
+          name: "Excel Document Name",
+          filename: "Tabela 7",
+          fileext: ".xls",
+          exclude_img: false,
+          exclude_links: false,
+          exclude_inputs: false
+      });
+  });
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
