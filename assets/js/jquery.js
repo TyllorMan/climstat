@@ -363,8 +363,7 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                tabela7(familias.length);
-                console.log(tabTemp);
+                tabela4(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -674,69 +673,69 @@ function tabela2(quantidadeFamilias) {
                 if (familias[i].classificacao == "N") {
                     if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                         if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            // for (var j = 0; j < quantidadeEPS; j++) {
-                            //     if (familias[i].ano == ep[j].ano) {
-                            //         if (familias[i].mes == ep[j].mes) {
-                            //             if (familias[i].dia == ep[j].dia) {
-                            if (index >= 24 && familias[i].total_time >= 24) {
-                                if (familias[i].mes == 1) {
-                                    matriz[temp][1] += 1;
-                                } else if (familias[i].mes == 2) {
-                                    matriz[temp][2] += 1;
-                                } else if (familias[i].mes == 3) {
-                                    matriz[temp][3] += 1;
-                                } else if (familias[i].mes == 4) {
-                                    matriz[temp][4] += 1;
-                                } else if (familias[i].mes == 5) {
-                                    matriz[temp][5] += 1;
-                                } else if (familias[i].mes == 6) {
-                                    matriz[temp][6] += 1;
-                                } else if (familias[i].mes == 7) {
-                                    matriz[temp][7] += 1;
-                                } else if (familias[i].mes == 8) {
-                                    matriz[temp][8] += 1;
-                                } else if (familias[i].mes == 9) {
-                                    matriz[temp][9] += 1;
-                                } else if (familias[i].mes == 10) {
-                                    matriz[temp][10] += 1;
-                                } else if (familias[i].mes == 11) {
-                                    matriz[temp][11] += 1;
-                                } else if (familias[i].mes == 12) {
-                                    matriz[temp][12] += 1;
-                                } //fim else if
-                            } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-                                if (familias[i].mes == 1) {
-                                    matriz[temp][1] += 1;
-                                } else if (familias[i].mes == 2) {
-                                    matriz[temp][2] += 1;
-                                } else if (familias[i].mes == 3) {
-                                    matriz[temp][3] += 1;
-                                } else if (familias[i].mes == 4) {
-                                    matriz[temp][4] += 1;
-                                } else if (familias[i].mes == 5) {
-                                    matriz[temp][5] += 1;
-                                } else if (familias[i].mes == 6) {
-                                    matriz[temp][6] += 1;
-                                } else if (familias[i].mes == 7) {
-                                    matriz[temp][7] += 1;
-                                } else if (familias[i].mes == 8) {
-                                    matriz[temp][8] += 1;
-                                } else if (familias[i].mes == 9) {
-                                    matriz[temp][9] += 1;
-                                } else if (familias[i].mes == 10) {
-                                    matriz[temp][10] += 1;
-                                } else if (familias[i].mes == 11) {
-                                    matriz[temp][11] += 1;
-                                } else if (familias[i].mes == 12) {
-                                    matriz[temp][12] += 1;
-                                } //fim else if
-                            }
-                        } //fim if xlon
-                    } //fim if xlat
-                    //         } //fim dia
-                    //     } //fim mes
-                    // } //fim ano
-                    //} //fim for quantidadeEPS
+                            for (var j = 0; j < quantidadeEPS; j++) {
+                                if (familias[i].ano == ep[j].ano) {
+                                    if (familias[i].mes == ep[j].mes) {
+                                        if (familias[i].dia == ep[j].dia) {
+                                            if (index >= 24 && familias[i].total_time >= 24) {
+                                                if (familias[i].mes == 1) {
+                                                    matriz[temp][1] += 1;
+                                                } else if (familias[i].mes == 2) {
+                                                    matriz[temp][2] += 1;
+                                                } else if (familias[i].mes == 3) {
+                                                    matriz[temp][3] += 1;
+                                                } else if (familias[i].mes == 4) {
+                                                    matriz[temp][4] += 1;
+                                                } else if (familias[i].mes == 5) {
+                                                    matriz[temp][5] += 1;
+                                                } else if (familias[i].mes == 6) {
+                                                    matriz[temp][6] += 1;
+                                                } else if (familias[i].mes == 7) {
+                                                    matriz[temp][7] += 1;
+                                                } else if (familias[i].mes == 8) {
+                                                    matriz[temp][8] += 1;
+                                                } else if (familias[i].mes == 9) {
+                                                    matriz[temp][9] += 1;
+                                                } else if (familias[i].mes == 10) {
+                                                    matriz[temp][10] += 1;
+                                                } else if (familias[i].mes == 11) {
+                                                    matriz[temp][11] += 1;
+                                                } else if (familias[i].mes == 12) {
+                                                    matriz[temp][12] += 1;
+                                                } //fim else if
+                                            } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+                                                if (familias[i].mes == 1) {
+                                                    matriz[temp][1] += 1;
+                                                } else if (familias[i].mes == 2) {
+                                                    matriz[temp][2] += 1;
+                                                } else if (familias[i].mes == 3) {
+                                                    matriz[temp][3] += 1;
+                                                } else if (familias[i].mes == 4) {
+                                                    matriz[temp][4] += 1;
+                                                } else if (familias[i].mes == 5) {
+                                                    matriz[temp][5] += 1;
+                                                } else if (familias[i].mes == 6) {
+                                                    matriz[temp][6] += 1;
+                                                } else if (familias[i].mes == 7) {
+                                                    matriz[temp][7] += 1;
+                                                } else if (familias[i].mes == 8) {
+                                                    matriz[temp][8] += 1;
+                                                } else if (familias[i].mes == 9) {
+                                                    matriz[temp][9] += 1;
+                                                } else if (familias[i].mes == 10) {
+                                                    matriz[temp][10] += 1;
+                                                } else if (familias[i].mes == 11) {
+                                                    matriz[temp][11] += 1;
+                                                } else if (familias[i].mes == 12) {
+                                                    matriz[temp][12] += 1;
+                                                } //fim else if
+                                            }
+                                        } //fim if xlon
+                                    } //fim if xlat
+                                } //fim dia
+                            } //fim mes
+                        } //fim ano
+                    } //fim for quantidadeEPS
                 }
             } //fim for quantidadeFamilias
             index += 2;
@@ -932,41 +931,62 @@ function tabela4(quantidadeFamilias) {
                             if (familias[i].ano == ep[j].ano) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
-                                        for (var j = 0; j < familias[i]['tempos'].length; j++) {
-                                            if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                                maior = parseInt(familias[i]['tempos'][j].size);
-                                                famTemp['tempos'] = familias[i]['tempos'][j];
+                                        for (var k = 0; k < familias[i]['tempos'].length; k++) {
+                                            if (maior < parseInt(familias[i]['tempos'][k].size)) {
+                                                maior = parseInt(familias[i]['tempos'][k].size);
+                                                famTemp['tempos'] = familias[i]['tempos'][k];
                                             } //fim if maior
                                         } //fim for j
+
+                                        console.log(famTemp);
+                                        $("#tabela-4 > tbody").append($('<tr>')
+                                        .append($('<td>').append(familias[i].numero))
+                                        .append($('<td>').append(familias[i].ano))
+                                        .append($('<td>').append(familias[i].mes))
+                                        .append($('<td>').append(familias[i].dia))
+                                        .append($('<td>').append(familias[i].hora))
+                                        .append($('<td>').append(familias[i].primeiro_membro))
+                                        .append($('<td>').append(familias[i].classificacao))
+                                        .append($('<td>').append(familias[i].total_time))
+                                        .append($('<td>').append(familias[i].deltax))
+                                        .append($('<td>').append(familias[i].deltay))
+                                        .append($('<td>').append(familias[i].last_image))
+                                        .append($('<td>').append(familias[i].end))
+                                        .append($('<td>').append(famTemp['tempos'].sys))
+                                        .append($('<td>').append(famTemp['tempos'].xlat))
+                                        .append($('<td>').append(famTemp['tempos'].xlon))
+                                        .append($('<td>').append(famTemp['tempos'].time))
+                                        .append($('<td>').append(famTemp['tempos'].size))
+                                        .append($('<td>').append(famTemp['tempos'].dsize))
+                                        .append($('<td>').append(famTemp['tempos'].tmed))
+                                        .append($('<td>').append(famTemp['tempos'].dtmed))
+                                        .append($('<td>').append(famTemp['tempos'].tmin))
+                                        .append($('<td>').append(famTemp['tempos'].dtmin))
+                                        .append($('<td>').append(famTemp['tempos'].tmin9))
+                                        .append($('<td>').append(famTemp['tempos'].dtmin9))
+                                        .append($('<td>').append(famTemp['tempos'].cbnum))
+                                        .append($('<td>').append(famTemp['tempos'].cbmed))
+                                        .append($('<td>').append(famTemp['tempos'].vel))
+                                        .append($('<td>').append(famTemp['tempos'].dir))
+                                        .append($('<td>').append(famTemp['tempos'].incli))
+                                        .append($('<td>').append(famTemp['tempos'].ecce))
+                                        .append($('<td>').append(famTemp['tempos'].t_ini))
+                                        .append($('<td>').append(famTemp['tempos'].t_fin))
+                                        .append($('<td>').append(famTemp['tempos'].clas))
+                                        .append($('<td>').append(famTemp['tempos'].sys_ant))
+                                      );
                                     } //fim dia
                                 } //fim mes
                             } //fim ano
                         } //fim for quantidadeEPS
                     } //fim if xlon
                 } //fim if xlat
-                famTemp.numero = familias[i].numero;
-                famTemp.ano = familias[i].ano;
-                famTemp.mes = familias[i].mes;
-                famTemp.dia = familias[i].dia;
-                famTemp.hora = familias[i].hora;
-                famTemp.primeiro_membro = familias[i].primeiro_membro;
-                famTemp.classificacao = familias[i].classificacao;
-                famTemp.total_time = familias[i].total_time;
-                famTemp.deltax = familias[i].deltax;
-                famTemp.deltay = familias[i].deltay;
-                famTemp.last_image = familias[i].last_image;
-                famTemp.end = familias[i].end;
-                testeArray.push(famTemp);
-            } //fim for quantidadeEPS WHILE
+            } //fim if classificacao
             maior = 0;
         } //fim for quantidadeFamilias
     } catch (err) {
         console.log(err.message);
     } //fim catch
-
-    for (var i = 0; i < testeArray.length; i++) {
-        $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(testeArray[i].numero)).append($('<td>').append(testeArray[i].ano)).append($('<td>').append(testeArray[i].mes)).append($('<td>').append(testeArray[i].dia)).append($('<td>').append(testeArray[i].hora)).append($('<td>').append(testeArray[i].primeiro_membro)).append($('<td>').append(testeArray[i].classificacao)).append($('<td>').append(testeArray[i].total_time)).append($('<td>').append(testeArray[i].deltax)).append($('<td>').append(testeArray[i].deltay)).append($('<td>').append(testeArray[i].last_image)).append($('<td>').append(testeArray[i].end)).append($('<td>').append(testeArray[i]['tempos'].sys)).append($('<td>').append(testeArray[i]['tempos'].xlat)).append($('<td>').append(testeArray[i]['tempos'].xlon)).append($('<td>').append(testeArray[i]['tempos'].time)).append($('<td>').append(testeArray[i]['tempos'].size)).append($('<td>').append(testeArray[i]['tempos'].dsize)).append($('<td>').append(testeArray[i]['tempos'].tmed)).append($('<td>').append(testeArray[i]['tempos'].dtmed)).append($('<td>').append(testeArray[i]['tempos'].tmin)).append($('<td>').append(testeArray[i]['tempos'].dtmin)).append($('<td>').append(testeArray[i]['tempos'].tmin9)).append($('<td>').append(testeArray[i]['tempos'].dtmin9)).append($('<td>').append(testeArray[i]['tempos'].cbnum)).append($('<td>').append(testeArray[i]['tempos'].cbmed)).append($('<td>').append(testeArray[i]['tempos'].vel)).append($('<td>').append(testeArray[i]['tempos'].dir)).append($('<td>').append(testeArray[i]['tempos'].incli)).append($('<td>').append(testeArray[i]['tempos'].ecce)).append($('<td>').append(testeArray[i]['tempos'].t_ini)).append($('<td>').append(testeArray[i]['tempos'].t_fin)).append($('<td>').append(testeArray[i]['tempos'].clas)).append($('<td>').append(testeArray[i]['tempos'].sys_ant)));
-    }
 
     $("#div-tabela-4").fadeIn(300);
 
@@ -1192,7 +1212,7 @@ function tabela7(quantidadeFamilias) {
                                         tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
                                         var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
 
-                                        for (var k = 3; k < (familias[i]['tempos'].length-3); k++) {
+                                        for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
@@ -1200,6 +1220,7 @@ function tabela7(quantidadeFamilias) {
                                                 } //fim if familias['tempos']
                                             }
                                         } //fim for familias['tempos']
+
                                         soma = familias[i].hora + maturacao;
                                         tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma));
                                         soma = familias[i].hora + ultimaHora;
@@ -1233,96 +1254,96 @@ function tabela7(quantidadeFamilias) {
     tabela8();
 }
 
-function tab7(numero, hora, time, soma, vez, horario) {
-var tipo = "";
-var temp = "";
-
-if (horario > 24) {
-    horario = (horario - 24);
-}
-if (horario > 3 && horario <= 9) {
-    madrugada++;
-    temp = "madrugada";
-} else if (horario > 9 && horario <= 15) {
-    manha++;
-    temp = "manha";
-} else if (horario > 15 && horario <= 21) {
-    tarde++;
-    temp = "tarde";
-} else {
-    noite++;
-    temp = "noite";
-}
-
-if (vez == 1) {
-    tipo = "Iniciação";
-    if (temp == "madrugada") {
-        tabTemp[0][1] += 1;
-    } else if (temp == "manha") {
-        tabTemp[1][1] += 1;
-    } else if (temp == "tarde") {
-        tabTemp[2][1] += 1;
-    } else if (temp == "noite") {
-        tabTemp[3][1] += 1;
-    }
-
-} else if (vez == 2) {
-    tipo = "Maturação";
-    if (temp == "madrugada") {
-        tabTemp[0][2] += 1;
-    } else if (temp == "manha") {
-        tabTemp[1][2] += 1;
-    } else if (temp == "tarde") {
-        tabTemp[2][2] += 1;
-    } else if (temp == "noite") {
-        tabTemp[3][2] += 1;
-    }
-} else if (vez == 3) {
-    tipo = "Dissipação";
-    if (temp == "madrugada") {
-        tabTemp[0][3] += 1;
-    } else if (temp == "manha") {
-        tabTemp[1][3] += 1;
-    } else if (temp == "tarde") {
-        tabTemp[2][3] += 1;
-    } else if (temp == "noite") {
-        tabTemp[3][3] += 1;
-    }
-}
-
-$("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
-}
-
 function tabela8() {
 
-for (var i = 0; i < 4; i++) {
-    //add nova linha
-    var row = $('<tr></tr>').appendTo("#tabela-8");
-    for (var j = 0; j < 4; j++) {
-        $('<td></td>').text(tabTemp[i][j]).appendTo(row);
-    } //fim for j
-} //fim for i
+    for (var i = 0; i < 4; i++) {
+        var row = $('<tr></tr>').appendTo("#tabela-8");
+        for (var j = 0; j < 4; j++) {
+            $('<td></td>').text(tabTemp[i][j]).appendTo(row);
+        } //fim for j
+    } //fim for i
 
-$("#div-tabela-8").fadeIn("slow");
+    $("#div-tabela-8").fadeIn("slow");
 
-$("#bts8").click(function() {
-    $("#tabela-8").table2excel({
-        name: "Excel Document Name",
-        filename: "Tabela 7",
-        fileext: ".xls",
-        exclude_img: false,
-        exclude_links: false,
-        exclude_inputs: false
+    $("#bts8").click(function() {
+        $("#tabela-8").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela 8",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
     });
-});
-} //fim function 8
+    console.log(tabTemp);
+} //fim tabela8
+
+function tab7(numero, hora, time, soma, vez, horario) {
+    var tipo = "";
+    var temp = "";
+
+    if (horario > 24) {
+        horario = (horario - 24);
+    }
+    if (horario > 3 && horario <= 9) {
+        madrugada++;
+        temp = "madrugada";
+    } else if (horario > 9 && horario <= 15) {
+        manha++;
+        temp = "manha";
+    } else if (horario > 15 && horario <= 21) {
+        tarde++;
+        temp = "tarde";
+    } else {
+        noite++;
+        temp = "noite";
+    }
+
+    if (vez == 1) {
+        tipo = "Iniciação";
+        if (temp == "madrugada") {
+            tabTemp[0][1] += 1;
+        } else if (temp == "manha") {
+            tabTemp[1][1] += 1;
+        } else if (temp == "tarde") {
+            tabTemp[2][1] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][1] += 1;
+        }
+
+    } else if (vez == 2) {
+        tipo = "Maturação";
+        if (temp == "madrugada") {
+            tabTemp[0][2] += 1;
+        } else if (temp == "manha") {
+            tabTemp[1][2] += 1;
+        } else if (temp == "tarde") {
+            tabTemp[2][2] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][2] += 1;
+        }
+    } else if (vez == 3) {
+        tipo = "Dissipação";
+        if (temp == "madrugada") {
+            tabTemp[0][3] += 1;
+        } else if (temp == "manha") {
+            tabTemp[1][3] += 1;
+        } else if (temp == "tarde") {
+            tabTemp[2][3] += 1;
+        } else if (temp == "noite") {
+            tabTemp[3][3] += 1;
+        }
+    }
+
+    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
+}
 
 function downloadInnerHtml(filename, elId, mimeType) {
-var link = document.createElement('a');
-mimeType = mimeType || 'text/html';
-link.setAttribute('download', filename);
-link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
-link.click();
+    var link = document.createElement('a');
+    mimeType = mimeType || 'text/html';
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
+    link.click();
 } //fim downloadInnerHtml
 
 /*
