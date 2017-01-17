@@ -1155,6 +1155,17 @@ function tabela5(quantidadeFamilias) {
     }
 
     $("#div-tabela-5").fadeIn(300);
+
+    $("#tab5").click(function() {
+        $("#tabela-5").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        });
+    });
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
