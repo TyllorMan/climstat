@@ -1143,7 +1143,7 @@ function tabela5(quantidadeFamilias) {
 
     for (var i = 0; i < 12; i++) {
         for (var j = 1; j < 27; j++) {
-            matriz[12][j] += matriz[i][j] / 12;
+            matriz[12][j] += matriz[i][j];
         }
     }
 
