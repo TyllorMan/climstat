@@ -363,7 +363,7 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                tabela5(familias.length);
+                tabela6(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -1169,13 +1169,11 @@ function tabela5(quantidadeFamilias) {
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
-    var classf = "N";
-    var teste = 0;
+    var classificacao = "N";
     for (var j = 0; j < 24; j++) {
         if (j % 2 == 0) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                //if (familias[i].classificacao == "N") {
-                if (familias[i].classificacao == classf) {
+                if (familias[i].classificacao == classificacao) {
                     if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                         if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                             if (familias[i].total_time >= j && familias[i].total_time < (j + 2)) {
@@ -1185,7 +1183,6 @@ function tabela6(quantidadeFamilias) {
                     } //fim if xlat
                 } //fim if classificacao
             } //fim for quantidadeFamilias
-            teste += 2;
         } //fim if mod 2
     }
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
