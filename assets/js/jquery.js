@@ -1120,7 +1120,7 @@ function tabela5(quantidadeFamilias) {
                                     matriz[8][indice + 1] = familias[i]['tempos'][j].ecce;
                                     matriz[8][indice + 2] = familias[i]['tempos'][j].tmin;
                                 } else if (familias[i].mes == 10) {
-                                    matriz[9][indiceindice + 1] = familias[i]['tempos'][j].ecce;
+                                    matriz[9][indice + 1] = familias[i]['tempos'][j].ecce;
                                     matriz[9][indice + 2] = familias[i]['tempos'][j].tmin;
                                 } else if (familias[i].mes == 11) {
                                     matriz[10][indice + 1] = familias[i]['tempos'][j].ecce;
