@@ -363,7 +363,7 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                tabela4(familias.length);
+                tabela5(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
