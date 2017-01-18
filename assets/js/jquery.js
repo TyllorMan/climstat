@@ -568,15 +568,15 @@ function tabela1(quantidadeFamilias) {
                                                     matriz[11][index + 1] += 1;
                                                 } else {
                                                     matriz[11][index + 2] += 1;
-                                                } //fim if total_time
+                                                }
                                             } //fim else if
-                                        }
-                                    } //fim if xlon
-                                } //fim if xlat
-                            } //fim dia
-                        } //fim mes
-                    } //fim ano
-                } //fim for quantidadeEPS WHILE
+                                        } //fim else if
+                                    } //fim if dia
+                                } //fim if mes
+                            } //fim if ano
+                        } //fim for quantidadeEPS
+                    } //fim if xlon
+                } //fim if xlat
             } //fim for quantidadeFamilias
             index += 2;
         } //fim for temp
@@ -1032,7 +1032,7 @@ function tabela5(quantidadeFamilias) {
         "OUT",
         "NOV",
         "DEZ",
-        "MEDIA"
+        "MÉDIA"
     ];
 
     for (var i = 0; i < 13; i++) {
@@ -1044,9 +1044,9 @@ function tabela5(quantidadeFamilias) {
     try {
         for (var temp = 0; temp < 13; temp++) {
             for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") { //verifica condicoes ncessarias para tabela
-                    if (familias[i].total_time >= 24 && indice >= 24) { //verifica condicoes ncessarias para tabela
-                        for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+                if (familias[i].classificacao == "N") {
+                    if (familias[i].total_time >= 24 && indice >= 24) {
+                        for (var j = 0; j < familias[i]['tempos'].length; j++) {
                             if (maior < parseInt(familias[i]['tempos'][j].size)) {
                                 maior = parseInt(familias[i]['tempos'][j].size);
                                 if (familias[i].mes == 1) {
@@ -1159,7 +1159,7 @@ function tabela5(quantidadeFamilias) {
     $("#tab5").click(function() {
         $("#tabela-5").table2excel({
             name: "Excel Document Name",
-            filename: "Tabela",
+            filename: "tabela",
             fileext: ".xls",
             exclude_img: false,
             exclude_links: false,
@@ -1183,8 +1183,9 @@ function tabela6(quantidadeFamilias) {
                     } //fim if xlat
                 } //fim if classificacao
             } //fim for quantidadeFamilias
-        } //fim if mod 2
-    }
+        } //fim if j % 2
+    } //fim j
+
     $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts6").click(function() {
@@ -1199,7 +1200,7 @@ function tabela6(quantidadeFamilias) {
     });
 
     $("#div-tabela-6").fadeIn(300);
-} //fim function tabela 6
+} //fim tabela6
 
 function tabela7(quantidadeFamilias) {
     var quantidadeEPS = ep.length;
