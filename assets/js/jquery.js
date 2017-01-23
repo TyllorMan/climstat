@@ -1345,6 +1345,21 @@ function verificaRaio(latitude, longitude) {
 
   var km2 = (82 * 2400)/150;
 
+  for (var i = 0; i < quantidadeFamilias; i++) {
+      if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+          if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+              for (var j = 0; j < quantidadeEPS; j++) {
+                  if (familias[i].ano == ep[j].ano) {
+                      if (familias[i].mes == ep[j].mes) {
+                          if (familias[i].dia == ep[j].dia) {
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
   console.log(km2);
 }
 /*
