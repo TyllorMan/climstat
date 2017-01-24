@@ -1226,12 +1226,12 @@ function tabela7(quantidadeFamilias) {
                                         tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma), lat, lon);
                                         soma = familias[i].hora + ultimaHora;
 
-                                        lat = familias[i]['tempos'][familias[i]['tempos'].length - 3].xlat;
-                                        lon = familias[i]['tempos'][familias[i]['tempos'].length - 3].xlon;
+                                        lat = familias[i]['tempos'][familias[i]['tempos'].length-1].xlat;
+                                        lon = familias[i]['tempos'][familias[i]['tempos'].length-1].xlon;
 
                                         tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
 
-                                        $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="4">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="4">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
+                                        $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="4">').append('')).append($('<td colspan="4">').append('')));
                                     } //fim if dia
                                 } //fim if mes
                             } //fim if ano
