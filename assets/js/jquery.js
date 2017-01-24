@@ -498,10 +498,10 @@ function tabela1(quantidadeFamilias) {
                                         } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
 
                                             for (var n = 0; n < epListado.length; n++) {
-                                              if (true) {
-                                                epListado.push(ep[j]);
+                                                if (true) {
+                                                    epListado.push(ep[j]);
 
-                                              }
+                                                }
                                             }
 
                                             if (familias[i].mes == 1) {
@@ -609,7 +609,7 @@ function tabela1(quantidadeFamilias) {
     for (var i = 0; i < epListado.length; i++) {
         for (var j = i + 1; j < epListado.length; j++) {
             if (epListado[j].dia == epListado[i].dia) {
-              epListado.splice(j  ,1);
+                epListado.splice(j, 1);
             }
         }
     }
@@ -1231,7 +1231,7 @@ function tabela7(quantidadeFamilias) {
 
                                         tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
 
-                                        $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
+                                        $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="4">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="4">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                     } //fim if dia
                                 } //fim if mes
                             } //fim if ano
@@ -1340,15 +1340,7 @@ function tab7(numero, hora, time, soma, vez, horario, lat, lon) {
         }
     }
 
-    $("#tabela-7 > tbody").append($('<tr>')
-      .append($('<td>').append(numero))
-        .append($('<td>').append(hora))
-          .append($('<td>').append(time))
-            .append($('<td>').append(soma))
-              .append($('<td>').append(tipo))
-                .append($('<td>').append(temp))
-                .append($('<td>').append(lat))
-                .append($('<td>').append(lon)));
+    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp)).append($('<td>').append(lat)).append($('<td>').append(lon)));
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
@@ -1360,26 +1352,25 @@ function downloadInnerHtml(filename, elId, mimeType) {
 } //fim downloadInnerHtml
 
 function verificaRaio(latitude, longitude) {
-  const PIXEL = 82;
+    const PIXEL = 82;
 
-  var km2 = (82 * 2400)/150;
+    var km2 = (82 * 2400) / 150;
 
-  for (var i = 0; i < quantidadeFamilias; i++) {
-      if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-          if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-              for (var j = 0; j < quantidadeEPS; j++) {
-                  if (familias[i].ano == ep[j].ano) {
-                      if (familias[i].mes == ep[j].mes) {
-                          if (familias[i].dia == ep[j].dia) {
-                          }
+    for (var i = 0; i < quantidadeFamilias; i++) {
+        if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+            if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                for (var j = 0; j < quantidadeEPS; j++) {
+                    if (familias[i].ano == ep[j].ano) {
+                        if (familias[i].mes == ep[j].mes) {
+                            if (familias[i].dia == ep[j].dia) {}
                         }
-                      }
                     }
-                  }
                 }
-              }
+            }
+        }
+    }
 
-  console.log(km2);
+    console.log(km2);
 }
 /*
   -------------------------------------------
