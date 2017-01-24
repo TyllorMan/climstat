@@ -1210,7 +1210,7 @@ function tabela7(quantidadeFamilias) {
                                         var lat = 0;
                                         var lon = 0;
 
-                                        for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
+                                        for (var k = 3; k < (familias[i]['tempos'].length - 4); k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
@@ -1230,8 +1230,6 @@ function tabela7(quantidadeFamilias) {
                                         lon = familias[i]['tempos'][familias[i]['tempos'].length-1].xlon;
 
                                         tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
-
-                                        $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="4">').append('')).append($('<td colspan="4">').append('')));
                                     } //fim if dia
                                 } //fim if mes
                             } //fim if ano
@@ -1245,7 +1243,7 @@ function tabela7(quantidadeFamilias) {
     } //fim quantidadeFamilias
 
     $("#div-tabela-7").fadeIn("slow");
-    $("#tabela-7").simplePagination({perPage: 8, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+    $("#tabela-7").simplePagination({perPage: 9, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts7").click(function() {
         $("#tabela-7").table2excel({
