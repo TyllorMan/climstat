@@ -363,7 +363,7 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                tabela1(familias.length);
+                tabela7(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -1204,22 +1204,33 @@ function tabela7(quantidadeFamilias) {
                                         var soma = familias[i].hora + familias[i]['tempos'][0].time;
                                         var time = familias[i]['tempos'][0].time;
 
-                                        tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma));
+                                        tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma), familias[i]['tempos'][0].xlat, familias[i]['tempos'][0].xlon);
                                         var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
+
+                                        var lat = 0;
+                                        var lon = 0;
 
                                         for (var k = 3; k < (familias[i]['tempos'].length - 3); k++) {
                                             if (familias[i]['tempos'][k].time != ultimaHora) {
                                                 if (maior < familias[i]['tempos'][k].size) {
                                                     maior = familias[i]['tempos'][k].size;
                                                     maturacao = familias[i]['tempos'][k].time;
+
+                                                    lat = familias[i]['tempos'][k].xlat;
+                                                    lon = familias[i]['tempos'][k].xlon;
                                                 } //fim if familias['tempos']
-                                            }
+                                            } //fim if time != ultimaHora
                                         } //fim for familias['tempos']
 
                                         soma = familias[i].hora + maturacao;
-                                        tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma));
+                                        tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma), lat, lon);
                                         soma = familias[i].hora + ultimaHora;
-                                        tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma));
+
+                                        lat = familias[i]['tempos'][familias[i]['tempos'].length - 3].xlat;
+                                        lon = familias[i]['tempos'][familias[i]['tempos'].length - 3].xlon;
+
+                                        tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
+
                                         $("#tabela-7 > tbody").append($('<tr>').append($('<td colspan="3">').append('Latitude: ' + familias[i]['tempos'][0].xlat)).append($('<td colspan="3">').append('Longitude: ' + familias[i]['tempos'][0].xlon)));
                                     } //fim if dia
                                 } //fim if mes
@@ -1272,7 +1283,7 @@ function tabela8() {
     console.log(tabTemp);
 } //fim tabela8
 
-function tab7(numero, hora, time, soma, vez, horario) {
+function tab7(numero, hora, time, soma, vez, horario, lat, lon) {
     var tipo = "";
     var temp = "";
 
@@ -1329,7 +1340,15 @@ function tab7(numero, hora, time, soma, vez, horario) {
         }
     }
 
-    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp + " : " + horario)));
+    $("#tabela-7 > tbody").append($('<tr>')
+      .append($('<td>').append(numero))
+        .append($('<td>').append(hora))
+          .append($('<td>').append(time))
+            .append($('<td>').append(soma))
+              .append($('<td>').append(tipo))
+                .append($('<td>').append(temp))
+                .append($('<td>').append(lat))
+                .append($('<td>').append(lon)));
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
