@@ -12,6 +12,9 @@ var manha = 0;
 var tarde = 0;
 var noite = 0;
 
+const LATITUDE = 0;
+const LONGITUDE = 0;
+
 var hor = ["Madrugada", "Manhã", "Tarde", "Noite"];
 
 var tabTemp = new Array(4);
@@ -1349,10 +1352,17 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.click();
 } //fim downloadInnerHtml
 
-function verificaRaio(latitude, longitude) {
-    const PIXEL = 82;
+function verificaRaio(maiorSize, latitude, longitude) {
+    const PIXEL = 16; //16Km^2
 
-    var km2 = (82 * 2400) / 150;
+    //area do circulo
+    var areaCirculo = PIXEL * maiorSize;
+    //raio do circulo
+    var raioCirculo = areaCirculo / Math.PI;
+    raioCirculo = Math.sqrt(raioCirculo); //resultado em Km
+
+    //calculo  da distancia do ponto da estacao ao centro do circulo
+    var dac = Math.sqrt( Math.pow(lat-(lat)),2) + Math.pow(lon-(lon)),2));
 
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
@@ -1360,13 +1370,16 @@ function verificaRaio(latitude, longitude) {
                 for (var j = 0; j < quantidadeEPS; j++) {
                     if (familias[i].ano == ep[j].ano) {
                         if (familias[i].mes == ep[j].mes) {
-                            if (familias[i].dia == ep[j].dia) {}
-                        }
-                    }
-                }
-            }
-        }
-    }
+                            if (familias[i].dia == ep[j].dia) {
+                              //primeira lat lon
+                              //do maior size
+                            } //fim if dia
+                        } //fim if mes
+                    } //fim if ano
+                } //fim for quantidadeEPS
+            } //fim if xlon
+        } //fim if xlat
+    } //fim for quantidadeFamilias
 
     console.log(km2);
 }
