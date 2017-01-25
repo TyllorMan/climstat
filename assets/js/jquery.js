@@ -5,8 +5,6 @@ var ep = new Array();
 var epCompara = new Array();
 var epListado = new Array();
 var familias = new Array();
-var tabelas = new Array();
-var testeArray = new Array();
 var madrugada = 0;
 var manha = 0;
 var tarde = 0;
@@ -1353,10 +1351,9 @@ function downloadInnerHtml(filename, elId, mimeType) {
 } //fim downloadInnerHtml
 
 function verificaRaio(quantidadeFamilias) {
+  const QUANTIDADE_EPS = ep.length;
+  const PIXEL = 16;
     var maiorSize = 0;
-    const QUANTIDADE_EPS = ep.length;
-
-    const PIXEL = 16; //16Km^2
     var lat = 0;
     var lon = 0;
 
@@ -1366,14 +1363,13 @@ function verificaRaio(quantidadeFamilias) {
     //raio do circulo
     //var areaCirculo = areaCirculo / Math.PI;
     var raioCirculo = 0;
-    raioCirculo = Math.sqrt(raioCirculo); //resultado em Km
-
     //calculo  da distancia do ponto da estacao ao centro do circulo
     //var dac = Math.sqrt( Math.pow((-5.26 - (-4.21)), 2) + Math.pow((-36.72 - (-35.41)), 2));
     var dac = 0;
 
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
+            if (familias[i].total_time >= 6) {
             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
                     for (var j = 0; j < QUANTIDADE_EPS; j++) {
@@ -1387,7 +1383,7 @@ function verificaRaio(quantidadeFamilias) {
                                             lat = familias[i]['tempos'][k].xlat;
                                             lon = familias[i]['tempos'][k].xlon;
 
-                                            dac = Math.sqrt(Math.pow((ep[j].lat - (lat)), 2) + Math.pow((ep[j].lon - (lon)), 2));
+                                            dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
                                         } //fim if maior
                                     } //fim for familias['tempos']
                                 } //fim if dia
@@ -1396,37 +1392,27 @@ function verificaRaio(quantidadeFamilias) {
                     } //fim for quantidadeEPS
                 } //fim if xlon
             } //fim if xlat
+          } //fim if total_time
         } //fim if classificacao
 
         areaCirculo = PIXEL * maiorSize;
         raioCirculo = areaCirculo / Math.PI;
         raioCirculo = Math.sqrt(raioCirculo);
-        tab9(dac, familias.numero, raioCirculo, lat, lon);
+
+        //tab9(dac, familias.numero, raioCirculo, lat, lon);
+
+        if (dac > raioCirculo) {
+            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+        } else if (dac < raioCirculo) {
+            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
+        } else {
+          $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
+        }
+
         maiorSize = 0;
         lat = 0;
         lon = 0;
     } //fim for quantidadeFamilias
-
-    // if(dac > raioCirculo) {
-    //   console.log("fora do sistema");
-    // }
-    // else if (dac < raioCirculo) {
-    //   console.log("dentro do sistema");
-    // }
-    // else {
-    //   console.log("borda do sistema");
-    // }
-}
-
-function tab9(dac, numeroFamilia, raioCirculo, lat, lon) {
-
-    if (dac > raioCirculo) {
-        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias.numero)).append($('<td>').append(familias.dia)).append($('<td>').append(familias.mes)).append($('<td>').append(familias.ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
-    } else if (dac < raioCirculo) {
-        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias.numero)).append($('<td>').append(familias.dia)).append($('<td>').append(familias.mes)).append($('<td>').append(familias.ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
-    } else {
-      $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias.numero)).append($('<td>').append(familias.dia)).append($('<td>').append(familias.mes)).append($('<td>').append(familias.ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
-    }
 }
 
 /*
