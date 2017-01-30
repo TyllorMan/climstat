@@ -150,7 +150,7 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                EPSDiaMesAno.estacao = "";
+              //  EPSDiaMesAno.estacao = "";
                 EPSDiaMesAno.dia = parseInt(temp[4]);
                 EPSDiaMesAno.mes = parseInt(temp[3]);
                 EPSDiaMesAno.ano = parseInt(temp[2]);
@@ -162,7 +162,6 @@ $(document).ready(function() {
             } //fim for linha
         }; //fim onload
         fileReader.readAsText(input.files[0]);
-        console.log(dma);
     }); //fim inputEPs change
 }); //document ready
 
@@ -181,8 +180,10 @@ $(document).ready(function() {
             linhas = resultado.trim().split('\n');
             //percorretodas as linhas e separa pelo caractere \t
             for (var i = 0; i < linhas.length; i++) {
-                linha.push(linhas[i].split(';'));
+                //linha.push(linhas[i].split(';'));
+                linha.push(linhas[i].split('\t'));
             } //fim for linhas
+
             //percorre linha por linha e controi o objeto DMA
             for (var i = 0; i < linha.length; i++) {
                 var temp = new Array();
@@ -190,19 +191,21 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                eps.estacao = parseInt(temp[1]);
-                eps.lat = parseFloat(temp[2]);
-                eps.lon = parseFloat(temp[3]);
-                eps.ano = parseInt(temp[4]);
-                eps.mes = parseInt(temp[5]);
-                eps.dia = parseInt(temp[6]);
-                eps.chuva = parseFloat(temp[7]);
+                //eps.estacao = parseInt(temp[1]);
+                eps.lat = parseFloat(temp[0]);
+                eps.lon = parseFloat(temp[1]);
+                eps.ano = parseInt(temp[2]);
+                eps.mes = parseInt(temp[3]);
+                eps.dia = parseInt(temp[4]);
+                eps.chuva = parseFloat(temp[5]);
                 //debugger;
                 epCompara.push(eps);
             } //fim for linha
 
             var j = 0; //necessario para percorrer todos os dias, meses e anos
             var achou = false;
+            console.log(epCompara);
+
             //exclui linhas conhecidentes por ano mes dia
             try {
                 for (var i = 0; i < epCompara.length; i++) {
@@ -221,16 +224,29 @@ $(document).ready(function() {
                     achou = false; //reseta a variavel para o estado inicial
                 } //fim for
 
-                for (var i = 0; i < epCompara.length; i++) {
-                    //cria nova linha
-                    $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].estacao)).append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
-                    comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
-                    comparacao += '<br/>'
-                } //fim for
+                if (epCompara.length > 0) {
+                  for (var i = 0; i < epCompara.length; i++) {
+                      //cria nova linha
+                      $("#comparaTable > tbody").append($('<tr>')
+                        .append($('<td>').append(epCompara[i].estacao))
+                          .append($('<td>').append(epCompara[i].lat))
+                            .append($('<td>').append(epCompara[i].lon))
+                              .append($('<td>').append(epCompara[i].dia))
+                                .append($('<td>').append(epCompara[i].mes))
+                                  .append($('<td>').append(epCompara[i].ano))
+                                    .append($('<td>').append(epCompara[i].chuva)));
 
-                $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
-                $("#comparaTextarea").val(JSON.stringify(epCompara));
-                $("#comparaTable").fadeIn("fast");
+                      comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
+                      comparacao += '<br/>'
+                  } //fim for
+
+                  $("#comparaTable").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+                  $("#comparaTextarea").val(JSON.stringify(epCompara));
+                  $("#comparaTable").fadeIn("fast");
+                } //fim if epCompara.length
+
+
+
                 $("#salvar").fadeIn("slow");
                 $("#salvar").click(function() {
                     downloadInnerHtml('resultado', comparacao, 'text/html');
