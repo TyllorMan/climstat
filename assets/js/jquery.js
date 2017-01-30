@@ -251,6 +251,17 @@ $(document).ready(function() {
                 $("#salvar").click(function() {
                     downloadInnerHtml('resultado', comparacao, 'text/html');
                 });
+
+                $("#bts10").click(function() {
+                $("#comparaTable").table2excel({
+                name: "Excel Document Name",
+                filename: "compara",
+                fileext: ".xls",
+                exclude_img: false,
+                exclude_links: false,
+                exclude_inputs: false
+                });
+                });
             } catch (err) {
                 console.log(err.message);
             } //fim catch
