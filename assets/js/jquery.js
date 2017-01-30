@@ -185,12 +185,12 @@ $(document).ready(function() {
                 temp = linha[i];
 
                 eps.estacao = parseInt(temp[1]);
-                eps.lat = parseInt(temp[2]);
-                eps.lon = parseInt(temp[3]);
+                eps.lat = parseFloat(temp[2]);
+                eps.lon = parseFloat(temp[3]);
                 eps.ano = parseInt(temp[4]);
                 eps.mes = parseInt(temp[5]);
                 eps.dia = parseInt(temp[6]);
-                eps.chuva = parseInt(temp[7]);
+                eps.chuva = parseFloat(temp[7]);
                 //debugger;
                 epCompara.push(eps);
             } //fim for linha
@@ -364,7 +364,7 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                verificaRaio(familias.length);
+                tabela1(familias.length);
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -421,1014 +421,1027 @@ function tabela1(quantidadeFamilias) {
                             if (familias[i].ano == ep[j].ano) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
-                                        if (index >= 24 && familias[i].total_time >= 24) {
-                                            epListado.push(ep[j]);
-                                            if (familias[i].mes == 1) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[0][25] += 1;
-                                                } else {
-                                                    matriz[0][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 2) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[1][25] += 1;
-                                                } else {
-                                                    matriz[1][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 3) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[2][25] += 1;
-                                                } else {
-                                                    matriz[2][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 4) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[3][25] += 1;
-                                                } else {
-                                                    matriz[3][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 5) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[4][25] += 1;
-                                                } else {
-                                                    matriz[4][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 6) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[5][25] += 1;
-                                                } else {
-                                                    matriz[5][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 7) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[6][25] += 1;
-                                                } else {
-                                                    matriz[6][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 8) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[7][25] += 1;
-                                                } else {
-                                                    matriz[7][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 9) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[8][25] += 1;
-                                                } else {
-                                                    matriz[8][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 10) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[9][25] += 1;
-                                                } else {
-                                                    matriz[9][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 11) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[10][25] += 1;
-                                                } else {
-                                                    matriz[10][26] += 1;
-                                                }
-                                            } else if (familias[i].mes == 12) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[11][25] += 1;
-                                                } else {
-                                                    matriz[11][26] += 1;
-                                                } //fim if total_time
-                                            } //fim else if
-                                        } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-
-                                            for (var n = 0; n < epListado.length; n++) {
-                                                if (true) {
-                                                    epListado.push(ep[j]);
-
-                                                }
-                                            }
-
-                                            if (familias[i].mes == 1) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[0][index + 1] += 1;
-                                                } else {
-                                                    matriz[0][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 2) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[1][index + 1] += 1;
-                                                } else {
-                                                    matriz[1][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 3) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[2][index + 1] += 1;
-                                                } else {
-                                                    matriz[2][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 4) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[3][index + 1] += 1;
-                                                } else {
-                                                    matriz[3][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 5) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[4][index + 1] += 1;
-                                                } else {
-                                                    matriz[4][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 6) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[5][index + 1] += 1;
-                                                } else {
-                                                    matriz[5][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 7) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[6][index + 1] += 1;
-                                                } else {
-                                                    matriz[6][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 8) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[7][index + 1] += 1;
-                                                } else {
-                                                    matriz[7][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 9) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[8][index + 1] += 1;
-                                                } else {
-                                                    matriz[8][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 10) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[9][index + 1] += 1;
-                                                } else {
-                                                    matriz[9][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 11) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[10][index + 1] += 1;
-                                                } else {
-                                                    matriz[10][index + 2] += 1;
-                                                }
-                                            } else if (familias[i].mes == 12) {
-                                                if (familias[i].classificacao == "N") {
-                                                    matriz[11][index + 1] += 1;
-                                                } else {
-                                                    matriz[11][index + 2] += 1;
-                                                }
-                                            } //fim else if
-                                        } //fim else if
-                                    } //fim if dia
-                                } //fim if mes
-                            } //fim if ano
-                        } //fim for quantidadeEPS
-                    } //fim if xlon
-                } //fim if xlat
-            } //fim for quantidadeFamilias
-            index += 2;
-        } //fim for temp
-    } catch (err) {
-        console.log(err.message);
-    } //fim catch
-
-    for (var i = 0; i < 12; i++) {
-        for (var j = 1; j < 27; j++) {
-            matriz[12][j] += matriz[i][j];
-        }
-    }
-
-    //imprime a tabela1
-    for (var i = 0; i < 13; i++) {
-        var row = $('<tr></tr>').appendTo("#tabela-1");
-        for (var j = 0; j < 27; j++) {
-            $('<td></td>').text(matriz[i][j]).appendTo(row);
-        }
-    }
-
-    //remove dias iguais
-    for (var i = 0; i < epListado.length; i++) {
-        for (var j = i + 1; j < epListado.length; j++) {
-            if (epListado[j].dia == epListado[i].dia) {
-                epListado.splice(j, 1);
-            }
-        }
-    }
-
-    console.log(epListado);
-
-    for (var i = 0; i < epListado.length; i++) {
-        $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(epListado[i].dia)).append($('<td>').append(epListado[i].mes)).append($('<td>').append(epListado[i].ano)).append($('<td>').append(epListado[i].lat)).append($('<td>').append(epListado[i].lon)));
-    }
-
-    $("#bt-salvar-tabela-1").click(function() {
-        $("#tabela-1").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 1 " + new Date($.now()),
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
-
-    $("#bt-salvar-tabela-1-dias-liastados").click(function() {
-        $("#tabela-1-dias-liastados").table2excel({
-            name: "Worksheet Name",
-            filename: "Tabela 1 - dias liastados" + new Date($.now()),
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
-
-    //mostra tabela 1
-    $("#div-tabela-1").fadeIn(300);
-}
-
-function tabela2(quantidadeFamilias) {
-    var quantidadeEPS = ep.length;
-
-    var horarios = [
-        "0 ~ 2",
-        "2 ~ 4",
-        "4 ~ 6",
-        "6 ~ 8",
-        "8 ~ 10",
-        "10 ~ 12",
-        "12 ~ 14",
-        "14 ~ 16",
-        "16 ~ 18",
-        "18 ~ 20",
-        "20 ~ 22",
-        "22 ~ 24",
-        "> 24"
-    ];
-    var matriz = new Array(13);
-
-    //monta a matriz matriz[13][24]
-    for (var i = 0; i < 13; i++) {
-        matriz[i] = new Array(13);
-    }
-
-    //inicializa a matriz
-    for (var i = 0; i < 13; i++) {
-        for (var j = 0; j < 13; j++) {
-            //percorre 26 colunas
-            matriz[i][j] = 0;
-        }
-    }
-
-    //inicializa a matriz
-    for (var i = 0; i < 13; i++) {
-        matriz[i][0] = horarios[i];
-    }
-
-    try {
-        var index = 0;
-
-        for (var temp = 0; temp < 13; temp++) {
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") {
-                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            for (var j = 0; j < quantidadeEPS; j++) {
-                                if (familias[i].ano == ep[j].ano) {
-                                    if (familias[i].mes == ep[j].mes) {
-                                        if (familias[i].dia == ep[j].dia) {
                                             if (index >= 24 && familias[i].total_time >= 24) {
+                                                epListado.push(ep[j]);
                                                 if (familias[i].mes == 1) {
-                                                    matriz[temp][1] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[0][25] += 1;
+                                                    } else {
+                                                        matriz[0][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 2) {
-                                                    matriz[temp][2] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[1][25] += 1;
+                                                    } else {
+                                                        matriz[1][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 3) {
-                                                    matriz[temp][3] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[2][25] += 1;
+                                                    } else {
+                                                        matriz[2][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 4) {
-                                                    matriz[temp][4] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[3][25] += 1;
+                                                    } else {
+                                                        matriz[3][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 5) {
-                                                    matriz[temp][5] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[4][25] += 1;
+                                                    } else {
+                                                        matriz[4][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 6) {
-                                                    matriz[temp][6] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[5][25] += 1;
+                                                    } else {
+                                                        matriz[5][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 7) {
-                                                    matriz[temp][7] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[6][25] += 1;
+                                                    } else {
+                                                        matriz[6][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 8) {
-                                                    matriz[temp][8] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[7][25] += 1;
+                                                    } else {
+                                                        matriz[7][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 9) {
-                                                    matriz[temp][9] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[8][25] += 1;
+                                                    } else {
+                                                        matriz[8][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 10) {
-                                                    matriz[temp][10] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[9][25] += 1;
+                                                    } else {
+                                                        matriz[9][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 11) {
-                                                    matriz[temp][11] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[10][25] += 1;
+                                                    } else {
+                                                        matriz[10][26] += 1;
+                                                    }
                                                 } else if (familias[i].mes == 12) {
-                                                    matriz[temp][12] += 1;
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[11][25] += 1;
+                                                    } else {
+                                                        matriz[11][26] += 1;
+                                                    } //fim if total_time
                                                 } //fim else if
                                             } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-                                                if (familias[i].mes == 1) {
-                                                    matriz[temp][1] += 1;
-                                                } else if (familias[i].mes == 2) {
-                                                    matriz[temp][2] += 1;
-                                                } else if (familias[i].mes == 3) {
-                                                    matriz[temp][3] += 1;
-                                                } else if (familias[i].mes == 4) {
-                                                    matriz[temp][4] += 1;
-                                                } else if (familias[i].mes == 5) {
-                                                    matriz[temp][5] += 1;
-                                                } else if (familias[i].mes == 6) {
-                                                    matriz[temp][6] += 1;
-                                                } else if (familias[i].mes == 7) {
-                                                    matriz[temp][7] += 1;
-                                                } else if (familias[i].mes == 8) {
-                                                    matriz[temp][8] += 1;
-                                                } else if (familias[i].mes == 9) {
-                                                    matriz[temp][9] += 1;
-                                                } else if (familias[i].mes == 10) {
-                                                    matriz[temp][10] += 1;
-                                                } else if (familias[i].mes == 11) {
-                                                    matriz[temp][11] += 1;
-                                                } else if (familias[i].mes == 12) {
-                                                    matriz[temp][12] += 1;
-                                                } //fim else if
-                                            }
-                                        } //fim if xlon
-                                    } //fim if xlat
-                                } //fim dia
-                            } //fim mes
-                        } //fim ano
-                    } //fim for quantidadeEPS
-                }
-            } //fim for quantidadeFamilias
-            index += 2;
-        } //fim for temp
-    } catch (err) {
-        console.log(err.message);
-    } //fim catch
 
-    for (var i = 0; i < 13; i++) {
-        var row = $('<tr></tr>').appendTo("#tabela-2");
-        for (var j = 0; j < 13; j++) {
-            $('<td></td>').text(matriz[i][j]).appendTo(row);
+                                                epListado.push(ep[j]);
+
+                                                if (familias[i].mes == 1) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[0][index + 1] += 1;
+                                                    } else {
+                                                        matriz[0][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 2) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[1][index + 1] += 1;
+                                                    } else {
+                                                        matriz[1][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 3) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[2][index + 1] += 1;
+                                                    } else {
+                                                        matriz[2][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 4) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[3][index + 1] += 1;
+                                                    } else {
+                                                        matriz[3][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 5) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[4][index + 1] += 1;
+                                                    } else {
+                                                        matriz[4][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 6) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[5][index + 1] += 1;
+                                                    } else {
+                                                        matriz[5][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 7) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[6][index + 1] += 1;
+                                                    } else {
+                                                        matriz[6][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 8) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[7][index + 1] += 1;
+                                                    } else {
+                                                        matriz[7][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 9) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[8][index + 1] += 1;
+                                                    } else {
+                                                        matriz[8][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 10) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[9][index + 1] += 1;
+                                                    } else {
+                                                        matriz[9][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 11) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[10][index + 1] += 1;
+                                                    } else {
+                                                        matriz[10][index + 2] += 1;
+                                                    }
+                                                } else if (familias[i].mes == 12) {
+                                                    if (familias[i].classificacao == "N") {
+                                                        matriz[11][index + 1] += 1;
+                                                    } else {
+                                                        matriz[11][index + 2] += 1;
+                                                    }
+                                                } //fim else if
+                                            } //fim else if
+                                        } //fim if dia
+                                    } //fim if mes
+                                } //fim if ano
+                            } //fim for quantidadeEPS
+                        } //fim if xlon
+                    } //fim if xlat
+                } //fim for quantidadeFamilias
+                index += 2;
+            } //fim for temp
+        } catch (err) {
+            console.log(err.message);
+        } //fim catch
+
+        for (var i = 0; i < 12; i++) {
+            for (var j = 1; j < 27; j++) {
+                matriz[12][j] += matriz[i][j];
+            }
         }
+
+        //imprime a tabela1
+        for (var i = 0; i < 13; i++) {
+            var row = $('<tr></tr>').appendTo("#tabela-1");
+            for (var j = 0; j < 27; j++) {
+                $('<td></td>').text(matriz[i][j]).appendTo(row);
+            }
+        }
+
+        //remove dias iguais
+        // for (var i = 0; i < epListado.length; i++) {
+        //     for (var j = i + 1; j < epListado.length; j++) {
+        //         if (epListado[i].dia == epListado[j].dia) {
+        //             epListado.splice(j, 1);
+        //         }
+        //     }
+        // }
+
+        console.log(epListado);
+
+        for (var i = 0; i < epListado.length; i++) {
+            $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(epListado[i].dia)).append($('<td>').append(epListado[i].mes)).append($('<td>').append(epListado[i].ano)).append($('<td>').append(epListado[i].lat)).append($('<td>').append(epListado[i].lon)));
+        }
+
+        $("#bt-salvar-tabela-1").click(function() {
+            $("#tabela-1").table2excel({
+                name: "Excel Document Name",
+                filename: "Tabela 1 " + new Date($.now()),
+                fileext: ".xls",
+                exclude_img: false,
+                exclude_links: false,
+                exclude_inputs: false
+            });
+        });
+
+        $("#bt-salvar-tabela-1-dias-liastados").click(function() {
+            $("#tabela-1-dias-liastados").table2excel({
+                name: "Worksheet Name",
+                filename: "Tabela 1 - dias liastados" + new Date($.now()),
+                fileext: ".xls",
+                exclude_img: false,
+                exclude_links: false,
+                exclude_inputs: false
+            });
+        });
+
+        //mostra tabela 1
+        $("#div-tabela-1").fadeIn(300);
     }
 
-    $("#bts2").click(function() {
-        $("#tabela-2").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 2",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
+function tabela2(quantidadeFamilias) {
+var quantidadeEPS = ep.length;
 
-    $("#bts3").click(function() {
-        $("#tabela-2-1").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 2.1",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
+var horarios = [
+"0 ~ 2",
+"2 ~ 4",
+"4 ~ 6",
+"6 ~ 8",
+"8 ~ 10",
+"10 ~ 12",
+"12 ~ 14",
+"14 ~ 16",
+"16 ~ 18",
+"18 ~ 20",
+"20 ~ 22",
+"22 ~ 24",
+"> 24"
+];
+var matriz = new Array(13);
 
-    $("#div-tabela-2").fadeIn(300);
+//monta a matriz matriz[13][24]
+for (var i = 0; i < 13; i++) {
+matriz[i] = new Array(13);
+}
+
+//inicializa a matriz
+for (var i = 0; i < 13; i++) {
+for (var j = 0; j < 13; j++) {
+//percorre 26 colunas
+matriz[i][j] = 0;
+}
+}
+
+//inicializa a matriz
+for (var i = 0; i < 13; i++) {
+matriz[i][0] = horarios[i];
+}
+
+try {
+var index = 0;
+
+for (var temp = 0; temp < 13; temp++) {
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == "N") {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+  for (var j = 0; j < quantidadeEPS; j++) {
+      if (familias[i].ano == ep[j].ano) {
+          if (familias[i].mes == ep[j].mes) {
+              if (familias[i].dia == ep[j].dia) {
+                  if (index >= 24 && familias[i].total_time >= 24) {
+                      if (familias[i].mes == 1) {
+                          matriz[temp][1] += 1;
+                      } else if (familias[i].mes == 2) {
+                          matriz[temp][2] += 1;
+                      } else if (familias[i].mes == 3) {
+                          matriz[temp][3] += 1;
+                      } else if (familias[i].mes == 4) {
+                          matriz[temp][4] += 1;
+                      } else if (familias[i].mes == 5) {
+                          matriz[temp][5] += 1;
+                      } else if (familias[i].mes == 6) {
+                          matriz[temp][6] += 1;
+                      } else if (familias[i].mes == 7) {
+                          matriz[temp][7] += 1;
+                      } else if (familias[i].mes == 8) {
+                          matriz[temp][8] += 1;
+                      } else if (familias[i].mes == 9) {
+                          matriz[temp][9] += 1;
+                      } else if (familias[i].mes == 10) {
+                          matriz[temp][10] += 1;
+                      } else if (familias[i].mes == 11) {
+                          matriz[temp][11] += 1;
+                      } else if (familias[i].mes == 12) {
+                          matriz[temp][12] += 1;
+                      } //fim else if
+                  } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+                      if (familias[i].mes == 1) {
+                          matriz[temp][1] += 1;
+                      } else if (familias[i].mes == 2) {
+                          matriz[temp][2] += 1;
+                      } else if (familias[i].mes == 3) {
+                          matriz[temp][3] += 1;
+                      } else if (familias[i].mes == 4) {
+                          matriz[temp][4] += 1;
+                      } else if (familias[i].mes == 5) {
+                          matriz[temp][5] += 1;
+                      } else if (familias[i].mes == 6) {
+                          matriz[temp][6] += 1;
+                      } else if (familias[i].mes == 7) {
+                          matriz[temp][7] += 1;
+                      } else if (familias[i].mes == 8) {
+                          matriz[temp][8] += 1;
+                      } else if (familias[i].mes == 9) {
+                          matriz[temp][9] += 1;
+                      } else if (familias[i].mes == 10) {
+                          matriz[temp][10] += 1;
+                      } else if (familias[i].mes == 11) {
+                          matriz[temp][11] += 1;
+                      } else if (familias[i].mes == 12) {
+                          matriz[temp][12] += 1;
+                      } //fim else if
+                  }
+              } //fim if xlon
+          } //fim if xlat
+      } //fim dia
+  } //fim mes
+} //fim ano
+} //fim for quantidadeEPS
+}
+} //fim for quantidadeFamilias
+index += 2;
+} //fim for temp
+} catch (err) {
+console.log(err.message);
+} //fim catch
+
+for (var i = 0; i < 13; i++) {
+var row = $('<tr></tr>').appendTo("#tabela-2");
+for (var j = 0; j < 13; j++) {
+$('<td></td>').text(matriz[i][j]).appendTo(row);
+}
+}
+
+$("#bts2").click(function() {
+$("#tabela-2").table2excel({
+name: "Excel Document Name",
+filename: "Tabela 2",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
+
+$("#bts3").click(function() {
+$("#tabela-2-1").table2excel({
+name: "Excel Document Name",
+filename: "Tabela 2.1",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
+
+$("#div-tabela-2").fadeIn(300);
 }
 
 function tabela3(quantidadeFamilias) {
 
-    var horarios = [
-        "0 ~ 2",
-        "2 ~ 4",
-        "4 ~ 6",
-        "6 ~ 8",
-        "8 ~ 10",
-        "10 ~ 12",
-        "12 ~ 14",
-        "14 ~ 16",
-        "16 ~ 18",
-        "18 ~ 20",
-        "20 ~ 22",
-        "22 ~ 24",
-        "> 24"
-    ];
+var horarios = [
+"0 ~ 2",
+"2 ~ 4",
+"4 ~ 6",
+"6 ~ 8",
+"8 ~ 10",
+"10 ~ 12",
+"12 ~ 14",
+"14 ~ 16",
+"16 ~ 18",
+"18 ~ 20",
+"20 ~ 22",
+"22 ~ 24",
+"> 24"
+];
 
-    var maior = 0;
+var maiorSize = 0;
 
-    var matriz = new Array(13);
+var matriz = new Array(13);
 
-    for (var i = 0; i < 13; i++) {
-        matriz[i] = new Array(13);
-    }
+for (var i = 0; i < 13; i++) {
+matriz[i] = new Array(13);
+}
 
-    for (var i = 0; i < 13; i++) {
-        for (var j = 0; j < 13; j++) {
-            matriz[i][j] = 0;
-        }
-    }
+for (var i = 0; i < 13; i++) {
+for (var j = 0; j < 13; j++) {
+matriz[i][j] = 0;
+}
+}
 
-    for (var i = 0; i < 13; i++) {
-        matriz[i][0] = horarios[i];
-    }
+for (var i = 0; i < 13; i++) {
+matriz[i][0] = horarios[i];
+}
 
-    try {
-        var index = 0;
-        var indice = 0;
+try {
+var index = 0;
+var indice = 0;
 
-        for (var temp = 0; temp < 13; temp++) {
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") {
-                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            if (index >= 24 && familias[i].total_time >= 24) {
-                                for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-                                    if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                        maior = parseInt(familias[i]['tempos'][j].size);
-                                        if (familias[i].mes == 1) {
-                                            matriz[indice][1] = maior;
-                                        } else if (familias[i].mes == 2) {
-                                            matriz[indice][2] = maior;
-                                        } else if (familias[i].mes == 3) {
-                                            matriz[indice][3] = maior;
-                                        } else if (familias[i].mes == 4) {
-                                            matriz[indice][4] = maior;
-                                        } else if (familias[i].mes == 5) {
-                                            matriz[indice][4] = maior;
-                                        } else if (familias[i].mes == 6) {
-                                            matriz[indice][6] = maior;
-                                        } else if (familias[i].mes == 7) {
-                                            matriz[indice][7] = maior;
-                                        } else if (familias[i].mes == 8) {
-                                            matriz[indice][8] = maior;
-                                        } else if (familias[i].mes == 9) {
-                                            matriz[indice][9] = maior;
-                                        } else if (familias[i].mes == 10) {
-                                            matriz[indice][10] = maior;
-                                        } else if (familias[i].mes == 11) {
-                                            matriz[indice][11] = maior;
-                                        } else if (familias[i].mes == 12) {
-                                            matriz[indice][12] = maior;
-                                        } //fim else if
-                                    } //fim if
-                                } //fim for
-                            } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-                                for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-                                    if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                        maior = parseInt(familias[i]['tempos'][j].size);
-                                        if (familias[i].mes == 1) {
-                                            matriz[indice][1] = maior;
-                                        } else if (familias[i].mes == 2) {
-                                            matriz[indice][2] = maior;
-                                        } else if (familias[i].mes == 3) {
-                                            matriz[indice][3] = maior;
-                                        } else if (familias[i].mes == 4) {
-                                            matriz[indice][4] = maior;
-                                        } else if (familias[i].mes == 5) {
-                                            matriz[indice][5] = maior;
-                                        } else if (familias[i].mes == 6) {
-                                            matriz[indice][6] = maior;
-                                        } else if (familias[i].mes == 7) {
-                                            matriz[indice][7] = maior;
-                                        } else if (familias[i].mes == 8) {
-                                            matriz[indice][8] = maior;
-                                        } else if (familias[i].mes == 9) {
-                                            matriz[indice][9] = maior;
-                                        } else if (familias[i].mes == 10) {
-                                            matriz[indice][10] = maior;
-                                        } else if (familias[i].mes == 11) {
-                                            matriz[indice][11] = maior;
-                                        } else if (familias[i].mes == 12) {
-                                            matriz[indice][12] = maior;
-                                        } //fim else if
-                                    } //fim if
-                                } //fim for
-                            }
-                        } //fim if xlon
-                    } //fim if xlat
-                } //fim for quantidadeEPS WHILE
-            } //fim for quantidadeFamilias
-            indice++;
-            index += 2;
-        } //fim for temp
-    } catch (err) {
-        console.log(err.message);
-    } //fim catch
+for (var temp = 0; temp < 13; temp++) {
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == "N") {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+  if (index >= 24 && familias[i].total_time >= 24) {
+      for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+          if (maiorSize < parseInt(familias[i]['tempos'][j].size)) {
+              maiorSize = parseInt(familias[i]['tempos'][j].size);
+              if (familias[i].mes == 1) {
+                  matriz[indice][1] = maiorSize;
+              } else if (familias[i].mes == 2) {
+                  matriz[indice][2] = maiorSize;
+              } else if (familias[i].mes == 3) {
+                  matriz[indice][3] = maiorSize;
+              } else if (familias[i].mes == 4) {
+                  matriz[indice][4] = maiorSize;
+              } else if (familias[i].mes == 5) {
+                  matriz[indice][4] = maiorSize;
+              } else if (familias[i].mes == 6) {
+                  matriz[indice][6] = maiorSize;
+              } else if (familias[i].mes == 7) {
+                  matriz[indice][7] = maiorSize;
+              } else if (familias[i].mes == 8) {
+                  matriz[indice][8] = maiorSize;
+              } else if (familias[i].mes == 9) {
+                  matriz[indice][9] = maiorSize;
+              } else if (familias[i].mes == 10) {
+                  matriz[indice][10] = maiorSize;
+              } else if (familias[i].mes == 11) {
+                  matriz[indice][11] = maiorSize;
+              } else if (familias[i].mes == 12) {
+                  matriz[indice][12] = maiorSize;
+              } //fim else if
+          } //fim if
+      } //fim for
+  } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
+      for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+          if (maiorSize < parseInt(familias[i]['tempos'][j].size)) {
+              maiorSize = parseInt(familias[i]['tempos'][j].size);
+              if (familias[i].mes == 1) {
+                  matriz[indice][1] = maiorSize;
+              } else if (familias[i].mes == 2) {
+                  matriz[indice][2] = maiorSize;
+              } else if (familias[i].mes == 3) {
+                  matriz[indice][3] = maiorSize;
+              } else if (familias[i].mes == 4) {
+                  matriz[indice][4] = maiorSize;
+              } else if (familias[i].mes == 5) {
+                  matriz[indice][5] = maiorSize;
+              } else if (familias[i].mes == 6) {
+                  matriz[indice][6] = maiorSize;
+              } else if (familias[i].mes == 7) {
+                  matriz[indice][7] = maiorSize;
+              } else if (familias[i].mes == 8) {
+                  matriz[indice][8] = maiorSize;
+              } else if (familias[i].mes == 9) {
+                  matriz[indice][9] = maiorSize;
+              } else if (familias[i].mes == 10) {
+                  matriz[indice][10] = maiorSize;
+              } else if (familias[i].mes == 11) {
+                  matriz[indice][11] = maiorSize;
+              } else if (familias[i].mes == 12) {
+                  matriz[indice][12] = maiorSize;
+              } //fim else if
+          } //fim if
+      } //fim for
+  } //fim else if
+} //fim if xlon
+} //fim if xlat
+} //fim for quantidadeEPS WHILE
+} //fim for quantidadeFamilias
+indice++;
+index += 2;
+} //fim for temp
+} catch (err) {
+console.log(err.message);
+} //fim catch
 
-    for (var i = 0; i < 12; i++) {
-        var row = $('<tr></tr>').appendTo("#tabela-3");
-        for (var j = 0; j < 13; j++) {
-            $('<td></td>').text(matriz[i][j]).appendTo(row);
-        }
-    }
+for (var i = 0; i < 12; i++) {
+var row = $('<tr></tr>').appendTo("#tabela-3");
+for (var j = 0; j < 13; j++) {
+$('<td></td>').text(matriz[i][j]).appendTo(row);
+}
+}
 
-    $("#div-tabela-3").fadeIn(300);
+$("#div-tabela-3").fadeIn(300);
 
-    $("#bts4").click(function() {
-        $("#tabela-3").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 2.1",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
+$("#bts4").click(function() {
+$("#tabela-3").table2excel({
+name: "Excel Document Name",
+filename: "Tabela 2.1",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
 } //fim function
 
 function tabela4(quantidadeFamilias) {
-    var famTemp;
+var famTemp;
 
-    try {
-        var maior = 0;
-        var quantidadeEPS = ep.length;
-        for (var i = 0; i < quantidadeFamilias; i++) {
-            famTemp = new Familia();
-            if (familias[i].classificacao == "N") {
-                if (familias[i].total_time >= 6) {
-                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            for (var j = 0; j < quantidadeEPS; j++) {
-                                if (familias[i].ano == ep[j].ano) {
-                                    if (familias[i].mes == ep[j].mes) {
-                                        if (familias[i].dia == ep[j].dia) {
-                                            for (var k = 0; k < familias[i]['tempos'].length; k++) {
-                                                if (maior < parseInt(familias[i]['tempos'][k].size)) {
-                                                    maior = parseInt(familias[i]['tempos'][k].size);
-                                                    famTemp['tempos'] = familias[i]['tempos'][k];
-                                                } //fim if maior
-                                            } //fim for j
+try {
+var maiorSize = 0;
+var quantidadeEPS = ep.length;
+for (var i = 0; i < quantidadeFamilias; i++) {
+famTemp = new Familia();
+if (familias[i].classificacao == "N") {
+if (familias[i].total_time >= 6) {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+  for (var j = 0; j < quantidadeEPS; j++) {
+      if (familias[i].ano == ep[j].ano) {
+          if (familias[i].mes == ep[j].mes) {
+              if (familias[i].dia == ep[j].dia) {
+                  for (var k = 0; k < familias[i]['tempos'].length; k++) {
+                      if (maiorSize < parseInt(familias[i]['tempos'][k].size)) {
+                          maiorSize = parseInt(familias[i]['tempos'][k].size);
+                          famTemp['tempos'] = familias[i]['tempos'][k];
+                      } //fim if maiorSize
+                  } //fim for j
 
-                                            console.log(famTemp);
-                                            $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
-                                        } //fim dia
-                                    } //fim mes
-                                } //fim ano
-                            } //fim for quantidadeEPS
-                        } //fim if xlon
-                    } //fim if xlat
-                } //fim if total_time
-            } //fim if classificacao
-            maior = 0;
-        } //fim for quantidadeFamilias
-    } catch (err) {
-        console.log(err.message);
-    } //fim catch
+                  console.log(famTemp);
+                  $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
+              } //fim dia
+          } //fim mes
+      } //fim ano
+  } //fim for quantidadeEPS
+} //fim if xlon
+} //fim if xlat
+} //fim if total_time
+} //fim if classificacao
+maiorSize = 0;
+} //fim for quantidadeFamilias
+} catch (err) {
+console.log(err.message);
+} //fim catch
 
-    $("#div-tabela-4").fadeIn(300);
+$("#div-tabela-4").fadeIn(300);
 
-    $("#btsteste").click(function() {
-        $("#tabela-4").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
+$("#btsteste").click(function() {
+$("#tabela-4").table2excel({
+name: "Excel Document Name",
+filename: "Tabela",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
 }
 
 function tabela5(quantidadeFamilias) {
-    var maior = 0;
+var maiorSize = 0;
 
-    var matriz = new Array(13);
+var matriz = new Array(13);
 
-    for (var i = 0; i < 13; i++) {
-        matriz[i] = new Array(27);
-    }
+for (var i = 0; i < 13; i++) {
+matriz[i] = new Array(27);
+}
 
-    for (var i = 0; i < 13; i++) {
-        for (var j = 0; j < 27; j++) {
-            matriz[i][j] = 0;
-        }
-    }
+for (var i = 0; i < 13; i++) {
+for (var j = 0; j < 27; j++) {
+matriz[i][j] = 0;
+}
+}
 
-    var monthNames = [
-        "JAN",
-        "FEV",
-        "MAR",
-        "ABR",
-        "MAI",
-        "JUN",
-        "JUL",
-        "AGO",
-        "SET",
-        "OUT",
-        "NOV",
-        "DEZ",
-        "MÉDIA"
-    ];
+var monthNames = [
+"JAN",
+"FEV",
+"MAR",
+"ABR",
+"MAI",
+"JUN",
+"JUL",
+"AGO",
+"SET",
+"OUT",
+"NOV",
+"DEZ",
+"MÉDIA"
+];
 
-    for (var i = 0; i < 13; i++) {
-        matriz[i][0] = monthNames[i];
-    }
+for (var i = 0; i < 13; i++) {
+matriz[i][0] = monthNames[i];
+}
 
-    var indice = 0;
+var indice = 0;
 
-    try {
-        for (var temp = 0; temp < 13; temp++) {
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == "N") {
-                    if (familias[i].total_time >= 24 && indice >= 24) {
-                        for (var j = 0; j < familias[i]['tempos'].length; j++) {
-                            if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                maior = parseInt(familias[i]['tempos'][j].size);
-                                if (familias[i].mes == 1) {
-                                    matriz[0][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[0][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 2) {
-                                    matriz[1][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[1][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 3) {
-                                    matriz[2][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[2][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 4) {
-                                    matriz[3][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[3][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 5) {
-                                    matriz[4][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[4][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 6) {
-                                    matriz[5][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[5][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 7) {
-                                    matriz[6][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[6][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 8) {
-                                    matriz[7][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[7][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 9) {
-                                    matriz[8][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[8][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 10) {
-                                    matriz[9][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[9][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 11) {
-                                    matriz[10][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[10][26] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 12) {
-                                    matriz[11][25] = familias[i]['tempos'][j].ecce;
-                                    matriz[11][26] = familias[i]['tempos'][j].tmin;
-                                } //fim else if
-                            } //fim if //fim if
-                        } //fim for
-                    } else if (familias[i].total_time >= indice && familias[i].total_time < (indice + 2)) { //verifica condicoes ncessarias para tabela
-                        for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
-                            if (maior < parseInt(familias[i]['tempos'][j].size)) {
-                                maior = parseInt(familias[i]['tempos'][j].size);
-                                if (familias[i].mes == 1) {
-                                    matriz[0][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[0][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 2) {
-                                    matriz[1][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[1][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 3) {
-                                    matriz[2][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[2][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 4) {
-                                    matriz[3][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[3][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 5) {
-                                    matriz[4][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[4][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 6) {
-                                    matriz[5][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[5][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 7) {
-                                    matriz[6][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[6][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 8) {
-                                    matriz[7][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[7][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 9) {
-                                    matriz[8][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[8][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 10) {
-                                    matriz[9][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[9][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 11) {
-                                    matriz[10][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[10][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } else if (familias[i].mes == 12) {
-                                    matriz[11][indice + 1] = familias[i]['tempos'][j].ecce;
-                                    matriz[11][indice + 2] = familias[i]['tempos'][j].tmin;
-                                } //fim else if
-                            } //fim if
-                        } //fim for
-                    } //fim if
-                } //fim
-            } //fim for
-            indice += 2; //incrementa variavel indice
-            maior = 0; //zera variavel maior
-        } //fim for
-    } catch (err) {
-        console.log(err.message);
-    } //fim catch
+try {
+for (var temp = 0; temp < 13; temp++) {
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == "N") {
+if (familias[i].total_time >= 24 && indice >= 24) {
+for (var j = 0; j < familias[i]['tempos'].length; j++) {
+  if (maiorSize < parseInt(familias[i]['tempos'][j].size)) {
+      maiorSize = parseInt(familias[i]['tempos'][j].size);
+      if (familias[i].mes == 1) {
+          matriz[0][25] = familias[i]['tempos'][j].ecce;
+          matriz[0][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 2) {
+          matriz[1][25] = familias[i]['tempos'][j].ecce;
+          matriz[1][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 3) {
+          matriz[2][25] = familias[i]['tempos'][j].ecce;
+          matriz[2][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 4) {
+          matriz[3][25] = familias[i]['tempos'][j].ecce;
+          matriz[3][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 5) {
+          matriz[4][25] = familias[i]['tempos'][j].ecce;
+          matriz[4][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 6) {
+          matriz[5][25] = familias[i]['tempos'][j].ecce;
+          matriz[5][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 7) {
+          matriz[6][25] = familias[i]['tempos'][j].ecce;
+          matriz[6][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 8) {
+          matriz[7][25] = familias[i]['tempos'][j].ecce;
+          matriz[7][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 9) {
+          matriz[8][25] = familias[i]['tempos'][j].ecce;
+          matriz[8][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 10) {
+          matriz[9][25] = familias[i]['tempos'][j].ecce;
+          matriz[9][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 11) {
+          matriz[10][25] = familias[i]['tempos'][j].ecce;
+          matriz[10][26] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 12) {
+          matriz[11][25] = familias[i]['tempos'][j].ecce;
+          matriz[11][26] = familias[i]['tempos'][j].tmin;
+      } //fim else if
+  } //fim if //fim if
+} //fim for
+} else if (familias[i].total_time >= indice && familias[i].total_time < (indice + 2)) { //verifica condicoes ncessarias para tabela
+for (var j = 0; j < familias[i]['tempos'].length; j++) { //percorre todos tempos da familia
+  if (maiorSize < parseInt(familias[i]['tempos'][j].size)) {
+      maiorSize = parseInt(familias[i]['tempos'][j].size);
+      if (familias[i].mes == 1) {
+          matriz[0][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[0][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 2) {
+          matriz[1][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[1][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 3) {
+          matriz[2][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[2][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 4) {
+          matriz[3][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[3][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 5) {
+          matriz[4][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[4][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 6) {
+          matriz[5][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[5][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 7) {
+          matriz[6][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[6][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 8) {
+          matriz[7][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[7][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 9) {
+          matriz[8][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[8][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 10) {
+          matriz[9][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[9][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 11) {
+          matriz[10][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[10][indice + 2] = familias[i]['tempos'][j].tmin;
+      } else if (familias[i].mes == 12) {
+          matriz[11][indice + 1] = familias[i]['tempos'][j].ecce;
+          matriz[11][indice + 2] = familias[i]['tempos'][j].tmin;
+      } //fim else if
+  } //fim if
+} //fim for
+} //fim if
+} //fim
+} //fim for
+indice += 2; //incrementa variavel indice
+maiorSize = 0; //zera variavel maiorSize
+} //fim for
+} catch (err) {
+console.log(err.message);
+} //fim catch
 
-    for (var i = 0; i < 12; i++) {
-        for (var j = 1; j < 27; j++) {
-            matriz[12][j] += matriz[i][j];
-        }
-    }
+for (var i = 0; i < 12; i++) {
+for (var j = 1; j < 27; j++) {
+matriz[12][j] += matriz[i][j];
+}
+}
 
-    for (var i = 0; i < 13; i++) {
-        var row = $('<tr></tr>').appendTo("#tabela-5");
-        for (var j = 0; j < 27; j++) {
-            $('<td></td>').text(matriz[i][j]).appendTo(row);
-        }
-    }
+for (var i = 0; i < 13; i++) {
+var row = $('<tr></tr>').appendTo("#tabela-5");
+for (var j = 0; j < 27; j++) {
+$('<td></td>').text(matriz[i][j]).appendTo(row);
+}
+}
 
-    $("#div-tabela-5").fadeIn(300);
+$("#div-tabela-5").fadeIn(300);
 
-    $("#tab5").click(function() {
-        $("#tabela-5").table2excel({
-            name: "Excel Document Name",
-            filename: "tabela",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
+$("#tab5").click(function() {
+$("#tabela-5").table2excel({
+name: "Excel Document Name",
+filename: "tabela",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
-    var classificacao = "N";
-    for (var j = 0; j < 24; j++) {
-        if (j % 2 == 0) {
-            for (var i = 0; i < quantidadeFamilias; i++) {
-                if (familias[i].classificacao == classificacao) {
-                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            if (familias[i].total_time >= j && familias[i].total_time < (j + 2)) {
-                                $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(j + ' ~ ' + (j + 2))).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
-                            } //fim if total_time
-                        } //fim if xlon
-                    } //fim if xlat
-                } //fim if classificacao
-            } //fim for quantidadeFamilias
-        } //fim if j % 2
-    } //fim j
+var classificacao = "N";
+for (var j = 0; j < 24; j++) {
+if (j % 2 == 0) {
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == classificacao) {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+  if (familias[i].total_time >= j && familias[i].total_time < (j + 2)) {
+      $("#tabela-6 > tbody").append($('<tr>').append($('<td>').append(j + ' ~ ' + (j + 2))).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i]['tempos'][0].xlat)).append($('<td>').append(familias[i]['tempos'][0].xlon)));
+  } //fim if total_time
+} //fim if xlon
+} //fim if xlat
+} //fim if classificacao
+} //fim for quantidadeFamilias
+} //fim if j % 2
+} //fim j
 
-    $("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+$("#tabela-6").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
-    $("#bts6").click(function() {
-        $("#tabela-6").table2excel({
-            name: "Excel Document Name",
-            filename: "CLIMSTAT (tabela 6)",
-            fileext: ".xls",
-            exclude_img: true,
-            exclude_links: true,
-            exclude_inputs: true
-        });
-    });
+$("#bts6").click(function() {
+$("#tabela-6").table2excel({
+name: "Excel Document Name",
+filename: "CLIMSTAT (tabela 6)",
+fileext: ".xls",
+exclude_img: true,
+exclude_links: true,
+exclude_inputs: true
+});
+});
 
-    $("#div-tabela-6").fadeIn(300);
+$("#div-tabela-6").fadeIn(300);
 } //fim tabela6
 
 function tabela7(quantidadeFamilias) {
-    var quantidadeEPS = ep.length;
-    var maior = 0;
-    var maturacao = 0;
+var quantidadeEPS = ep.length;
+var maiorSize = 0;
+var maturacao = 0;
 
-    for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "N") {
-            if (familias[i].total_time >= 6) {
-                if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                    if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                        for (var j = 0; j < quantidadeEPS; j++) {
-                            if (familias[i].ano == ep[j].ano) {
-                                if (familias[i].mes == ep[j].mes) {
-                                    if (familias[i].dia == ep[j].dia) {
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == "N") {
+if (familias[i].total_time >= 6) {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+for (var j = 0; j < quantidadeEPS; j++) {
+  if (familias[i].ano == ep[j].ano) {
+      if (familias[i].mes == ep[j].mes) {
+          if (familias[i].dia == ep[j].dia) {
 
-                                        var soma = familias[i].hora + familias[i]['tempos'][0].time;
-                                        var time = familias[i]['tempos'][0].time;
+              var soma = familias[i].hora + familias[i]['tempos'][0].time;
+              var time = familias[i]['tempos'][0].time;
 
-                                        tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma), familias[i]['tempos'][0].xlat, familias[i]['tempos'][0].xlon);
-                                        var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
+              tab7(familias[i].numero, familias[i].hora, time, Math.round(soma), 1, Math.round(soma), familias[i]['tempos'][0].xlat, familias[i]['tempos'][0].xlon);
+              var ultimaHora = familias[i]['tempos'][familias[i]['tempos'].length - 1].time;
 
-                                        var lat = 0;
-                                        var lon = 0;
+              var lat = 0;
+              var lon = 0;
 
-                                        for (var k = 3; k < (familias[i]['tempos'].length - 4); k++) {
-                                            if (familias[i]['tempos'][k].time != ultimaHora) {
-                                                if (maior < familias[i]['tempos'][k].size) {
-                                                    maior = familias[i]['tempos'][k].size;
-                                                    maturacao = familias[i]['tempos'][k].time;
+              for (var k = 3; k < (familias[i]['tempos'].length - 4); k++) {
+                  if (familias[i]['tempos'][k].time != ultimaHora) {
+                      if (maiorSize < familias[i]['tempos'][k].size) {
+                          maiorSize = familias[i]['tempos'][k].size;
+                          maturacao = familias[i]['tempos'][k].time;
 
-                                                    lat = familias[i]['tempos'][k].xlat;
-                                                    lon = familias[i]['tempos'][k].xlon;
-                                                } //fim if familias['tempos']
-                                            } //fim if time != ultimaHora
-                                        } //fim for familias['tempos']
+                          lat = familias[i]['tempos'][k].xlat;
+                          lon = familias[i]['tempos'][k].xlon;
+                      } //fim if familias['tempos']
+                  } //fim if time != ultimaHora
+              } //fim for familias['tempos']
 
-                                        soma = familias[i].hora + maturacao;
-                                        tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma), lat, lon);
-                                        soma = familias[i].hora + ultimaHora;
+              soma = familias[i].hora + maturacao;
+              tab7(familias[i].numero, familias[i].hora, maturacao, Math.round(soma), 2, Math.round(soma), lat, lon);
+              soma = familias[i].hora + ultimaHora;
 
-                                        lat = familias[i]['tempos'][familias[i]['tempos'].length - 1].xlat;
-                                        lon = familias[i]['tempos'][familias[i]['tempos'].length - 1].xlon;
+              lat = familias[i]['tempos'][familias[i]['tempos'].length - 1].xlat;
+              lon = familias[i]['tempos'][familias[i]['tempos'].length - 1].xlon;
 
-                                        tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
-                                    } //fim if dia
-                                } //fim if mes
-                            } //fim if ano
-                        } //fim for quantidadeEPS
-                    } //fim if xlon
-                } //fim if xlat
-            } //fim if total_time
-        } //fim if classificacao
-        maior = 0;
-        maturacao = 0;
-    } //fim quantidadeFamilias
+              tab7(familias[i].numero, familias[i].hora, ultimaHora, Math.round(soma), 3, Math.round(soma), lat, lon);
+          } //fim if dia
+      } //fim if mes
+  } //fim if ano
+} //fim for quantidadeEPS
+} //fim if xlon
+} //fim if xlat
+} //fim if total_time
+} //fim if classificacao
+maiorSize = 0;
+maturacao = 0;
+} //fim quantidadeFamilias
 
-    $("#div-tabela-7").fadeIn("slow");
-    $("#tabela-7").simplePagination({perPage: 9, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+$("#div-tabela-7").fadeIn("slow");
+$("#tabela-7").simplePagination({perPage: 9, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
-    $("#bts7").click(function() {
-        $("#tabela-7").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 7",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
-    tabela8();
+$("#bts7").click(function() {
+$("#tabela-7").table2excel({
+name: "Excel Document Name",
+filename: "Tabela 7",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
+tabela8();
 }
 
 function tabela8() {
-    for (var i = 0; i < 4; i++) {
-        var row = $('<tr></tr>').appendTo("#tabela-8");
-        for (var j = 0; j < 4; j++) {
-            $('<td></td>').text(tabTemp[i][j]).appendTo(row);
-        } //fim for j
-    } //fim for i
+for (var i = 0; i < 4; i++) {
+var row = $('<tr></tr>').appendTo("#tabela-8");
+for (var j = 0; j < 4; j++) {
+$('<td></td>').text(tabTemp[i][j]).appendTo(row);
+} //fim for j
+} //fim for i
 
-    $("#div-tabela-8").fadeIn("slow");
+$("#div-tabela-8").fadeIn("slow");
 
-    $("#bts8").click(function() {
-        $("#tabela-8").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela 8",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
-        });
-    });
-    console.log(tabTemp);
+$("#bts8").click(function() {
+$("#tabela-8").table2excel({
+name: "Excel Document Name",
+filename: "Tabela 8",
+fileext: ".xls",
+exclude_img: false,
+exclude_links: false,
+exclude_inputs: false
+});
+});
+console.log(tabTemp);
 } //fim tabela8
 
 function tab7(numero, hora, time, soma, vez, horario, lat, lon) {
-    var tipo = "";
-    var temp = "";
+var tipo = "";
+var temp = "";
 
-    if (horario > 24) {
-        horario = (horario - 24);
-    }
-    if (horario > 3 && horario <= 9) {
-        madrugada++;
-        temp = "madrugada";
-    } else if (horario > 9 && horario <= 15) {
-        manha++;
-        temp = "manha";
-    } else if (horario > 15 && horario <= 21) {
-        tarde++;
-        temp = "tarde";
-    } else {
-        noite++;
-        temp = "noite";
-    }
+if (horario > 24) {
+horario = (horario - 24);
+}
+if (horario > 3 && horario <= 9) {
+madrugada++;
+temp = "madrugada";
+} else if (horario > 9 && horario <= 15) {
+manha++;
+temp = "manha";
+} else if (horario > 15 && horario <= 21) {
+tarde++;
+temp = "tarde";
+} else {
+noite++;
+temp = "noite";
+}
 
-    if (vez == 1) {
-        tipo = "Iniciação";
-        if (temp == "madrugada") {
-            tabTemp[0][1] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][1] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][1] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][1] += 1;
-        }
+if (vez == 1) {
+tipo = "Iniciação";
+if (temp == "madrugada") {
+tabTemp[0][1] += 1;
+} else if (temp == "manha") {
+tabTemp[1][1] += 1;
+} else if (temp == "tarde") {
+tabTemp[2][1] += 1;
+} else if (temp == "noite") {
+tabTemp[3][1] += 1;
+}
 
-    } else if (vez == 2) {
-        tipo = "Maturação";
-        if (temp == "madrugada") {
-            tabTemp[0][2] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][2] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][2] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][2] += 1;
-        }
-    } else if (vez == 3) {
-        tipo = "Dissipação";
-        if (temp == "madrugada") {
-            tabTemp[0][3] += 1;
-        } else if (temp == "manha") {
-            tabTemp[1][3] += 1;
-        } else if (temp == "tarde") {
-            tabTemp[2][3] += 1;
-        } else if (temp == "noite") {
-            tabTemp[3][3] += 1;
-        }
-    }
+} else if (vez == 2) {
+tipo = "Maturação";
+if (temp == "madrugada") {
+tabTemp[0][2] += 1;
+} else if (temp == "manha") {
+tabTemp[1][2] += 1;
+} else if (temp == "tarde") {
+tabTemp[2][2] += 1;
+} else if (temp == "noite") {
+tabTemp[3][2] += 1;
+}
+} else if (vez == 3) {
+tipo = "Dissipação";
+if (temp == "madrugada") {
+tabTemp[0][3] += 1;
+} else if (temp == "manha") {
+tabTemp[1][3] += 1;
+} else if (temp == "tarde") {
+tabTemp[2][3] += 1;
+} else if (temp == "noite") {
+tabTemp[3][3] += 1;
+}
+}
 
-    $("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp)).append($('<td>').append(lat)).append($('<td>').append(lon)));
+$("#tabela-7 > tbody").append($('<tr>').append($('<td>').append(numero)).append($('<td>').append(hora)).append($('<td>').append(time)).append($('<td>').append(soma)).append($('<td>').append(tipo)).append($('<td>').append(temp)).append($('<td>').append(lat)).append($('<td>').append(lon)));
 }
 
 function downloadInnerHtml(filename, elId, mimeType) {
-    var link = document.createElement('a');
-    mimeType = mimeType || 'text/html';
-    link.setAttribute('download', filename);
-    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
-    link.click();
+var link = document.createElement('a');
+mimeType = mimeType || 'text/html';
+link.setAttribute('download', filename);
+link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elId));
+link.click();
 } //fim downloadInnerHtml
 
 function verificaRaio(quantidadeFamilias) {
-  const QUANTIDADE_EPS = ep.length;
-  const PIXEL = 16;
-    var maiorSize = 0;
-    var lat = 0;
-    var lon = 0;
+const QUANTIDADE_EPS = ep.length;
+const PIXEL = 16;
+var maiorSize = 0;
+//area do circulo
+//var areaCirculo = PIXEL * maiorSize;
+var areaCirculo = 0;
+//raio do circulo
+//var areaCirculo = areaCirculo / Math.PI;
+var raioCirculo = 0;
+//calculo  da distancia do ponto da estacao ao centro do circulo
+//var dac = Math.sqrt( Math.pow((-5.26 - (-4.21)), 2) + Math.pow((-36.72 - (-35.41)), 2));
+var dac = 0;
 
-    //area do circulo
-    //var areaCirculo = PIXEL * maiorSize;
-    var areaCirculo = 0;
-    //raio do circulo
-    //var areaCirculo = areaCirculo / Math.PI;
-    var raioCirculo = 0;
-    //calculo  da distancia do ponto da estacao ao centro do circulo
-    //var dac = Math.sqrt( Math.pow((-5.26 - (-4.21)), 2) + Math.pow((-36.72 - (-35.41)), 2));
-    var dac = 0;
+for (var i = 0; i < quantidadeFamilias; i++) {
+if (familias[i].classificacao == "N") {
+if (familias[i].total_time >= 6) {
+if (familias[i].mes > 4) {
+if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+  for (var j = 0; j < QUANTIDADE_EPS; j++) {
+      if (familias[i].ano == ep[j].ano) {
+          if (familias[i].mes == ep[j].mes) {
+              if (familias[i].dia == ep[j].dia) {
 
-    for (var i = 0; i < quantidadeFamilias; i++) {
-        if (familias[i].classificacao == "N") {
-            if (familias[i].total_time >= 6) {
-            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                    for (var j = 0; j < QUANTIDADE_EPS; j++) {
-                        if (familias[i].ano == ep[j].ano) {
-                            if (familias[i].mes == ep[j].mes) {
-                                if (familias[i].dia == ep[j].dia) {
-                                    for (var k = 0; k < familias[i]['tempos'].length; k++) {
-                                        if (maiorSize < familias[i]['tempos'][k].size) {
-                                            maiorSize = familias[i]['tempos'][k].size;
+                  var lat = 0;
+                  var lon = 0;
 
-                                            lat = familias[i]['tempos'][k].xlat;
-                                            lon = familias[i]['tempos'][k].xlon;
+                  for (var k = 0; k < familias[i]['tempos'].length; k++) {
+                      if (maiorSize < familias[i]['tempos'][k].size) {
+                          maiorSize = familias[i]['tempos'][k].size;
 
-                                            dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
-                                        } //fim if maior
-                                    } //fim for familias['tempos']
-                                } //fim if dia
-                            } //fim if mes
-                        } //fim if ano
-                    } //fim for quantidadeEPS
-                } //fim if xlon
-            } //fim if xlat
-          } //fim if total_time
-        } //fim if classificacao
+                          lat = familias[i]['tempos'][k].xlat;
+                          lon = familias[i]['tempos'][k].xlon;
+                      } //fim if maiorSize
+                  } //fim for familias['tempos']
+                  dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
 
-        areaCirculo = PIXEL * maiorSize;
-        raioCirculo = areaCirculo / Math.PI;
-        raioCirculo = Math.sqrt(raioCirculo);
+                  areaCirculo = PIXEL * maiorSize;
+                  raioCirculo = areaCirculo / Math.PI;
+                  raioCirculo = Math.sqrt(raioCirculo);
 
-        //tab9(dac, familias.numero, raioCirculo, lat, lon);
+                  console.log("familias[i].numero: " + familias[i].numero);
+                  console.log("maiorSize: " + maiorSize);
+                  console.log("lat " + lat);
+                  console.log("lon " + lon);
+                  console.log("dac " + dac);
+                  console.log("raioCirculo " + raioCirculo);
 
-        if (dac > raioCirculo) {
-            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
-        } else if (dac < raioCirculo) {
-            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
-        } else {
-          $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
-        }
+                  if (dac > raioCirculo) {
+                      $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+                  } else if (dac < raioCirculo) {
+                      $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
+                  } else {
+                      $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
+                  }
+              } //fim if dia
+          } //fim if mes
+      } //fim if ano
+  } //fim for quantidadeEPS
+} //fim if xlon
+} //fim if xlat
+} //fim if mes
 
-        maiorSize = 0;
-        lat = 0;
-        lon = 0;
-    } //fim for quantidadeFamilias
+} //fim if total_time
+} //fim if classificacao
+maiorSize = 0;
+} //fim for quantidadeFamilias
+
+$("#tabela-9").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
+
+$("#bts9").click(function() {
+$("#tabela-9").table2excel({
+name: "Excel Document Name",
+filename: "EPs",
+fileext: ".xls",
+exclude_img: true,
+exclude_links: true,
+exclude_inputs: true
+});
+});
 }
 
 /*
-  -------------------------------------------
-  todas as tebelas devem ser verificadas por:
-  -------------------------------------------
-  classificação N
-  latitude -19 a -3
-  longitude -47 q -34.9
+-------------------------------------------
+todas as tebelas devem ser verificadas por:
+-------------------------------------------
+classificação N
+latitude -19 a -3
+longitude -47 q -34.9
 
-  -------------------------------------------
-  Tipos de classificação
-  -------------------------------------------
-  N (geracao expontanea)
-  NOR (dissipacao natural)
-  S (split)
-  C (continuidade)
-  M (merger)
+-------------------------------------------
+Tipos de classificação
+-------------------------------------------
+N (geracao expontanea)
+NOR (dissipacao natural)
+S (split)
+C (continuidade)
+M (merger)
 */
