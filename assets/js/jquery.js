@@ -145,18 +145,24 @@ $(document).ready(function() {
             //percorre linha por linha e controi o objeto DMA
             for (var i = 0; i < linha.length; i++) {
                 var temp = new Array(); //a cada iteracao cria novo objeto temp
-                var diaMesAno = new DiaMesAno(); //a cada iteracao cria novo objeto diaMesAno
+                //var diaMesAno = new DiaMesAno(); //a cada iteracao cria novo objeto diaMesAno
+                var EPSDiaMesAno = new EPs(); //a cada iteracao cria novo objeto diaMesAno
 
                 temp = linha[i];
 
-                diaMesAno.dia = parseInt(temp[2]);
-                diaMesAno.mes = parseInt(temp[1]);
-                diaMesAno.ano = parseInt(temp[0]);
+                EPSDiaMesAno.estacao = "";
+                EPSDiaMesAno.dia = parseInt(temp[4]);
+                EPSDiaMesAno.mes = parseInt(temp[3]);
+                EPSDiaMesAno.ano = parseInt(temp[2]);
+                EPSDiaMesAno.lat = parseFloat(temp[0]);
+                EPSDiaMesAno.lon = parseFloat(temp[1]);
+                EPSDiaMesAno.chuva = parseFloat(temp[5]);
 
-                dma.push(diaMesAno); //a cada iteracao do laco adiciona novo objeto
+                dma.push(EPSDiaMesAno); //a cada iteracao do laco adiciona novo objeto
             } //fim for linha
         }; //fim onload
         fileReader.readAsText(input.files[0]);
+        console.log(dma);
     }); //fim inputEPs change
 }); //document ready
 

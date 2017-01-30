@@ -76,4 +76,7 @@ function DiaMesAno() {
     this.mes = 0;
     this.dia = 0;
     this.ano = 0;
+    this.lat = 0;
+    this.lon = 0;
+    this.chuva = 0;
 }
