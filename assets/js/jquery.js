@@ -154,9 +154,9 @@ $(document).ready(function() {
                 EPSDiaMesAno.dia = parseInt(temp[4]);
                 EPSDiaMesAno.mes = parseInt(temp[3]);
                 EPSDiaMesAno.ano = parseInt(temp[2]);
-                EPSDiaMesAno.lat = parseFloat(temp[0]);
-                EPSDiaMesAno.lon = parseFloat(temp[1]);
-                EPSDiaMesAno.chuva = parseFloat(temp[5]);
+                EPSDiaMesAno.lat = temp[0].replace(".", ",");
+                EPSDiaMesAno.lon = temp[1].replace(".", ",");
+                EPSDiaMesAno.chuva = temp[5].replace(".", ",");
 
                 dma.push(EPSDiaMesAno); //a cada iteracao do laco adiciona novo objeto
             } //fim for linha
@@ -192,12 +192,12 @@ $(document).ready(function() {
                 temp = linha[i];
 
                 //eps.estacao = parseInt(temp[1]);
-                eps.lat = parseFloat(temp[0]);
-                eps.lon = parseFloat(temp[1]);
+                eps.lat = temp[0].replace(".", ",");
+                eps.lon = temp[1].replace(".", ",");
                 eps.ano = parseInt(temp[2]);
                 eps.mes = parseInt(temp[3]);
                 eps.dia = parseInt(temp[4]);
-                eps.chuva = parseFloat(temp[5]);
+                eps.chuva = temp[5].replace(".", ",");
                 //debugger;
                 epCompara.push(eps);
             } //fim for linha
@@ -224,11 +224,19 @@ $(document).ready(function() {
                     achou = false; //reseta a variavel para o estado inicial
                 } //fim for
 
+
                 if (epCompara.length > 0) {
                     for (var i = 0; i < epCompara.length; i++) {
                         //cria nova linha
                         //$("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].estacao)).append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
-                        $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
+                        //epCompara[i] = epCompara[i].toString();
+                        $("#comparaTable > tbody").append($('<tr>')
+                          .append($('<td>').append(epCompara[i].lat))
+                            .append($('<td>').append(epCompara[i].lon))
+                              .append($('<td>').append(" " + epCompara[i].dia))
+                                .append($('<td>').append(" " + epCompara[i].mes))
+                                  .append($('<td>').append(epCompara[i].ano))
+                                    .append($('<td>').append(" " + epCompara[i].chuva)));
 
                         //comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
                         comparacao += (","
@@ -253,12 +261,12 @@ $(document).ready(function() {
 
                 $("#bts10").click(function() {
                     $("#comparaTable").table2excel({
-                        name: "Excel Document Name",
+                        name: "compara",
                         filename: "compara",
                         fileext: ".xls",
                         exclude_img: false,
                         exclude_links: false,
-                        exclude_inputs: false
+                        exclude_inputs: true
                     });
                 });
             } catch (err) {
