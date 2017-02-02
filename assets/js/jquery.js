@@ -90,8 +90,8 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                eps.lat = parseFloat(temp[0]);
-                eps.lon = parseFloat(temp[1]);
+                eps.lat = temp[0].replace(".", ",");
+                eps.lon = temp[1].replace(".", ",");
                 eps.ano = parseInt(temp[2]);
                 eps.mes = parseInt(temp[3]);
                 eps.dia = parseInt(temp[4]);
@@ -224,28 +224,15 @@ $(document).ready(function() {
                     achou = false; //reseta a variavel para o estado inicial
                 } //fim for
 
-
                 if (epCompara.length > 0) {
                     for (var i = 0; i < epCompara.length; i++) {
                         //cria nova linha
                         //$("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].estacao)).append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(epCompara[i].dia)).append($('<td>').append(epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(epCompara[i].chuva)));
                         //epCompara[i] = epCompara[i].toString();
-                        $("#comparaTable > tbody").append($('<tr>')
-                          .append($('<td>').append(epCompara[i].lat))
-                            .append($('<td>').append(epCompara[i].lon))
-                              .append($('<td>').append(" " + epCompara[i].dia))
-                                .append($('<td>').append(" " + epCompara[i].mes))
-                                  .append($('<td>').append(epCompara[i].ano))
-                                    .append($('<td>').append(" " + epCompara[i].chuva)));
+                        $("#comparaTable > tbody").append($('<tr>').append($('<td>').append(epCompara[i].lat)).append($('<td>').append(epCompara[i].lon)).append($('<td>').append(" " + epCompara[i].dia)).append($('<td>').append(" " + epCompara[i].mes)).append($('<td>').append(epCompara[i].ano)).append($('<td>').append(" " + epCompara[i].chuva)));
 
                         //comparacao += (";" + epCompara[i].estacao + ";" + epCompara[i].lat + ";" + epCompara[i].lon + ";" + epCompara[i].ano + ";" + epCompara[i].mes + ";" + epCompara[i].dia + ";" + epCompara[i].chuva + ";");
-                        comparacao += (","
-                        + epCompara[i].lat + ","
-                        + epCompara[i].lon + ","
-                        + epCompara[i].ano + ","
-                        + epCompara[i].mes + ","
-                        + epCompara[i].dia + ","
-                        + epCompara[i].chuva + ",");
+                        comparacao += ("," + epCompara[i].lat + "," + epCompara[i].lon + "," + epCompara[i].ano + "," + epCompara[i].mes + "," + epCompara[i].dia + "," + epCompara[i].chuva + ",");
                         comparacao += '<br/>'
                     } //fim for
 
@@ -413,7 +400,7 @@ $(document).ready(function() {
 }); //fim document ready
 
 function tabela1(quantidadeFamilias) {
-    var quantidadeEPS = ep.length;
+    const QUANTIDADE_EPS = ep.length;
 
     var meses = [
         "Janeiro",
@@ -457,7 +444,7 @@ function tabela1(quantidadeFamilias) {
             for (var i = 0; i < quantidadeFamilias; i++) {
                 if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                     if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                        for (var j = 0; j < quantidadeEPS; j++) {
+                        for (var j = 0; j < QUANTIDADE_EPS; j++) {
                             if (familias[i].ano == ep[j].ano) {
                                 if (familias[i].mes == ep[j].mes) {
                                     if (familias[i].dia == ep[j].dia) {
@@ -537,7 +524,6 @@ function tabela1(quantidadeFamilias) {
                                                 } //fim if total_time
                                             } //fim else if
                                         } else if (familias[i].total_time >= index && familias[i].total_time < (index + 2)) {
-
                                             epListado.push(ep[j]);
 
                                             if (familias[i].mes == 1) {
@@ -641,16 +627,14 @@ function tabela1(quantidadeFamilias) {
         }
     }
 
-    //remove dias iguais
-    // for (var i = 0; i < epListado.length; i++) {
-    //     for (var j = i + 1; j < epListado.length; j++) {
-    //         if (epListado[i].dia == epListado[j].dia) {
-    //             epListado.splice(j, 1);
-    //         }
-    //     }
-    // }
-
-    console.log(epListado);
+    for (var i = 0; i < epListado.length; i++) {
+        for (var k = i + 1; k < epListado.length; k++) {
+            if (epListado[i].dia == epListado[k].dia) {
+                epListado.splice(k, 1);
+                k--;
+            }
+        }
+    }
 
     for (var i = 0; i < epListado.length; i++) {
         $("#tabela-1-dias-liastados > tbody").append($('<tr>').append($('<td>').append(epListado[i].dia)).append($('<td>').append(epListado[i].mes)).append($('<td>').append(epListado[i].ano)).append($('<td>').append(epListado[i].lat)).append($('<td>').append(epListado[i].lon)));
@@ -1388,6 +1372,7 @@ function downloadInnerHtml(filename, elId, mimeType) {
 function verificaRaio(quantidadeFamilias) {
     const QUANTIDADE_EPS = ep.length;
     const PIXEL = 16;
+
     var maiorSize = 0;
     //area do circulo
     //var areaCirculo = PIXEL * maiorSize;
@@ -1409,30 +1394,21 @@ function verificaRaio(quantidadeFamilias) {
                                 if (familias[i].ano == ep[j].ano) {
                                     if (familias[i].mes == ep[j].mes) {
                                         if (familias[i].dia == ep[j].dia) {
-
                                             var lat = 0;
                                             var lon = 0;
-
                                             for (var k = 0; k < familias[i]['tempos'].length; k++) {
                                                 if (maiorSize < familias[i]['tempos'][k].size) {
                                                     maiorSize = familias[i]['tempos'][k].size;
-
                                                     lat = familias[i]['tempos'][k].xlat;
                                                     lon = familias[i]['tempos'][k].xlon;
                                                 } //fim if maiorSize
                                             } //fim for familias['tempos']
+
                                             dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
 
                                             areaCirculo = PIXEL * maiorSize;
                                             raioCirculo = areaCirculo / Math.PI;
                                             raioCirculo = Math.sqrt(raioCirculo);
-
-                                            console.log("familias[i].numero: " + familias[i].numero);
-                                            console.log("maiorSize: " + maiorSize);
-                                            console.log("lat " + lat);
-                                            console.log("lon " + lon);
-                                            console.log("dac " + dac);
-                                            console.log("raioCirculo " + raioCirculo);
 
                                             if (dac > raioCirculo) {
                                                 $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
@@ -1448,7 +1424,6 @@ function verificaRaio(quantidadeFamilias) {
                         } //fim if xlon
                     } //fim if xlat
                 } //fim if mes
-
             } //fim if total_time
         } //fim if classificacao
         maiorSize = 0;
