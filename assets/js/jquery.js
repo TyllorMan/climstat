@@ -958,7 +958,6 @@ function tabela3(quantidadeFamilias) {
 
 function tabela4(quantidadeFamilias) {
     var famTemp;
-
     try {
         var maiorSize = 0;
         var quantidadeEPS = ep.length;
@@ -978,8 +977,6 @@ function tabela4(quantidadeFamilias) {
                                                     famTemp['tempos'] = familias[i]['tempos'][k];
                                                 } //fim if maiorSize
                                             } //fim for j
-
-                                            console.log(famTemp);
                                             $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
                                         } //fim dia
                                     } //fim mes
@@ -1419,44 +1416,11 @@ function verificaRaio(quantidadeFamilias) {
                                             raioCirculo = Math.sqrt(raioCirculo);
 
                                             if (dac > raioCirculo) {
-                                                $("#tabela-9 > tbody").append($('<tr>')
-                                                  .append($('<td>').append(familias[i].numero))
-                                                    .append($('<td>').append(familias[i].dia))
-                                                      .append($('<td>').append(familias[i].mes))
-                                                        .append($('<td>').append(familias[i].ano))
-                                                              .append($('<td>').append(lat))
-                                                                .append($('<td>').append(lon))
-                                                                  .append($('<td>').append(parseFloat(epLat).toFixed(2)))
-                                                                    .append($('<td>').append(parseFloat(epLon).toFixed(2)))
-                                                              .append($('<td>').append('X'))
-                                                                .append($('<td>').append(''))
-                                                                  .append($('<td>').append('')));
+                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
                                             } else if (dac < raioCirculo) {
-                                                $("#tabela-9 > tbody").append($('<tr>')
-                                                  .append($('<td>').append(familias[i].numero))
-                                                    .append($('<td>').append(familias[i].dia))
-                                                      .append($('<td>').append(familias[i].mes))
-                                                        .append($('<td>').append(familias[i].ano))
-                                                          .append($('<td>').append(lat))
-                                                            .append($('<td>').append(lon))
-                                                              .append($('<td>').append(parseFloat(epLat).toFixed(2)))
-                                                                .append($('<td>').append(parseFloat(epLon).toFixed(2)))
-                                                              .append($('<td>').append(''))
-                                                                .append($('<td>').append('X'))
-                                                                  .append($('<td>').append('')));
+                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
                                             } else {
-                                                $("#tabela-9 > tbody").append($('<tr>')
-                                                  .append($('<td>').append(familias[i].numero))
-                                                    .append($('<td>').append(familias[i].dia))
-                                                      .append($('<td>').append(familias[i].mes))
-                                                        .append($('<td>').append(familias[i].ano))
-                                                          .append($('<td>').append(lat))
-                                                            .append($('<td>').append(lon))
-                                                              .append($('<td>').append(parseFloat(epLat).toFixed(2)))
-                                                                .append($('<td>').append(parseFloat(epLon).toFixed(2)))
-                                                              .append($('<td>').append(''))
-                                                                .append($('<td>').append(''))
-                                                                  .append($('<td>').append('X')));
+                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
                                             }
                                         } //fim if dia
                                     } //fim if mes
@@ -1486,41 +1450,40 @@ function verificaRaio(quantidadeFamilias) {
 }
 
 function teste(lat1, lat2, lon1, lon2) {
-    lat1 = lat1*-1;
-    lat2 = lat2*-1;
-    lon1 = lon1*-1;
-    lon2 = lon2*-1;
+    lat1 = lat1 * -1;
+    lat2 = lat2 * -1;
+    lon1 = lon1 * -1;
+    lon2 = lon2 * -1;
 
     console.log("DLA: " + (lat1 - (-lat2)).toFixed(2));
     console.log("DLO: " + (lon1 - (-lon2)).toFixed(2));
     console.log('\n');
 
     var p1 = parseInt(lat1 - (-lat2));
-    var p2 = parseInt((((lat1 - (-lat2))%1)*100).toFixed(2));
+    var p2 = parseInt((((lat1 - (-lat2)) % 1) * 100).toFixed(2));
 
     console.log("DLA parseInt: " + parseInt(lat1 - (-lat2)));
-    console.log("DLA fracao: " + parseInt((((lat1 - (-lat2))%1)*100).toFixed(2)));
-    console.log("DLA: " + ((p1*60) + (p2*1)));
-    console.log("DLA: " + (((p1*60) + (p2*1)) * MICE).toFixed(2) + "Km");
+    console.log("DLA fracao: " + parseInt((((lat1 - (-lat2)) % 1) * 100).toFixed(2)));
+    console.log("DLA: " + ((p1 * 60) + (p2 * 1)));
+    console.log("DLA: " + (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2) + "Km");
     console.log('\n');
 
     var p11 = parseInt(lon1 - (-lon2));
-    var p22 = parseInt((((lon1 - (-lon2))%1)*100).toFixed(2));
+    var p22 = parseInt((((lon1 - (-lon2)) % 1) * 100).toFixed(2));
 
     console.log("DLO parseInt: " + parseInt(lon1 - (-lon2)));
-    console.log("DLO fracao: " + parseInt((((lon1 - (-lon2))%1)*100).toFixed(2)));
-    console.log("DLO: " + ((p11*60) + (p22*1)));
-    console.log("DLO: " + (((p11*60) + (p22*1)) * MICE).toFixed(2) + "Km");
+    console.log("DLO fracao: " + parseInt((((lon1 - (-lon2)) % 1) * 100).toFixed(2)));
+    console.log("DLO: " + ((p11 * 60) + (p22 * 1)));
+    console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
 
-    var dla = (((p1*60) + (p2*1)) * MICE).toFixed(2);
-    var dlo = (((p11*60) + (p22*1)) * MICE).toFixed(2);
+    var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
+    var dlo = (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2);
     console.log('\n');
 
     var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
     comprimento = Math.sqrt(comprimento).toFixed(3);
-    console.log("comprimento: " +  Math.sqrt(comprimento).toFixed(3));
+    console.log("comprimento: " + Math.sqrt(comprimento).toFixed(3));
     console.log('\n');
-
 
     return comprimento;
 }
