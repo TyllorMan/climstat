@@ -91,8 +91,10 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                eps.lat = temp[0].replace(".", ",");
-                eps.lon = temp[1].replace(".", ",");
+                // eps.lat = temp[0].replace(".", ",");
+                // eps.lon = temp[1].replace(".", ",");
+                eps.lat = parseFloat(temp[0]);
+                eps.lon = parseFloat(temp[1]);
                 eps.ano = parseInt(temp[2]);
                 eps.mes = parseInt(temp[3]);
                 eps.dia = parseInt(temp[4]);
@@ -1385,7 +1387,7 @@ function verificaRaio(quantidadeFamilias) {
 
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
-            if (familias[i].total_time >= 6) {
+            //if (familias[i].total_time >= 6) {
                 if (familias[i].mes > 4) {
                     if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                         if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
@@ -1409,7 +1411,7 @@ function verificaRaio(quantidadeFamilias) {
                                             var epLat = ep[j].lat;
                                             var epLon = ep[j].lon;
 
-                                            dac = teste(parseFloat(epLat).toFixed(2), lat, parseFloat(epLon).toFixed(2), lon);
+                                            dac = teste(epLat, lat, epLon, lon);
 
                                             areaCirculo = PIXEL * maiorSize;
                                             raioCirculo = areaCirculo / Math.PI;
@@ -1429,7 +1431,7 @@ function verificaRaio(quantidadeFamilias) {
                         } //fim if xlon
                     } //fim if xlat
                 } //fim if mes
-            } //fim if total_time
+            //} //fim if total_time
         } //fim if classificacao
         maiorSize = 0;
         dac = 0;
