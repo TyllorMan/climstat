@@ -1463,12 +1463,12 @@ function teste(lat1, lat2, lon1, lon2) {
     console.log('\n');
 
     if (lat1 > lat2) {
-      var p1 = parseInt((lat1 - lat2).toFixed(2)*-1);
-      var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)*-1);
+      var p1 = parseInt((lat1 - lat2).toFixed(2));
+      var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
     }
     else {
-      var p1 = parseInt((lat2 - lat1).toFixed(2)*-1);
-      var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2)*-1);
+      var p1 = parseInt((lat2 - lat1).toFixed(2));
+      var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
 
@@ -1482,11 +1482,11 @@ function teste(lat1, lat2, lon1, lon2) {
 
     if (lon1 > lon2) {
       var p11 = parseInt(lon1 - lon2)*-1;
-      var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)*-1);
+      var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
     }
     else {
       var p11 = parseInt(lon2 - lon1)*-1;
-      var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2)*-1);
+      var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
     }
 
 
