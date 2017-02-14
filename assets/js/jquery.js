@@ -1404,14 +1404,17 @@ function verificaRaio(quantidadeFamilias) {
                                             var epLat = ep[j].lat;
                                             var epLon = ep[j].lon;
 
+                                            console.log('maiorSize'+maiorSize);
                                             dac = parseFloat(teste(epLat, lat, epLon, lon));
 
-                                            areaCirculo = PIXEL * maiorSize;
+                                            areaCirculo = PIXEL * 6229999000;
                                             raioCirculo = areaCirculo / Math.PI;
                                             raioCirculo = Math.sqrt(raioCirculo);
 
-                                            console.log("dac:" + dac);
-                                            console.log("raioCirculo" + raioCirculo);
+                                            console.log('\n');
+                                            console.log("dac: " + dac);
+                                            console.log("raioCirculo: " + raioCirculo);
+                                            console.log('\n');
 
                                             if (dac < raioCirculo) {
                                                 $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
@@ -1453,16 +1456,7 @@ function teste(lat1, lat2, lon1, lon2) {
     lon1 = (lon1 * -1).toFixed(2);
     lon2 = (lon2 * -1).toFixed(2);
 
-    console.log(lat1);
-    console.log(lat2);
-    console.log(lon1);
-    console.log(lon2);
-
-    console.log("DLA: " + (lat1 - lat2).toFixed(2)*-1);
-    console.log("DLO: " + (lon1 - lon2).toFixed(2)*-1);
-    console.log('\n');
-
-    if (lat1 > lat2) {
+    if (lat1 < lat2) {
       var p1 = parseInt((lat1 - lat2).toFixed(2));
       var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
     }
@@ -1471,29 +1465,34 @@ function teste(lat1, lat2, lon1, lon2) {
       var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
+    // console.log("DLA: " + (lat1 - lat2).toFixed(2));
+    // console.log("DLO: " + (lon1 - lon2).toFixed(2));
+    // console.log('\n');
 
-    console.log("DLA parseInt: " + parseInt(lat1 - lat2)*-1);
-    console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2))*-1);
+    // console.log("DLA parseInt: " + parseInt(lat1 - lat2));
+    // console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)));
 
 
-    console.log("DLA: " + ((p1 * 60) + (p2 * 1)));
-    console.log("DLA: " + (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2) + "Km");
-    console.log('\n');
+    // console.log("DLA: " + ((p1 * 60) + p2));
+    // console.log(p1);
+    // console.log(p2);
+    // console.log("DLA: " + (((p1 * 60) + p2) * MICE).toFixed(2) + "Km");
+    // console.log('\n');
 
     if (lon1 > lon2) {
-      var p11 = parseInt(lon1 - lon2)*-1;
+      var p11 = parseInt(lon1 - lon2);
       var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
     }
     else {
-      var p11 = parseInt(lon2 - lon1)*-1;
+      var p11 = parseInt(lon2 - lon1);
       var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
     }
 
 
-    console.log("DLO parseInt: " + parseInt(lon1 -lon2)*-1);
-    console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2))*-1);
-    console.log("DLO: " + ((p11 * 60) + p22));
-    console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
+    // console.log("DLO parseInt: " + parseInt(lon1 -lon2));
+    // console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)));
+    // console.log("DLO: " + ((p11 * 60) + p22));
+    //  console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
 
     var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
     console.log("dla: " + dla);
