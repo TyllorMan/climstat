@@ -1409,7 +1409,7 @@ function verificaRaio(quantidadeFamilias) {
 
                                     areaCirculo = PIXEL * maiorSize;
                                     raioCirculo = areaCirculo / Math.PI;
-                                    raioCirculo = Math.sqrt(raioCirculo);
+                                    raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
 
                                     console.log("dac: " + dac);
                                     console.log("raioCirculo: " + raioCirculo);
