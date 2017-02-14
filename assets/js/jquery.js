@@ -1380,7 +1380,7 @@ function verificaRaio(quantidadeFamilias) {
 
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
-            if (familias[i].total_time >= 6) {
+            //if (familias[i].total_time >= 6) {
             //if (familias[i].mes > 4) {
             if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
                 if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
@@ -1429,7 +1429,7 @@ function verificaRaio(quantidadeFamilias) {
                 } //fim if xlon
             } //fim if xlat
             //} //fim if mes
-            } //fim if total_time
+            //} //fim if total_time
         } //fim if classificacao
         maiorSize = 0;
         dac = 0;
