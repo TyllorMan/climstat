@@ -1380,57 +1380,56 @@ function verificaRaio(quantidadeFamilias) {
 
     for (var i = 0; i < quantidadeFamilias; i++) {
         if (familias[i].classificacao == "N") {
-            //if (familias[i].total_time >= 6) {
-                //if (familias[i].mes > 4) {
-                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                            for (var j = 0; j < QUANTIDADE_EPS; j++) {
-                                if (familias[i].ano == ep[j].ano) {
-                                    if (familias[i].mes == ep[j].mes) {
-                                        if (familias[i].dia == ep[j].dia) {
-                                            var lat = 0;
-                                            var lon = 0;
-                                            for (var k = 0; k < familias[i]['tempos'].length; k++) {
-                                                if (maiorSize < familias[i]['tempos'][k].size) {
-                                                    maiorSize = familias[i]['tempos'][k].size;
-                                                    lat = familias[i]['tempos'][k].xlat;
-                                                    lon = familias[i]['tempos'][k].xlon;
-                                                } //fim if maiorSize
-                                            } //fim for familias['tempos']
+            if (familias[i].total_time >= 6) {
+            //if (familias[i].mes > 4) {
+            if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                    for (var j = 0; j < QUANTIDADE_EPS; j++) {
+                        if (familias[i].ano == ep[j].ano) {
+                            if (familias[i].mes == ep[j].mes) {
+                                if (familias[i].dia == ep[j].dia) {
+                                    var lat = 0;
+                                    var lon = 0;
+                                    for (var k = 0; k < familias[i]['tempos'].length; k++) {
+                                        if (maiorSize < familias[i]['tempos'][k].size) {
+                                            maiorSize = familias[i]['tempos'][k].size;
+                                            lat = familias[i]['tempos'][k].xlat;
+                                            lon = familias[i]['tempos'][k].xlon;
+                                        } //fim if maiorSize
+                                    } //fim for familias['tempos']
 
-                                            //dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
-                                            //dac = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
+                                    //dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
+                                    //dac = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
 
-                                            var epLat = ep[j].lat;
-                                            var epLon = ep[j].lon;
+                                    var epLat = ep[j].lat;
+                                    var epLon = ep[j].lon;
 
-                                            console.log('maiorSize'+maiorSize);
-                                            dac = parseFloat(teste(epLat, lat, epLon, lon));
+                                    console.log('maiorSize: ' + maiorSize);
+                                    dac = parseFloat(teste(epLat, lat, epLon, lon));
 
-                                            areaCirculo = PIXEL * maiorSize;
-                                            raioCirculo = areaCirculo / Math.PI;
-                                            raioCirculo = Math.sqrt(raioCirculo);
+                                    areaCirculo = PIXEL * maiorSize;
+                                    raioCirculo = areaCirculo / Math.PI;
+                                    raioCirculo = Math.sqrt(raioCirculo);
 
-                                            console.log('\n');
-                                            console.log("dac: " + dac);
-                                            console.log("raioCirculo: " + raioCirculo);
-                                            console.log('\n');
+                                    console.log("dac: " + dac);
+                                    console.log("raioCirculo: " + raioCirculo);
+                                    console.log('\n');
 
-                                            if (dac < raioCirculo) {
-                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
-                                            } else if (dac > raioCirculo) {
-                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
-                                            } else {
-                                                $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
-                                            }
-                                        } //fim if dia
-                                    } //fim if mes
-                                } //fim if ano
-                            } //fim for quantidadeEPS
-                        } //fim if xlon
-                    } //fim if xlat
-                //} //fim if mes
-            //} //fim if total_time
+                                    if (dac < raioCirculo) {
+                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+                                    } else if (dac > raioCirculo) {
+                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
+                                    } else {
+                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
+                                    }
+                                } //fim if dia
+                            } //fim if mes
+                        } //fim if ano
+                    } //fim for quantidadeEPS
+                } //fim if xlon
+            } //fim if xlat
+            //} //fim if mes
+            } //fim if total_time
         } //fim if classificacao
         maiorSize = 0;
         dac = 0;
@@ -1457,12 +1456,11 @@ function teste(lat1, lat2, lon1, lon2) {
     lon2 = (lon2 * -1).toFixed(2);
 
     if (lat1 < lat2) {
-      var p1 = parseInt((lat1 - lat2).toFixed(2));
-      var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
-    }
-    else {
-      var p1 = parseInt((lat2 - lat1).toFixed(2));
-      var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
+        var p1 = parseInt((lat1 - lat2).toFixed(2));
+        var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
+    } else {
+        var p1 = parseInt((lat2 - lat1).toFixed(2));
+        var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
     // console.log("DLA: " + (lat1 - lat2).toFixed(2));
@@ -1472,7 +1470,6 @@ function teste(lat1, lat2, lon1, lon2) {
     // console.log("DLA parseInt: " + parseInt(lat1 - lat2));
     // console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)));
 
-
     // console.log("DLA: " + ((p1 * 60) + p2));
     // console.log(p1);
     // console.log(p2);
@@ -1480,14 +1477,12 @@ function teste(lat1, lat2, lon1, lon2) {
     // console.log('\n');
 
     if (lon1 > lon2) {
-      var p11 = parseInt(lon1 - lon2);
-      var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
+        var p11 = parseInt(lon1 - lon2);
+        var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
+    } else {
+        var p11 = parseInt(lon2 - lon1);
+        var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
     }
-    else {
-      var p11 = parseInt(lon2 - lon1);
-      var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
-    }
-
 
     // console.log("DLO parseInt: " + parseInt(lon1 -lon2));
     // console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)));
@@ -1495,9 +1490,18 @@ function teste(lat1, lat2, lon1, lon2) {
     //  console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
 
     var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
+
+    if (dla < 0) {
+        dla = dla * -1;
+    }
+
     console.log("dla: " + dla);
     var dlo = (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2);
-    console.log("dlo: "+ dlo);
+
+    if (dlo < 0) {
+        dlo = dlo * -1;
+    }
+    console.log("dlo: " + dlo);
     console.log('\n');
 
     var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
