@@ -1450,6 +1450,8 @@ function teste(lat1, lat2, lon1, lon2) {
     lon1 = (lon1 * -1).toFixed(2);
     lon2 = (lon2 * -1).toFixed(2);
 
+    console.log(lat1);
+console.log(lat2);
     if (lat1 < lat2) {
         var p1 = parseInt((lat1 - lat2).toFixed(2));
         var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
@@ -1458,6 +1460,8 @@ function teste(lat1, lat2, lon1, lon2) {
         var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
+console.log(lon1);
+console.log(lon2);
     if (lon1 > lon2) {
         var p11 = parseInt(lon1 - lon2);
         var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
