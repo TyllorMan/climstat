@@ -1374,8 +1374,6 @@ function verificaRaio(quantidadeFamilias) {
     var maiorSize = 0;
     var areaCirculo = 0;
     var raioCirculo = 0;
-    //calculo  da distancia do ponto da estacao ao centro do circulo
-    //var dac = Math.sqrt( Math.pow((-5.26 - (-4.21)), 2) + Math.pow((-36.72 - (-35.41)), 2));
     var dac = 0;
 
     for (var i = 0; i < quantidadeFamilias; i++) {
@@ -1397,9 +1395,6 @@ function verificaRaio(quantidadeFamilias) {
                                             lon = familias[i]['tempos'][k].xlon;
                                         } //fim if maiorSize
                                     } //fim for familias['tempos']
-
-                                    //dac = Math.sqrt((Math.pow((ep[j].lat - (lat)), 2)) + (Math.pow((ep[j].lon - (lon)), 2)));
-                                    //dac = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
 
                                     var epLat = ep[j].lat;
                                     var epLon = ep[j].lon;
@@ -1463,19 +1458,6 @@ function teste(lat1, lat2, lon1, lon2) {
         var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
-    // console.log("DLA: " + (lat1 - lat2).toFixed(2));
-    // console.log("DLO: " + (lon1 - lon2).toFixed(2));
-    // console.log('\n');
-
-    // console.log("DLA parseInt: " + parseInt(lat1 - lat2));
-    // console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)));
-
-    // console.log("DLA: " + ((p1 * 60) + p2));
-    // console.log(p1);
-    // console.log(p2);
-    // console.log("DLA: " + (((p1 * 60) + p2) * MICE).toFixed(2) + "Km");
-    // console.log('\n');
-
     if (lon1 > lon2) {
         var p11 = parseInt(lon1 - lon2);
         var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
@@ -1483,11 +1465,6 @@ function teste(lat1, lat2, lon1, lon2) {
         var p11 = parseInt(lon2 - lon1);
         var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
     }
-
-    // console.log("DLO parseInt: " + parseInt(lon1 -lon2));
-    // console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)));
-    // console.log("DLO: " + ((p11 * 60) + p22));
-    //  console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
 
     var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
 
@@ -1502,7 +1479,6 @@ function teste(lat1, lat2, lon1, lon2) {
         dlo = dlo * -1;
     }
     console.log("dlo: " + dlo);
-    console.log('\n');
 
     var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
     comprimento = Math.sqrt(comprimento).toFixed(3);
@@ -1511,6 +1487,7 @@ function teste(lat1, lat2, lon1, lon2) {
 
     return comprimento;
 }
+
 /*
 -------------------------------------------
 todas as tebelas devem ser verificadas por:
