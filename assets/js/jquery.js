@@ -1440,14 +1440,6 @@ function verificaRaio(quantidadeFamilias) {
 }
 
 function teste(lat1, lat2, lon1, lon2) {
-    // lat1 = (lat1 * -1).toFixed(2);
-    // lat2 = (lat2 * -1).toFixed(2);
-    // lon1 = (lon1 * -1).toFixed(2);
-    // lon2 = (lon2 * -1).toFixed(2);
-
-    console.log(lat1);
-    console.log(lat2);
-
     if (lat1 < lat2) {
         var p1 = parseInt((lat1 - lat2).toFixed(2));
         var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
