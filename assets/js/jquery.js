@@ -1399,16 +1399,11 @@ function verificaRaio(quantidadeFamilias) {
                                     var epLat = ep[j].lat;
                                     var epLon = ep[j].lon;
 
-                                    console.log('maiorSize: ' + maiorSize);
                                     dac = parseFloat(teste(epLat, lat, epLon, lon));
 
                                     areaCirculo = PIXEL * maiorSize;
                                     raioCirculo = areaCirculo / Math.PI;
                                     raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
-
-                                    console.log("dac: " + dac);
-                                    console.log("raioCirculo: " + raioCirculo);
-                                    console.log('\n');
 
                                     if (dac < raioCirculo) {
                                         $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
@@ -1445,13 +1440,14 @@ function verificaRaio(quantidadeFamilias) {
 }
 
 function teste(lat1, lat2, lon1, lon2) {
-    lat1 = (lat1 * -1).toFixed(2);
-    lat2 = (lat2 * -1).toFixed(2);
-    lon1 = (lon1 * -1).toFixed(2);
-    lon2 = (lon2 * -1).toFixed(2);
+    // lat1 = (lat1 * -1).toFixed(2);
+    // lat2 = (lat2 * -1).toFixed(2);
+    // lon1 = (lon1 * -1).toFixed(2);
+    // lon2 = (lon2 * -1).toFixed(2);
 
     console.log(lat1);
-console.log(lat2);
+    console.log(lat2);
+
     if (lat1 < lat2) {
         var p1 = parseInt((lat1 - lat2).toFixed(2));
         var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
@@ -1460,8 +1456,6 @@ console.log(lat2);
         var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
-console.log(lon1);
-console.log(lon2);
     if (lon1 > lon2) {
         var p11 = parseInt(lon1 - lon2);
         var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
@@ -1476,18 +1470,14 @@ console.log(lon2);
         dla = dla * -1;
     }
 
-    console.log("dla: " + dla);
     var dlo = (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2);
 
     if (dlo < 0) {
         dlo = dlo * -1;
     }
-    console.log("dlo: " + dlo);
 
     var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
     comprimento = Math.sqrt(comprimento).toFixed(3);
-    console.log("comprimento: " + comprimento);
-    console.log('\n');
 
     return comprimento;
 }
