@@ -42,6 +42,7 @@ $(document).ready(function() {
     $("#comparaTable").hide();
     $("#salvar").hide();
     $("#salvarAVE").hide();
+    $("#bts10").hide();
     $("#comparaTextarea").hide();
     //$("#selecionaFamilia").hide();
 
@@ -110,6 +111,7 @@ $(document).ready(function() {
     $("#div-tabela-7").hide();
     $("#div-tabela-8").hide();
     $("#div-tabela-9").hide();
+
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -290,6 +292,7 @@ $(document).ready(function() {
                 } //fim if epCompara.length
 
                 $("#salvar").fadeIn("slow");
+                $("#bts10").fadeIn("slow");
                 $("#salvar").click(function() {
                     downloadInnerHtml('resultado', comparacao, 'text/html');
                 });
