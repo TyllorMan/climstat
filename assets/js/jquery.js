@@ -43,6 +43,7 @@ $(document).ready(function() {
     $("#salvar").hide();
     $("#salvarAVE").hide();
     $("#comparaTextarea").hide();
+    $("#selecionaFamilia").hide();
 
     $("#loader").hide();
 
@@ -64,6 +65,7 @@ $(document).ready(function() {
     $("#div-tabela-6").hide();
     $("#div-tabela-7").hide();
     $("#div-tabela-8").hide();
+    $("#div-tabela-9").hide();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -393,7 +395,8 @@ $(document).ready(function() {
                         quantidadeFamilias++;
                     } //fim else if
                 } //fim for new familia
-                verificaRaio(familias.length);
+                //verificaRaio(familias.length);
+                $("#selecionaFamilia").fadeIn("slow");
             }; //fim fileReader.onload
             fileReader.readAsText(input.files[cont]);
         }
@@ -1425,6 +1428,7 @@ function verificaRaio(quantidadeFamilias) {
         dac = 0;
     } //fim for quantidadeFamilias
 
+    $("#div-tabela-9").fadeIn("slow");
     $("#tabela-9").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts9").click(function() {
