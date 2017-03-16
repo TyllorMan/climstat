@@ -51,41 +51,40 @@ $(document).ready(function() {
 
     $("#bt-salvar-eps").hide();
 
-    $(".dropdown-menu a").click(function() {
-          //alert("teste");//tabela6(familias.length, $(this).text());
-    });
-
+    // $(".dropdown-menu a").click(function() {
+    //       //alert("teste");//tabela6(familias.length, $(this).text());
+    // });
 
     $(".dropdown-menu a").click(function() {
         if($(this).text() == '1'){
-          tabela6(familias.length);
+          tabela1(familias.length);
         }
         else if($(this).text() == '1'){
-          tabela6(familias.length);
+          tabela2(familias.length);
         }
         else if($(this).text() == '2'){
-          tabela6(familias.length);
+          tabela2(familias.length);
         }
         else if($(this).text() == '3'){
-          tabela6(familias.length);
+          tabela3(familias.length);
         }
         else if($(this).text() == '4'){
-          tabela6(familias.length);
+          tabela4(familias.length);
         }
         else if($(this).text() == '5'){
-          tabela6(familias.length);
+          tabela5(familias.length);
         }
         else if($(this).text() == '6'){
           tabela6(familias.length);
         }
         else if($(this).text() == '7'){
-          tabela6(familias.length);
+          tabela7(familias.length);
         }
         else if($(this).text() == '8'){
-          tabela6(familias.length);
+          tabela8(familias.length);
         }
         else if($(this).text() == '9'){
-          tabela6(familias.length);
+          verificaRaio(familias.length);
         }
         else {
           tabela1(familias.length);
