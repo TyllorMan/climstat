@@ -53,46 +53,7 @@ $(document).ready(function() {
 
     $("#bt-salvar-eps").hide();
 
-    $(".dropdown-menu a").click(function() {
-        if ($(this).text() == '1') {
-            escondeTabelas();
-            tabela1(familias.length);
-        } else if ($(this).text() == '2') {
-            escondeTabelas();
-            tabela2(familias.length);
-        } else if ($(this).text() == '3') {
-            escondeTabelas();
-            tabela3(familias.length);
-        } else if ($(this).text() == '4') {
-            escondeTabelas();
-            tabela4(familias.length);
-        } else if ($(this).text() == '5') {
-            escondeTabelas();
-            tabela5(familias.length);
-        } else if ($(this).text() == '6') {
-            escondeTabelas();
-            tabela6(familias.length);
-        } else if ($(this).text() == '7') {
-            escondeTabelas();
-            tabela7(familias.length);
-        } else if ($(this).text() == '8') {
-            escondeTabelas();
-            tabela8(familias.length);
-        } else if ($(this).text() == '9') {
-            escondeTabelas();
-            verificaRaio(familias.length);
-        } else {
-            tabela1(familias.length);
-            tabela2(familias.length);
-            tabela3(familias.length);
-            tabela4(familias.length);
-            tabela5(familias.length);
-            tabela6(familias.length);
-            tabela7(familias.length);
-            tabela8(familias.length);
-            verificaRaio(familias.length);
-        }
-    });
+
 
     //div tabelas
     $("#tabela-EPs").hide();
@@ -1545,6 +1506,50 @@ function escondeTabelas() {
     $("#div-tabela-8").hide();
     $("#div-tabela-9").hide();
 }
+
+function dropdownMenu() {
+  $(".dropdown-menu a").click(function() {
+      if ($(this).text() == '1') {
+          escondeTabelas();
+          tabela1(familias.length);
+      } else if ($(this).text() == '2') {
+          escondeTabelas();
+          tabela2(familias.length);
+      } else if ($(this).text() == '3') {
+          escondeTabelas();
+          tabela3(familias.length);
+      } else if ($(this).text() == '4') {
+          escondeTabelas();
+          tabela4(familias.length);
+      } else if ($(this).text() == '5') {
+          escondeTabelas();
+          tabela5(familias.length);
+      } else if ($(this).text() == '6') {
+          escondeTabelas();
+          tabela6(familias.length);
+      } else if ($(this).text() == '7') {
+          escondeTabelas();
+          tabela7(familias.length);
+      } else if ($(this).text() == '8') {
+          escondeTabelas();
+          tabela8(familias.length);
+      } else if ($(this).text() == '9') {
+          escondeTabelas();
+          verificaRaio(familias.length);
+      } else {
+          tabela1(familias.length);
+          tabela2(familias.length);
+          tabela3(familias.length);
+          tabela4(familias.length);
+          tabela5(familias.length);
+          tabela6(familias.length);
+          tabela7(familias.length);
+          tabela8(familias.length);
+          verificaRaio(familias.length);
+      } //fim else
+  }); //fim dropdown-menu a
+} //fim dropdownMenu
+
 /*
 -------------------------------------------
 todas as tebelas devem ser verificadas por:
