@@ -34,29 +34,8 @@ for (var i = 0; i < tabTemp.length; i++) {
 
 //inicializacao de componentes
 $(document).ready(function() {
-    new WOW().init();
-
-    $("#sucesso").hide();
-    $(":file").filestyle({buttonName: "btn-primary"});
-    $("#comparaTextarea").hide();
-    $("#ave").hide();
-    $("#comparaTable").hide();
-    $("#salvar").hide();
-    $("#salvarAVE").hide();
-    $("#bts10").hide();
-    $("#comparaTextarea").hide();
-    $("#selecionaFamilia").hide();
-
-    $("#loader").hide();
-
-    $("#combobox").hide();
-
-    $("#bt-salvar-eps").hide();
-
-
-
-    //div tabelas
-    $("#tabela-EPs").hide();
+    inicializaComponentes();
+    dropdownMenu();
     escondeTabelas();
 });
 
@@ -945,10 +924,8 @@ function tabela3(quantidadeFamilias) {
         var row = $('<tr></tr>').appendTo("#tabela-3");
         for (var j = 0; j < 13; j++) {
             $('<td></td>').text(matriz[i][j]).appendTo(row);
-        }
-    }
-
-    $("#div-tabela-3").fadeIn(300);
+        } //fim for
+    } //fim for
 
     $("#bts4").click(function() {
         $("#tabela-3").table2excel({
@@ -958,9 +935,11 @@ function tabela3(quantidadeFamilias) {
             exclude_img: false,
             exclude_links: false,
             exclude_inputs: false
-        });
-    });
-} //fim function
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-3").fadeIn(300);
+} //fim tabela3
 
 function tabela4(quantidadeFamilias) {
     //limpa o conteudo da tabela
@@ -1001,8 +980,6 @@ function tabela4(quantidadeFamilias) {
         console.log(err.message);
     } //fim catch
 
-    $("#div-tabela-4").fadeIn(300);
-
     $("#btsteste").click(function() {
         $("#tabela-4").table2excel({
             name: "Excel Document Name",
@@ -1011,8 +988,10 @@ function tabela4(quantidadeFamilias) {
             exclude_img: false,
             exclude_links: false,
             exclude_inputs: false
-        });
-    });
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-4").fadeIn(300);
 }
 
 function tabela5(quantidadeFamilias) {
@@ -1168,8 +1147,6 @@ function tabela5(quantidadeFamilias) {
         }
     }
 
-    $("#div-tabela-5").fadeIn(300);
-
     $("#tab5").click(function() {
         $("#tabela-5").table2excel({
             name: "Excel Document Name",
@@ -1178,8 +1155,10 @@ function tabela5(quantidadeFamilias) {
             exclude_img: false,
             exclude_links: false,
             exclude_inputs: false
-        });
-    });
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-5").fadeIn(300);
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
@@ -1213,8 +1192,8 @@ function tabela6(quantidadeFamilias) {
             exclude_img: true,
             exclude_links: true,
             exclude_inputs: true
-        });
-    });
+        }); //fim table2excel
+    }); //fim function
 
     $("#div-tabela-6").fadeIn(300);
 } //fim tabela6
@@ -1278,7 +1257,6 @@ function tabela7(quantidadeFamilias) {
         maturacao = 0;
     } //fim quantidadeFamilias
 
-    $("#div-tabela-7").fadeIn("slow");
     $("#tabela-7").simplePagination({perPage: 9, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts7").click(function() {
@@ -1289,14 +1267,16 @@ function tabela7(quantidadeFamilias) {
             exclude_img: false,
             exclude_links: false,
             exclude_inputs: false
-        });
-    });
-    tabela8();
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-7").fadeIn(300);
 }
 
 function tabela8() {
     //limpa o conteudo da tabela
     $("#tabela-8 > tbody").empty();
+
     for (var i = 0; i < 4; i++) {
         var row = $('<tr></tr>').appendTo("#tabela-8");
         for (var j = 0; j < 4; j++) {
@@ -1314,8 +1294,8 @@ function tabela8() {
             exclude_img: false,
             exclude_links: false,
             exclude_inputs: false
-        });
-    });
+        }); //fim table2excel
+    }); //fim function
 } //fim tabela8
 
 function tab7(numero, hora, time, soma, vez, horario, lat, lon) {
@@ -1445,7 +1425,6 @@ function verificaRaio(quantidadeFamilias) {
         dac = 0;
     } //fim for quantidadeFamilias
 
-    $("#div-tabela-9").fadeIn("slow");
     $("#tabela-9").simplePagination({perPage: 10, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
 
     $("#bts9").click(function() {
@@ -1456,8 +1435,10 @@ function verificaRaio(quantidadeFamilias) {
             exclude_img: true,
             exclude_links: true,
             exclude_inputs: true
-        });
-    });
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-9").fadeIn(300);
 }
 
 function teste(lat1, lat2, lon1, lon2) {
@@ -1550,6 +1531,23 @@ function dropdownMenu() {
   }); //fim dropdown-menu a
 } //fim dropdownMenu
 
+function inicializaComponentes() {
+  new WOW().init();
+  $("#sucesso").hide();
+  $(":file").filestyle({buttonName: "btn-primary"});
+  $("#comparaTextarea").hide();
+  $("#ave").hide();
+  $("#comparaTable").hide();
+  $("#salvar").hide();
+  $("#salvarAVE").hide();
+  $("#bts10").hide();
+  $("#comparaTextarea").hide();
+  $("#selecionaFamilia").hide();
+  $("#loader").hide();
+  $("#combobox").hide();
+  $("#bt-salvar-eps").hide();
+  $("#tabela-EPs").hide();
+}
 /*
 -------------------------------------------
 todas as tebelas devem ser verificadas por:
