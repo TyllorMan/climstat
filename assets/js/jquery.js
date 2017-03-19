@@ -53,144 +53,50 @@ $(document).ready(function() {
 
     $("#bt-salvar-eps").hide();
 
-    // $(".dropdown-menu a").click(function() {
-    //       //alert("teste");//tabela6(familias.length, $(this).text());
-    // });
-
     $(".dropdown-menu a").click(function() {
-        if($(this).text() == '1'){
-
-          tabela1(familias.length);
-          $("#div-tabela-1").fadeIn(300);
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-        }
-        else if($(this).text() == '2'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").fadeIn(300);
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela2(familias.length);
-        }
-        else if($(this).text() == '3'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").fadeIn(300);
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela3(familias.length);
-        }
-        else if($(this).text() == '4'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").fadeIn(300);
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela4(familias.length);
-        }
-        else if($(this).text() == '5'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").fadeIn(300);
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela5(familias.length);
-        }
-        else if($(this).text() == '6'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").fadeIn(300);
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela6(familias.length);
-        }
-        else if($(this).text() == '7'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").fadeIn(300);
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").hide();
-          tabela7(familias.length);
-        }
-        else if($(this).text() == '8'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").fadeIn(300);
-          $("#div-tabela-9").hide();
-          tabela8(familias.length);
-        }
-        else if($(this).text() == '9'){
-          $("#div-tabela-1").hide();
-          $("#div-tabela-2").hide();
-          $("#div-tabela-3").hide();
-          $("#div-tabela-4").hide();
-          $("#div-tabela-5").hide();
-          $("#div-tabela-6").hide();
-          $("#div-tabela-7").hide();
-          $("#div-tabela-8").hide();
-          $("#div-tabela-9").fadeIn(300);
-          verificaRaio(familias.length);
-        }
-        else {
-          tabela1(familias.length);
-          tabela2(familias.length);
-          tabela3(familias.length);
-          tabela4(familias.length);
-          tabela5(familias.length);
-          tabela6(familias.length);
-          tabela7(familias.length);
-          tabela8(familias.length);
-          verificaRaio(familias.length);
+        if ($(this).text() == '1') {
+            escondeTabelas();
+            tabela1(familias.length);
+        } else if ($(this).text() == '2') {
+            escondeTabelas();
+            tabela2(familias.length);
+        } else if ($(this).text() == '3') {
+            escondeTabelas();
+            tabela3(familias.length);
+        } else if ($(this).text() == '4') {
+            escondeTabelas();
+            tabela4(familias.length);
+        } else if ($(this).text() == '5') {
+            escondeTabelas();
+            tabela5(familias.length);
+        } else if ($(this).text() == '6') {
+            escondeTabelas();
+            tabela6(familias.length);
+        } else if ($(this).text() == '7') {
+            escondeTabelas();
+            tabela7(familias.length);
+        } else if ($(this).text() == '8') {
+            escondeTabelas();
+            tabela8(familias.length);
+        } else if ($(this).text() == '9') {
+            escondeTabelas();
+            verificaRaio(familias.length);
+        } else {
+            tabela1(familias.length);
+            tabela2(familias.length);
+            tabela3(familias.length);
+            tabela4(familias.length);
+            tabela5(familias.length);
+            tabela6(familias.length);
+            tabela7(familias.length);
+            tabela8(familias.length);
+            verificaRaio(familias.length);
         }
     });
 
     //div tabelas
     $("#tabela-EPs").hide();
-    $("#div-tabela-1").hide();
-    $("#div-tabela-2").hide();
-    $("#div-tabela-3").hide();
-    $("#div-tabela-4").hide();
-    $("#div-tabela-5").hide();
-    $("#div-tabela-6").hide();
-    $("#div-tabela-7").hide();
-    $("#div-tabela-8").hide();
-    $("#div-tabela-9").hide();
+    escondeTabelas();
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -954,8 +860,8 @@ function tabela2(quantidadeFamilias) {
 }
 
 function tabela3(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-3 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-3 > tbody").empty();
 
     var horarios = [
         "0 ~ 2",
@@ -1096,8 +1002,8 @@ function tabela3(quantidadeFamilias) {
 } //fim function
 
 function tabela4(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-4 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-4 > tbody").empty();
 
     var famTemp;
     try {
@@ -1149,8 +1055,8 @@ function tabela4(quantidadeFamilias) {
 }
 
 function tabela5(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-5 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-5 > tbody").empty();
 
     var maiorSize = 0;
 
@@ -1316,8 +1222,8 @@ function tabela5(quantidadeFamilias) {
 } //fim function tabela4
 
 function tabela6(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-6 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-6 > tbody").empty();
 
     var classificacao = "N";
     for (var j = 0; j < 24; j++) {
@@ -1353,8 +1259,8 @@ function tabela6(quantidadeFamilias) {
 } //fim tabela6
 
 function tabela7(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-7 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-7 > tbody").empty();
 
     var quantidadeEPS = ep.length;
     var maiorSize = 0;
@@ -1428,8 +1334,8 @@ function tabela7(quantidadeFamilias) {
 }
 
 function tabela8() {
-  //limpa o conteudo da tabela
-  $("#tabela-8 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-8 > tbody").empty();
     for (var i = 0; i < 4; i++) {
         var row = $('<tr></tr>').appendTo("#tabela-8");
         for (var j = 0; j < 4; j++) {
@@ -1520,8 +1426,8 @@ function downloadInnerHtml(filename, elId, mimeType) {
 } //fim downloadInnerHtml
 
 function verificaRaio(quantidadeFamilias) {
-  //limpa o conteudo da tabela
-  $("#tabela-9 > tbody").empty();
+    //limpa o conteudo da tabela
+    $("#tabela-9 > tbody").empty();
     const QUANTIDADE_EPS = ep.length;
 
     var maiorSize = 0;
@@ -1628,6 +1534,17 @@ function teste(lat1, lat2, lon1, lon2) {
     return comprimento;
 }
 
+function escondeTabelas() {
+    $("#div-tabela-1").hide();
+    $("#div-tabela-2").hide();
+    $("#div-tabela-3").hide();
+    $("#div-tabela-4").hide();
+    $("#div-tabela-5").hide();
+    $("#div-tabela-6").hide();
+    $("#div-tabela-7").hide();
+    $("#div-tabela-8").hide();
+    $("#div-tabela-9").hide();
+}
 /*
 -------------------------------------------
 todas as tebelas devem ser verificadas por:
