@@ -131,31 +131,12 @@ $(document).ready(function() {
                 utmTemp.lon = temp[5];
                 utmTemp.size = temp[6];
 
-                //$("#tabela-EPs > tbody").append($('<tr>').append($('<td>').append(eps.dia)).append($('<td>').append(eps.mes)).append($('<td>').append(eps.ano)).append($('<td>').append(eps.lat)).append($('<td>').append(eps.lon)));
-                //adiciona novo eps em EPs
                 utm.push(utmTemp);
             } //fim for linha
             console.log(utm);
             verificaRaio(utm.length);
-            //monta a paginacao da tabela
-            //$("#tabela-EPs").simplePagination({perPage: 5, containerClass: '', previousButtonClass: 'btn btn-info', nextButtonClass: 'btn btn-info', currentPage: 1});
         }; //fim onload
         fileReader.readAsText(input.files[0]);
-        //mostra a tabela
-        //$("#tabela-EPs").fadeIn("slow");
-        //mostra o botao salvar
-        //$("#bt-salvar-eps").fadeIn("slow");
-        //funcao para slavar a tabela em aruqivo .xls
-        // $("#bt-salvar-eps").click(function() {
-        //     $("#tabela-EPs").table2excel({
-        //         name: "Excel Document Name",
-        //         filename: "EPs",
-        //         fileext: ".xls",
-        //         exclude_img: true,
-        //         exclude_links: true,
-        //         exclude_inputs: true
-        //     }); //fim table2excel
-        // }); //fim function
     }); //fim
 }); //fim document ready
 
@@ -342,7 +323,7 @@ $(document).ready(function() {
         var input = event.target;
         var files = $("#inputFamilias")[0].files;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
-        console.log('quantidadeArquivos: '+quantidadeArquivos);
+        console.log('quantidadeArquivos: ' + quantidadeArquivos);
         var quantidadeFamilias = 0;
         var soma = 0;
         var file;
@@ -1438,49 +1419,40 @@ function verificaRaio(quantidadeFamilias) {
     var dac = 0;
 
     for (var i = 0; i < quantidadeFamilias; i++) {
-        //if (familias[i].classificacao == "N") {
-            //if (familias[i].total_time >= 6) {
-            //if (familias[i].mes > 4) {
-            //if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
-                //if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
-                    for (var j = 0; j < QUANTIDADE_EPS; j++) {
-                        if (utm[i].ano == ep[j].ano) {
-                            if (utm[i].mes == ep[j].mes) {
-                                if (utm[i].dia == ep[j].dia) {
-                                    var lat = 0;
-                                    var lon = 0;
-                                    //for (var k = 0; k < familias[i]['tempos'].length; k++) {
-                                        //if (maiorSize < familias[i]['tempos'][k].size) {
-                                            //maiorSize = familias[i]['tempos'][k].size;
-                                            lat = utm[i].lat;
-                                            lon = utm[i].lon;
-                                      //  } //fim if maiorSize
-                                    //} //fim for familias['tempos']
+        for (var j = 0; j < QUANTIDADE_EPS; j++) {
+            if (utm[i].ano == ep[j].ano) {
+                if (utm[i].mes == ep[j].mes) {
+                    if (utm[i].dia == ep[j].dia) {
+                        var lat = 0;
+                        var lon = 0;
 
-                                    var epLat = ep[j].lat;
-                                    var epLon = ep[j].lon;
+                        lat = utm[i].lat;
+                        lon = utm[i].lon;
 
-                                    dac = parseFloat(teste(epLat, lat, epLon, lon));
+                        var epLat = ep[j].lat;
+                        var epLon = ep[j].lon;
 
-                                    areaCirculo = PIXEL * utm[i].size;
-                                    raioCirculo = areaCirculo / Math.PI;
-                                    raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
+                        dac = parseFloat(teste(epLat, lat, epLon, lon));
 
-                                    if (dac < raioCirculo) {
-                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
-                                    } else if (dac > raioCirculo) {
-                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
-                                    } else {
-                                        $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
-                                    }
-                                } //fim if dia
-                            } //fim if mes
-                        } //fim if ano
-                    } //fim for quantidadeEPS
-                //} //fim if xlon
-            //} //fim if xlat
-            //} //fim if mes
-            //} //fim if total_time
+                        areaCirculo = PIXEL * utm[i].size;
+                        raioCirculo = areaCirculo / Math.PI;
+                        raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
+
+                        if (dac < raioCirculo) {
+                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+                        } else if (dac > raioCirculo) {
+                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
+                        } else {
+                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
+                        }
+                    } //fim if dia
+                } //fim if mes
+            } //fim if ano
+        } //fim for quantidadeEPS
+        //} //fim if xlon
+        //} //fim if xlat
+        //} //fim if mes
+        //} //fim if total_time
         //} //fim if classificacao
         maiorSize = 0;
         dac = 0;
@@ -1550,64 +1522,64 @@ function escondeTabelas() {
 }
 
 function dropdownMenu() {
-  $(".dropdown-menu a").click(function() {
-      if ($(this).text() == '1') {
-          escondeTabelas();
-          tabela1(familias.length);
-      } else if ($(this).text() == '2') {
-          escondeTabelas();
-          tabela2(familias.length);
-      } else if ($(this).text() == '3') {
-          escondeTabelas();
-          tabela3(familias.length);
-      } else if ($(this).text() == '4') {
-          escondeTabelas();
-          tabela4(familias.length);
-      } else if ($(this).text() == '5') {
-          escondeTabelas();
-          tabela5(familias.length);
-      } else if ($(this).text() == '6') {
-          escondeTabelas();
-          tabela6(familias.length);
-      } else if ($(this).text() == '7') {
-          escondeTabelas();
-          tabela7(familias.length);
-      } else if ($(this).text() == '8') {
-          escondeTabelas();
-          tabela8(familias.length);
-      } else if ($(this).text() == '9') {
-          escondeTabelas();
-          verificaRaio(familias.length);
-      } else {
-          tabela1(familias.length);
-          tabela2(familias.length);
-          tabela3(familias.length);
-          tabela4(familias.length);
-          tabela5(familias.length);
-          tabela6(familias.length);
-          tabela7(familias.length);
-          tabela8(familias.length);
-          verificaRaio(familias.length);
-      } //fim else
-  }); //fim dropdown-menu a
+    $(".dropdown-menu a").click(function() {
+        if ($(this).text() == '1') {
+            escondeTabelas();
+            tabela1(familias.length);
+        } else if ($(this).text() == '2') {
+            escondeTabelas();
+            tabela2(familias.length);
+        } else if ($(this).text() == '3') {
+            escondeTabelas();
+            tabela3(familias.length);
+        } else if ($(this).text() == '4') {
+            escondeTabelas();
+            tabela4(familias.length);
+        } else if ($(this).text() == '5') {
+            escondeTabelas();
+            tabela5(familias.length);
+        } else if ($(this).text() == '6') {
+            escondeTabelas();
+            tabela6(familias.length);
+        } else if ($(this).text() == '7') {
+            escondeTabelas();
+            tabela7(familias.length);
+        } else if ($(this).text() == '8') {
+            escondeTabelas();
+            tabela8(familias.length);
+        } else if ($(this).text() == '9') {
+            escondeTabelas();
+            verificaRaio(familias.length);
+        } else {
+            tabela1(familias.length);
+            tabela2(familias.length);
+            tabela3(familias.length);
+            tabela4(familias.length);
+            tabela5(familias.length);
+            tabela6(familias.length);
+            tabela7(familias.length);
+            tabela8(familias.length);
+            verificaRaio(familias.length);
+        } //fim else
+    }); //fim dropdown-menu a
 } //fim dropdownMenu
 
 function inicializaComponentes() {
-  new WOW().init();
-  $("#sucesso").hide();
-  $(":file").filestyle({buttonName: "btn-primary"});
-  $("#comparaTextarea").hide();
-  $("#ave").hide();
-  $("#comparaTable").hide();
-  $("#salvar").hide();
-  $("#salvarAVE").hide();
-  $("#bts10").hide();
-  $("#comparaTextarea").hide();
-  $("#selecionaFamilia").hide();
-  $("#loader").hide();
-  $("#combobox").hide();
-  $("#bt-salvar-eps").hide();
-  $("#tabela-EPs").hide();
+    new WOW().init();
+    $("#sucesso").hide();
+    $(":file").filestyle({buttonName: "btn-primary"});
+    $("#comparaTextarea").hide();
+    $("#ave").hide();
+    $("#comparaTable").hide();
+    $("#salvar").hide();
+    $("#salvarAVE").hide();
+    $("#bts10").hide();
+    $("#comparaTextarea").hide();
+    $("#selecionaFamilia").hide();
+    $("#loader").hide();
+    $("#combobox").hide();
+    $("#bt-salvar-eps").hide();
+    $("#tabela-EPs").hide();
 }
 
 /*
