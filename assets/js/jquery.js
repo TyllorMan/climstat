@@ -64,8 +64,6 @@ $(document).ready(function() {
 
                 temp = linha[i];
 
-                // eps.lat = temp[0].replace(".", ",");
-                // eps.lon = temp[1].replace(".", ",");
                 eps.lat = parseFloat(temp[0]);
                 eps.lon = parseFloat(temp[1]);
                 eps.ano = parseInt(temp[2]);
@@ -101,7 +99,7 @@ $(document).ready(function() {
 
 //carrega arquivos UTM
 $(document).ready(function() {
-    //acesssa input inputEPs
+    //acesssa input inputFamiliasUTM
     $("#inputFamiliasUTM").change(function() {
         var input = event.target;
         var fileReader = new FileReader();
@@ -1413,21 +1411,17 @@ function verificaRaio(quantidadeFamilias) {
     $("#tabela-9 > tbody").empty();
     const QUANTIDADE_EPS = ep.length;
 
-    var maiorSize = 0;
     var areaCirculo = 0;
     var raioCirculo = 0;
     var dac = 0;
 
-    for (var i = 0; i < quantidadeFamilias; i++) {
+    for (var i = 1; i < quantidadeFamilias; i++) {
         for (var j = 0; j < QUANTIDADE_EPS; j++) {
             if (utm[i].ano == ep[j].ano) {
                 if (utm[i].mes == ep[j].mes) {
                     if (utm[i].dia == ep[j].dia) {
-                        var lat = 0;
-                        var lon = 0;
-
-                        lat = utm[i].lat;
-                        lon = utm[i].lon;
+                        var lat = utm[i].lat;
+                        var lon = utm[i].lon;
 
                         var epLat = ep[j].lat;
                         var epLon = ep[j].lon;
@@ -1449,12 +1443,6 @@ function verificaRaio(quantidadeFamilias) {
                 } //fim if mes
             } //fim if ano
         } //fim for quantidadeEPS
-        //} //fim if xlon
-        //} //fim if xlat
-        //} //fim if mes
-        //} //fim if total_time
-        //} //fim if classificacao
-        maiorSize = 0;
         dac = 0;
     } //fim for quantidadeFamilias
 
@@ -1475,37 +1463,12 @@ function verificaRaio(quantidadeFamilias) {
 }
 
 function teste(lat1, lat2, lon1, lon2) {
-    if (lat1 < lat2) {
-        var p1 = parseInt((lat1 - lat2).toFixed(2));
-        var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
-    } else {
-        var p1 = parseInt((lat2 - lat1).toFixed(2));
-        var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
-    }
-
-    if (lon1 > lon2) {
-        var p11 = parseInt(lon1 - lon2);
-        var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
-    } else {
-        var p11 = parseInt(lon2 - lon1);
-        var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
-    }
-
-    var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
-
-    if (dla < 0) {
-        dla = dla * -1;
-    }
-
-    var dlo = (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2);
-
-    if (dlo < 0) {
-        dlo = dlo * -1;
-    }
+    var dla = lat1 - lat2;
+    var dlo = lon1 - lon2;
 
     var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
     comprimento = Math.sqrt(comprimento).toFixed(3);
-
+    console.log(comprimento);
     return comprimento;
 }
 
