@@ -1431,7 +1431,7 @@ function verificaRaio(quantidadeFamilias) {
                         areaCirculo = PIXEL * utm[i].size;
                         raioCirculo = areaCirculo / Math.PI;
                         raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
-
+                        console.log(i +': '+raioCirculo);
                         if (dac < raioCirculo) {
                             $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
                         } else if (dac > raioCirculo) {
@@ -1458,7 +1458,6 @@ function verificaRaio(quantidadeFamilias) {
             exclude_inputs: true
         }); //fim table2excel
     }); //fim function
-
     $("#div-tabela-9").fadeIn(300);
 }
 
