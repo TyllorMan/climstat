@@ -1471,6 +1471,59 @@ function teste(lat1, lat2, lon1, lon2) {
     return comprimento;
 }
 
+function tabela10(quantidadeFamilias) {
+    //limpa o conteudo da tabela
+    $("#tabela-4 > tbody").empty();
+
+    var famTemp;
+    try {
+        var maiorSize = 0;
+        var quantidadeEPS = ep.length;
+        for (var i = 0; i < quantidadeFamilias; i++) {
+            famTemp = new Familia();
+            if (familias[i].classificacao == "N") {
+                if (familias[i].total_time >= 6) {
+                    if (familias[i]['tempos'][0].xlat >= -19 && familias[i]['tempos'][0].xlat <= -3) {
+                        if (familias[i]['tempos'][0].xlon >= -47 && familias[i]['tempos'][0].xlon <= -34.9) {
+                            for (var j = 0; j < quantidadeEPS; j++) {
+                                if (familias[i].ano == ep[j].ano) {
+                                    if (familias[i].mes == ep[j].mes) {
+                                        if (familias[i].dia == ep[j].dia) {
+                                            for (var k = 0; k < familias[i]['tempos'].length; k++) {
+                                                if (maiorSize < parseInt(familias[i]['tempos'][k].size)) {
+                                                    maiorSize = parseInt(familias[i]['tempos'][k].size);
+                                                    famTemp['tempos'] = familias[i]['tempos'][k];
+                                                } //fim if maiorSize
+                                            } //fim for j
+                                            $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
+                                        } //fim dia
+                                    } //fim mes
+                                } //fim ano
+                            } //fim for quantidadeEPS
+                        } //fim if xlon
+                    } //fim if xlat
+                } //fim if total_time
+            } //fim if classificacao
+            maiorSize = 0;
+        } //fim for quantidadeFamilias
+    } catch (err) {
+        console.log(err.message);
+    } //fim catch
+
+    $("#btsteste").click(function() {
+        $("#tabela-4").table2excel({
+            name: "Excel Document Name",
+            filename: "Tabela",
+            fileext: ".xls",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false
+        }); //fim table2excel
+    }); //fim function
+
+    $("#div-tabela-4").fadeIn(300);
+}
+
 function escondeTabelas() {
     $("#div-tabela-1").hide();
     $("#div-tabela-2").hide();
