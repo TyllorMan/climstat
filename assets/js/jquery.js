@@ -1431,9 +1431,9 @@ function verificaRaio(quantidadeFamilias) {
                         areaCirculo = PIXEL * utm[i].size;
                         raioCirculo = areaCirculo / Math.PI;
                         raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
-                        console.log(i +': '+raioCirculo);
+
                         if (dac < raioCirculo) {
-                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
                         } else if (dac > raioCirculo) {
                             $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(utm[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
                         } else {
@@ -1473,7 +1473,43 @@ function teste(lat1, lat2, lon1, lon2) {
 
 function tabela10(quantidadeFamilias) {
     //limpa o conteudo da tabela
-    $("#tabela-4 > tbody").empty();
+    $("#tabela-10 > tbody").empty();
+    const QUANTIDADE_EPS = ep.length;
+
+    var areaCirculo = 0;
+    var raioCirculo = 0;
+    var dac = 0;
+
+    for (var i = 1; i < quantidadeFamilias; i++) {
+        for (var j = 0; j < QUANTIDADE_EPS; j++) {
+            if (ep[i].ano == ep[j].ano) {
+                if (ep[i].mes == ep[j].mes) {
+                    if (ep[i].dia == ep[j].dia) {
+                        var lat = utm[i].lat;
+                        var lon = utm[i].lon;
+
+                        var epLat = ep[j].lat;
+                        var epLon = ep[j].lon;
+
+                        dac = parseFloat(comprimentoRaio(epLat, lat, epLon, lon));
+
+                        areaCirculo = PIXEL * utm[i].size;
+                        raioCirculo = areaCirculo / Math.PI;
+                        raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
+
+                        if (dac < raioCirculo) {
+                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(eps[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('X')).append($('<td>').append('')).append($('<td>').append('')));
+                        } else if (dac > raioCirculo) {
+                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(eps[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('X')).append($('<td>').append('')));
+                        } else {
+                            $("#tabela-9 > tbody").append($('<tr>').append($('<td>').append(eps[i].numero)).append($('<td>').append(utm[i].dia)).append($('<td>').append(utm[i].mes)).append($('<td>').append(utm[i].ano)).append($('<td>').append(lat)).append($('<td>').append(lon)).append($('<td>').append(parseFloat(epLat).toFixed(2))).append($('<td>').append(parseFloat(epLon).toFixed(2))).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('X')));
+                        }
+                    } //fim if dia
+                } //fim if mes
+            } //fim if ano
+        } //fim for quantidadeEPS
+        dac = 0;
+    } //fim for quantidadeFamilias
 
     var famTemp;
     try {
@@ -1495,7 +1531,7 @@ function tabela10(quantidadeFamilias) {
                                                     famTemp['tempos'] = familias[i]['tempos'][k];
                                                 } //fim if maiorSize
                                             } //fim for j
-                                            $("#tabela-4 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
+                                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(famTemp['tempos'].sys)).append($('<td>').append(famTemp['tempos'].xlat)).append($('<td>').append(famTemp['tempos'].xlon)).append($('<td>').append(famTemp['tempos'].time)).append($('<td>').append(famTemp['tempos'].size)).append($('<td>').append(famTemp['tempos'].dsize)).append($('<td>').append(famTemp['tempos'].tmed)).append($('<td>').append(famTemp['tempos'].dtmed)).append($('<td>').append(famTemp['tempos'].tmin)).append($('<td>').append(famTemp['tempos'].dtmin)).append($('<td>').append(famTemp['tempos'].tmin9)).append($('<td>').append(famTemp['tempos'].dtmin9)).append($('<td>').append(famTemp['tempos'].cbnum)).append($('<td>').append(famTemp['tempos'].cbmed)).append($('<td>').append(famTemp['tempos'].vel)).append($('<td>').append(famTemp['tempos'].dir)).append($('<td>').append(famTemp['tempos'].incli)).append($('<td>').append(famTemp['tempos'].ecce)).append($('<td>').append(famTemp['tempos'].t_ini)).append($('<td>').append(famTemp['tempos'].t_fin)).append($('<td>').append(famTemp['tempos'].clas)).append($('<td>').append(famTemp['tempos'].sys_ant)));
                                         } //fim dia
                                     } //fim mes
                                 } //fim ano
@@ -1510,8 +1546,8 @@ function tabela10(quantidadeFamilias) {
         console.log(err.message);
     } //fim catch
 
-    $("#btsteste").click(function() {
-        $("#tabela-4").table2excel({
+    $("#bt10").click(function() {
+        $("#tabela-10").table2excel({
             name: "Excel Document Name",
             filename: "Tabela",
             fileext: ".xls",
@@ -1521,7 +1557,70 @@ function tabela10(quantidadeFamilias) {
         }); //fim table2excel
     }); //fim function
 
-    $("#div-tabela-4").fadeIn(300);
+    $("#div-tabela-10").fadeIn(300);
+}
+
+function comprimentoRaio(lat1, lat2, lon1, lon2) {
+    lat1 = (lat1 * -1).toFixed(2);
+    lat2 = (lat2 * -1).toFixed(2);
+    lon1 = (lon1 * -1).toFixed(2);
+    lon2 = (lon2 * -1).toFixed(2);
+
+    if (lat1 < lat2) {
+        var p1 = parseInt((lat1 - lat2).toFixed(2));
+        var p2 = parseInt((((lat1 - lat2) % 1) * 100).toFixed(2));
+    } else {
+        var p1 = parseInt((lat2 - lat1).toFixed(2));
+        var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
+    }
+
+  // console.log("DLA: " + (lat1 - lat2).toFixed(2));
+// console.log("DLO: " + (lon1 - lon2).toFixed(2));
+// console.log('\n');
+
+// console.log("DLA parseInt: " + parseInt(lat1 - lat2));
+// console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)));
+
+// console.log("DLA: " + ((p1 * 60) + p2));
+// console.log(p1);
+// console.log(p2);
+// console.log("DLA: " + (((p1 * 60) + p2) * MICE).toFixed(2) + "Km");
+// console.log('\n');
+
+    if (lon1 > lon2) {
+        var p11 = parseInt(lon1 - lon2);
+        var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
+    } else {
+        var p11 = parseInt(lon2 - lon1);
+        var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
+    }
+
+    // console.log("DLO parseInt: " + parseInt(lon1 -lon2));
+    // console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)));
+    // console.log("DLO: " + ((p11 * 60) + p22));
+    //  console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
+
+    var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
+
+    if (dla < 0) {
+        dla = dla * -1;
+    }
+
+    console.log("dla: " + dla);
+    var dlo = (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2);
+
+    if (dlo < 0) {
+        dlo = dlo * -1;
+    }
+    console.log("dlo: " + dlo);
+    console.log('\n');
+
+    var comprimento = ((Math.pow(dla, 2)) + (Math.pow(dlo, 2)));
+    comprimento = Math.sqrt(comprimento).toFixed(3);
+    console.log("comprimento: " + comprimento);
+    console.log('\n');
+
+    return comprimento;
 }
 
 function escondeTabelas() {
@@ -1537,7 +1636,9 @@ function escondeTabelas() {
 }
 
 function dropdownMenu() {
+
     $(".dropdown-menu a").click(function() {
+    // $('#selecionaFamilia').on('show.bs.dropdown', function () {
         if ($(this).text() == '1') {
             escondeTabelas();
             tabela1(familias.length);
@@ -1578,6 +1679,17 @@ function dropdownMenu() {
         } //fim else
     }); //fim dropdown-menu a
 } //fim dropdownMenu
+
+function dropdownMenuTabela10() {
+  // $("#dropdownMenu10").click(function() {
+  //     alert("teste");
+  // }); //fim dropdown-menu a
+
+    $('#dropdownMenu10').click(function () {
+      alert("teste");
+      // do something…
+    });
+}
 
 function inicializaComponentes() {
     new WOW().init();
