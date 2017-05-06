@@ -1572,19 +1572,6 @@ function comprimentoRaio(lat1, lat2, lon1, lon2) {
         var p2 = parseInt((((lat2 - lat1) % 1) * 100).toFixed(2));
     }
 
-    // console.log("DLA: " + (lat1 - lat2).toFixed(2));
-    // console.log("DLO: " + (lon1 - lon2).toFixed(2));
-    // console.log('\n');
-
-    // console.log("DLA parseInt: " + parseInt(lat1 - lat2));
-    // console.log("DLA fracao: " + parseInt((((lat1 - lat2) % 1) * 100).toFixed(2)));
-
-    // console.log("DLA: " + ((p1 * 60) + p2));
-    // console.log(p1);
-    // console.log(p2);
-    // console.log("DLA: " + (((p1 * 60) + p2) * MICE).toFixed(2) + "Km");
-    // console.log('\n');
-
     if (lon1 > lon2) {
         var p11 = parseInt(lon1 - lon2);
         var p22 = parseInt((((lon1 - lon2) % 1) * 100).toFixed(2));
@@ -1592,11 +1579,6 @@ function comprimentoRaio(lat1, lat2, lon1, lon2) {
         var p11 = parseInt(lon2 - lon1);
         var p22 = parseInt((((lon2 - lon1) % 1) * 100).toFixed(2));
     }
-
-    // console.log("DLO parseInt: " + parseInt(lon1 -lon2));
-    // console.log("DLO fracao: " + parseInt((((lon1 - lon2) % 1) * 100).toFixed(2)));
-    // console.log("DLO: " + ((p11 * 60) + p22));
-    //  console.log("DLO: " + (((p11 * 60) + (p22 * 1)) * MICE).toFixed(2) + "Km");
 
     var dla = (((p1 * 60) + (p2 * 1)) * MICE).toFixed(2);
 
