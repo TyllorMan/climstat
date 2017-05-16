@@ -35,5 +35,9 @@ function showCoordenadasMinutos(gDec, x) {
     //         direcao = "N";
     // }
     // Devolvo a string formatada, a função Math.abs é para retornar o valor absoluto // (retirar o valor negativo) já que estou usando a notação norte, sul, leste ou oeste
-    return Math.abs(graus) + "° " + minutos + "' " + segundos + "." + milisegundos + "'' " + direcao;
+    //return Math.abs(graus) + "° " + minutos + "' " + segundos + "." + milisegundos + "'' " + direcao;
+    return Math.abs(graus) + "° " + minutos + "' " + segundos + "." + milisegundos + "''";
+
+    //valor de ponto flutuante no padrão NMEA
+    //return ((graus * 100) + minutos) + (((segundos * 100) + milisegundos) / 10000);
 }
