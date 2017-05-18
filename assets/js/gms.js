@@ -97,9 +97,11 @@ function showCoordenadasMinutos(gDec, latLon) {
         dla = dla * -1;
     }
 
-    // console.log("dla: " + dla);
     // return Math.abs(graus) + " " + minutos + " " + segundos + " | " +  Math.abs(graus2) + " " + minutos2+ " " + segundos2 + " | " + grauAux + " " + minAux + " " + segaux;
-    return dla;
+    console.log(Math.abs(graus) + " " + minutos + " " + segundos);
+    console.log("DL a o: " + dla);
+
+  //  return dla;
     //return Math.abs(graus) + " " + minutos + " " + segundos + " | " +  Math.abs(graus2) + " " + minutos2+ " " + segundos2;
     //valor de ponto flutuante no padrão NMEA
     //return ((graus * 100) + minutos) + (((segundos * 100) + milisegundos) / 10000);
