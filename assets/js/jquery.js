@@ -40,8 +40,8 @@ $(document).ready(function() {
     dropdownMenu();
     escondeTabelas();
 
-    showCoordenadasMinutos(-4.12, -7.84);
-    showCoordenadasMinutos(-45.19, -35.76);
+    showCoordenadasMinutos(-4.12, 7.84);
+    showCoordenadasMinutos(-45.19, 35.76);
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -1594,7 +1594,7 @@ function dropdownMenu() {
             verificaRaio(familias.length);
         } else if ($(this).text() == '10') {
             escondeTabelas();
-            //tabela10(familias.length, 1);
+            tabela10(familias.length, 1);
         } else {
             tabela1(familias.length);
             tabela2(familias.length);
