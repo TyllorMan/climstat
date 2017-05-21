@@ -40,8 +40,8 @@ $(document).ready(function() {
     dropdownMenu();
     escondeTabelas();
 
-    showCoordenadasMinutos(-4.12, 7.84);
-    showCoordenadasMinutos(-45.19, 35.76);
+    //showCoordenadasMinutos(-4.12, 7.84);
+    //showCoordenadasMinutos(-45.19, 35.76);
 });
 
 //carrega arquivos EPI.txt EPF.txt

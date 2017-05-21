@@ -64,10 +64,10 @@ function showCoordenadasMinutos(gDec, latLon) {
         segundos2 = segundos2 *= -1;
     }
 
-    console.log('\n');
-    console.log(graus + '°' + minutos + '\'' + segundos + '\'\'');
-    console.log(graus2 + '°' + minutos2 + '\'' + segundos2 + '\'\'');
-    console.log('\n');
+    // console.log('\n');
+    // console.log(graus + '°' + minutos + '\'' + segundos + '\'\'');
+    // console.log(graus2 + '°' + minutos2 + '\'' + segundos2 + '\'\'');
+    // console.log('\n');
 
     grauAux = graus - graus2;
     minAux = minutos - minutos2;
@@ -85,17 +85,17 @@ function showCoordenadasMinutos(gDec, latLon) {
         segaux = segaux *= -1;
     }
 
-    console.log('grauAux ' + grauAux);
-    console.log('minAux ' + minAux);
-    console.log('segaux ' + segaux);
+    // console.log('grauAux ' + grauAux);
+    // console.log('minAux ' + minAux);
+    // console.log('segaux ' + segaux);
 
     var dla = (((grauAux * 60) + (minAux * 1) + (segaux / 60)) * MICE).toFixed(2);
 
     if (dla < 0) {
         dla = dla * -1;
     }
-    
-    console.log("DL a o: " + dla);
+
+    //console.log("DL a o: " + dla);
 
     return dla;
     //valor de ponto flutuante no padrão NMEA
