@@ -39,9 +39,6 @@ $(document).ready(function() {
     inicializaComponentes();
     dropdownMenu();
     escondeTabelas();
-
-    //showCoordenadasMinutos(-4.12, 7.84);
-    //showCoordenadasMinutos(-45.19, 35.76);
 });
 
 //carrega arquivos EPI.txt EPF.txt
@@ -325,7 +322,7 @@ $(document).ready(function() {
         var input = event.target;
         var files = $("#inputFamilias")[0].files;
         var quantidadeArquivos = $("#inputFamilias")[0].files.length;
-        console.log('quantidadeArquivos: ' + quantidadeArquivos);
+        //console.log('quantidadeArquivos: ' + quantidadeArquivos);
         var quantidadeFamilias = 0;
         var soma = 0;
         var file;
@@ -1432,7 +1429,8 @@ function verificaRaio(quantidadeFamilias) {
                         dac = parseFloat(teste(epLat, lat, epLon, lon));
 
                         areaCirculo = PIXEL * utm[i].size;
-                        raioCirculo = areaCirculo / Math.PI;
+                        //raioCirculo = areaCirculo / Math.PI;
+                        raioCirculo = areaCirculo / 3.14;
                         raioCirculo = Math.sqrt(raioCirculo).toFixed(3);
 
                         if (dac < raioCirculo) {
@@ -1453,8 +1451,8 @@ function verificaRaio(quantidadeFamilias) {
 
     $("#bts9").click(function() {
         $("#tabela-9").table2excel({
-            name: "Excel Document Name",
-            filename: "EPs",
+            name: "teste",
+            filename: "teste",
             fileext: ".xls",
             exclude_img: true,
             exclude_links: true,
@@ -1474,12 +1472,13 @@ function teste(lat1, lat2, lon1, lon2) {
 }
 
 function tabela10(quantidadeFamilias, raio) {
-    $("#tabela-10 > tbody").empty();
+    $("#tabela-dez > tbody").empty();
     const QUANTIDADE_EPS = ep.length;
-
     var areaCirculo = 0;
     var raioCirculo = 0;
     var dac = 0;
+    var qtd = 0;
+    var teste = 0;
 
     try {
         for (var i = 0; i < quantidadeFamilias; i++) {
@@ -1496,18 +1495,29 @@ function tabela10(quantidadeFamilias, raio) {
                                         var epLon = ep[j].lon;
 
                                         dac = parseFloat(comprimentoRaio(epLat, lat, epLon, lon));
-
                                         areaCirculo = PIXEL * familias[i]['tempos'][k].size;
-                                        raioCirculo = areaCirculo / Math.PI;
+                                        //raioCirculo = areaCirculo / Math.PI;
+                                        raioCirculo = areaCirculo / 3.14;
                                         raioCirculo = (Math.sqrt(raioCirculo).toFixed(3) * parseFloat(raio)).toFixed(2);
 
                                         if (dac < raioCirculo) {
-                                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append('x')).append($('<td>').append(' ')).append($('<td>').append(' ')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
+                                            $("#tabela-dez > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append('x')).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
                                         } else if (dac > raioCirculo) {
-                                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append(' ')).append($('<td>').append('x')).append($('<td>').append(' ')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
+                                            $("#tabela-dez > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append('')).append($('<td>').append('x')).append($('<td>').append('')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
                                         } else {
-                                            $("#tabela-10 > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append(' ')).append($('<td>').append(' ')).append($('<td>').append('x')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
+                                            $("#tabela-dez > tbody").append($('<tr>').append($('<td>').append(familias[i].numero)).append($('<td>').append(familias[i].ano)).append($('<td>').append(familias[i].mes)).append($('<td>').append(familias[i].dia)).append($('<td>').append(familias[i].hora)).append($('<td>').append(familias[i].primeiro_membro)).append($('<td>').append(familias[i].classificacao)).append($('<td>').append(familias[i].total_time)).append($('<td>').append(familias[i].deltax)).append($('<td>').append(familias[i].deltay)).append($('<td>').append(familias[i].last_image)).append($('<td>').append(familias[i].end)).append($('<td>').append(familias[i]['tempos'][k].sys)).append($('<td>').append(familias[i]['tempos'][k].xlat)).append($('<td>').append(familias[i]['tempos'][k].xlon)).append($('<td>').append(familias[i]['tempos'][k].time)).append($('<td>').append(familias[i]['tempos'][k].size)).append($('<td>').append(familias[i]['tempos'][k].dsize)).append($('<td>').append(familias[i]['tempos'][k].tmed)).append($('<td>').append(familias[i]['tempos'][k].dtmed)).append($('<td>').append(familias[i]['tempos'][k].tmin)).append($('<td>').append(familias[i]['tempos'][k].dtmin)).append($('<td>').append(familias[i]['tempos'][k].tmin9)).append($('<td>').append(familias[i]['tempos'][k].dtmin9)).append($('<td>').append(familias[i]['tempos'][k].cbnum)).append($('<td>').append(familias[i]['tempos'][k].cbmed)).append($('<td>').append(familias[i]['tempos'][k].vel)).append($('<td>').append(familias[i]['tempos'][k].dir)).append($('<td>').append(familias[i]['tempos'][k].incli)).append($('<td>').append(familias[i]['tempos'][k].ecce)).append($('<td>').append(familias[i]['tempos'][k].t_ini)).append($('<td>').append(familias[i]['tempos'][k].t_fin)).append($('<td>').append(familias[i]['tempos'][k].clas)).append($('<td>').append(familias[i]['tempos'][k].sys_ant)).append($('<td>').append('')).append($('<td>').append('')).append($('<td>').append('x')).append($('<td>').append(raio)).append($('<td>').append(raioCirculo)).append($('<td>').append(dac)));
                                         }
+                                      //   teste++;
+                                      //   qtd++
+                                      //
+                                      // if(qtd == 3000){
+                                      //   $("#tabela-dez").table2excel({
+                                      //       name: "tabela 10",
+                                      //       filename: "tabela 10",
+                                      //   });
+                                      //   qtd = 0;
+                                      //   $("#tabela-dez > tbody").empty();
+                                      // }
                                     } //fim for j
                                 } //fim dia
                                 dac = 0;
@@ -1516,23 +1526,24 @@ function tabela10(quantidadeFamilias, raio) {
                     } //fim for quantidadeEPS
                 } //fim if xlon
             } //fim if xlat
-            maiorSize = 0;
         } //fim for quantidadeFamilias
     } catch (err) {
         console.log(err.message);
     } //fim catch
+
+    // console.log(teste);
     $("#bt10").click(function() {
-        $("#tabela-10").table2excel({
-            name: "Excel Document Name",
-            filename: "Tabela",
-            fileext: ".xls",
-            exclude_img: false,
-            exclude_links: false,
-            exclude_inputs: false
+        $("#tabela-dez").table2excel({
+            name: "tabela 10",
+            filename: "teste",
+            fileext: ".xlsx",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
         }); //fim table2excel
     }); //fim function
+    $("#div-tabela-10").fadeIn(500);
     dropdownMenuTabela10();
-    $("#div-tabela-10").fadeIn(300);
 }
 
 function comprimentoRaio(lat1, lat2, lon1, lon2) {
@@ -1648,7 +1659,7 @@ todas as tebelas devem ser verificadas por:
 -------------------------------------------
 classificação N
 latitude -19 a -3
-longitude -47 q -34.9
+longitude -47 a -34.9
 
 -------------------------------------------
 Tipos de classificação
